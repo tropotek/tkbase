@@ -1,11 +1,11 @@
-# tk2simple :boom: 
+# tk2mvc :boom: 
 
-__Project:__ tk2simple  
-__Published:__ 01 Nov 2015  
+__Project:__ tk2mvc  
+__Published:__ 16 May 2016  
 __Web:__ <http://www.tropotek.com/>  
 __Authors:__ Michael Mifsud <http://www.tropotek.com/>  
 
-A base site using the Tk2 framework on its own.
+A base site using the Tk2 framework MVC on its own.
 
 ## Contents
 
@@ -17,8 +17,8 @@ A base site using the Tk2 framework on its own.
 Start by getting the dependant libs:
 
 ~~~bash
-# git clone https://github.com/tropotek/tk2simple.git
-# cd tk2simple
+# git clone https://github.com/tropotek/tk2mvc.git
+# cd tk2mvc
 # composer install
 ~~~
 
