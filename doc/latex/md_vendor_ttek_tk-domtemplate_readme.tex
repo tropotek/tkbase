@@ -1,0 +1,135 @@
+{\bfseries Project\+:} \href{http://packagist.org/packages/ttek/tk-domtemplate}{\tt ttek/tk-\/domtemplate} {\bfseries Published\+:} 01 Jul 2007 {\bfseries Web\+:} \href{http://www.domtemplate.com/}{\tt http\+://www.\+domtemplate.\+com/} {\bfseries Authors\+:} Michael Mifsud \href{http://www.tropotek.com/}{\tt http\+://www.\+tropotek.\+com/}
+
+A P\+H\+P5 D\+O\+M Template engine for X\+H\+T\+M\+L/\+X\+M\+L
+
+\subsection*{Contents}
+
+
+\begin{DoxyItemize}
+\item \href{#installation}{\tt Installation}
+\item \href{#introduction}{\tt Introduction}
+\item \href{#var}{\tt V\+A\+R}
+\item \href{#choice}{\tt C\+H\+O\+I\+C\+E}
+\item \href{#repeat}{\tt R\+E\+P\+E\+A\+T}
+\item \href{#form}{\tt Forms}
+\item \href{#misc-functions}{\tt Misc Functions}
+\item \href{#autorenderer}{\tt Auto Renderer}
+\item \href{#loader}{\tt Loader}
+\item \href{docs/examples/}{\tt P\+H\+P Examples}
+\end{DoxyItemize}
+
+\subsection*{Installation}
+
+Available on Packagist (\href{http://packagist.org/packages/ttek/tk-domtemplate}{\tt ttek/tk-\/domtemplate}) and as such installable via \href{http://getcomposer.org/}{\tt Composer}.
+
+```bash composer require ttek/tk-\/domtemplate ```
+
+Or add the following to your composer.\+json file\+:
+
+```json \char`\"{}ttek/tk-\/domtemplate\char`\"{}\+: \char`\"{}$\sim$2.\+0\char`\"{} ```
+
+If you do not use Composer, you can grab the code from Git\+Hub, and use any P\+S\+R-\/0 compatible autoloader (e.\+g. the \href{https://github.com/tropotek/tk-domtemplate}{\tt P\+H\+P Dom\+Template}) to load the classes.
+
+\subsection*{Introduction}
+
+{\bfseries N\+O\+T\+E\+: This engine uses the P\+H\+P D\+O\+M module that requires that all documents loaded into it must be strict \href{https://en.wikipedia.org/wiki/XHTML}{\tt X\+M\+L/\+X\+H\+T\+M\+L markup}. Close all tags and ensure all \& are \&amp;, even in U\+R\+L query strings.}
+
+The D\+O\+M template engine has been developed so designers have a simple way to communicate to build templates and communicate their requirements to developers.
+
+There are three custom attributes the template engine uses. These are\+:
+
+
+\begin{DoxyEnumerate}
+\item \+\_\+\+\_\+\href{#var}{\tt var}\+\_\+\+\_\+\+: Is used to allow to add attributes and content to a node.
+\item \+\_\+\+\_\+\href{#choice}{\tt choice}\+\_\+\+\_\+\+: Is used to hide/show a node and its contents
+\item \+\_\+\+\_\+\href{#repeat}{\tt repeat}\+\_\+\+\_\+\+: For repeating data like lists or tables.
+\end{DoxyEnumerate}
+
+Do not be concerned that these attributes do not meet the H\+T\+M\+L5 spec or some other spec because they are removed once the template is parsed.
+
+That's all there is to it from a designers point of view. For a developer it makes interacting with H\+T\+M\+L template easy without overriding any of the designers hard work.
+
+P\+H\+P D\+O\+M\+Template also comes with a number of other features that help when rendering forms, css, javascript metatags, etc. The following sections will outline how to use these. Also check out the code examples to see how we have used the D\+O\+M\+Template.
+
+\subsection*{V\+A\+R}
+
+This is the {\ttfamily var} attribute. This us used in a node if you want to modify its content or attributes. The following is an example of a {\ttfamily var} being used within a template\+:
+
+```html \href{#}{\tt } ```
+
+With this template the developer can then build coe to manipulate this node how they see fit\+:
+
+```php $<$?php // Load a new template from a file. (The file must be X\+H\+T\+M\+L valid or errors will be produced) \$template = new \+::load\+File('index.\+html');
+
+// Add some text content inside the anchor node \$template-\/$>$insert\+Text('link', 'This is a link');
+
+//\+Add some H\+T\+M\+L content inside the ancor node \$template-\/$>$insert\+Html('link', '{\itshape } Close');
+
+// Add a real U\+R\+L to the ancor \$template-\/$>$set\+Attr('link', 'href', '\href{http://www.example.com/'}{\tt http\+://www.\+example.\+com/'});
+
+... ```
+
+\subsection*{C\+H\+O\+I\+C\+E}
+
+A {\ttfamily choice} attribute allows for the removal of a dom node. If the attribute exists then the node is removed by default. you must call set\+Choice(). See the example below.
+
+```html \href{#}{\tt } ```
+
+so by default this node would be removed from the D\+O\+M tree. To keep it visible simply use\+:
+
+```php $<$?php // Load a new template from a file. (The file must be X\+H\+T\+M\+L valid or errors will be produced) \$template = new \+::load\+File('index.\+html');
+
+// Add some text content inside the anchor node \$template-\/$>$set\+Choice('show\+Node');
+
+... ```
+
+\subsection*{R\+E\+P\+E\+A\+T}
+
+A {\ttfamily repeat} attribute is used for repeating data such as lists or tables. The {\ttfamily repeat} blocks can contain nested {\ttfamily var}, {\ttfamily choice}, {\ttfamily repeat} nodes as well. When retreiving the {\ttfamily repeat} object from a template it is important to note that the repeat object is a sub\+Class of the Template object and thus has the same functionality with the added extra call to append\+Repeat(); that is called when you are finished rendering a {\ttfamily repeat} and want it appended to its parent template node. See the example below.
+
+```html 
+\begin{DoxyItemize}
+\item \href{#}{\tt Link} 
+\end{DoxyItemize}```
+
+With the repeat markup set you can then go ahead and populate your list or table.
+
+```php $<$?php // Load a new template from a file. (The file must be X\+H\+T\+M\+L valid or errors will be produced) \$template = new \+::load\+File('index.\+html');
+
+\$list = array( 'Link 1' =$>$ '\href{http://www.example.com/link1.html',}{\tt http\+://www.\+example.\+com/link1.\+html',} 'Link 2' =$>$ '\href{http://www.example.com/link2.html',}{\tt http\+://www.\+example.\+com/link2.\+html',} 'Link 3' =$>$ '\href{http://www.example.com/link3.html',}{\tt http\+://www.\+example.\+com/link3.\+html',} 'Link 4' =$>$ '\href{http://www.example.com/link4.html'}{\tt http\+://www.\+example.\+com/link4.\+html'} );
+
+// Loop through the data and render each item foreach(\$list as \$text =$>$ \$url) \{ \$repeat = \$template-\/$>$get\+Repeat('item');
+
+\$repeat-\/$>$insert\+Text('url', \$text); \$repeat
+
+// Finish the repeat item and append it to its parent. \$repeat-\/$>$append\+Repeat(); \}
+
+... ```
+
+\subsection*{F\+O\+R\+M}
+
+Forms are handled a little differently with the D\+O\+M\+Template object. You do not need any vars or choices to access a form element node, but you can if you wish.
+
+If we are given the following basic form\+:
+
+```html $<$form id=\char`\"{}contact\+Form\char`\"{} method=\char`\"{}post\char`\"{}$>$ \begin{TabularC}{2}
+\hline
+Name\+: &$<$input type=\char`\"{}text\char`\"{} name=\char`\"{}name\char`\"{}$>$  \\\cline{1-2}
+Email\+: &
+
+$<$input type=\char`\"{}text\char`\"{} name=\char`\"{}email\char`\"{}$>$   \\\cline{1-2}
+Country &$<$select name=\char`\"{}country\char`\"{}$>$$<$/select$>$   \\\cline{1-2}
+Comments\+: &$<$textarea name=\char`\"{}comments\char`\"{} rows=\char`\"{}5\char`\"{} cols=\char`\"{}40\char`\"{}$>$$<$/textarea$>$  \\\cline{1-2}
+\&\#160; &$<$input type=\char`\"{}submit\char`\"{} name=\char`\"{}process\char`\"{} value=\char`\"{}\+Submit\char`\"{}$>$  \\\cline{1-2}
+\end{TabularC}
+$<$/form$>$ ```
+
+Then we can access the form through the code lik this\+:
+
+```php $<$?php \$template = \+::load(\$buff);
+
+// Set the page\+Title tag --$>$ \section*{Default Text}
+
+\$template-\/$>$insert\+Text('page\+Title', 'Dynamic Form Example');
+
+\$dom\+Form = \$template-\/$>$get\+Form('contact\+Form'); // Init any form elements to a default status \$select = \$dom\+Form-\/$>$get\+Form\+Element('country'); /$\ast$ 

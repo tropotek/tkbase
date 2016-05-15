@@ -1,0 +1,134 @@
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface}{\section{Tk\textbackslash{}Dom\textbackslash{}Modifier\textbackslash{}Filter\textbackslash{}Iface Class Reference}
+\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface}\index{Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface@{Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface}}
+}
+
+
+Inheritance diagram for Tk\textbackslash{}Dom\textbackslash{}Modifier\textbackslash{}Filter\textbackslash{}Iface\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=350pt]{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_ad7ca6a2844adf778d334d22dc1001785}{set\+Dom\+Modifier} (\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier}{Modifier} \$dm)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a9cb0edc59c7299b123f443cd8a9e8caf}{set\+Enable} (\$b)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_af2361ea31b54e2ed74feff865423e145}{is\+Enabled} ()
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a3fb21a70a41f94cfea4dce38bd4e13fc}{init} (\$doc)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a05cb828e17a22aa923f36bfc81c41335}{post\+Traverse} (\$doc)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a987e5c74d9365b6cd1be7a9a5b768bbf}{execute\+Node} (\textbackslash{}D\+O\+M\+Element \$node)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_ac1b5e6d70848ef34103f976cc0046c46}{{\bfseries \$dom\+Modifier} = null}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_ac1b5e6d70848ef34103f976cc0046c46}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a3aa2aa98bdbb5a73ce1c51d9647b60c5}{{\bfseries \$enabled} = true}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a3aa2aa98bdbb5a73ce1c51d9647b60c5}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The interface for all Dom\+Modifier filter objects
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2007 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a987e5c74d9365b6cd1be7a9a5b768bbf}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}!execute\+Node@{execute\+Node}}
+\index{execute\+Node@{execute\+Node}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}}
+\subsubsection[{execute\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface\+::execute\+Node (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}D\+O\+M\+Element}]{\$node}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a987e5c74d9365b6cd1be7a9a5b768bbf}
+The code to perform any modification to the node goes here.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Element & {\em \$node} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a3fb21a70a41f94cfea4dce38bd4e13fc}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}!init@{init}}
+\index{init@{init}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface\+::init (
+\begin{DoxyParamCaption}
+\item[{}]{\$doc}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [abstract]}}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a3fb21a70a41f94cfea4dce38bd4e13fc}
+pre init the front controller
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Document & {\em \$doc} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_af2361ea31b54e2ed74feff865423e145}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}!is\+Enabled@{is\+Enabled}}
+\index{is\+Enabled@{is\+Enabled}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}}
+\subsubsection[{is\+Enabled}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface\+::is\+Enabled (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_af2361ea31b54e2ed74feff865423e145}
+Get the enabled status.
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a05cb828e17a22aa923f36bfc81c41335}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}!post\+Traverse@{post\+Traverse}}
+\index{post\+Traverse@{post\+Traverse}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}}
+\subsubsection[{post\+Traverse}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface\+::post\+Traverse (
+\begin{DoxyParamCaption}
+\item[{}]{\$doc}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a05cb828e17a22aa923f36bfc81c41335}
+called after D\+O\+M tree is traversed
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Document & {\em \$doc} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_ad7ca6a2844adf778d334d22dc1001785}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}!set\+Dom\+Modifier@{set\+Dom\+Modifier}}
+\index{set\+Dom\+Modifier@{set\+Dom\+Modifier}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}}
+\subsubsection[{set\+Dom\+Modifier}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface\+::set\+Dom\+Modifier (
+\begin{DoxyParamCaption}
+\item[{{\bf Modifier}}]{\$dm}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_ad7ca6a2844adf778d334d22dc1001785}
+Set Dom \hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier}{Modifier}
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier}{Modifier} & {\em \$dm} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a9cb0edc59c7299b123f443cd8a9e8caf}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}!set\+Enable@{set\+Enable}}
+\index{set\+Enable@{set\+Enable}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Iface}}
+\subsubsection[{set\+Enable}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Iface\+::set\+Enable (
+\begin{DoxyParamCaption}
+\item[{}]{\$b}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface_a9cb0edc59c7299b123f443cd8a9e8caf}
+Set the enabled state of the object
+
+
+\begin{DoxyParams}[1]{Parameters}
+bool & {\em \$b} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/framework/\+Tk/\+Dom/\+Modifier/\+Filter/Iface.\+php\end{DoxyCompactItemize}

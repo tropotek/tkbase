@@ -1,0 +1,65 @@
+\hypertarget{classApp_1_1Url}{\section{App\textbackslash{}Url Class Reference}
+\label{classApp_1_1Url}\index{App\textbackslash{}\+Url@{App\textbackslash{}\+Url}}
+}
+
+
+Inheritance diagram for App\textbackslash{}Url\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=147pt]{classApp_1_1Url__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classApp_1_1Url_a6f0f11b3d26275fa75c52596e3567931}{create} (\$spec= '')
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+Class \hyperlink{classApp_1_1Url}{Url}
+
+\begin{center}
+
+\begin{DoxyImageNoCaption}  \mbox{\includegraphics{inline_umlgraph_2}}
+\end{DoxyImageNoCaption}
+\end{center}
+
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2015 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classApp_1_1Url_a6f0f11b3d26275fa75c52596e3567931}{\index{App\+::\+Url@{App\+::\+Url}!create@{create}}
+\index{create@{create}!App\+::\+Url@{App\+::\+Url}}
+\subsubsection[{create}]{\setlength{\rightskip}{0pt plus 5cm}static App\textbackslash{}\+Url\+::create (
+\begin{DoxyParamCaption}
+\item[{}]{\$spec = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classApp_1_1Url_a6f0f11b3d26275fa75c52596e3567931}
+Create a url, However if a relative path to a file is given the project site root is prepended to the given U\+R\+L.
+
+When using \hyperlink{classApp_1_1Url_a6f0f11b3d26275fa75c52596e3567931}{create()} or new () there are three ways to supply the spec path\+:
+\begin{DoxyItemize}
+\item \href{http://www.example.com/path/to/index.html}{\tt http\+://www.\+example.\+com/path/to/index.\+html} =$>$ \href{http://www.example.com/path/to/index.html}{\tt http\+://www.\+example.\+com/path/to/index.\+html}
+\item /path/to/index.html =$>$ \href{http://www.sitehost.com/siteUrl/path/to/index.html}{\tt http\+://www.\+sitehost.\+com/site\+Url/path/to/index.\+html} $<$-- Convert to relative
+\item path/to/index.\+html =$>$ \href{http://www.sitehost.com/siteUrl/path/to/index.html}{\tt http\+://www.\+sitehost.\+com/site\+Url/path/to/index.\+html} $<$-- Convert to relative
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$spec} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+src/\+App/Url.\+php\end{DoxyCompactItemize}

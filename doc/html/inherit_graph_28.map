@@ -1,0 +1,7 @@
+<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
+<area shape="rect" id="node1" href="$classTk_1_1Table_1_1Cell_1_1Iface.html" title="Tk\\Table\\Cell\\Iface" alt="" coords="5,31,139,57"/>
+<area shape="rect" id="node2" href="$classTk_1_1Table_1_1Cell_1_1Checkbox.html" title="Tk\\Table\\Cell\\Checkbox" alt="" coords="187,5,349,32"/>
+<area shape="rect" id="node3" href="$classTk_1_1Table_1_1Cell_1_1Text.html" title="Tk\\Table\\Cell\\Text" alt="" coords="203,56,333,83"/>
+<area shape="rect" id="node4" href="$classTk_1_1Table_1_1Cell_1_1Boolean.html" title="Tk\\Table\\Cell\\Boolean" alt="" coords="397,31,548,57"/>
+<area shape="rect" id="node5" href="$classTk_1_1Table_1_1Cell_1_1Date.html" title="Tk\\Table\\Cell\\Date" alt="" coords="407,81,539,108"/>
+</map>

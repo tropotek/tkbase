@@ -1,0 +1,371 @@
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer}{\section{Dom\textbackslash{}Renderer\textbackslash{}Auto\+Renderer Class Reference}
+\label{classDom_1_1Renderer_1_1AutoRenderer}\index{Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer@{Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer}}
+}
+
+
+Inheritance diagram for Dom\textbackslash{}Renderer\textbackslash{}Auto\+Renderer\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=223pt]{classDom_1_1Renderer_1_1AutoRenderer__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a87d7af23e35fcbe2f3d5b31c8c5f0504}{\+\_\+\+\_\+construct} (\$template=null, \$data=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_ac73a67b447e94321d31bd4f388f1b90a}{exists} (\$name)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_ada481677e5252d2aa5cd03b46b6637f5}{set} (\$name, \$val)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_ac9a2979a26a01180f2723d9dcbd97a1f}{get} (\$name=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a71ad96ed156aa79d45058b3bf372e73d}{show} ()
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a8c34c043c962f53241f825579839750c}{set\+Template} (\$template)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a7c6ac2e26298cf2a8be324f6e44056cf}{get\+Template} ()
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a0172677627adb5372fb026d177d57951}{has\+Template} ()
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_aa2b0c92e699c2e5454ed6da1de19c0bd}{to\+String} (\$params=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a79b361f403c09d7d1ccc81933b718017}{\+\_\+\+\_\+to\+String} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a3b70adccf8b6bfe1f1cea70f9f5b61c1}{show\+Repeat} (\$template, \$var\+Val=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a2a0ec28ecc71a00879f8eb5b01f2d757}{show\+Choice} (\$template, \$var\+Val=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a22152a42a4755f4cea0cdc35ca7da5ca}{show\+Vars} (\$template, \$var\+Val=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_af00edcb9f6d79f99f3b29fb4e4f47f05}{get\+Parameter} (\$raw\+Param, \$var\+Val=null)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_a33948b5b6b5168f0b33c9f3c59f9ad70}{access\+Array} (\$array, \$keys)
+\item 
+\hyperlink{classDom_1_1Renderer_1_1AutoRenderer_ac9a3ade75e9579add0a93c613ab4b822}{var\+To\+Str} (\$val, \$i=0)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a73b9fa3881a3433725dde8340265c2ff}{{\bfseries \$template} = null}\label{classDom_1_1Renderer_1_1AutoRenderer_a73b9fa3881a3433725dde8340265c2ff}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+For classes that render dom templates.
+
+This is a good base for all renderer objects that implement the  it can guide you to create templates that can be inserted into other template objects.
+
+If the current template is null then the magic method \+\_\+\+\_\+make\+Template() will be called to create an internal template. This is a good way to create a default template. But be aware that this will be a new template and will have to be inserted into its parent using the \+::insert\+Template() method.
+
+\+: This object is currently under development and may change.. \begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2007 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a87d7af23e35fcbe2f3d5b31c8c5f0504}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$template = {\ttfamily null}, }
+\item[{}]{\$data = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_a87d7af23e35fcbe2f3d5b31c8c5f0504}
+Constructor
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$data} & \\
+\hline
+\hyperlink{classDom_1_1Template}{Template} & {\em \$template} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a79b361f403c09d7d1ccc81933b718017}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!\+\_\+\+\_\+to\+String@{\+\_\+\+\_\+to\+String}}
+\index{\+\_\+\+\_\+to\+String@{\+\_\+\+\_\+to\+String}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{\+\_\+\+\_\+to\+String}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::\+\_\+\+\_\+to\+String (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_a79b361f403c09d7d1ccc81933b718017}
+\+\_\+\+\_\+to\+String
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a33948b5b6b5168f0b33c9f3c59f9ad70}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!access\+Array@{access\+Array}}
+\index{access\+Array@{access\+Array}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{access\+Array}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::access\+Array (
+\begin{DoxyParamCaption}
+\item[{}]{\$array, }
+\item[{}]{\$keys}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDom_1_1Renderer_1_1AutoRenderer_a33948b5b6b5168f0b33c9f3c59f9ad70}
+access\+Array
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$array} & \\
+\hline
+string & {\em \$keys} & Example \char`\"{}\mbox{[}'test'\mbox{]}\mbox{[}0\mbox{]}\mbox{[}'item'\mbox{]}\char`\"{} \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em } & Invalid\+Argument\+Exception \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_ac73a67b447e94321d31bd4f388f1b90a}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!exists@{exists}}
+\index{exists@{exists}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{exists}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::exists (
+\begin{DoxyParamCaption}
+\item[{}]{\$name}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_ac73a67b447e94321d31bd4f388f1b90a}
+Test if an array key exists in the renderer data list
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_ac9a2979a26a01180f2723d9dcbd97a1f}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!get@{get}}
+\index{get@{get}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{get}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::get (
+\begin{DoxyParamCaption}
+\item[{}]{\$name = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_ac9a2979a26a01180f2723d9dcbd97a1f}
+Get an element from the renderer data list
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & If not set then all the data array is returned \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_af00edcb9f6d79f99f3b29fb4e4f47f05}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!get\+Parameter@{get\+Parameter}}
+\index{get\+Parameter@{get\+Parameter}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{get\+Parameter}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::get\+Parameter (
+\begin{DoxyParamCaption}
+\item[{}]{\$raw\+Param, }
+\item[{}]{\$var\+Val = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDom_1_1Renderer_1_1AutoRenderer_af00edcb9f6d79f99f3b29fb4e4f47f05}
+get\+Parameter
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$raw\+Param} & \\
+\hline
+string | null & {\em \$var\+Val} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a7c6ac2e26298cf2a8be324f6e44056cf}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!get\+Template@{get\+Template}}
+\index{get\+Template@{get\+Template}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{get\+Template}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::get\+Template (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_a7c6ac2e26298cf2a8be324f6e44056cf}
+Get the template This method will try to call the magic method \+\_\+\+\_\+make\+Template to get a template if none exits. Use this for objects that use internal templates.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Template}{Template} 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfaceDom_1_1Renderer_1_1Iface_ad24995320dbbbd8a1796c1d13518012c}{Dom\textbackslash{}\+Renderer\textbackslash{}\+Iface}.
+
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a0172677627adb5372fb026d177d57951}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!has\+Template@{has\+Template}}
+\index{has\+Template@{has\+Template}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{has\+Template}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::has\+Template (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_a0172677627adb5372fb026d177d57951}
+Test if this renderer has a template and is not N\+U\+L\+L
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_ada481677e5252d2aa5cd03b46b6637f5}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!set@{set}}
+\index{set@{set}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{set}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::set (
+\begin{DoxyParamCaption}
+\item[{}]{\$name, }
+\item[{}]{\$val}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_ada481677e5252d2aa5cd03b46b6637f5}
+Add an item to the renderer data list
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & \\
+\hline
+mixed & {\em \$val} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a8c34c043c962f53241f825579839750c}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!set\+Template@{set\+Template}}
+\index{set\+Template@{set\+Template}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{set\+Template}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::set\+Template (
+\begin{DoxyParamCaption}
+\item[{}]{\$template}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_a8c34c043c962f53241f825579839750c}
+Set a new template for this renderer.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classDom_1_1Template}{Template} & {\em \$template} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfaceDom_1_1Renderer_1_1Iface_a6e4c7ff3f90a9b1a26bc08bf6e1408d6}{Dom\textbackslash{}\+Renderer\textbackslash{}\+Iface}.
+
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a71ad96ed156aa79d45058b3bf372e73d}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!show@{show}}
+\index{show@{show}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{show}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::show (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_a71ad96ed156aa79d45058b3bf372e73d}
+Execute the renderer. This method can optionally return a \hyperlink{classDom_1_1Template}{Template} Object or H\+T\+M\+L/\+X\+M\+L string depending on your framework requirements
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Template}{Template} $\vert$ string 
+\end{DoxyReturn}
+
+
+Implements \hyperlink{interfaceDom_1_1Renderer_1_1Iface_a79a0ba41fb6714d69156891d6326bd33}{Dom\textbackslash{}\+Renderer\textbackslash{}\+Iface}.
+
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a2a0ec28ecc71a00879f8eb5b01f2d757}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!show\+Choice@{show\+Choice}}
+\index{show\+Choice@{show\+Choice}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{show\+Choice}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::show\+Choice (
+\begin{DoxyParamCaption}
+\item[{}]{\$template, }
+\item[{}]{\$var\+Val = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDom_1_1Renderer_1_1AutoRenderer_a2a0ec28ecc71a00879f8eb5b01f2d757}
+Render all vars found in the template
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classDom_1_1Template}{Template} & {\em \$template} & \\
+\hline
+string | null & {\em \$var\+Val} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a3b70adccf8b6bfe1f1cea70f9f5b61c1}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!show\+Repeat@{show\+Repeat}}
+\index{show\+Repeat@{show\+Repeat}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{show\+Repeat}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::show\+Repeat (
+\begin{DoxyParamCaption}
+\item[{}]{\$template, }
+\item[{}]{\$var\+Val = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDom_1_1Renderer_1_1AutoRenderer_a3b70adccf8b6bfe1f1cea70f9f5b61c1}
+Render all vars found in the template
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classDom_1_1Template}{Template} & {\em \$template} & \\
+\hline
+string | null & {\em \$var\+Val} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_a22152a42a4755f4cea0cdc35ca7da5ca}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!show\+Vars@{show\+Vars}}
+\index{show\+Vars@{show\+Vars}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{show\+Vars}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::show\+Vars (
+\begin{DoxyParamCaption}
+\item[{}]{\$template, }
+\item[{}]{\$var\+Val = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDom_1_1Renderer_1_1AutoRenderer_a22152a42a4755f4cea0cdc35ca7da5ca}
+Render all vars found in the template
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classDom_1_1Template}{Template} & {\em \$template} & \\
+\hline
+string | null & {\em \$var\+Val} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+
+\begin{DoxyExceptions}{Exceptions}
+{\em \hyperlink{classDom_1_1Exception}{Exception}} & \\
+\hline
+\end{DoxyExceptions}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_aa2b0c92e699c2e5454ed6da1de19c0bd}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!to\+String@{to\+String}}
+\index{to\+String@{to\+String}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{to\+String}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::to\+String (
+\begin{DoxyParamCaption}
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Renderer_1_1AutoRenderer_aa2b0c92e699c2e5454ed6da1de19c0bd}
+Parse the template with the supplied params
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$params} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Renderer_1_1AutoRenderer_ac9a3ade75e9579add0a93c613ab4b822}{\index{Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}!var\+To\+Str@{var\+To\+Str}}
+\index{var\+To\+Str@{var\+To\+Str}!Dom\+::\+Renderer\+::\+Auto\+Renderer@{Dom\+::\+Renderer\+::\+Auto\+Renderer}}
+\subsubsection[{var\+To\+Str}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Renderer\textbackslash{}\+Auto\+Renderer\+::var\+To\+Str (
+\begin{DoxyParamCaption}
+\item[{}]{\$val, }
+\item[{}]{\$i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classDom_1_1Renderer_1_1AutoRenderer_ac9a3ade75e9579add0a93c613ab4b822}
+Get the string from an object/array/string...
+
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$val} & \\
+\hline
+int & {\em \$i} & Used to get the index from an array Default 0 the first item \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/domtemplate/\+Dom/\+Renderer/Auto\+Renderer.\+php\end{DoxyCompactItemize}

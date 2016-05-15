@@ -1,0 +1,91 @@
+\hypertarget{interfaceTk_1_1Db_1_1Mappable}{\section{Tk\textbackslash{}Db\textbackslash{}Mappable Interface Reference}
+\label{interfaceTk_1_1Db_1_1Mappable}\index{Tk\textbackslash{}\+Db\textbackslash{}\+Mappable@{Tk\textbackslash{}\+Db\textbackslash{}\+Mappable}}
+}
+
+
+Inheritance diagram for Tk\textbackslash{}Db\textbackslash{}Mappable\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=308pt]{interfaceTk_1_1Db_1_1Mappable__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{interfaceTk_1_1Db_1_1Mappable_adfad1228af636c25b6f70bccd2a2d667}{map} (\$row)
+\item 
+\hyperlink{interfaceTk_1_1Db_1_1Mappable_aa4b9d1ab4a8a76798a75b03eecd93de7}{unmap} (\$obj)
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Interface Serializable
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2015 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{interfaceTk_1_1Db_1_1Mappable_adfad1228af636c25b6f70bccd2a2d667}{\index{Tk\+::\+Db\+::\+Mappable@{Tk\+::\+Db\+::\+Mappable}!map@{map}}
+\index{map@{map}!Tk\+::\+Db\+::\+Mappable@{Tk\+::\+Db\+::\+Mappable}}
+\subsubsection[{map}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Mappable\+::map (
+\begin{DoxyParamCaption}
+\item[{}]{\$row}
+\end{DoxyParamCaption}
+)}}\label{interfaceTk_1_1Db_1_1Mappable_adfad1228af636c25b6f70bccd2a2d667}
+Map the data from a D\+B row to the required object
+
+Input\+: array ( 'tbl\+Column' =$>$ 'column\+Value' )
+
+Output\+: Should return an  or  object
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classTk_1_1Db_1_1Model}{Model} | \textbackslash{}std\+Class | array & {\em \$row} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Model$\vert$ 
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+2.\+0.\+0 
+\end{DoxySince}
+
+
+Implemented in \hyperlink{classTk_1_1Db_1_1Mapper_a6478e55f0a848b91e571e7c20617ea90}{Tk\textbackslash{}\+Db\textbackslash{}\+Mapper}, \hyperlink{classApp_1_1Db_1_1UserMap_a403e564556119782400d9b56958895be}{App\textbackslash{}\+Db\textbackslash{}\+User\+Map}, and \hyperlink{classApp_1_1Db_1_1SupervisorMap_a1c8a63c9f5cb3add3d693fa1be8d3646}{App\textbackslash{}\+Db\textbackslash{}\+Supervisor\+Map}.
+
+\hypertarget{interfaceTk_1_1Db_1_1Mappable_aa4b9d1ab4a8a76798a75b03eecd93de7}{\index{Tk\+::\+Db\+::\+Mappable@{Tk\+::\+Db\+::\+Mappable}!unmap@{unmap}}
+\index{unmap@{unmap}!Tk\+::\+Db\+::\+Mappable@{Tk\+::\+Db\+::\+Mappable}}
+\subsubsection[{unmap}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Mappable\+::unmap (
+\begin{DoxyParamCaption}
+\item[{}]{\$obj}
+\end{DoxyParamCaption}
+)}}\label{interfaceTk_1_1Db_1_1Mappable_aa4b9d1ab4a8a76798a75b03eecd93de7}
+Un-\/map an object to an array ready for D\+B insertion. All filds and types must match the required D\+B types.
+
+Input\+: This requires a  or  object as input
+
+Output\+: array ( 'tbl\+Column' =$>$ 'column\+Value' )
+
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classTk_1_1Db_1_1Model}{Model} | \textbackslash{}std\+Class & {\em \$obj} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\begin{DoxySince}{Since}
+2.\+0.\+0 
+\end{DoxySince}
+
+
+Implemented in \hyperlink{classTk_1_1Db_1_1Mapper_a42a9e4d6c1eb19c9cc8c20f2787d90e2}{Tk\textbackslash{}\+Db\textbackslash{}\+Mapper}, \hyperlink{classApp_1_1Db_1_1SupervisorMap_a4ff3ad6ce5f2da3236ca6e6e6df6dbc6}{App\textbackslash{}\+Db\textbackslash{}\+Supervisor\+Map}, and \hyperlink{classApp_1_1Db_1_1UserMap_a581307e8d72d0af72967e4dcd135ec6c}{App\textbackslash{}\+Db\textbackslash{}\+User\+Map}.
+
+
+
+The documentation for this interface was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/framework/\+Tk/\+Db/Mappable.\+php\end{DoxyCompactItemize}

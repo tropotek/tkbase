@@ -1,0 +1,172 @@
+\hypertarget{classTk_1_1Db_1_1Model}{\section{Tk\textbackslash{}Db\textbackslash{}Model Class Reference}
+\label{classTk_1_1Db_1_1Model}\index{Tk\textbackslash{}\+Db\textbackslash{}\+Model@{Tk\textbackslash{}\+Db\textbackslash{}\+Model}}
+}
+
+
+Inheritance diagram for Tk\textbackslash{}Db\textbackslash{}Model\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=272pt]{classTk_1_1Db_1_1Model__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_af75537c54b500f4e67b0936bc7effb03}{get\+Id} ()
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_af0226ad1978b312105d454e06de36dbd}{set\+Id} (\$id)
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_a4c20c888c910ea6ee7db5ee48bf57a02}{insert} ()
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_a4e1cb342ed10dba3a68dd8c10ee29fbd}{update} ()
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_a31c4438e7e3538e511dd64173a0ee6da}{save} ()
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_a8913ea94f4f637dd8ea1392e8e8fb326}{delete} ()
+\item 
+\hyperlink{classTk_1_1Db_1_1Model_ab0a0d66e9ab444f003694053349fedfc}{get\+Volatile\+Id} ()
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classTk_1_1Db_1_1Model_a070f0d8f100f722bc3890bda154bc0b4}{get\+Mapper} (\$mapper\+Class= '', \$config=null)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTk_1_1Db_1_1Model_aa22395a136a6774e7ebe3679d0ac0740}{static {\bfseries \$\+M\+A\+P\+P\+E\+R\+\_\+\+A\+P\+P\+E\+N\+D} = 'Map'}\label{classTk_1_1Db_1_1Model_aa22395a136a6774e7ebe3679d0ac0740}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class \hyperlink{classTk_1_1Db_1_1Model}{Model}
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2015 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTk_1_1Db_1_1Model_a8913ea94f4f637dd8ea1392e8e8fb326}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!delete@{delete}}
+\index{delete@{delete}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{delete}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::delete (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_a8913ea94f4f637dd8ea1392e8e8fb326}
+Delete the object from the D\+B
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Db_1_1Model_af75537c54b500f4e67b0936bc7effb03}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_af75537c54b500f4e67b0936bc7effb03}
+Get the model primary D\+B key, usually I\+D
+
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Db_1_1Model_a070f0d8f100f722bc3890bda154bc0b4}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!get\+Mapper@{get\+Mapper}}
+\index{get\+Mapper@{get\+Mapper}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{get\+Mapper}]{\setlength{\rightskip}{0pt plus 5cm}static Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::get\+Mapper (
+\begin{DoxyParamCaption}
+\item[{}]{\$mapper\+Class = {\ttfamily ''}, }
+\item[{}]{\$config = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classTk_1_1Db_1_1Model_a070f0d8f100f722bc3890bda154bc0b4}
+Get this object's D\+B mapper
+
+The \hyperlink{classTk_1_1Db_1_1Mapper}{Mapper} class will be taken from this class's name if not supplied
+
+By default the Database is attempted to be set from the Tk object if it exists
+
+Also the Default table name is generated from this object\+: E\+G\+: /\+App/\+Db/\+Web\+User = 'web\+User'
+
+This would in-\/turn look for the mapper class /\+App/\+Db/\+Web\+User\+Map
+
+Change the self\+::\$\+A\+P\+P\+E\+N\+D parameter to change the class append name
+
+The method set\+Db() must be called after calling \hyperlink{classTk_1_1Db_1_1Model_a070f0d8f100f722bc3890bda154bc0b4}{get\+Mapper()} if you do not wish to use the D\+B from the config
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$mapper\+Class} & \\
+\hline
+array  |  \textbackslash{}\+Tk\textbackslash{}\+Config & {\em \$config} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classTk_1_1Db_1_1Mapper}{Mapper}
+\end{DoxyReturn}
+\begin{DoxyRefDesc}{Todo}
+\item[\hyperlink{todo__todo000003}{Todo}]\+: not happy with this method as it stands.... fix it! \end{DoxyRefDesc}
+\hypertarget{classTk_1_1Db_1_1Model_ab0a0d66e9ab444f003694053349fedfc}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!get\+Volatile\+Id@{get\+Volatile\+Id}}
+\index{get\+Volatile\+Id@{get\+Volatile\+Id}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{get\+Volatile\+Id}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::get\+Volatile\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_ab0a0d66e9ab444f003694053349fedfc}
+Returns the object id if it is greater than 0 or the next\+Insert\+Id if is 0
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Db_1_1Model_a4c20c888c910ea6ee7db5ee48bf57a02}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!insert@{insert}}
+\index{insert@{insert}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{insert}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::insert (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_a4c20c888c910ea6ee7db5ee48bf57a02}
+Insert the object into storage. By default this is a database
+
+\begin{DoxyReturn}{Returns}
+int The insert I\+D 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Db_1_1Model_a31c4438e7e3538e511dd64173a0ee6da}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!save@{save}}
+\index{save@{save}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{save}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::save (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_a31c4438e7e3538e511dd64173a0ee6da}
+A Utility method that checks the id and does and insert or an update based on the objects current state \hypertarget{classTk_1_1Db_1_1Model_af0226ad1978b312105d454e06de36dbd}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!set\+Id@{set\+Id}}
+\index{set\+Id@{set\+Id}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{set\+Id}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::set\+Id (
+\begin{DoxyParamCaption}
+\item[{}]{\$id}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_af0226ad1978b312105d454e06de36dbd}
+
+\begin{DoxyParams}[1]{Parameters}
+mixed & {\em \$id} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Db_1_1Model_a4e1cb342ed10dba3a68dd8c10ee29fbd}{\index{Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}!update@{update}}
+\index{update@{update}!Tk\+::\+Db\+::\+Model@{Tk\+::\+Db\+::\+Model}}
+\subsubsection[{update}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Model\+::update (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1Model_a4e1cb342ed10dba3a68dd8c10ee29fbd}
+Update the object in storage
+
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/framework/\+Tk/\+Db/Model.\+php\end{DoxyCompactItemize}

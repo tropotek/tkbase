@@ -1,0 +1,172 @@
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier}{\section{Tk\textbackslash{}Dom\textbackslash{}Modifier\textbackslash{}Modifier Class Reference}
+\label{classTk_1_1Dom_1_1Modifier_1_1Modifier}\index{Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier@{Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_a0998e8fd8ab8d99833f17515bf131d4f}{add} (\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Iface}{Filter\textbackslash{}\+Iface} \$mod)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_aad296dfb2a5d54e1825e6b0e2afcc17f}{set\+List} (\$list)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_ab06de99499044ad72d65b912b7a32e66}{get\+List} ()
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_a1d3702989373eb59e48d8b256175610b}{get\+Head} ()
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_aad54df6202c1117d3d6390a24892129f}{{\bfseries in\+Head} ()}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_aad54df6202c1117d3d6390a24892129f}
+
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_a7b95046ea3a79d6c39626d490170dd3a}{get\+Body} ()
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a8fdd15c4f8d3064f22dea2392f6bac8e}{{\bfseries in\+Body} ()}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a8fdd15c4f8d3064f22dea2392f6bac8e}
+
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_a9d4fd2c161dd0f0a9caa440fa0eaacfe}{remove\+Node} (\$node)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Modifier_a39f9cf503366be8dfde20712ca09f158}{execute} (\textbackslash{}D\+O\+M\+Document \$doc)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a45e947f4b29f3df18cbb0dd0aa3d9250}{{\bfseries \$list} = array()}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a45e947f4b29f3df18cbb0dd0aa3d9250}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a0e8a73527375d16c1216845349eabc36}{{\bfseries \$node\+Trash} = array()}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a0e8a73527375d16c1216845349eabc36}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a4b5d1418302e249c02abe5656d08e5da}{{\bfseries \$head} = null}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a4b5d1418302e249c02abe5656d08e5da}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_aeb1b65250c955fa7eeabd243dc09547b}{{\bfseries \$body} = null}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_aeb1b65250c955fa7eeabd243dc09547b}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a9e43ab9709b43d03c85ac65ffe3f5172}{{\bfseries \$in\+Head} = false}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a9e43ab9709b43d03c85ac65ffe3f5172}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a1b7e186580afa2a4adf0a691fe64f36b}{{\bfseries \$in\+Body} = false}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a1b7e186580afa2a4adf0a691fe64f36b}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+This class is designed to take a , traverse it and pass each Type to the children filters.
+
+The main aim of this object is to make final last minute alterations to the dom template.
+
+This ensures that we only traverse the D\+O\+M tree once on the final render stage.
+
+New filters can be created by extending the  object.
+
+See the Tk\+::get\+Dom\+Modifier() to get a basic implementation of the Dom\+Modifier.
+
+Example\+:~\newline
+ {\ttfamily  \$dm = new (); \$dm-\/$>$add(new (\$ap\+Url, \$template\+Url)); \$dm-\/$>$execute(\$template-\/$>$get\+Document()); }
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2007 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a0998e8fd8ab8d99833f17515bf131d4f}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!add@{add}}
+\index{add@{add}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{add}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::add (
+\begin{DoxyParamCaption}
+\item[{{\bf Filter\textbackslash{}\+Iface}}]{\$mod}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a0998e8fd8ab8d99833f17515bf131d4f}
+add
+
+
+\begin{DoxyParams}[1]{Parameters}
+Filter\textbackslash{}\+Iface & {\em \$mod} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Filter 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a39f9cf503366be8dfde20712ca09f158}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!execute@{execute}}
+\index{execute@{execute}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{execute}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::execute (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}D\+O\+M\+Document}]{\$doc}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a39f9cf503366be8dfde20712ca09f158}
+Call this method to traverse a document
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Document & {\em \$doc} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a7b95046ea3a79d6c39626d490170dd3a}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!get\+Body@{get\+Body}}
+\index{get\+Body@{get\+Body}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{get\+Body}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::get\+Body (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a7b95046ea3a79d6c39626d490170dd3a}
+Check to see if we are traversing inside the head node of the document
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a1d3702989373eb59e48d8b256175610b}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!get\+Head@{get\+Head}}
+\index{get\+Head@{get\+Head}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{get\+Head}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::get\+Head (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a1d3702989373eb59e48d8b256175610b}
+Check to see if we are traversing inside the head node of the document
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_ab06de99499044ad72d65b912b7a32e66}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!get\+List@{get\+List}}
+\index{get\+List@{get\+List}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{get\+List}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::get\+List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_ab06de99499044ad72d65b912b7a32e66}
+Get mod list
+
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_a9d4fd2c161dd0f0a9caa440fa0eaacfe}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!remove\+Node@{remove\+Node}}
+\index{remove\+Node@{remove\+Node}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{remove\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::remove\+Node (
+\begin{DoxyParamCaption}
+\item[{}]{\$node}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_a9d4fd2c161dd0f0a9caa440fa0eaacfe}
+Use this method to delete nodes, They will be added to a queue for removal If you used the D\+O\+M remove the D\+O\+M tree traversing will get screwed up.
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Node & {\em \$node} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Modifier_aad296dfb2a5d54e1825e6b0e2afcc17f}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}!set\+List@{set\+List}}
+\index{set\+List@{set\+List}!Tk\+::\+Dom\+::\+Modifier\+::\+Modifier@{Tk\+::\+Dom\+::\+Modifier\+::\+Modifier}}
+\subsubsection[{set\+List}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Modifier\+::set\+List (
+\begin{DoxyParamCaption}
+\item[{}]{\$list}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Modifier_aad296dfb2a5d54e1825e6b0e2afcc17f}
+Set the mod list
+
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$list} & \\
+\hline
+\end{DoxyParams}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/framework/\+Tk/\+Dom/\+Modifier/Modifier.\+php\end{DoxyCompactItemize}

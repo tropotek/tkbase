@@ -1,0 +1,142 @@
+\hypertarget{classDom_1_1Repeat}{\section{Dom\textbackslash{}Repeat Class Reference}
+\label{classDom_1_1Repeat}\index{Dom\textbackslash{}\+Repeat@{Dom\textbackslash{}\+Repeat}}
+}
+
+
+Inheritance diagram for Dom\textbackslash{}Repeat\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=161pt]{classDom_1_1Repeat__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDom_1_1Repeat_a1aa663f67376110c386ade0e9d8a29c0}{\+\_\+\+\_\+construct} (\$node, \hyperlink{classDom_1_1Template}{Template} \$parent)
+\item 
+\hyperlink{classDom_1_1Repeat_ac0abfe107698376b5a5d1d7d1d78305f}{\+\_\+\+\_\+clone} ()
+\item 
+\hyperlink{classDom_1_1Repeat_a36789b9cd47962477bef49a32ce409f4}{append\+Repeat} (\$var= '', \hyperlink{classDom_1_1Template}{Template} \$dest\+Repeat=null)
+\item 
+\hyperlink{classDom_1_1Repeat_a0bb511b01c60717baef9cfca0a4c3335}{prepend\+Repeat} (\$var= '', \hyperlink{classDom_1_1Template}{Template} \$dest\+Repeat=null)
+\item 
+\hyperlink{classDom_1_1Repeat_a69e4747ce865f7e6f701c4dc270839fc}{get\+Repeat\+Node} ()
+\item 
+\hyperlink{classDom_1_1Repeat_a487bdd77112fcd866d4f20b7acc29dc3}{get\+Parent\+Template} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDom_1_1Repeat_a0e03285537f29f247914d160f5f9d8fc}{{\bfseries \$repeat\+Node} = null}\label{classDom_1_1Repeat_a0e03285537f29f247914d160f5f9d8fc}
+
+\item 
+\hypertarget{classDom_1_1Repeat_a794cdfa5601cac5d841eff20d023b5eb}{{\bfseries \$repeat\+Name} = ''}\label{classDom_1_1Repeat_a794cdfa5601cac5d841eff20d023b5eb}
+
+\item 
+\hypertarget{classDom_1_1Repeat_a12e1b72e97610da347e97f32bbcc88ac}{{\bfseries \$repeat\+Parent} = null}\label{classDom_1_1Repeat_a12e1b72e97610da347e97f32bbcc88ac}
+
+\end{DoxyCompactItemize}
+\subsection*{Additional Inherited Members}
+
+
+\subsection{Detailed Description}
+A repeat region is a sub template of a parent templates nodes. 
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDom_1_1Repeat_a1aa663f67376110c386ade0e9d8a29c0}{\index{Dom\+::\+Repeat@{Dom\+::\+Repeat}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Dom\+::\+Repeat@{Dom\+::\+Repeat}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Repeat\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$node, }
+\item[{{\bf Template}}]{\$parent}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Repeat_a1aa663f67376110c386ade0e9d8a29c0}
+\+\_\+\+\_\+construct
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Element & {\em \$node} & \\
+\hline
+\hyperlink{classDom_1_1Template}{Template} & {\em \$parent} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classDom_1_1Repeat_ac0abfe107698376b5a5d1d7d1d78305f}{\index{Dom\+::\+Repeat@{Dom\+::\+Repeat}!\+\_\+\+\_\+clone@{\+\_\+\+\_\+clone}}
+\index{\+\_\+\+\_\+clone@{\+\_\+\+\_\+clone}!Dom\+::\+Repeat@{Dom\+::\+Repeat}}
+\subsubsection[{\+\_\+\+\_\+clone}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Repeat\+::\+\_\+\+\_\+clone (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Repeat_ac0abfe107698376b5a5d1d7d1d78305f}
+Re init the template when clone is called \hypertarget{classDom_1_1Repeat_a36789b9cd47962477bef49a32ce409f4}{\index{Dom\+::\+Repeat@{Dom\+::\+Repeat}!append\+Repeat@{append\+Repeat}}
+\index{append\+Repeat@{append\+Repeat}!Dom\+::\+Repeat@{Dom\+::\+Repeat}}
+\subsubsection[{append\+Repeat}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Repeat\+::append\+Repeat (
+\begin{DoxyParamCaption}
+\item[{}]{\$var = {\ttfamily ''}, }
+\item[{{\bf Template}}]{\$dest\+Repeat = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Repeat_a36789b9cd47962477bef49a32ce409f4}
+Append a repeating region to the document. Repeating regions are appended to the supplied var. If the var is null or '' then the repeating region is appended to is original location in the parent template.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$var} & \\
+\hline
+\hyperlink{classDom_1_1Template}{Template} & {\em \$dest\+Repeat} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The inserted node 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Repeat_a487bdd77112fcd866d4f20b7acc29dc3}{\index{Dom\+::\+Repeat@{Dom\+::\+Repeat}!get\+Parent\+Template@{get\+Parent\+Template}}
+\index{get\+Parent\+Template@{get\+Parent\+Template}!Dom\+::\+Repeat@{Dom\+::\+Repeat}}
+\subsubsection[{get\+Parent\+Template}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Repeat\+::get\+Parent\+Template (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Repeat_a487bdd77112fcd866d4f20b7acc29dc3}
+get the parent template this repeat belongs to.
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Template}{Template} 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Repeat_a69e4747ce865f7e6f701c4dc270839fc}{\index{Dom\+::\+Repeat@{Dom\+::\+Repeat}!get\+Repeat\+Node@{get\+Repeat\+Node}}
+\index{get\+Repeat\+Node@{get\+Repeat\+Node}!Dom\+::\+Repeat@{Dom\+::\+Repeat}}
+\subsubsection[{get\+Repeat\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Repeat\+::get\+Repeat\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Repeat_a69e4747ce865f7e6f701c4dc270839fc}
+Return the repeat node...
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Repeat_a0bb511b01c60717baef9cfca0a4c3335}{\index{Dom\+::\+Repeat@{Dom\+::\+Repeat}!prepend\+Repeat@{prepend\+Repeat}}
+\index{prepend\+Repeat@{prepend\+Repeat}!Dom\+::\+Repeat@{Dom\+::\+Repeat}}
+\subsubsection[{prepend\+Repeat}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Repeat\+::prepend\+Repeat (
+\begin{DoxyParamCaption}
+\item[{}]{\$var = {\ttfamily ''}, }
+\item[{{\bf Template}}]{\$dest\+Repeat = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Repeat_a0bb511b01c60717baef9cfca0a4c3335}
+Append a repeating region to the document. Repeating regions are appended to the supplied var. If the var is null or '' then the repeating region is appended to is original location in the parent template.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$var} & \\
+\hline
+\hyperlink{classDom_1_1Template}{Template} & {\em \$dest\+Repeat} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+The inserted node 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/domtemplate/\+Dom/Template.\+php\end{DoxyCompactItemize}

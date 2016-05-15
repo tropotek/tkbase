@@ -1,0 +1,38 @@
+{\bfseries Project\+:} \href{http://packagist.org/packages/ttek/tk-installers}{\tt ttek/tk-\/installers} {\bfseries Published\+:} 01 Nov 2015 {\bfseries Web\+:} \href{http://www.tropotek.com/}{\tt http\+://www.\+tropotek.\+com/} {\bfseries Authors\+:} Michael Mifsud \href{http://www.tropotek.com/}{\tt http\+://www.\+tropotek.\+com/} {\bfseries Reference\+:} \href{https://getcomposer.org/doc/articles/custom-installers.md}{\tt https\+://getcomposer.\+org/doc/articles/custom-\/installers.\+md}
+
+This lib is used by composer when using the update/install command.
+
+\subsection*{Contents}
+
+
+\begin{DoxyItemize}
+\item \href{#installation}{\tt Installation}
+\item \href{#introduction}{\tt Introduction}
+\end{DoxyItemize}
+
+\subsection*{Installation}
+
+Available on Packagist (\href{http://packagist.org/packages/ttek/tk-installers}{\tt ttek/tk-\/installers}) and as such installable via \href{http://getcomposer.org/}{\tt Composer}.
+
+```bash composer require ttek/tk-\/installers ```
+
+Or add the following to your composer.\+json file\+:
+
+```json \char`\"{}ttek/tk-\/installers\char`\"{}\+: \char`\"{}$\sim$2.\+0\char`\"{} ```
+
+If you do not use Composer, you can grab the code from Git\+Hub, and use any P\+S\+R-\/0 compatible autoloader (e.\+g. the \href{https://github.com/tropotek/tk-installers}{\tt P\+H\+P Dom\+Template}) to load the classes.
+
+\subsection*{Introduction}
+
+The main aim of this project is to allow for the Tk libs to build packages that install to other directories other than the {\ttfamily vendor} directory.
+
+Tk projects also contain\+:
+
+
+\begin{DoxyItemize}
+\item {\ttfamily assets} A folder to store media, css and Javascript packages if required
+\item {\ttfamily plugins} A folder for plugins that some sites may want to implement.
+\item {\ttfamily theme} A folder for your site themes
+\end{DoxyItemize}
+
+The Init\+Project Event object is used when the composer update/install command is run. This first checks for a config.\+php and a .htaccess and if they do not exist it then creates them from the .htaccess.\+in and config.\+php.\+in if they are readable. It also creates a data folder and makes it writable. 

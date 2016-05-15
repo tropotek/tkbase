@@ -1,0 +1,318 @@
+\hypertarget{classDom_1_1Form}{\section{Dom\textbackslash{}Form Class Reference}
+\label{classDom_1_1Form}\index{Dom\textbackslash{}\+Form@{Dom\textbackslash{}\+Form}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classDom_1_1Form_a65e0888bc892af6518bef66f4478493f}{\+\_\+\+\_\+construct} (\$form, \$elements, \$parent)
+\item 
+\hyperlink{classDom_1_1Form_a6a3f04acb0a15057b191288856e32988}{is\+Submitted} ()
+\item 
+\hyperlink{classDom_1_1Form_a7dcc534e1500c9cbb1917b94960725b7}{get\+Form\+Element} (\$name, \$i=0)
+\item 
+\hyperlink{classDom_1_1Form_a26a92a24ca4f392489a362d4dd7c832b}{get\+Form\+Element\+List} (\$name)
+\item 
+\hyperlink{classDom_1_1Form_aae8f3dfcb80c15e2d146d69284d4bf21}{get\+Num\+Form\+Elements} (\$name)
+\item 
+\hyperlink{classDom_1_1Form_a012cd2a2f66f327b0d612cee92c0f0d7}{form\+Element\+Exists} (\$key)
+\item 
+\hyperlink{classDom_1_1Form_a025318e2647c2104a05c988dd60375bc}{get\+Element\+Names} ()
+\item 
+\hyperlink{classDom_1_1Form_aa753a68f4a318cee9ff7597789b257a5}{set\+Action} (\$value)
+\item 
+\hyperlink{classDom_1_1Form_a57fa48ce5b5698514510998a348ed0ba}{set\+Method} (\$value)
+\item 
+\hyperlink{classDom_1_1Form_aae7371f8752cd97d1d4f5e58c5c0a6b2}{set\+Target} (\$value)
+\item 
+\hyperlink{classDom_1_1Form_a6da827a320f7f556ec1fc5bc75fbfa86}{append\+Hidden\+Element} (\$name, \$value)
+\item 
+\hyperlink{classDom_1_1Form_a8a96c65e40603aab1bc2342363a252e9}{get\+Name} ()
+\item 
+\hyperlink{classDom_1_1Form_a2d10dcb8fba24faacbe7f64ed2b9da47}{get\+Id} ()
+\item 
+\hyperlink{classDom_1_1Form_a6765bb1f7b8060355440c98c433731d7}{get\+Node} ()
+\item 
+\hyperlink{classDom_1_1Form_a5435b6a3041204ce9825a1c5e00c58a7}{get\+Template} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDom_1_1Form_ad9af9661b262865f693047ca95a75dfc}{{\bfseries \$form} = null}\label{classDom_1_1Form_ad9af9661b262865f693047ca95a75dfc}
+
+\item 
+\hypertarget{classDom_1_1Form_ad9fad3d4e275ddbe500c88de63259256}{{\bfseries \$elements} = array()}\label{classDom_1_1Form_ad9fad3d4e275ddbe500c88de63259256}
+
+\item 
+\hypertarget{classDom_1_1Form_a036af1b6687a64ec98970ea627947162}{{\bfseries \$parent} = null}\label{classDom_1_1Form_a036af1b6687a64ec98970ea627947162}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+The form package make an A\+P\+I available for rendering a form and its elements
+
+The form package currently does not fully support element arrays. It can be done but it is not fully supported or tested.
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud 
+
+Darryl Ross \hyperlink{}{Copyright 2007 }
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classDom_1_1Form_a65e0888bc892af6518bef66f4478493f}{\index{Dom\+::\+Form@{Dom\+::\+Form}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$form, }
+\item[{}]{\$elements, }
+\item[{}]{\$parent}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a65e0888bc892af6518bef66f4478493f}
+\+\_\+\+\_\+construct
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Element & {\em \$form} & \\
+\hline
+array & {\em \$elements} & An array of form elements \\
+\hline
+\hyperlink{classDom_1_1Template}{Template} & {\em \$parent} & The parent object \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classDom_1_1Form_a6da827a320f7f556ec1fc5bc75fbfa86}{\index{Dom\+::\+Form@{Dom\+::\+Form}!append\+Hidden\+Element@{append\+Hidden\+Element}}
+\index{append\+Hidden\+Element@{append\+Hidden\+Element}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{append\+Hidden\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::append\+Hidden\+Element (
+\begin{DoxyParamCaption}
+\item[{}]{\$name, }
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a6da827a320f7f556ec1fc5bc75fbfa86}
+Append a hidden element to a form.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & \\
+\hline
+string & {\em \$value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a012cd2a2f66f327b0d612cee92c0f0d7}{\index{Dom\+::\+Form@{Dom\+::\+Form}!form\+Element\+Exists@{form\+Element\+Exists}}
+\index{form\+Element\+Exists@{form\+Element\+Exists}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{form\+Element\+Exists}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::form\+Element\+Exists (
+\begin{DoxyParamCaption}
+\item[{}]{\$key}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a012cd2a2f66f327b0d612cee92c0f0d7}
+Check if a repeat,choice,var,form (template property) exists.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a025318e2647c2104a05c988dd60375bc}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Element\+Names@{get\+Element\+Names}}
+\index{get\+Element\+Names@{get\+Element\+Names}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Element\+Names}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Element\+Names (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a025318e2647c2104a05c988dd60375bc}
+Get an array containing the form element names
+
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a7dcc534e1500c9cbb1917b94960725b7}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Form\+Element@{get\+Form\+Element}}
+\index{get\+Form\+Element@{get\+Form\+Element}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Form\+Element}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Form\+Element (
+\begin{DoxyParamCaption}
+\item[{}]{\$name, }
+\item[{}]{\$i = {\ttfamily 0}}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a7dcc534e1500c9cbb1917b94960725b7}
+Return the form element with the name.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & \\
+\hline
+int & {\em \$i} & (optional) index for multiple elements \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Form_1_1Element}{Element} 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a26a92a24ca4f392489a362d4dd7c832b}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Form\+Element\+List@{get\+Form\+Element\+List}}
+\index{get\+Form\+Element\+List@{get\+Form\+Element\+List}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Form\+Element\+List}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Form\+Element\+List (
+\begin{DoxyParamCaption}
+\item[{}]{\$name}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a26a92a24ca4f392489a362d4dd7c832b}
+Get an array of form elements with the name value Used for radio boxes and multi select lists
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a2d10dcb8fba24faacbe7f64ed2b9da47}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Id@{get\+Id}}
+\index{get\+Id@{get\+Id}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Id}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Id (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a2d10dcb8fba24faacbe7f64ed2b9da47}
+Get the form id attribute
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a8a96c65e40603aab1bc2342363a252e9}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Name@{get\+Name}}
+\index{get\+Name@{get\+Name}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Name}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Name (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a8a96c65e40603aab1bc2342363a252e9}
+Get the form Name Attribute.
+
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a6765bb1f7b8060355440c98c433731d7}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Node@{get\+Node}}
+\index{get\+Node@{get\+Node}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Node (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a6765bb1f7b8060355440c98c433731d7}
+Get the  of this form object.
+
+\begin{DoxyReturn}{Returns}
+
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_aae8f3dfcb80c15e2d146d69284d4bf21}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Num\+Form\+Elements@{get\+Num\+Form\+Elements}}
+\index{get\+Num\+Form\+Elements@{get\+Num\+Form\+Elements}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Num\+Form\+Elements}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Num\+Form\+Elements (
+\begin{DoxyParamCaption}
+\item[{}]{\$name}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_aae8f3dfcb80c15e2d146d69284d4bf21}
+Return the number of elements in an element namespace
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$name} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+int 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a5435b6a3041204ce9825a1c5e00c58a7}{\index{Dom\+::\+Form@{Dom\+::\+Form}!get\+Template@{get\+Template}}
+\index{get\+Template@{get\+Template}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{get\+Template}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::get\+Template (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a5435b6a3041204ce9825a1c5e00c58a7}
+Get the parent template for this form
+
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Template}{Template} 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a6a3f04acb0a15057b191288856e32988}{\index{Dom\+::\+Form@{Dom\+::\+Form}!is\+Submitted@{is\+Submitted}}
+\index{is\+Submitted@{is\+Submitted}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{is\+Submitted}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::is\+Submitted (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a6a3f04acb0a15057b191288856e32988}
+Has the form been submitted
+
+\begin{DoxyReturn}{Returns}
+bool 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_aa753a68f4a318cee9ff7597789b257a5}{\index{Dom\+::\+Form@{Dom\+::\+Form}!set\+Action@{set\+Action}}
+\index{set\+Action@{set\+Action}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{set\+Action}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::set\+Action (
+\begin{DoxyParamCaption}
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_aa753a68f4a318cee9ff7597789b257a5}
+Set a U\+R\+L that defines where to send the data when the submit button is pushed.
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_a57fa48ce5b5698514510998a348ed0ba}{\index{Dom\+::\+Form@{Dom\+::\+Form}!set\+Method@{set\+Method}}
+\index{set\+Method@{set\+Method}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{set\+Method}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::set\+Method (
+\begin{DoxyParamCaption}
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_a57fa48ce5b5698514510998a348ed0ba}
+The H\+T\+T\+P method for sending data to the action U\+R\+L. Default is get.~\newline
+ Possible values are\+:~\newline
+ 
+\begin{DoxyItemize}
+\item 'get' 
+\item 'post' 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Form_aae7371f8752cd97d1d4f5e58c5c0a6b2}{\index{Dom\+::\+Form@{Dom\+::\+Form}!set\+Target@{set\+Target}}
+\index{set\+Target@{set\+Target}!Dom\+::\+Form@{Dom\+::\+Form}}
+\subsubsection[{set\+Target}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Form\+::set\+Target (
+\begin{DoxyParamCaption}
+\item[{}]{\$value}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Form_aae7371f8752cd97d1d4f5e58c5c0a6b2}
+Set the method used by the form. Possible values are\+:~\newline
+ 
+\begin{DoxyItemize}
+\item '\+\_\+blank' 
+\item '\+\_\+self' (default) 
+\item '\+\_\+parent' 
+\item '\+\_\+top' 
+\end{DoxyItemize}
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$value} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/domtemplate/\+Dom/Form.\+php\end{DoxyCompactItemize}

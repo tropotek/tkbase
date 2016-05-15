@@ -1,0 +1,206 @@
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path}{\section{Tk\textbackslash{}Dom\textbackslash{}Modifier\textbackslash{}Filter\textbackslash{}Path Class Reference}
+\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path}\index{Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path@{Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path}}
+}
+
+
+Inheritance diagram for Tk\textbackslash{}Dom\textbackslash{}Modifier\textbackslash{}Filter\textbackslash{}Path\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=217pt]{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a7e1c8692f0f02373e4dbd287585fc5d2}{\+\_\+\+\_\+construct} (\$site\+Url= '', \$template\+Url= '')
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a26bb34d7f1973f22636800fb6fe100fc}{init} (\$doc)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a5981879c0bbebde547aa856b9a6aa6e6}{execute\+Comment} (\textbackslash{}D\+O\+M\+Comment \$node)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ab02881d6db88ca04edf90cb92186486e}{execute\+Node} (\textbackslash{}D\+O\+M\+Element \$node)
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a31338a94fb7647af396257aeb021434a}{add\+Site\+Url} (\$path)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ab041274814f594f35c5ff7bcb53ee194}{add\+Theme\+Url} (\$path)
+\item 
+\hyperlink{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a7bfcedf5deb9b380aa1fa3a9c1e618cb}{replace\+Str} (\$str)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+{\bfseries \$attr\+Src}
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a4a97acb9a3da1a93a4d643c9db90c024}{{\bfseries \$attr\+Js} = array('onmouseover', 'onmouseup', 'onmousedown', 'onmousemove', 'onmouseover', 'onclick')}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a4a97acb9a3da1a93a4d643c9db90c024}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ac1fb774284ffc62c061b7826b54021c3}{{\bfseries \$site\+Url} = ''}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ac1fb774284ffc62c061b7826b54021c3}
+
+\item 
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_aa1b548430d9906c228ea1db3ea0a6d89}{{\bfseries \$template\+Url} = ''}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_aa1b548430d9906c228ea1db3ea0a6d89}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Convert all template relative paths to full path url's
+
+For all template paths we need to rewrite all the asset paths.
+
+This filter assumes that the paths are used as follows\+:
+
+Relative\+: All relative paths as in \href{js/image.png}{\tt image} will be converted to use the full template path so this path will be converted to \char`\"{}/project\+Path/template\+Path/js/image.\+png\char`\"{}
+
+Absolute\+: For absolute paths we assume the template is accessing assets from the project root. So a path of \char`\"{}/js/image.\+png\char`\"{} will be converted to \char`\"{}/project\+Path/js/image.\+png\char`\"{} and the template path is ignored.
+
+This filter attempts to convert some javascript paths but it is expected that the designer uses the javascript config object (if available) to build the asset paths within the javascript code.
+
+N\+O\+T\+E\+: js and css files are not modified by this filter only the Dom\+Template object is handled.
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Copyright 2007 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a7e1c8692f0f02373e4dbd287585fc5d2}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$site\+Url = {\ttfamily ''}, }
+\item[{}]{\$template\+Url = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a7e1c8692f0f02373e4dbd287585fc5d2}
+\+\_\+\+\_\+construct
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$site\+Url} & \\
+\hline
+string & {\em \$template\+Url} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a31338a94fb7647af396257aeb021434a}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!add\+Site\+Url@{add\+Site\+Url}}
+\index{add\+Site\+Url@{add\+Site\+Url}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{add\+Site\+Url}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::add\+Site\+Url (
+\begin{DoxyParamCaption}
+\item[{}]{\$path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a31338a94fb7647af396257aeb021434a}
+Prepend the site document root url to the provided path
+
+Eg\+: \$path = /path/to/resource.js return /site/root/path/to/resource.js
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ab041274814f594f35c5ff7bcb53ee194}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!add\+Theme\+Url@{add\+Theme\+Url}}
+\index{add\+Theme\+Url@{add\+Theme\+Url}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{add\+Theme\+Url}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::add\+Theme\+Url (
+\begin{DoxyParamCaption}
+\item[{}]{\$path}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ab041274814f594f35c5ff7bcb53ee194}
+Prepend the theme document root to the provided path
+
+Eg\+: \$path = path/to/resource.\+js \$path = ./path/to/resource.js \$path = ../path/to/resource.js \$path = ../../path/to/resource.js return /site/root/theme/selected/path/to/resource.js
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$path} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a5981879c0bbebde547aa856b9a6aa6e6}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!execute\+Comment@{execute\+Comment}}
+\index{execute\+Comment@{execute\+Comment}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{execute\+Comment}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::execute\+Comment (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}D\+O\+M\+Comment}]{\$node}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a5981879c0bbebde547aa856b9a6aa6e6}
+Call this method to travers a document
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Comment & {\em \$node} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ab02881d6db88ca04edf90cb92186486e}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!execute\+Node@{execute\+Node}}
+\index{execute\+Node@{execute\+Node}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{execute\+Node}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::execute\+Node (
+\begin{DoxyParamCaption}
+\item[{\textbackslash{}D\+O\+M\+Element}]{\$node}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_ab02881d6db88ca04edf90cb92186486e}
+Call this method to travers a document
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Element & {\em \$node} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a26bb34d7f1973f22636800fb6fe100fc}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!init@{init}}
+\index{init@{init}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{init}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::init (
+\begin{DoxyParamCaption}
+\item[{}]{\$doc}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a26bb34d7f1973f22636800fb6fe100fc}
+pre init the front controller
+
+
+\begin{DoxyParams}[1]{Parameters}
+\textbackslash{}\+D\+O\+M\+Document & {\em \$doc} & \\
+\hline
+\end{DoxyParams}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a7bfcedf5deb9b380aa1fa3a9c1e618cb}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!replace\+Str@{replace\+Str}}
+\index{replace\+Str@{replace\+Str}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{replace\+Str}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::replace\+Str (
+\begin{DoxyParamCaption}
+\item[{}]{\$str}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a7bfcedf5deb9b380aa1fa3a9c1e618cb}
+replace a string with paths using string replace. Useful for urls in script text and comments.
+
+
+\begin{DoxyParams}{Parameters}
+{\em \$str} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+
+
+\subsection{Member Data Documentation}
+\hypertarget{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a851406eb14f38205820eb3f949028a35}{\index{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}!\$attr\+Src@{\$attr\+Src}}
+\index{\$attr\+Src@{\$attr\+Src}!Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path@{Tk\+::\+Dom\+::\+Modifier\+::\+Filter\+::\+Path}}
+\subsubsection[{\$attr\+Src}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Dom\textbackslash{}\+Modifier\textbackslash{}\+Filter\textbackslash{}\+Path\+::\$attr\+Src\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTk_1_1Dom_1_1Modifier_1_1Filter_1_1Path_a851406eb14f38205820eb3f949028a35}
+{\bfseries Initial value\+:}
+\begin{DoxyCode}
+= array(
+        
+        \textcolor{stringliteral}{'src'}, \textcolor{stringliteral}{'href'}, \textcolor{stringliteral}{'action'}, \textcolor{stringliteral}{'background'},
+        
+        \textcolor{stringliteral}{'data-href'}, \textcolor{stringliteral}{'data-src'}, \textcolor{stringliteral}{'data-url'}
+    )
+\end{DoxyCode}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/framework/\+Tk/\+Dom/\+Modifier/\+Filter/Path.\+php\end{DoxyCompactItemize}

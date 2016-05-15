@@ -1,0 +1,211 @@
+\hypertarget{classDom_1_1Loader}{\section{Dom\textbackslash{}Loader Class Reference}
+\label{classDom_1_1Loader}\index{Dom\textbackslash{}\+Loader@{Dom\textbackslash{}\+Loader}}
+}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDom_1_1Loader_a22e9e9f8fe94dbbe3faca00256449aed}{{\bfseries \+\_\+\+\_\+constructor} ()}\label{classDom_1_1Loader_a22e9e9f8fe94dbbe3faca00256449aed}
+
+\item 
+\hyperlink{classDom_1_1Loader_a8e8f62caabd8232e3bcaeae5c562f96a}{add\+Adapter} (Loader\textbackslash{}\+Adapter\textbackslash{}\+Iface \$adapter)
+\item 
+\hyperlink{classDom_1_1Loader_ade110a37a00842718971f1ee949d88d8}{get\+Adapter\+List} ()
+\item 
+\hyperlink{classDom_1_1Loader_abb96d11ac038f83c8b567c3244793628}{set\+Adapter\+List} (\$adapter\+List)
+\item 
+\hyperlink{classDom_1_1Loader_acdc726286f38c8a1113b35fe96f2edaf}{get\+Called\+Class} ()
+\item 
+\hyperlink{classDom_1_1Loader_ae0f79c7246969eb8d49b6bdcac838838}{get\+Param} (\$key)
+\item 
+\hyperlink{classDom_1_1Loader_a00a5b8172e6fc5c94aa4e3309a77471e}{get\+Params} ()
+\item 
+\hyperlink{classDom_1_1Loader_a1eabca1b3a48a63a38fc86ad834f9704}{set\+Params} (\$params)
+\end{DoxyCompactItemize}
+\subsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+static \hyperlink{classDom_1_1Loader_a4c56e541a1b5efa748c70b88c4e978df}{get\+Instance} (\$class= '', \$params=null)
+\item 
+static \hyperlink{classDom_1_1Loader_aa44ab57ccc5fedca3423f7b4ff687369}{load} (\$xhtml, \$class= '')
+\item 
+static \hyperlink{classDom_1_1Loader_af7cbb027fb6f3c74cff99b8ea250bb67}{load\+File} (\$path, \$class= '')
+\end{DoxyCompactItemize}
+\subsection*{Static Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDom_1_1Loader_a408a70ea86e42f29495720d48a6b4ce5}{static {\bfseries \$instance} = null}\label{classDom_1_1Loader_a408a70ea86e42f29495720d48a6b4ce5}
+
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classDom_1_1Loader_a3af8cd84bbc8e9650f6108ae8a327e0b}{{\bfseries \$called\+Class} = ''}\label{classDom_1_1Loader_a3af8cd84bbc8e9650f6108ae8a327e0b}
+
+\item 
+\hypertarget{classDom_1_1Loader_a1dbcefda4d58bfa2a63383d84df6a838}{{\bfseries \$adapter\+List} = array()}\label{classDom_1_1Loader_a1dbcefda4d58bfa2a63383d84df6a838}
+
+\item 
+\hypertarget{classDom_1_1Loader_a782d0ba0bb4a2e160bd013ef77bbc9f7}{{\bfseries \$params} = array()}\label{classDom_1_1Loader_a782d0ba0bb4a2e160bd013ef77bbc9f7}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class \hyperlink{classDom_1_1Loader}{Loader} Use this class to facilitate with the loading of template files
+
+You can add loader adapters to find templates in a cascading array
+
+N\+O\+T\+E\+: Adapters are run as as L\+I\+F\+O (Last In First Out) queue. \hyperlink{}{Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com}  \href{http://www.tropotek.com/}{\tt http\+://www.\+tropotek.\+com/}  Copyright 2015 Michael Mifsud }
+
+\subsection{Member Function Documentation}
+\hypertarget{classDom_1_1Loader_a8e8f62caabd8232e3bcaeae5c562f96a}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!add\+Adapter@{add\+Adapter}}
+\index{add\+Adapter@{add\+Adapter}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{add\+Adapter}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::add\+Adapter (
+\begin{DoxyParamCaption}
+\item[{Loader\textbackslash{}\+Adapter\textbackslash{}\+Iface}]{\$adapter}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_a8e8f62caabd8232e3bcaeae5c562f96a}
+add\+Adapter
+
+Adds an adapter to the beginning of the array
+
+N\+O\+T\+E\+: Adapters are run as as L\+I\+F\+O (Last In First Out) queue. \hyperlink{}{Loader \$adapter  Loader }\hypertarget{classDom_1_1Loader_ade110a37a00842718971f1ee949d88d8}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!get\+Adapter\+List@{get\+Adapter\+List}}
+\index{get\+Adapter\+List@{get\+Adapter\+List}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{get\+Adapter\+List}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::get\+Adapter\+List (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_ade110a37a00842718971f1ee949d88d8}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_acdc726286f38c8a1113b35fe96f2edaf}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!get\+Called\+Class@{get\+Called\+Class}}
+\index{get\+Called\+Class@{get\+Called\+Class}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{get\+Called\+Class}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::get\+Called\+Class (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_acdc726286f38c8a1113b35fe96f2edaf}
+\begin{DoxyReturn}{Returns}
+string 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_a4c56e541a1b5efa748c70b88c4e978df}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!get\+Instance@{get\+Instance}}
+\index{get\+Instance@{get\+Instance}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{get\+Instance}]{\setlength{\rightskip}{0pt plus 5cm}static Dom\textbackslash{}\+Loader\+::get\+Instance (
+\begin{DoxyParamCaption}
+\item[{}]{\$class = {\ttfamily ''}, }
+\item[{}]{\$params = {\ttfamily null}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDom_1_1Loader_a4c56e541a1b5efa748c70b88c4e978df}
+Get a single instance of this object
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$class} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Loader}{Loader} 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_ae0f79c7246969eb8d49b6bdcac838838}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!get\+Param@{get\+Param}}
+\index{get\+Param@{get\+Param}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{get\+Param}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::get\+Param (
+\begin{DoxyParamCaption}
+\item[{}]{\$key}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_ae0f79c7246969eb8d49b6bdcac838838}
+Get a value from the params list if it exist
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$key} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+mixed 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_a00a5b8172e6fc5c94aa4e3309a77471e}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!get\+Params@{get\+Params}}
+\index{get\+Params@{get\+Params}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{get\+Params}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::get\+Params (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_a00a5b8172e6fc5c94aa4e3309a77471e}
+\begin{DoxyReturn}{Returns}
+array 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_aa44ab57ccc5fedca3423f7b4ff687369}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!load@{load}}
+\index{load@{load}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{load}]{\setlength{\rightskip}{0pt plus 5cm}static Dom\textbackslash{}\+Loader\+::load (
+\begin{DoxyParamCaption}
+\item[{}]{\$xhtml, }
+\item[{}]{\$class = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDom_1_1Loader_aa44ab57ccc5fedca3423f7b4ff687369}
+Load an xml/xhtml strings
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$xhtml} & \\
+\hline
+string & {\em \$class} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Template}{Template} 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_af7cbb027fb6f3c74cff99b8ea250bb67}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!load\+File@{load\+File}}
+\index{load\+File@{load\+File}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{load\+File}]{\setlength{\rightskip}{0pt plus 5cm}static Dom\textbackslash{}\+Loader\+::load\+File (
+\begin{DoxyParamCaption}
+\item[{}]{\$path, }
+\item[{}]{\$class = {\ttfamily ''}}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [static]}}}\label{classDom_1_1Loader_af7cbb027fb6f3c74cff99b8ea250bb67}
+Load an xml/xhtml file
+
+
+\begin{DoxyParams}[1]{Parameters}
+string & {\em \$path} & \\
+\hline
+string & {\em \$class} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\hyperlink{classDom_1_1Template}{Template} 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_abb96d11ac038f83c8b567c3244793628}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!set\+Adapter\+List@{set\+Adapter\+List}}
+\index{set\+Adapter\+List@{set\+Adapter\+List}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{set\+Adapter\+List}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::set\+Adapter\+List (
+\begin{DoxyParamCaption}
+\item[{}]{\$adapter\+List}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_abb96d11ac038f83c8b567c3244793628}
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$adapter\+List} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+\hypertarget{classDom_1_1Loader_a1eabca1b3a48a63a38fc86ad834f9704}{\index{Dom\+::\+Loader@{Dom\+::\+Loader}!set\+Params@{set\+Params}}
+\index{set\+Params@{set\+Params}!Dom\+::\+Loader@{Dom\+::\+Loader}}
+\subsubsection[{set\+Params}]{\setlength{\rightskip}{0pt plus 5cm}Dom\textbackslash{}\+Loader\+::set\+Params (
+\begin{DoxyParamCaption}
+\item[{}]{\$params}
+\end{DoxyParamCaption}
+)}}\label{classDom_1_1Loader_a1eabca1b3a48a63a38fc86ad834f9704}
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$params} & \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+\$this 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/domtemplate/\+Dom/Loader.\+php\end{DoxyCompactItemize}

@@ -1,0 +1,103 @@
+\hypertarget{classTk_1_1Db_1_1PdoStatement}{\section{Tk\textbackslash{}Db\textbackslash{}Pdo\+Statement Class Reference}
+\label{classTk_1_1Db_1_1PdoStatement}\index{Tk\textbackslash{}\+Db\textbackslash{}\+Pdo\+Statement@{Tk\textbackslash{}\+Db\textbackslash{}\+Pdo\+Statement}}
+}
+
+
+Inheritance diagram for Tk\textbackslash{}Db\textbackslash{}Pdo\+Statement\+:\nopagebreak
+\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[width=189pt]{classTk_1_1Db_1_1PdoStatement__inherit__graph}
+\end{center}
+\end{figure}
+\subsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Db_1_1PdoStatement_a47d7b8593feb03fc9820b0dbf6696a1e}{execute} (\$args=null)
+\item 
+\hyperlink{classTk_1_1Db_1_1PdoStatement_a99730138c42b55e4504b629a651cd575}{get\+Bind\+Params} ()
+\end{DoxyCompactItemize}
+\subsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\hyperlink{classTk_1_1Db_1_1PdoStatement_a131dbac928ba55ba6d465006bae18640}{\+\_\+\+\_\+construct} (\$pdo)
+\end{DoxyCompactItemize}
+\subsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\hypertarget{classTk_1_1Db_1_1PdoStatement_a8e668a6dc693e106644b8f101325c0b4}{{\bfseries \$pdo}}\label{classTk_1_1Db_1_1PdoStatement_a8e668a6dc693e106644b8f101325c0b4}
+
+\item 
+\hypertarget{classTk_1_1Db_1_1PdoStatement_a4c58d53b2e5149a6473564b0a0301613}{{\bfseries \$bind\+Params} = null}\label{classTk_1_1Db_1_1PdoStatement_a4c58d53b2e5149a6473564b0a0301613}
+
+\end{DoxyCompactItemize}
+
+
+\subsection{Detailed Description}
+Class \hyperlink{classTk_1_1Db_1_1PdoStatement}{Pdo\+Statement}
+
+N\+O\+T\+E\+: When using the statement in a foreach loop, any overriden method calls to fetch, fetch\+Object, etc will not be called in this object, it has something to do with the way the P\+D\+O\+Statement object uses it Traversable methods internally
+
+\begin{DoxyAuthor}{Author}
+Michael Mifsud \href{mailto:info@tropotek.com}{\tt info@tropotek.\+com} \hyperlink{}{Patrick S Scott\href{mailto:lazeras@kaoses.com}{\tt lazeras@kaoses.\+com}  \href{http://www.kaoses.com}{\tt http\+://www.\+kaoses.\+com}  Copyright 2007 Michael Mifsud }
+\end{DoxyAuthor}
+
+
+\subsection{Constructor \& Destructor Documentation}
+\hypertarget{classTk_1_1Db_1_1PdoStatement_a131dbac928ba55ba6d465006bae18640}{\index{Tk\+::\+Db\+::\+Pdo\+Statement@{Tk\+::\+Db\+::\+Pdo\+Statement}!\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}}
+\index{\+\_\+\+\_\+construct@{\+\_\+\+\_\+construct}!Tk\+::\+Db\+::\+Pdo\+Statement@{Tk\+::\+Db\+::\+Pdo\+Statement}}
+\subsubsection[{\+\_\+\+\_\+construct}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Pdo\+Statement\+::\+\_\+\+\_\+construct (
+\begin{DoxyParamCaption}
+\item[{}]{\$pdo}
+\end{DoxyParamCaption}
+)\hspace{0.3cm}{\ttfamily [protected]}}}\label{classTk_1_1Db_1_1PdoStatement_a131dbac928ba55ba6d465006bae18640}
+Represents a prepared statement and, after the statement is executed, an associated result set
+
+\begin{DoxySeeAlso}{See also}
+\href{http://www.php.net/manual/en/class.pdostatement.php}{\tt http\+://www.\+php.\+net/manual/en/class.\+pdostatement.\+php} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+\hyperlink{classTk_1_1Db_1_1Pdo}{Pdo} & {\em \$pdo} & \\
+\hline
+\end{DoxyParams}
+
+
+\subsection{Member Function Documentation}
+\hypertarget{classTk_1_1Db_1_1PdoStatement_a47d7b8593feb03fc9820b0dbf6696a1e}{\index{Tk\+::\+Db\+::\+Pdo\+Statement@{Tk\+::\+Db\+::\+Pdo\+Statement}!execute@{execute}}
+\index{execute@{execute}!Tk\+::\+Db\+::\+Pdo\+Statement@{Tk\+::\+Db\+::\+Pdo\+Statement}}
+\subsubsection[{execute}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Pdo\+Statement\+::execute (
+\begin{DoxyParamCaption}
+\item[{}]{\$args = {\ttfamily null}}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1PdoStatement_a47d7b8593feb03fc9820b0dbf6696a1e}
+Executes a prepared statement
+
+\begin{DoxySeeAlso}{See also}
+\href{http://us3.php.net/manual/en/pdostatement.execute.php}{\tt http\+://us3.\+php.\+net/manual/en/pdostatement.\+execute.\+php} 
+\end{DoxySeeAlso}
+
+\begin{DoxyParams}[1]{Parameters}
+array & {\em \$args} & null\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+boolean \$boolean 
+\end{DoxyReturn}
+\hypertarget{classTk_1_1Db_1_1PdoStatement_a99730138c42b55e4504b629a651cd575}{\index{Tk\+::\+Db\+::\+Pdo\+Statement@{Tk\+::\+Db\+::\+Pdo\+Statement}!get\+Bind\+Params@{get\+Bind\+Params}}
+\index{get\+Bind\+Params@{get\+Bind\+Params}!Tk\+::\+Db\+::\+Pdo\+Statement@{Tk\+::\+Db\+::\+Pdo\+Statement}}
+\subsubsection[{get\+Bind\+Params}]{\setlength{\rightskip}{0pt plus 5cm}Tk\textbackslash{}\+Db\textbackslash{}\+Pdo\+Statement\+::get\+Bind\+Params (
+\begin{DoxyParamCaption}
+{}
+\end{DoxyParamCaption}
+)}}\label{classTk_1_1Db_1_1PdoStatement_a99730138c42b55e4504b629a651cd575}
+Get the params bound upon the last call to \hyperlink{classTk_1_1Db_1_1PdoStatement_a47d7b8593feb03fc9820b0dbf6696a1e}{execute()}
+
+\begin{DoxyReturn}{Returns}
+null$\vert$array 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following file\+:\begin{DoxyCompactItemize}
+\item 
+vendor/ttek/tk-\/framework/\+Tk/\+Db/Pdo\+Statement.\+php\end{DoxyCompactItemize}
