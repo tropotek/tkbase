@@ -1,6 +1,0 @@
-<map id="Graphical Class Hierarchy" name="Graphical Class Hierarchy">
-<area shape="rect" id="node1" href="$interfaceTk_1_1Db_1_1Mappable.html" title="Tk\\Db\\Mappable" alt="" coords="5,31,124,57"/>
-<area shape="rect" id="node2" href="$classTk_1_1Db_1_1Mapper.html" title="Tk\\Db\\Mapper" alt="" coords="172,31,277,57"/>
-<area shape="rect" id="node3" href="$classApp_1_1Db_1_1SupervisorMap.html" title="App\\Db\\SupervisorMap" alt="" coords="325,5,483,32"/>
-<area shape="rect" id="node4" href="$classApp_1_1Db_1_1UserMap.html" title="App\\Db\\UserMap" alt="" coords="343,56,465,83"/>
-</map>

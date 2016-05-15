@@ -7,6 +7,6 @@ _*
 data
 assets
 vendor
-docs/api*
+docs/
 composer.lock
 src/config/config.php
