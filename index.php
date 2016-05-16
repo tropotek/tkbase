@@ -10,7 +10,9 @@ include($appPath . '/vendor/autoload.php');
 
 $config = \Tk\Config::getInstance();
 
-var_dump($config);
+//var_dump($config->getSiteRoutes());
+
+
 /**
 $kernel = new App\Kernel($config->getEventDispatcher(), $config->getControllerResolver());
 // Enable Cache

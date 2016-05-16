@@ -57,7 +57,8 @@ class Bootstrap
         ini_set('error_log', $config->getSystemLogPath());
 
         \Tk\ErrorHandler::getInstance($config->getLog());
-        
+
+        /*
         // * Database init
         try {
             $pdo = \Tk\Db\Pdo::createInstance($config->getDbName(), $config->getDbUser(), $config->getDbPass(), $config->getDbHost(), $config->getDbType(), $config->getGroup('db', true));
@@ -91,20 +92,22 @@ class Bootstrap
         $session->start();
         $config->setSession($session);
         
+        */
+        
         
         // * Dom Node Modifier
-        $dm = new \Dom\Modifier\Modifier();
-        $dm->add(new \Dom\Modifier\Filter\Path($config->getSiteUrl()));
-        $dm->add(new \Dom\Modifier\Filter\JsLast());
-        $config['dom.modifier'] = $dm;
+//        $dm = new \Dom\Modifier\Modifier();
+//        $dm->add(new \Dom\Modifier\Filter\Path($config->getSiteUrl()));
+//        $dm->add(new \Dom\Modifier\Filter\JsLast());
+//        $config['dom.modifier'] = $dm;
 
         // * Setup the Template loader, create adapters to look for templates as needed
         /** @var \Dom\Loader $tl */
-        $dl = \Dom\Loader::getInstance()->setParams($config);
-        $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
-        $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($config->getSitePath().'/xml'));
-        $config['dom.loader'] = $dl;
-
+//        $dl = \Dom\Loader::getInstance()->setParams($config);
+//        $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
+//        $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($config->getSitePath().'/xml'));
+//        $config['dom.loader'] = $dl;
+        
         return $config;
     }
 
