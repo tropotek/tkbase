@@ -11,7 +11,7 @@ include($appPath . '/vendor/autoload.php');
 $config = \Tk\Config::getInstance();
 
 //var_dump($config->getSiteRoutes());
-
+//vd('-------------');
 
 /**
 $kernel = new App\Kernel($config->getEventDispatcher(), $config->getControllerResolver());
@@ -20,3 +20,4 @@ $kernel = new HttpCache($kernel, new Store($config->getCachePath()));
 $kernel->handle($config->getRequest())->send();
 $kernel->terminate($config->getRequest(), new Response());
 */
+

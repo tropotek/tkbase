@@ -47,16 +47,19 @@ class Bootstrap
 
         // Do not call \Tk\Config::getInstance() before this point
         $config = \Tk\Config::getInstance();
-
+        
         // Include any config overriding settings
         include($config->getSrcPath() . '/config/config.php');
 
-        \Tk\Url::$BASE_URL = $config->getSiteUrl();
 
         // * Logger [use error_log()]
         ini_set('error_log', $config->getSystemLogPath());
-
         \Tk\ErrorHandler::getInstance($config->getLog());
+
+        // Include any config overriding settings
+        include($config->getSrcPath() . '/config/config.php');
+        
+        \Tk\Url::$BASE_URL = $config->getSiteUrl();
 
         /*
         // * Database init
