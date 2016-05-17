@@ -11,7 +11,7 @@ $config = \Tk\Config::getInstance();
  * @see http://php.net/session.configuration
  */
 include_once(__DIR__ . '/session.php');
-include_once(__DIR__ . '/routes.php');
+//include_once(__DIR__ . '/routes.php');
 
 
 // Setup some basic admin page security
