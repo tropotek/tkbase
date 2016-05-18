@@ -50,16 +50,14 @@ class Bootstrap
         
         // Include any config overriding settings
         include($config->getSrcPath() . '/config/config.php');
-
-
+        
         // * Logger [use error_log()]
         ini_set('error_log', $config->getSystemLogPath());
         \Tk\ErrorHandler::getInstance($config->getLog());
-
-        // Include any config overriding settings
-        include($config->getSrcPath() . '/config/config.php');
         
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
+        
+        
 
         /*
         // * Database init
