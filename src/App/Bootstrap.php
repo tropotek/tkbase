@@ -44,12 +44,19 @@ class Bootstrap
             // php version must be high enough to support traits
             throw new \Exception('Your PHP5 version must be greater than 5.4.0 [Curr Ver: '.phpversion().']');
         }
-
+        
         // Do not call \Tk\Config::getInstance() before this point
         $config = \Tk\Config::getInstance();
         
         // Include any config overriding settings
         include($config->getSrcPath() . '/config/config.php');
+        
+        /**
+         * This makes our life easier when dealing with paths. Everything is relative
+         * to the application root now.
+         */
+        chdir($config->getSitePath());
+        
         
         // * Logger [use error_log()]
         ini_set('error_log', $config->getSystemLogPath());
