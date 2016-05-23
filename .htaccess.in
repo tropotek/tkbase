@@ -1,7 +1,4 @@
 
-Options +FollowSymLinks
-Options -Indexes
-DirectoryIndex index.html
 
 <FilesMatch "\.(ht(access|passwd)|in|ini|inc|tpl)$">
 order allow,deny

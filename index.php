@@ -13,6 +13,9 @@ $config = \Tk\Config::getInstance();
 //var_dump($config->getSiteRoutes());
 //vd('-------------');
 
+$request = \Tk\Request::create();
+var_dump($request->getHeaders());
+
 /**
 $kernel = new App\Kernel($config->getEventDispatcher(), $config->getControllerResolver());
 // Enable Cache
