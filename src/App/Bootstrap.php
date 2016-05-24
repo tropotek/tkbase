@@ -57,7 +57,6 @@ class Bootstrap
          */
         chdir($config->getSitePath());
         
-        
         // * Logger [use error_log()]
         ini_set('error_log', $config->getSystemLogPath());
         \Tk\ErrorHandler::getInstance($config->getLog());
@@ -65,7 +64,7 @@ class Bootstrap
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
         
         
-
+        
         /*
         // * Database init
         try {
