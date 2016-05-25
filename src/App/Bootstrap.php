@@ -63,13 +63,14 @@ class Bootstrap
         chdir($config->getSitePath());
         
         // * Logger [use error_log()]
-        ini_set('error_log', $config->getSystemLogPath());
+        ini_set('error_log', $config['system.log.path']);
         \Tk\ErrorHandler::getInstance($config->getLog());
         
         $logger = new NullLogger();
-        if (is_readable($config->getSystemLogPath())) {
+        
+        if (is_readable($config['system.log.path'])) {
             $logger = new Logger('system');
-            $handler = new StreamHandler($config->getSystemLogPath(), $config->getSystemLogLevel());
+            $handler = new StreamHandler($config['system.log.path'], $config['system.log.level']);
             //$formatter = new LineFormatter(null, 'H:i:s', true, true);
             $formatter = new Util\LogLineFormatter();
             $handler->setFormatter($formatter);
@@ -79,13 +80,12 @@ class Bootstrap
         
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
         
-        
         // * Database init
         try {
             $pdo = \Tk\Db\Pdo::create($config->getGroup('db'));
-//            $pdo->setOnLogListener(function ($entry) {
-//                error_log('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
-//            });
+            $pdo->setOnLogListener(function ($entry) use ($logger) {
+                $logger->debug('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
+            });
             $config->setDb($pdo);
         } catch (\Exception $e) {
             error_log('<p>' . $e->getMessage() . '</p>');

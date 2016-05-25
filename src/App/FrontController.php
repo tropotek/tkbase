@@ -55,10 +55,10 @@ class FrontController extends \Tk\Kernel\HttpKernel
         // (kernel.request)
         $matcher = new \Tk\Routing\RequestMatcher($this->config['site.routes']);
         $this->dispatcher->addSubscriber(new \Tk\Listener\RouteListener($matcher));
-
+        $this->dispatcher->addSubscriber(new Listener\StartupHandler($this->config->getLog()));
 
         // (kernel.controller)
-//        $this->dispatcher->addSubscriber(new Listener\StartupHandler($this->config->getLog()));
+
 //        $this->dispatcher->addSubscriber(new \Tk\Lti\Listener\LtiHandler());
 //        $this->dispatcher->addSubscriber(new \App\Listener\AuthHandler());
 
@@ -77,9 +77,11 @@ class FrontController extends \Tk\Kernel\HttpKernel
 
         // (kernel.finish_request)
 
+        // (kernel.exception)
+        $this->dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($this->config->getLog()));
 
         // (kernel.terminate)
-//        $this->dispatcher->addSubscriber(new Listener\ShutdownHandler($this->config->getLog()));
+        $this->dispatcher->addSubscriber(new Listener\ShutdownHandler($this->config->getLog()));
 
 
         // (kernel.exception)
@@ -97,9 +99,9 @@ class FrontController extends \Tk\Kernel\HttpKernel
      *
      * @return string
      */
-    public function scriptDuration()
+    public static function scriptDuration()
     {
-        return (string)(microtime(true) - $this->getScripTime());
+        return (string)(microtime(true) - \Tk\Config::getInstance()->getScripTime());
     }
     
     

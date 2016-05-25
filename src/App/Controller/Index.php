@@ -8,6 +8,7 @@
  * @license Copyright 2016 Michael Mifsud
  */
 namespace App\Controller;
+use Tk\Response;
 
 /** */
 class Index
@@ -19,9 +20,21 @@ class Index
         
     }
     
-    public function doDefault()
+    public function doDefault($request)
     {
-        vd('======================================INDEX');
+        $response = new Response();
+        $response->setBody('<h1>YAHOOO</h1><p>Could this controller be working?</p>');
+        
+        
+        
+        
+        throw new \Exception('Haha I got Excepted........lol');
+        
+        
+        
+        
+        
+        return $response;
     }
     
 }

@@ -17,7 +17,7 @@ $config['site.routes'] = $routes;
 $routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault',
     array('param1' => 'value1')     // Params that can be sent to the controller...
 ));
-$routes->add('home', new \Tk\Routing\Route('/home', 'App\Controller\Index::doDefault',
+$routes->add('home2', new \Tk\Routing\Route('/home', 'App\Controller\Index::doDefault',
     array('param1' => 'value1')     // Params that can be sent to the controller...
 ));
 
