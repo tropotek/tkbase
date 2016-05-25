@@ -2,6 +2,11 @@
 namespace App;
 
 
+use Monolog\Handler\StreamHandler;
+use Monolog\Logger;
+use Psr\Log\NullLogger;
+
+
 /**
  * Class Bootstrap
  *
@@ -61,32 +66,41 @@ class Bootstrap
         ini_set('error_log', $config->getSystemLogPath());
         \Tk\ErrorHandler::getInstance($config->getLog());
         
+        $logger = new NullLogger();
+        if (is_readable($config->getSystemLogPath())) {
+            $logger = new Logger('system');
+            $handler = new StreamHandler($config->getSystemLogPath(), $config->getSystemLogLevel());
+            //$formatter = new LineFormatter(null, 'H:i:s', true, true);
+            $formatter = new Util\LogLineFormatter();
+            $handler->setFormatter($formatter);
+            $logger->pushHandler($handler);
+        }
+        $config['log'] = $logger;
+        
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
         
         
-        
-        /*
         // * Database init
         try {
-            $pdo = \Tk\Db\Pdo::createInstance($config->getDbName(), $config->getDbUser(), $config->getDbPass(), $config->getDbHost(), $config->getDbType(), $config->getGroup('db', true));
+            $pdo = \Tk\Db\Pdo::create($config->getGroup('db'));
 //            $pdo->setOnLogListener(function ($entry) {
 //                error_log('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
 //            });
             $config->setDb($pdo);
-
         } catch (\Exception $e) {
             error_log('<p>' . $e->getMessage() . '</p>');
             exit;
         }
         
-
         // Return if using cli (Command Line)
         if ($config->isCli()) {
             return $config;
         }
 
+        // --- HTTP only boostrapping from here ---
+        
         // * Request
-        $request = new \Tk\Request();
+        $request = \Tk\Request::create();
         $config->setRequest($request);
         
         // * Cookie
@@ -94,26 +108,10 @@ class Bootstrap
         $config->setCookie($cookie);
         
         // * Session
-        $session = new \Tk\Session($config, $request);
+        $session = new \Tk\Session($config, $request, $cookie);
         //$session->start(new \Tk\Session\Adapter\Database( $config->getDb() ));
         $session->start();
         $config->setSession($session);
-        
-        */
-        
-        
-        // * Dom Node Modifier
-//        $dm = new \Dom\Modifier\Modifier();
-//        $dm->add(new \Dom\Modifier\Filter\Path($config->getSiteUrl()));
-//        $dm->add(new \Dom\Modifier\Filter\JsLast());
-//        $config['dom.modifier'] = $dm;
-
-        // * Setup the Template loader, create adapters to look for templates as needed
-        /** @var \Dom\Loader $tl */
-//        $dl = \Dom\Loader::getInstance()->setParams($config);
-//        $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
-//        $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($config->getSitePath().'/xml'));
-//        $config['dom.loader'] = $dl;
         
         return $config;
     }

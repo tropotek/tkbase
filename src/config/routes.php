@@ -10,16 +10,19 @@
 
 $config = \Tk\Config::getInstance();
 
-$router = new \Tk\Routing\RouteCollection();
-$config['site.routes'] = $router;
+$routes = new \Tk\Routing\RouteCollection();
+$config['site.routes'] = $routes;
 
 // Logout
-$router->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault',
+$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault',
+    array('param1' => 'value1')     // Params that can be sent to the controller...
+));
+$routes->add('home', new \Tk\Routing\Route('/home', 'App\Controller\Index::doDefault',
     array('param1' => 'value1')     // Params that can be sent to the controller...
 ));
 
-$router->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault',
-    array('param1' => 'value1')     // Params that can be sent to the controller...
+$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault',
+    array('param2' => 'value2')     // Params that can be sent to the controller...
 ));
 
 
