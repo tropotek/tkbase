@@ -65,9 +65,10 @@ class Bootstrap
         // * Logger [use error_log()]
         ini_set('error_log', $config['system.log.path']);
         \Tk\ErrorHandler::getInstance($config->getLog());
+
+        $config['log'] = new NullLogger();
         
-        $logger = new NullLogger();
-        
+        // This maybe should be created in a Factory or DI Container....
         if (is_readable($config['system.log.path'])) {
             $logger = new Logger('system');
             $handler = new StreamHandler($config['system.log.path'], $config['system.log.level']);
@@ -75,22 +76,11 @@ class Bootstrap
             $formatter = new Util\LogLineFormatter();
             $handler->setFormatter($formatter);
             $logger->pushHandler($handler);
+            $config['log'] = $logger;
         }
-        $config['log'] = $logger;
+        
         
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
-        
-        // * Database init
-        try {
-            $pdo = \Tk\Db\Pdo::create($config->getGroup('db'));
-            $pdo->setOnLogListener(function ($entry) use ($logger) {
-                $logger->debug('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
-            });
-            $config->setDb($pdo);
-        } catch (\Exception $e) {
-            error_log('<p>' . $e->getMessage() . '</p>');
-            exit;
-        }
         
         // Return if using cli (Command Line)
         if ($config->isCli()) {

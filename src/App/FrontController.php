@@ -51,6 +51,9 @@ class FrontController extends \Tk\Kernel\HttpKernel
 //            Debug::enable();
 //        }
 
+        // (kernel.init)
+        $this->dispatcher->addSubscriber(new Listener\BootstrapHandler($this->config));
+        
 
         // (kernel.request)
         $matcher = new \Tk\Routing\RequestMatcher($this->config['site.routes']);
@@ -58,7 +61,6 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $this->dispatcher->addSubscriber(new Listener\StartupHandler($this->config->getLog()));
 
         // (kernel.controller)
-
 //        $this->dispatcher->addSubscriber(new \Tk\Lti\Listener\LtiHandler());
 //        $this->dispatcher->addSubscriber(new \App\Listener\AuthHandler());
 
@@ -70,25 +72,20 @@ class FrontController extends \Tk\Kernel\HttpKernel
 
 
         // (kernel.response)
-//        $this->dispatcher->addSubscriber(new Listener\ResponseHandler());
+        $this->dispatcher->addSubscriber(new Listener\ResponseHandler());
 //        $this->dispatcher->addSubscriber(new HttpKernel\EventListener\ResponseListener('UTF-8'));
 //        $this->dispatcher->addSubscriber(new HttpKernel\EventListener\StreamedResponseListener());
 
 
         // (kernel.finish_request)
-
+        
+        
         // (kernel.exception)
         $this->dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($this->config->getLog()));
 
+        
         // (kernel.terminate)
         $this->dispatcher->addSubscriber(new Listener\ShutdownHandler($this->config->getLog()));
-
-
-        // (kernel.exception)
-        // Trigger a kernel init event
-//        $event = new GetResponseEvent($this, $this->config->getRequest(), self::MASTER_REQUEST);
-//        $this->dispatcher->dispatch(self::EVENT_ON_INIT, $event);
-
         
         
     }
