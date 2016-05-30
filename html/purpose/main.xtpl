@@ -48,7 +48,7 @@
             <a href="page-shopping-cart.html"><b>3 items</b></a></li>
           <li>
             <div class="dropdown choose-country">
-              <a class="#" data-toggle="dropdown" href="#"><img src="img/flags/gb.png" alt="Great Britain"/> UK</a>
+              <a class="" data-toggle="dropdown" href="#"><img src="img/flags/gb.png" alt="Great Britain"/> UK</a>
               <ul class="dropdown-menu" role="menu">
                 <li role="menuitem"><a href="#"><img src="img/flags/us.png" alt="United States"/> US</a></li>
                 <li role="menuitem"><a href="#"><img src="img/flags/de.png" alt="Germany"/> DE</a></li>

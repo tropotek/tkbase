@@ -23,15 +23,22 @@ class Factory
     
     /**
      * getDb
+     * Ways to get the db after calling this method
+     * 
+     *  - \App\Factory::getDb()                 // Application level call
+     *  - \Tk\Config::getInstance()->getDb()    // 
+     *  - \Tk\Db\Pdo::getInstance()             // 
+     * 
+     * Note: If you are creating a base lib then the DB really should be sent in via a param or method.
      * 
      * @return mixed|\Tk\Db\Pdo
      */
-    public static function getDb()
+    public static function getDb($name = 'default')
     {
         $config = self::getConfig();
         if (!$config->getDb() && $config->has('db.type')) {
             try {
-                $pdo = \Tk\Db\Pdo::create($config->getGroup('db'));
+                $pdo = \Tk\Db\Pdo::getInstance($name, $config->getGroup('db'));
                 $logger = $config->getLog();
                 if ($logger && $config->isDebug()) {
                     $pdo->setOnLogListener(function ($entry) use ($logger) {

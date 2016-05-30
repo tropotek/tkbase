@@ -35,6 +35,11 @@ class BootstrapHandler implements SubscriberInterface
     {
         // initalise Dom Loader
         \App\Factory::getDomLoader();
+
+        // Initiate the default database connection
+        \App\Factory::getDb();
+        
+        
         
     }
 
