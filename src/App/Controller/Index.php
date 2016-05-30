@@ -1,52 +1,55 @@
 <?php
+namespace App\Controller;
+
+use Tk\Request;
 /**
- * Created by PhpStorm.
+ * Class Index
  *
- * @date 16-05-2016
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
- * @license Copyright 2016 Michael Mifsud
+ * @license Copyright 2015 Michael Mifsud
  */
-namespace App\Controller;
-use Tk\Response;
-
-/** */
-class Index
+class Index extends Iface
 {
 
-    
+    /**
+     *
+     */
     public function __construct()
     {
-        
+        parent::__construct('Home');
     }
-    
-    public function doDefault($request)
+
+    /**
+     * @param Request $request
+     * @return \App\Page\Iface
+     */
+    public function doDefault(Request $request)
     {
-        $config = \Tk\Config::getInstance();
-        
-        // - Standard Response result
-//        $response = new Response();
-//        $response->setBody('<h1>YAHOOO</h1><p>Could this controller be working?</p>');
-//        return $response;
-        
-//        throw new \Exception('Haha I got Excepted........lol');
+        // TODO: 
 
-        // - Dom Template result
-        /** @var \Dom\Loader $loader */
-        $loader = $config->getDomLoader();
-        $html = <<<HTML
-<div>
-  <h2>This is DOM Template example.</h2>
-  <p>Hello Welcome to the new TK HTTP Framework... GOOD LUCK....</p>
-</div>
-HTML;
-        $template = $loader->doLoad($html);
-        $template->appendHtml($template->getDocument(false)->documentElement, '<p>------&gt; Some Dynamic Text</p>');
-        return $template;
-
-        // - string result
-        ////return $html.'<p>This is a string test</p>';
-        
+        return $this->show();
     }
-    
+
+
+
+    public function show()
+    {
+        $page = new \App\Page\PublicPage($this);
+        $template = $this->getTemplate();
+        return $page->setPageContent($template);
+    }
+
+
+    /**
+     * DomTemplate magic method
+     *
+     * @return \Dom\Template
+     */
+    public function __makeTemplate()
+    {
+        $tplFile = $this->getTemplatePath().'/xtpl/index.xtpl';
+        return \Dom\Loader::loadFile($tplFile);
+    }
+
 }

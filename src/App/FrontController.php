@@ -43,6 +43,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
      */
     public function init()
     {
+        $logger = $this->config->getLog();
         
         // Register Error handlers
 //        ErrorHandler::register();
@@ -54,11 +55,11 @@ class FrontController extends \Tk\Kernel\HttpKernel
         // (kernel.init)
         $this->dispatcher->addSubscriber(new Listener\BootstrapHandler($this->config));
         
-
+        
         // (kernel.request)
-        $matcher = new \Tk\Routing\RequestMatcher($this->config['site.routes']);
+        $matcher = new \Tk\Routing\UrlMatcher($this->config['site.routes']);
         $this->dispatcher->addSubscriber(new \Tk\Listener\RouteListener($matcher));
-        $this->dispatcher->addSubscriber(new Listener\StartupHandler($this->config->getLog()));
+        $this->dispatcher->addSubscriber(new Listener\StartupHandler($logger));
 
         // (kernel.controller)
 //        $this->dispatcher->addSubscriber(new \Tk\Lti\Listener\LtiHandler());
@@ -72,7 +73,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
 
 
         // (kernel.response)
-        $this->dispatcher->addSubscriber(new Listener\ResponseHandler());
+        $this->dispatcher->addSubscriber(new Listener\ResponseHandler(Factory::getDomModifier()));
 //        $this->dispatcher->addSubscriber(new HttpKernel\EventListener\ResponseListener('UTF-8'));
 //        $this->dispatcher->addSubscriber(new HttpKernel\EventListener\StreamedResponseListener());
 
@@ -81,11 +82,11 @@ class FrontController extends \Tk\Kernel\HttpKernel
         
         
         // (kernel.exception)
-        $this->dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($this->config->getLog()));
+        $this->dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($logger));
 
         
         // (kernel.terminate)
-        $this->dispatcher->addSubscriber(new Listener\ShutdownHandler($this->config->getLog()));
+        $this->dispatcher->addSubscriber(new Listener\ShutdownHandler($logger));
         
         
     }

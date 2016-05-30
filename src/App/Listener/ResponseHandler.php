@@ -1,10 +1,8 @@
 <?php
-
 namespace App\Listener;
 
 
 use Tk\EventDispatcher\SubscriberInterface;
-use Tk\Event\GetResponseEvent;
 use Tk\Event\ControllerResultEvent;
 use Tk\Event\FilterResponseEvent;
 use Tk\Kernel\KernelEvents;
@@ -20,36 +18,47 @@ use Tk\Response;
  */
 class ResponseHandler implements SubscriberInterface
 {
-    
 
     /**
-     * 
+     * @var \Dom\Modifier\Modifier
+     */
+    protected $domModifier = null;
+
+    /**
+     * ResponseHandler constructor.
+     *
+     * @param \Dom\Modifier\Modifier $domModifier
+     */
+    public function __construct($domModifier = null)
+    {
+        $this->domModifier = $domModifier;
+    }
+
+    /**
+     * domModify 
      *
      * @param ControllerResultEvent $event
      */
     public function domModify(ControllerResultEvent $event)
     {
-        // TODO: Needs to be created in a factory
-        $config = \Tk\Config::getInstance();
-        $dm = new \Dom\Modifier\Modifier();
-        $dm->add(new \Dom\Modifier\Filter\Path($config['site.url']));
-        $dm->add(new \Dom\Modifier\Filter\JsLast());
-        $config['dom.modifier'] = $dm;
+        if (!$this->domModifier) return;
         
         /* @var $template \Dom\Template */
         $result = $event->getControllerResult();
-
         if ($result instanceof \Dom\Renderer\Iface) {
             $result = $result->getTemplate()->getDocument();
         }
         if ($result instanceof \Dom\Template) {
-            $dm->execute($result->getDocument());
+            $result = $result->getDocument();
+        }
+        if ($result instanceof \DOMDocument) {
+            $this->domModifier->execute($result);
         }
     }
 
     /**
      * NOTE: if you want to modify the template using its API
-     * you must add the listeners before this one its priority is set to -1000
+     * you must add the listeners before this one its priority is set to -100
      * make sure your handlers have a priority > -100 so this is run last
      * 
      * Convert controller return types to a request
@@ -86,8 +95,12 @@ class ResponseHandler implements SubscriberInterface
         $response->addHeader('Pragma', 'no-cache');
         
     }
-    
 
+    /**
+     * getSubscribedEvents
+     * 
+     * @return array
+     */
     public static function getSubscribedEvents()
     {
         return array(

@@ -8,29 +8,30 @@
  * @license Copyright 2016 Michael Mifsud
  */
 
+/* Route Structure
+ * $route = new Route(
+ *     '/archive/{month}',              // path
+ *     '\Namespace\Class::method',      // Callable or class::method string
+ *     array('month' => 'Jan'),         // Params and defaults to path params... all will be sent to the request object.
+ *     array('GET', 'POST', 'HEAD')     // methods
+ * );
+ */
+
 $config = \Tk\Config::getInstance();
 
 $routes = new \Tk\Routing\RouteCollection();
 $config['site.routes'] = $routes;
 
-// Logout
-$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault',
-    array('param1' => 'value1')
-));
+// NOTE: Be sure to add routes in correct order as the first match will win
 
 
-// To enable variables in the routs we need to look at Symfony\Component\Routing/RouteCompiler.....????
-// This will be needed if we want dynamic pages...
-$routes->add('home2', new \Tk\Routing\Route('/home/{page}', 'App\Controller\Index::doDefault',
-    array('page' => 'index.html')
-));
+// Default Home catchall
+$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault'));
+$routes->add('home1', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault'));
+$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault'));
 
-$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault',
-    array('param2' => 'value2')
-));
-
-
-
+$routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault'));
+$routes->add('logout', new \Tk\Routing\Route('/logout.html', 'App\Controller\Logout::doDefault'));
 
 
 

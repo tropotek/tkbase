@@ -33,43 +33,8 @@ class BootstrapHandler implements SubscriberInterface
      */
     public function onInit(KernelEvent $event)
     {
-        
-        
-        // TODO: These dependencies should be lazly loaded 
-        // through a factory object or DI container.
-        // I am still deciding what to do here....THis will do for now.
-        
-        
-        
-        // * Database init
-        try {
-            $pdo = \Tk\Db\Pdo::create($this->config->getGroup('db'));
-            $logger = $this->config->getLog();
-            if ($logger) {
-                $pdo->setOnLogListener(function ($entry) use ($logger) {
-                    $logger->debug('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
-                });
-            }
-            $this->config->setDb($pdo);
-        } catch (\Exception $e) {
-            error_log('<p>' . $e->getMessage() . '</p>');
-            exit;
-        }
-
-        // * Setup the Template loader, create adapters to look for templates as needed
-        /** @var \Dom\Loader $tl */
-        $dl = \Dom\Loader::getInstance()->setParams($this->config);
-        $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
-        $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($this->config['template.path'] . '/xtpl'));
-        $this->config['dom.loader'] = $dl;
-        
-        
-        // * Dom Node Modifier
-        $dm = new \Dom\Modifier\Modifier();
-        $dm->add(new \Dom\Modifier\Filter\Path($this->config['site.url']));
-        $dm->add(new \Dom\Modifier\Filter\JsLast());
-        $this->config['dom.modifier'] = $dm;
-        
+        // initalise Dom Loader
+        \App\Factory::getDomLoader();
         
     }
 

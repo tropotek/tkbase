@@ -56,20 +56,18 @@ class Bootstrap
         // Include any config overriding settings
         include($config->getSrcPath() . '/config/config.php');
         
+        \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
+        
         /**
          * This makes our life easier when dealing with paths. Everything is relative
          * to the application root now.
          */
         chdir($config->getSitePath());
         
-        // * Logger [use error_log()]
-        ini_set('error_log', $config['system.log.path']);
-        \Tk\ErrorHandler::getInstance($config->getLog());
-
-        $config['log'] = new NullLogger();
-        
         // This maybe should be created in a Factory or DI Container....
+        $config['log'] = new NullLogger();
         if (is_readable($config['system.log.path'])) {
+            ini_set('error_log', $config['system.log.path']);
             $logger = new Logger('system');
             $handler = new StreamHandler($config['system.log.path'], $config['system.log.level']);
             //$formatter = new LineFormatter(null, 'H:i:s', true, true);
@@ -80,14 +78,15 @@ class Bootstrap
         }
         
         
-        \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
+        // * Logger [use error_log()]
+        \Tk\ErrorHandler::getInstance($config->getLog());
         
         // Return if using cli (Command Line)
         if ($config->isCli()) {
             return $config;
         }
 
-        // --- HTTP only boostrapping from here ---
+        // --- HTTP only bootstrapping from here ---
         
         // * Request
         $request = \Tk\Request::create();
@@ -99,7 +98,7 @@ class Bootstrap
         
         // * Session
         $session = new \Tk\Session($config, $request, $cookie);
-        //$session->start(new \Tk\Session\Adapter\Database( $config->getDb() ));
+        //$session->start(new \Tk\Session\Adapter\Database( \Factory::getDb() ));
         $session->start();
         $config->setSession($session);
         

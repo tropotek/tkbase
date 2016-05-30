@@ -18,6 +18,9 @@ include_once(__DIR__ . '/routes.php');
 $config['system.auth.username'] = 'admin';
 $config['system.auth.password'] = 'password';
 
+// Template folders for pages
+$config['template.admin.path'] = '/html/admin';
+$config['template.public.path'] = '/html/purpose';
 
 
 
