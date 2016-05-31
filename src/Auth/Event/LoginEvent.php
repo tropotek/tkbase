@@ -1,5 +1,5 @@
 <?php
-namespace App\Event;
+namespace Auth\Event;
 
 use Tk\EventDispatcher\Event;
 

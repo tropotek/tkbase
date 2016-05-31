@@ -107,6 +107,6 @@ class Bootstrap
 
 }
 
-// called by autoloader, see composer.json -> "autoload" : files [].....
+// called by autoloader, see composer.json -> "autoload" : files []...
 Bootstrap::execute();
 

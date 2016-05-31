@@ -1,11 +1,15 @@
 <?php
-namespace App\Controller;
+namespace Auth\Controller;
 
 use Tk\Request;
 use Dom\Template;
 use Tk\Form;
 use Tk\Form\Field;
 use Tk\Form\Event;
+use Tk\Auth;
+use Tk\Auth\Result;
+
+use App\Controller\Iface;
 
 /**
  * Class Index
@@ -38,7 +42,7 @@ class Login extends Iface
      */
     public function doDefault(Request $request)
     {
-        /** @var \Tk\Auth $auth */
+        /** @var Auth $auth */
         $auth = $this->getConfig()->getAuth();
         if ($auth && $auth->getIdentity()) {
             \Tk\Uri::create('/admin/index.html')->redirect();
@@ -60,7 +64,7 @@ class Login extends Iface
     /**
      * show()
      *
-     * @return \App\Page\PublicPage
+     * @return \App\Page\Iface
      */
     public function show()
     {
@@ -83,7 +87,7 @@ class Login extends Iface
      */
     public function doLogin($form)
     {
-        /** @var \Tk\Auth $auth */
+        /** @var Auth $auth */
         $auth = $this->getConfig()->getAuth();
 
         if (!$form->getFieldValue('username') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('username'))) {
@@ -100,7 +104,7 @@ class Login extends Iface
         }
 
         
-        $event = new \App\Event\LoginEvent($auth, $form->getValues());
+        $event = new \Auth\Event\LoginEvent($auth, $form->getValues());
         $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogin', $event);
         
         // Use the event to process the login like below....
@@ -121,7 +125,7 @@ class Login extends Iface
             throw new \Tk\Exception('No valid authentication result received.');
         }
 
-        if ($result->getCode() != \Tk\Auth\Result::SUCCESS) {
+        if ($result->getCode() != Result::SUCCESS) {
             $form->addError( implode("<br/>\n", $result->getMessages()) );
             return;
         }

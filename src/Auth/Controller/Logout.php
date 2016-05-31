@@ -1,8 +1,9 @@
 <?php
-namespace App\Controller;
+namespace Auth\Controller;
 
 use Tk\Request;
 use Dom\Template;
+use App\Controller\Iface;
 
 /**
  * Class Index
@@ -21,7 +22,11 @@ class Logout extends Iface
      */
     public function doDefault(Request $request)
     {
-        $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogout', new \App\Event\AuthEvent($this->getConfig()->getAuth()));
+        $event = new \Auth\Event\LoginEvent($this->getConfig()->getAuth());
+        $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogout', $event);
+        
+        
+        
     }
 
     /**
