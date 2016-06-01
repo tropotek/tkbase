@@ -20,9 +20,9 @@
                 <input class="form-control" name="password" id="login-password" type="password" placeholder="" />
               </div>
               <div class="form-group">
-                <label class="checkbox" for="login-remember">
+                <!-- label class="checkbox" for="login-remember">
                   <input type="checkbox" name="remember" value="remember" id="login-remember" /> Remember me
-                </label>
+                </label -->
                 <a href="#" class="forgot-password">Forgot password?</a>
                 <button type="submit" name="login" class="btn pull-right">Login</button>
                 <div class="clearfix"></div>

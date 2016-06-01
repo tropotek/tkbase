@@ -1,7 +1,7 @@
 {
-    "name": "ttek/tk2mvc",
+    "name": "ttek/tk2base",
     "type": "project",
-    "description": "A Tk Ver 2 MVC framework project",
+    "description": "A Tk Ver 2 base MVC framework project",
     "keywords":  [
         "tropotek"
     ],
