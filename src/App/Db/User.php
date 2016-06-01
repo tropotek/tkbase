@@ -72,8 +72,7 @@ class User extends Model
         $this->modified = new \DateTime();
         $this->created = new \DateTime();
     }
-
-
+    
     /**
      * @param $role
      * @return bool

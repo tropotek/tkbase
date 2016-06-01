@@ -25,6 +25,45 @@ class Factory
     }
 
     /**
+     * @return \Tk\Request
+     */
+    public static function getRequest()
+    {
+        if (!self::getConfig()->getRequest()) {
+            $obj = \Tk\Request::create();
+            $obj->setAttribute('config', self::getConfig());;
+            self::getConfig()->setRequest($obj);
+        }
+        return self::getConfig()->getRequest();
+    }
+
+    /**
+     * @return \Tk\Cookie
+     */
+    public static function getCookie()
+    {
+        if (!self::getConfig()->getCookie()) {
+            $obj = new \Tk\Cookie(self::getConfig()->getSiteUrl());
+            self::getConfig()->setCookie($obj);
+        }
+        return self::getConfig()->getCookie();
+    }
+
+    /**
+     * @return \Tk\Session
+     */
+    public static function getSession()
+    {
+        if (!self::getConfig()->getSession()) {
+            $obj = new \Tk\Session(self::getConfig(), self::getRequest(), self::getCookie());
+            //$obj->start(new \Tk\Session\Adapter\Database( self::getDb() ));
+            $obj->start();
+            self::getConfig()->setSession($obj);
+        }
+        return self::getConfig()->getSession();
+    }
+
+    /**
      * getDb
      * Ways to get the db after calling this method
      *
@@ -91,6 +130,18 @@ class Factory
             self::getConfig()->setDomLoader($dl);
         }
         return self::getConfig()->getDomLoader();
+    }
+
+    /**
+     * @return \App\FrontController
+     */
+    public static function getFrontController()
+    {
+        if (!self::getConfig()->getFrontController()) {
+            $obj = new \App\FrontController(self::getEventDispatcher(), self::getControllerResolver(), self::getConfig());
+            self::getConfig()->setFrontController($obj);
+        }
+        return self::getConfig()->getFrontController();
     }
 
 
