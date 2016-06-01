@@ -5,7 +5,7 @@ __Published:__ 16 May 2016
 __Web:__ <http://www.tropotek.com/>  
 __Authors:__ Michael Mifsud <http://www.tropotek.com/>  
 
-A base site using the Tk2 framework MVC, use this as a startingpoint for your 
+A base site using the Tk2 framework MVC, use this as a starting point for your 
 own site.
 
 ## Contents

@@ -13,13 +13,3 @@ $config = \Tk\Config::getInstance();
 $kernel = new \App\FrontController(\App\Factory::getEventDispatcher(), \App\Factory::getControllerResolver(), $config);
 $response = $kernel->handle($config->getRequest())->send();
 $kernel->terminate($config->getRequest(), $response);
-
-//$kernel->terminate($config->getRequest(), new Response());
-
-/**
-// Enable Cache
-$kernel = new HttpCache($kernel, new Store($config->getCachePath()));
-$kernel->handle($config->getRequest())->send();
-$kernel->terminate($config->getRequest(), new Response());
-*/
-
