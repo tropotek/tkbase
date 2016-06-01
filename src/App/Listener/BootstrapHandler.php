@@ -39,6 +39,11 @@ class BootstrapHandler implements SubscriberInterface
         // Initiate the default database connection
         \App\Factory::getDb();
         
+        // Init Auth
+        $auth = \App\Factory::getAuth();
+        if ($auth->getIdentity()) {
+            $this->config->setUser(\App\Db\User::getMapper()->findByUsername($auth->getIdentity()));
+        }
         
         
     }

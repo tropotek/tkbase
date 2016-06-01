@@ -28,6 +28,9 @@ class ShutdownHandler implements SubscriberInterface
         $this->logger = $logger;
     }
 
+    /**
+     * @param ResponseEvent $event
+     */
     public function onShutdown(ResponseEvent $event)
     {
         if ($this->logger) {

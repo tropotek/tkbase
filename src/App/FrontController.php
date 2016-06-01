@@ -61,6 +61,10 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $this->dispatcher->addSubscriber(new \Tk\Listener\RouteListener($matcher));
         $this->dispatcher->addSubscriber(new Listener\StartupHandler($logger));
 
+        
+        // Auth events
+        $this->dispatcher->addSubscriber(new \App\Listener\AuthHandler());
+        
         // (kernel.controller)
 //        $this->dispatcher->addSubscriber(new \Tk\Lti\Listener\LtiHandler());
 //        $this->dispatcher->addSubscriber(new \App\Listener\AuthHandler());

@@ -14,15 +14,23 @@ include_once(__DIR__ . '/session.php');
 include_once(__DIR__ . '/routes.php');
 
 
-// Setup some basic admin page security
-$config['system.auth.username'] = 'admin';
-$config['system.auth.password'] = 'password';
-
 // Template folders for pages
 $config['template.admin.path'] = '/html/admin';
 $config['template.public.path'] = '/html/purpose';
 
 
+// -- AUTH CONFIG --
+
+// Setup some basic admin page security
+$config['system.auth.username'] = 'admin';
+$config['system.auth.password'] = 'password';
+
+$config['system.auth.adapters'] = array(
+    'Config' => '\Tk\Auth\Adapter\Config',
+    'Trap' => '\Tk\Auth\Adapter\Trapdoor'
+    //'DbTable' => '\Tk\Auth\Adapter\DbTable',
+    //'LDAP' => '\Tk\Auth\Adapter\Ldap'
+);
 
 
 

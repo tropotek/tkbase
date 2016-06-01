@@ -1,5 +1,6 @@
 <?php
 namespace App;
+use Tk\Db\Pdo;
 
 /**
  * Class Factory
@@ -14,37 +15,40 @@ class Factory
     /**
      * Get Config object or array
      * 
+     * @param string $sitePath
+     * @param string $siteUrl
      * @return \Tk\Config
      */
-    public static function getConfig()
+    public static function getConfig($sitePath = '', $siteUrl = '')
     {
-        return \Tk\Config::getInstance();
+        return \Tk\Config::getInstance($sitePath, $siteUrl);
     }
-    
+
     /**
      * getDb
      * Ways to get the db after calling this method
-     * 
+     *
      *  - \App\Factory::getDb()                 // Application level call
-     *  - \Tk\Config::getInstance()->getDb()    // 
-     *  - \Tk\Db\Pdo::getInstance()             // 
-     * 
+     *  - \Tk\Config::getInstance()->getDb()    //
+     *  - \Tk\Db\Pdo::getInstance()             //
+     *
      * Note: If you are creating a base lib then the DB really should be sent in via a param or method.
-     * 
-     * @return mixed|\Tk\Db\Pdo
+     *
+     * @param string $name
+     * @return mixed|Pdo
      */
     public static function getDb($name = 'default')
     {
         $config = self::getConfig();
         if (!$config->getDb() && $config->has('db.type')) {
             try {
-                $pdo = \Tk\Db\Pdo::getInstance($name, $config->getGroup('db'));
+                $pdo = Pdo::getInstance($name, $config->getGroup('db'));
                 $logger = $config->getLog();
-                if ($logger && $config->isDebug()) {
-                    $pdo->setOnLogListener(function ($entry) use ($logger) {
-                        $logger->debug('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
-                    });
-                }
+//                if ($logger && $config->isDebug()) {
+//                    $pdo->setOnLogListener(function ($entry) use ($logger) {
+//                        $logger->debug('[' . round($entry['time'], 4) . 'sec] ' . $entry['query']);
+//                    });
+//                }
                 $config->setDb($pdo);
             } catch (\Exception $e) {
                 error_log('<p>' . $e->getMessage() . '</p>');
@@ -88,5 +92,85 @@ class Factory
         }
         return self::getConfig()->getDomLoader();
     }
+
+
+    /**
+     * get
+     *
+     * @return \Tk\EventDispatcher\EventDispatcher
+     */
+    public static function getEventDispatcher()
+    {
+        if (!self::getConfig()->getEventDispatcher()) {
+            $obj = new \Tk\EventDispatcher\EventDispatcher(self::getConfig()->getLog());
+            self::getConfig()->setEventDispatcher($obj);
+        }
+        return self::getConfig()->getEventDispatcher();
+    }
+
+    /**
+     * get
+     *
+     * @return \Tk\Controller\ControllerResolver
+     */
+    public static function getControllerResolver()
+    {
+        if (!self::getConfig()->getControllerResolver()) {
+            $obj = new \Tk\Controller\ControllerResolver(self::getConfig()->getLog());
+            self::getConfig()->setControllerResolver($obj);
+        }
+        return self::getConfig()->getControllerResolver();
+    }
     
+    
+    /**
+     * get
+     *
+     * @return \Tk\Auth
+     */
+    public static function getAuth()
+    {
+        if (!self::getConfig()->getAuth()) {
+            $obj = new \Tk\Auth(new \Tk\Auth\Storage\SessionStorage(self::getConfig()->getSession()));
+            self::getConfig()->setAuth($obj);
+        }
+        return self::getConfig()->getAuth();
+    }
+
+
+    /**
+     * A factory method to create an instances of an Auth adapters
+     *
+     *
+     * @param string $class
+     * @param array $submittedData
+     * @return \Tk\Auth\Adapter\Iface
+     * @throws \Tk\Auth\Exception
+     */
+    static function getAuthAdapter($class, $submittedData = [])
+    {
+        $config = self::getConfig();
+        /** @var \Tk\Auth\Adapter\Iface $adapter */
+        $adapter = null;
+        switch($class) {
+            case '\Tk\Auth\Adapter\Config':
+                $adapter = new $class($config['system.auth.username'], $config['system.auth.password']);
+                break;
+            case '\Tk\Auth\Adapter\Ldap':
+                $adapter = new $class($config['system.auth.ldap.host'], $config['system.auth.ldap.baseDn'], $config['system.auth.ldap.filter'],
+                    $config['system.auth.ldap.port'], $config['system.auth.ldap.tls']);
+                break;
+            case '\Tk\Auth\Adapter\DbTable':
+                $adapter = new $class($config['db'], $config['system.auth.dbtable.tableName'],
+                    $config['system.auth.dbtable.usernameColumn'], $config['system.auth.dbtable.passwordColumn']);
+                break;
+            case '\Tk\Auth\Adapter\Trapdoor':
+                $adapter = new $class();
+                break;
+            default:
+                throw new \Tk\Auth\Exception('Cannot locate adapter class: ' . $class);
+        }
+        $adapter->replace($submittedData);
+        return $adapter;
+    }
 }

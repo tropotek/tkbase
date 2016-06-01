@@ -1,5 +1,5 @@
 <?php
-namespace Auth\Controller;
+namespace App\Controller;
 
 use Tk\Request;
 use Dom\Template;
@@ -9,7 +9,6 @@ use Tk\Form\Event;
 use Tk\Auth;
 use Tk\Auth\Result;
 
-use App\Controller\Iface;
 
 /**
  * Class Index
@@ -43,8 +42,8 @@ class Login extends Iface
     public function doDefault(Request $request)
     {
         /** @var Auth $auth */
-        $auth = $this->getConfig()->getAuth();
-        if ($auth && $auth->getIdentity()) {
+        if ($this->getUser()) {
+            // Todo: Redirect to the users homepage
             \Tk\Uri::create('/admin/index.html')->redirect();
         }
 
@@ -88,7 +87,7 @@ class Login extends Iface
     public function doLogin($form)
     {
         /** @var Auth $auth */
-        $auth = $this->getConfig()->getAuth();
+        $auth = \App\Factory::getAuth();
 
         if (!$form->getFieldValue('username') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('username'))) {
             $form->addFieldError('username', 'Please enter a valid username');
@@ -96,40 +95,27 @@ class Login extends Iface
         if (!$form->getFieldValue('password') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('password'))) {
             $form->addFieldError('password', 'Please enter a valid password');
         }
-
-        $form->addError('TODO: Not implemented Yet!!!!');
         
         if ($form->hasErrors()) {
             return;
         }
 
-        
-        $event = new \Auth\Event\LoginEvent($auth, $form->getValues());
+        // Fire the login event to allow developing of misc auth plugins
+        $event = new \App\Event\AuthEvent($auth, $form->getValues());
         $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogin', $event);
         
         // Use the event to process the login like below....
-        $result = $event->getAuth()->getResult();
-        
-        /*
-        $result = null;
-        $adapterList = $this->getConfig()->get('system.auth.loginAdapters');
-        foreach($adapterList as $name => $class) {
-            //vd($form->getFieldValue('username'), $form->getFieldValue('password'));
-            $adapter = \App\Helper\Auth::createAdapter($class, $form->getFieldValue('username'), $form->getFieldValue('password'), $this->getConfig());
-            $result = $auth->authenticate($adapter);
-            $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogin', new \App\EventDispatcher\LoginEvent($auth, $adapter, $result, $form->getValues()));
-        }
-        */
-        
+        $result = $event->getResult();
         if (!$result) {
-            throw new \Tk\Exception('No valid authentication result received.');
-        }
-
-        if ($result->getCode() != Result::SUCCESS) {
-            $form->addError( implode("<br/>\n", $result->getMessages()) );
+            $form->addError('No valid authentication result received.');
             return;
         }
-
+        if ($result->getCode() == Result::SUCCESS) {
+            // Redirect based on role
+            \Tk\Uri::create('/admin/index.html')->redirect(307);
+        }
+        $form->addError( implode("<br/>\n", $result->getMessages()) );
+        return;
     }
 
 

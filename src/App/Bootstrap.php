@@ -51,7 +51,7 @@ class Bootstrap
         }
         
         // Do not call \Tk\Config::getInstance() before this point
-        $config = \Tk\Config::getInstance();
+        $config = Factory::getConfig();
         
         // Include any config overriding settings
         include($config->getSrcPath() . '/config/config.php');
@@ -90,17 +90,22 @@ class Bootstrap
         
         // * Request
         $request = \Tk\Request::create();
+        $request->setAttribute('config', $config);
         $config->setRequest($request);
+        
         
         // * Cookie
         $cookie = new \Tk\Cookie($config->getSiteUrl());
+        $request->setAttribute('cookie', $cookie);
         $config->setCookie($cookie);
         
         // * Session
         $session = new \Tk\Session($config, $request, $cookie);
         //$session->start(new \Tk\Session\Adapter\Database( \Factory::getDb() ));
         $session->start();
+        $request->setAttribute('session', $session);
         $config->setSession($session);
+        
         
         return $config;
     }

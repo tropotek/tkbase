@@ -17,7 +17,6 @@
   white-space: nowrap;
 }
 
-
 .tk-table .orderAsc a {
   text-decoration: underline;
   color: darkviolet;
@@ -27,14 +26,12 @@
   color: darkgreen;
 }
 
-
 .tk-table .tk-actions {
   margin: 5px 0px;
 }
 .tk-table .btn {
   margin-right: 5px;
 }
-
 
 .tk-table .pagination {
   margin: 0;
@@ -54,11 +51,15 @@
 .tk-form.form-inline .tk-form-events {
   display: inline-block;
 }
+
 .tk-form.form-inline .tk-form-fields .form-group {
   margin-right: 5px;
 }
 
-
+.tk-form .tab-pane {
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
 
 
 

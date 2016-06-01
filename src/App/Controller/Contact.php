@@ -70,7 +70,8 @@ class Contact extends Iface
         $template = $this->getTemplate();
 
         // Render the form
-        \Tk\Form\Renderer\DomStatic::create($this->form, $template)->show();
+        $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
+        $ren->show();
 
         return $page->setPageContent($template);
     }

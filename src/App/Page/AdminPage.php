@@ -21,8 +21,8 @@ class AdminPage extends Iface
     public function __construct(\App\Controller\Iface $controller)
     {
         // Security/permissions etc..
-        /** @var \Tk\Auth\Auth $auth */
-        $auth = \Tk\Config::getInstance()->getAuth();
+        /** @var \Tk\Auth $auth */
+        $auth = \App\Factory::getAuth();
 
         if (!$auth->getIdentity()) {
             \Tk\Uri::create('/login.html')->redirect();
@@ -47,7 +47,7 @@ class AdminPage extends Iface
      */
     public function __makeTemplate()
     {
-        $tplFile =  \Tk\Config::getInstance()->getAdminTemplatePath().'/index.html';
+        $tplFile =  $this->getTemplatePath().'/main.xtpl';
         return \Dom\Loader::loadFile($tplFile);
     }
 

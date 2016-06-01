@@ -73,6 +73,17 @@ abstract class Iface extends \Dom\Renderer\Renderer
 
     
     
+
+    /**
+     * Get the currently logged in user
+     *
+     * @return \App\Db\User
+     */
+    public function getUser()
+    {
+        return $this->getConfig()->getUser();
+    }
+    
     /**
      * Add a role that can access this page
      *
@@ -83,16 +94,6 @@ abstract class Iface extends \Dom\Renderer\Renderer
     {
         $this->access = $role;
         return $this;
-    }
-
-    /**
-     * Get the currently logged in user
-     *
-     * @return \App\Db\User
-     */
-    public function getUser()
-    {
-        return $this->getConfig()->getUser();
     }
 
     /**
@@ -119,13 +120,12 @@ abstract class Iface extends \Dom\Renderer\Renderer
         /** @var \App\Db\User $user **/
         $user = $this->getUser();
         if (!$user) {
-            \Tk\Url::create('/login.html')->redirect();
+            \Tk\Uri::create('/login.html')->redirect();
         } else if (!$this->hasAccess($user)) {
             // Could redirect to a authentication error page...
             // Could cause a loop if the permissions are stuffed
             \App\Alert::getInstance()->addWarning('You do not have access to the requested page.');
-            \Tk\Url::create('/'.$this->access.'/index.html')->redirect();
-            //$user->redirectHome();
+            \Tk\Uri::create('/'.$this->access.'/index.html')->redirect();
         }
     }
 

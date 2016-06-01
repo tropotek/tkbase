@@ -1,9 +1,8 @@
 <?php
-namespace Auth\Controller;
+namespace App\Controller;
 
 use Tk\Request;
 use Dom\Template;
-use App\Controller\Iface;
 
 /**
  * Class Index
@@ -22,11 +21,11 @@ class Logout extends Iface
      */
     public function doDefault(Request $request)
     {
-        $event = new \Auth\Event\LoginEvent($this->getConfig()->getAuth());
+        
+        $event = new \App\Event\AuthEvent($this->getConfig()->getAuth());
         $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogout', $event);
         
-        
-        
+        \Tk\Uri::create('/index.html')->redirect(307);
     }
 
     /**

@@ -90,9 +90,11 @@ class ResponseHandler implements SubscriberInterface
         $response = $event->getResponse();
         
         // disable the browser cache as this is a dynamic site.
-        $response->addHeader('Cache-Control', 'no-cache, must-revalidate');
+        $response->addHeader('Cache-Control', 'no-store, no-cache, must-revalidate');
+        $response->addHeader('Cache-Control', 'post-check=0, pre-check=0');
         $response->addHeader('Expires', 'Mon, 1 Jan 2000 00:00:00 GMT');
         $response->addHeader('Pragma', 'no-cache');
+        $response->addHeader('Last-Modified', gmdate("D, d M Y H:i:s") . " GMT");
         
     }
 

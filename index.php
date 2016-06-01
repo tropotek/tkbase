@@ -10,7 +10,7 @@ include($appPath . '/vendor/autoload.php');
 
 $config = \Tk\Config::getInstance();
 
-$kernel = new \App\FrontController(new \Tk\EventDispatcher\EventDispatcher($config['log']), new \Tk\Controller\ControllerResolver($config['log']), $config);
+$kernel = new \App\FrontController(\App\Factory::getEventDispatcher(), \App\Factory::getControllerResolver(), $config);
 $response = $kernel->handle($config->getRequest())->send();
 $kernel->terminate($config->getRequest(), $response);
 
