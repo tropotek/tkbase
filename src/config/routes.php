@@ -44,3 +44,11 @@ $routes->add('admin-user-profile', new \Tk\Routing\Route('/admin/profile.html', 
 
 
 
+
+
+// Example: How to do a simple controller/route all-in-one
+$routes->add('simpleTest', new \Tk\Routing\Route('/test.html', function ($request) use ($config) {
+    vd($config->toString());
+    return '<p>This is a simple test</p>';
+}, $params));
+
