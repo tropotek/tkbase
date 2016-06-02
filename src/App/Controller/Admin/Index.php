@@ -38,9 +38,9 @@ class Index extends Iface
      */
     public function show()
     {
-        $page = new \App\Page\AdminPage($this);
+        $template = $this->getTemplate();
 
-        return $page->setPageContent($this->getTemplate());
+        return $this->getPage()->setPageContent($template);
     }
 
 

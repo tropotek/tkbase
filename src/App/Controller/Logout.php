@@ -35,6 +35,8 @@ class Logout extends Iface
      */
     public function show()
     {
-        // TODO: Implement show() method.
+        $template = $this->getTemplate();
+
+        return $this->getPage()->setPageContent($template);
     }
 }

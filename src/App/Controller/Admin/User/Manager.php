@@ -67,11 +67,13 @@ class Manager extends Iface
      */
     public function show()
     {
-        $page = new \App\Page\AdminPage($this);
+        $template = $this->getTemplate();
+        
         $ren =  \Tk\Table\Renderer\Dom\Table::create($this->table);
         $ren->show();
-        $this->getTemplate()->replaceTemplate('table', $ren->getTemplate());
-        return $page->setPageContent($this->getTemplate());
+        $template->replaceTemplate('table', $ren->getTemplate());
+        
+        return $this->getPage()->setPageContent($template);
     }
 
     /**
