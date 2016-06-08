@@ -53,9 +53,22 @@ class AuthHandler implements SubscriberInterface
      */
     public function onControllerAccess(ControllerEvent $event)
     {
+        /** @var \App\Controller\Iface $controller */
         $controller = current($event->getController());
+        $user = $controller->getUser();
         if ($controller instanceof \App\Controller\Iface) {
-            $controller->checkAccess();
+            // TODO: This would be a good place for an ACL or RBAC in the future
+            $access = $event->getRequest()->getAttribute('access');
+            
+            // Check the user has access to the controller in question
+            if (empty($access)) return;
+            if (!$user) \Tk\Uri::create('/login.html')->redirect();
+            if (!$user->hasRole($access)) {
+                // Could redirect to a authentication error page...
+                // Could cause a loop if the permissions are stuffed
+                \App\Alert::getInstance()->addWarning('You do not have access to the requested page.');
+                \Tk\Uri::create($user->getHomeUrl())->redirect();
+            }
         }
     }
 

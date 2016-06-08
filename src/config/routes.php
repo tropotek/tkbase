@@ -33,7 +33,7 @@ $routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login
 $routes->add('logout', new \Tk\Routing\Route('/logout.html', 'App\Controller\Logout::doDefault'));
 
 // Admin Pages
-$params = array('test' => 'admin');
+$params = array('test' => 'admin', 'access' => array('admin'));
 $routes->add('admin-home', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Index::doDefault', $params));
 $routes->add('admin-home-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Index::doDefault', $params));
 

@@ -36,6 +36,7 @@ abstract class Iface extends \Dom\Renderer\Renderer
         $this->setPageTitle($pageTitle);
         $this->templatePath = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.public.path');
     }
+    
     /**
      * Get a new instance of the page to display the content in.
      *
@@ -102,49 +103,29 @@ abstract class Iface extends \Dom\Renderer\Renderer
     }
     
     /**
-     * Add a role that can access this page
+     * Add a role(s) that can access this page
      *
-     * @param $role
+     * @param string|array $role
      * @return $this
      */
     public function setAccess($role)
     {
+        if (!$role) return $this;
+        if (!is_array($role)) $role = array($role);
         $this->access = $role;
         return $this;
     }
 
     /**
-     * Can this user access this page
-     *
-     * @param \App\Db\User $user
-     * @return bool
+     * Get the access details of this page.
+     * Will return an array of role names that can be checked against the logged in user
+     * 
+     * @return array
      */
-    public function hasAccess($user)
+    public function getAccess()
     {
-        if (!$this->access) return true;
-        if (!$user) return false;
-        if ($user->hasRole($this->access)) return true;
-        return false;
+        return $this->access;
     }
-
-    /**
-     * Call this to check the current logged in user has access to this page.
-     *
-     */
-    public function checkAccess()
-    {
-        if (!$this->access) return;
-        /** @var \App\Db\User $user **/
-        $user = $this->getUser();
-        if (!$user) {
-            \Tk\Uri::create('/login.html')->redirect();
-        } else if (!$this->hasAccess($user)) {
-            // Could redirect to a authentication error page...
-            // Could cause a loop if the permissions are stuffed
-            \App\Alert::getInstance()->addWarning('You do not have access to the requested page.');
-            \Tk\Uri::create('/'.$this->access.'/index.html')->redirect();
-        }
-    }
-
+    
 
 }

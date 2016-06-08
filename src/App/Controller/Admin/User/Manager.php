@@ -27,7 +27,7 @@ class Manager extends Iface
      */
     public function __construct()
     {
-        parent::__construct('User Manager');
+        parent::__construct('User Manager', array('mammy'));
     }
 
     /**
@@ -49,7 +49,6 @@ class Manager extends Iface
 
         // Filters
         $this->table->addFilter(new Field\Input('keywords'))->setLabel('')->setAttr('placeholder', 'Keywords');
-        
 
         // Actions
         $this->table->addAction(\Tk\Table\Action\Button::getInstance('New User', 'fa fa-plus', \Tk\Uri::create('admin/userEdit.html')));

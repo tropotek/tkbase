@@ -324,6 +324,14 @@
         <h1 class="page-header" var="pageHeading">Dashboard</h1>
       </div>
     </div>
+    
+    <div class="container">
+      <div class="row">
+        <div class="col-md-12">
+          <div var="alerts"></div>
+        </div>
+      </div>
+    </div>
 
     <div var="content"></div>
 
