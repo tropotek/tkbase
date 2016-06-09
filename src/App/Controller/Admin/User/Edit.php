@@ -77,7 +77,7 @@ class Edit extends Iface
         }
         
         if ($access->isAdmin()) {
-            $list = [\App\Auth\Access::ROLE_ADMIN => 'Admin', \App\Auth\Access::ROLE_USER => 'User'];
+            $list = ['Admin' => \App\Auth\Access::ROLE_ADMIN, 'User' => \App\Auth\Access::ROLE_USER];
             $f = $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
             if ($this->user->getId() == $this->getUser()->getId()) {
                 $f->setAttr('readonly')->setAttr('disabled');
