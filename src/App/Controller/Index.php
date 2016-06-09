@@ -33,12 +33,18 @@ class Index extends Iface
         
         
 
-        return $this->show();
+        return $this->showDefault($request);
     }
 
 
-
-    public function show()
+    /**
+     * Note: no longer a dependacy on show() allows for many show methods for many 
+     * controller methods (EG: doAction/showAction, doSubmit/showSubmit) in one Controller object
+     * 
+     * @param Request $request
+     * @return \App\Page\PublicPage
+     */
+    public function showDefault(Request $request)
     {
         $template = $this->getTemplate();
         

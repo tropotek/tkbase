@@ -11,7 +11,7 @@ namespace App;
  *
  * @see http://getbootstrap.com/components/#alerts
  */
-class Alert extends \Dom\Renderer\Renderer
+class Alert extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInterface
 {
 
     const SID = 'App_Alert';

@@ -25,25 +25,8 @@ VALUES
 
 
 
-/*
-DROP TABLE IF EXISTS `comment`;
-CREATE TABLE IF NOT EXISTS `comment` (
-  `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `userId` int(10) unsigned NOT NULL DEFAULT '0',
-  `title` varchar(255) NOT NULL DEFAULT '',
-  `comment` TEXT,
-  `modified` DATETIME NOT NULL,
-  `created` DATETIME NOT NULL,
-  PRIMARY KEY (`id`),
-  KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=latin1;
 
-INSERT INTO `comment` (`id` ,`userId` ,`title` ,`comment` ,`modified` ,`created`)
-VALUES
-  (NULL , '1', 'An admin comment', 'This is some test text', NOW() , NOW()),
-  (NULL , '2', 'A user comment', 'Some more test text', NOW() , NOW())
-;
-*/
+
 
 
 

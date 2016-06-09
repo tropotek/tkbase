@@ -8,7 +8,7 @@ namespace App\Page;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-abstract class Iface extends \Dom\Renderer\Renderer
+abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInterface
 {
 
     /**
