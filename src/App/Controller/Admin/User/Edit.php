@@ -57,6 +57,7 @@ class Edit extends Iface
     public function doDefault(Request $request)
     {
         $this->user = new \App\Db\User();
+        $access = \App\Auth\Access::create($this->getUser());
         if ($this->isProfile()) {
             $this->user = $this->getUser();
         } else if ($request->get('userId')) {
@@ -65,19 +66,31 @@ class Edit extends Iface
 
         $this->form = new Form('formEdit');
 
+        
         $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
         $emailF = $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
-        if (!$this->isProfile())
-            $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
+        if (!$this->isProfile()) {
+            $f = $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
+            if ($this->user->getId() == $this->getUser()->getId()) {
+                $f->setAttr('readonly')->setAttr('disabled');
+            }
+        }
+        
+        if ($access->isAdmin()) {
+            $list = [\App\Auth\Access::ROLE_ADMIN => 'Admin', \App\Auth\Access::ROLE_USER => 'User'];
+            $f = $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
+            if ($this->user->getId() == $this->getUser()->getId()) {
+                $f->setAttr('readonly')->setAttr('disabled');
+            }
+        }
         
         $this->form->setAttr('autocomplete', 'off');
-        $f = $this->form->addField(new Field\Password('newPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly', 'true')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setTabGroup('Password');
+        $f = $this->form->addField(new Field\Password('newPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setTabGroup('Password');
         if (!$this->user->getId())
             $f->setRequired(true);
-        $f = $this->form->addField(new Field\Password('confPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly', 'true')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setNotes('Change this users password.')->setTabGroup('Password');
+        $f = $this->form->addField(new Field\Password('confPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setNotes('Change this users password.')->setTabGroup('Password');
         if (!$this->user->getId())
             $f->setRequired(true);
-
         
 //        if (!$this->isProfile()) {
 //            $roles = \App\Db\Role::getMapper()->findAll(\Tk\Db\Tool::create('a.id'))->toArray();
@@ -115,14 +128,19 @@ class Edit extends Iface
         }
         $form->addFieldErrors(\App\Db\UserValidator::create($this->user)->getErrors());
         
-
+        
+        // Just a small check to ensure the user down not change their own role
+        if ($this->user->getId() == $this->getUser()->getId() && $this->user->role != $this->getUser()->role) {
+            \App\Alert::addError('You cannot change your own role information as this will make the system unstable.');
+        }
+        
         if ($form->hasErrors()) {
             return;
         }
 
         $this->user->save();
 
-        //\App\Alert::addSuccess('User record saved!');
+        \App\Alert::addSuccess('User record saved!');
         if ($form->getTriggeredEvent()->getName() == 'update') {
             if ($this->isProfile()) {
                 \Tk\Uri::create('/admin/index.html')->redirect();

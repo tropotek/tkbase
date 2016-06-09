@@ -31,6 +31,8 @@ $routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\C
 
 $routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault'));
 $routes->add('logout', new \Tk\Routing\Route('/logout.html', 'App\Controller\Logout::doDefault'));
+$routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller\Register::doDefault'));
+$routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault'));
 
 // Admin Pages
 $params = array('test' => 'admin', 'access' => array('admin'));
@@ -42,6 +44,10 @@ $routes->add('admin-user-edit', new \Tk\Routing\Route('/admin/userEdit.html', 'A
 $routes->add('admin-user-profile', new \Tk\Routing\Route('/admin/profile.html', 'App\Controller\Admin\User\Edit::doDefault', $params));
 
 
+// User Pages
+$params = array('access' => array('user'));
+$routes->add('user-home', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Index::doDefault', $params));
+$routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Index::doDefault', $params));
 
 
 

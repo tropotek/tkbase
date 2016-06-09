@@ -24,6 +24,11 @@ class Login extends Iface
      * @var Form
      */
     protected $form = null;
+
+    /**
+     * @var \Tk\EventDispatcher\EventDispatcher
+     */
+    private $dispatcher = null;
     
 
     /**
@@ -32,6 +37,7 @@ class Login extends Iface
     public function __construct()
     {
         parent::__construct('Login');
+        $this->dispatcher = $this->getConfig()->getEventDispatcher();
     }
     
     /**
@@ -41,17 +47,14 @@ class Login extends Iface
      */
     public function doDefault(Request $request)
     {
-        /** @var Auth $auth */
         if ($this->getUser()) {
-            // Todo: Redirect to the users homepage
-            \Tk\Uri::create('/admin/index.html')->redirect();
+            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
         }
 
         $this->form = new Form('loginForm');
 
         $this->form->addField(new Field\Input('username'));
         $this->form->addField(new Field\Password('password'));
-        $this->form->addField(new Field\Checkbox('remember'));
         $this->form->addField(new Event\Button('login', array($this, 'doLogin')));
         
         // Find and Fire submit event
@@ -100,18 +103,21 @@ class Login extends Iface
         }
 
         // Fire the login event to allow developing of misc auth plugins
-        $event = new \App\Event\AuthEvent($auth, $form->getValues());
-        $this->getConfig()->getEventDispatcher()->dispatch('auth.onLogin', $event);
+        $event = new \App\Event\AuthEvent($auth);
+        $event->replace($form->getValues());
+        $this->dispatcher->dispatch('auth.onLogin', $event);
         
         // Use the event to process the login like below....
         $result = $event->getResult();
+        
         if (!$result) {
-            $form->addError('No valid authentication result received.');
+            $form->addError('Invalid login details');
+            //$form->addError('No valid authentication result received.');
             return;
         }
         if ($result->getCode() == Result::SUCCESS) {
             // Redirect based on role
-            \Tk\Uri::create('/admin/index.html')->redirect(307);
+            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
         }
         $form->addError( implode("<br/>\n", $result->getMessages()) );
         return;

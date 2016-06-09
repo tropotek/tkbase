@@ -1,6 +1,7 @@
 <?php
 namespace App\Db;
 
+use App\Auth\Access;
 use Tk\Db\Map\Model;
 
 /**
@@ -13,10 +14,6 @@ use Tk\Db\Map\Model;
 class User extends Model
 {
     static $HASH_FUNCTION = 'md5';
-
-    const ROLE_ADMIN = 'admin';
-    const ROLE_USER = 'user';
-    
     
     /**
      * @var int
@@ -87,33 +84,17 @@ class User extends Model
      */
     public function getHomeUrl()
     {
-        if ($this->hasRole(self::ROLE_ADMIN))
+        $access = Access::create($this);
+        
+        if ($access->hasRole(Access::ROLE_ADMIN))
             return '/admin/index.html';
-        if ($this->hasRole(self::ROLE_USER))
+        if ($access->hasRole(Access::ROLE_USER))
             return '/user/index.html';
         return '/index.html';   // Should not get here unless their is no roles
         //maybe we should throw an exception instead??
         //throw new \Tk\Exception('No suitable roles found please contact your administrator.'); 
     }
     
-    /**
-     * Does this user have access to the supplied roll list
-     * 
-     * @param string|array $role
-     * @return bool
-     * @todo Use an ACL or similar to manage the user permissions.
-     */
-    public function hasRole($role)
-    {
-        if (!is_array($role)) $role = array($role);
-        foreach ($role as $r) {
-            if ($r == $this->role || preg_match('/'.preg_quote($r).'/', $this->role)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     /**
      * Create a random password
      *
@@ -135,13 +116,24 @@ class User extends Model
     /**
      * Helper method to generate user hash
      * 
+     * @param bool $isTemp Set this to true, when generate a temporary hash used for registration
      * @return string
      */
-    public function generateHash() 
+    public function generateHash($isTemp = false) 
     {
-        return hash(self::$HASH_FUNCTION, sprintf('%s:%s:%s', $this->getVolatileId(), $this->username, $this->email));
+        $key = sprintf('%s:%s:%s', $this->getVolatileId(), $this->username, $this->email); 
+        if ($isTemp) {
+            $key .= date('YmdHis');
+        }
+        return hash(self::$HASH_FUNCTION, $key);
     }
-
+    
+    static function hashPassword($password)
+    {
+        return hash(self::$HASH_FUNCTION, $password);
+    }
+    
+    
 }
 
 class UserValidator extends \App\Helper\Validator
@@ -166,6 +158,9 @@ class UserValidator extends \App\Helper\Validator
             if ($dup && $dup->getId() != $obj->getId()) {
                 $this->addError('username', 'This username is already in use.');
             }
+        }
+        if (!$obj->role) {
+            $this->addError('role', 'The user must have a role assigned for the permission system');
         }
 
         if (!filter_var($obj->email, FILTER_VALIDATE_EMAIL)) {

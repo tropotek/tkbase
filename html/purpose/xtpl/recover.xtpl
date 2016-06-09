@@ -4,28 +4,24 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-5">
+
+          <p>Enter your username to receive an email to recover your account password.</p>
+
           <div class="basic-login clearfix">
             <div class="alert alert-danger" role="alert" choice="error"><strong>Error!</strong> <span var="errMsg">Invalid login credentials</span></div>
             <form role="form" id="loginForm" method="post">
-              <input type="hidden" name="act" value="login" />
+              <input type="hidden" name="act" value="recover" />
 
               <div class="form-group" var="username-group">
                 <label for="login-username"><i class="icon-user"></i> <b>Username or Email</b></label>
-                <input class="form-control" name="username" id="login-username" type="text" placeholder="" />
-              </div>
-              <div class="form-group" var="password-group">
-                <label for="login-password"><i class="icon-lock"></i> <b>Password</b></label>
-                <input class="form-control" name="password" id="login-password" type="password" placeholder="" />
+                <input class="form-control" name="account" id="login-username" type="text" placeholder="" />
               </div>
               <div class="form-group">
-                <!-- label class="checkbox" for="login-remember">
-                  <input type="checkbox" name="remember" value="remember" id="login-remember" /> Remember me
-                </label -->
-                <a href="/recover.html" class="forgot-password">Forgot password?</a>
-                <button type="submit" name="login" class="btn pull-right">Login</button>
+                <button type="submit" name="recover" class="btn pull-right">Recover</button>
               </div>
             </form>
           </div>
+          
         </div>
         <div class="col-sm-7 social-login clearfix">
           <p>Or login with your Facebook or Twitter</p>

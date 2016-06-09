@@ -213,7 +213,8 @@ class Factory
                 break;
             case '\Tk\Auth\Adapter\DbTable':
                 $adapter = new $class($config['db'], $config['system.auth.dbtable.tableName'],
-                    $config['system.auth.dbtable.usernameColumn'], $config['system.auth.dbtable.passwordColumn']);
+                    $config['system.auth.dbtable.usernameColumn'], $config['system.auth.dbtable.passwordColumn'], 
+                    $config['system.auth.dbtable.activeColumn']);
                 break;
             case '\Tk\Auth\Adapter\Trapdoor':
                 $adapter = new $class();
@@ -221,6 +222,10 @@ class Factory
             default:
                 throw new \Tk\Auth\Exception('Cannot locate adapter class: ' . $class);
         }
+        
+        if (isset($submittedData['password']))
+            $submittedData['password'] = \App\Db\User::hashPassword($submittedData['password']);
+        
         $adapter->replace($submittedData);
         return $adapter;
     }

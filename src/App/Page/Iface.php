@@ -66,6 +66,14 @@ abstract class Iface extends \Dom\Renderer\Renderer
         $template->setTitleText($heading . ' - ' . $template->getTitleText());
         $template->insertText('pageHeading', $heading);
         $template->setChoice('pageHeading');
+        
+        if ($this->controller->getUser()) {
+            $template->setChoice('logout');
+        } else {
+            $template->setChoice('login');
+        }
+        
+        
         return $this;
     }
 

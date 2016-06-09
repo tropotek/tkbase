@@ -32,9 +32,9 @@ class AuthEvent extends Event
      * @param Auth $auth
      * @param array $data  Login data from a login interface (ie: form, openId, etc)
      */
-    public function __construct($auth, $data = [])
+    public function __construct($auth)
     {
-        parent::__construct($data);
+        parent::__construct();
         $this->auth = $auth;
     }
 

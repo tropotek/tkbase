@@ -119,6 +119,11 @@ class UserMap extends Mapper
         return $this->select('email = ' . $this->getDb()->quote($email))->current();
     }
 
+    public function findByHash($hash)
+    {
+        return $this->select('hash = ' . $this->getDb()->quote($hash))->current();
+    }
+
 
 
     /**
