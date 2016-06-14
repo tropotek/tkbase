@@ -127,12 +127,15 @@ class User extends Model
         }
         return hash(self::$HASH_FUNCTION, $key);
     }
-    
+
+    /**
+     * @param $password
+     * @return string
+     */
     static function hashPassword($password)
     {
         return hash(self::$HASH_FUNCTION, $password);
     }
-    
     
 }
 
