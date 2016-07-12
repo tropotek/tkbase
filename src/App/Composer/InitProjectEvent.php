@@ -65,7 +65,7 @@ class InitProjectEvent
 
             $head = <<<STR
 ---------------------------------------------------------
-       Composer Installer - (c) tropotek.com $year
+       $name Installer - (c) tropotek.com $year
 --------------------------------------------------------- 
   Project:     $name
   Version:     $version
@@ -155,24 +155,26 @@ STR;
             // TODO Prompt for new admin user password and update DB
             // TODO This could be considered unsecure and may need to be removed in favor of an email address only?
             // TODO ----------------------------------------------------------------------------------------
-            $sql = sprintf('SELECT * FROM %s WHERE id = 1 ;', $db->quoteParameter('user'));
-            $res = $db->query($sql);
-            if ($res->fetch()) {
-                $p = $io->ask(self::bold('Please create a new `admin` user password: '), 'admin');
-                $hashed = \App\Factory::hashPassword($p);
-                $sql = sprintf('UPDATE %s SET password = %s WHERE id = 1', $db->quoteParameter('user'), $db->quote($hashed));
+            if ($isCleanInstall) {
+                $sql = sprintf('SELECT * FROM %s WHERE id = 1 ;', $db->quoteParameter('user'));
+                $res = $db->query($sql);
+                if ($res->fetch()) {
+                    $p = $io->ask(self::bold('Please create a new `admin` user password: '), 'admin');
+                    $hashed = \App\Factory::hashPassword($p);
+                    $sql = sprintf('UPDATE %s SET password = %s WHERE id = 1', $db->quoteParameter('user'), $db->quote($hashed));
 
-                $r = $db->exec($sql);
-                if ($r === false) {
-                    print_r($db->errorInfo());
-                    $io->write(self::red('Error updating admin user password.'));
+                    $r = $db->exec($sql);
+                    if ($r === false) {
+                        print_r($db->errorInfo());
+                        $io->write(self::red('Error updating admin user password.'));
+                    } else {
+                        $io->write(self::green('Administrator password updated.'));
+                    }
+
                 } else {
-                    $io->write(self::green('Administrator password updated.'));
+                    // TODO: You should write some code to prompt the user and auto-create an admin user
+                    $io->write(self::red('No administrator account found, you will have to install it manually'));
                 }
-
-            } else {
-                // TODO: You should write some code to prompt the user and auto-create an admin user
-                $io->write(self::red('No administrator account found, you will have to install it manually'));
             }
 
         } catch (\Exception $e) {
