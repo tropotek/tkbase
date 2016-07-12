@@ -35,7 +35,10 @@ class InitProjectEvent
         self::init($event, false);
     }
 
-
+    static function vd($obj)
+    {
+        echo print_r($obj, true) . "\n";
+    }
 
     /**
      * @param Event $event
@@ -47,19 +50,28 @@ class InitProjectEvent
             $sitePath = $_SERVER['PWD'];
             $io = $event->getIO();
             $composer = $event->getComposer();
+            $pkg = $composer->getPackage();
 
-            $name = $composer->getPackage()->getName();
-            $version = $composer->getPackage()->getVersion();
-            $releaseDate = $composer->getPackage()->getReleaseDate();
-            printr($name);
-            printr($version);
-            printr($releaseDate);
+            $name = substr($pkg->getName(), strrpos($pkg->getName(), '/')+1);
+            $version = $pkg->getVersion();
+            $releaseDate = $pkg->getReleaseDate()->format('Y-m-d H:i:s');
+            $year = $pkg->getReleaseDate()->format('Y');
+            $desc = $pkg->getDescription();
+            $authors =  [];
+            foreach ($pkg->getAuthors() as $auth) {
+                $authors[] = $auth['name'];
+            }
+            $authors = implode(', ', $authors);
 
             $head = <<<STR
 ---------------------------------------------------------
-|                   tk2Base V2.0                        |
-|                   Author: Godar                       |
-|                 (c) Tropotek 2016                     |
+       Composer Installer - (c) tropotek.com $year
+--------------------------------------------------------- 
+  Project:     $name
+  Version:     $version
+  Released:    $releaseDate
+  Author:      $authors
+  Description: $desc
 ---------------------------------------------------------
 STR;
             $io->write(self::bold($head));
@@ -143,9 +155,9 @@ STR;
             // TODO Prompt for new admin user password and update DB
             // TODO This could be considered unsecure and may need to be removed in favor of an email address only?
             // TODO ----------------------------------------------------------------------------------------
-            $sql = sprintf('SELECT * FROM %s a, %s b WHERE  b.role_id = 1 AND b.user_id = a.id', $db->quoteParameter('user'), $db->quoteParameter('user_role'));
-            $r = $db->query($sql);
-            if (!$r || !$r->rowCount()) {
+            $sql = sprintf('SELECT * FROM %s WHERE id = 1 ;', $db->quoteParameter('user'));
+            $res = $db->query($sql);
+            if ($res->fetch()) {
                 $p = $io->ask(self::bold('Please create a new `admin` user password: '), 'admin');
                 $hashed = \App\Factory::hashPassword($p);
                 $sql = sprintf('UPDATE %s SET password = %s WHERE id = 1', $db->quoteParameter('user'), $db->quote($hashed));
@@ -157,6 +169,10 @@ STR;
                 } else {
                     $io->write(self::green('Administrator password updated.'));
                 }
+
+            } else {
+                // TODO: You should write some code to prompt the user and auto-create an admin user
+                $io->write(self::red('No administrator account found, you will have to install it manually'));
             }
 
         } catch (\Exception $e) {

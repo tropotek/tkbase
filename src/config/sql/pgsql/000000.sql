@@ -23,11 +23,3 @@ VALUES
   (1, 'Administrator', 'admin@example.com', 'admin', MD5('password'), 'admin', true, MD5('1:admin:admin@example.com'), NOW() , NOW()),
   (2, 'User 1', 'user@example.com', 'user1', MD5('password'), 'user', true, MD5('2:user:user@example.com'), NOW() , NOW())
 ;
-
-
-CREATE TABLE session (
-  session_id VARCHAR(127) NOT NULL PRIMARY KEY,
-  data TEXT NOT NULL,
-  modified TIMESTAMP NOT NULL,
-  created TIMESTAMP NOT NULL
-);
