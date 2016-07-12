@@ -56,7 +56,7 @@ class InitProjectEvent
             $version = $pkg->getVersion();
             $releaseDate = $pkg->getReleaseDate()->format('Y-m-d H:i:s');
             $year = $pkg->getReleaseDate()->format('Y');
-            $desc = $pkg->getDescription();
+            $desc = wordwrap($pkg->getDescription(), 45, "\n               ");
             $authors =  [];
             foreach ($pkg->getAuthors() as $auth) {
                 $authors[] = $auth['name'];
@@ -64,15 +64,15 @@ class InitProjectEvent
             $authors = implode(', ', $authors);
 
             $head = <<<STR
----------------------------------------------------------
+-----------------------------------------------------------
        $name Installer - (c) tropotek.com $year
---------------------------------------------------------- 
+----------------------------------------------------------- 
   Project:     $name
   Version:     $version
   Released:    $releaseDate
   Author:      $authors
   Description: $desc
----------------------------------------------------------
+-----------------------------------------------------------
 STR;
             $io->write(self::bold($head));
             $configInFile = $sitePath . '/src/config/config.php.in';
@@ -155,7 +155,7 @@ STR;
             // TODO Prompt for new admin user password and update DB
             // TODO This could be considered unsecure and may need to be removed in favor of an email address only?
             // TODO ----------------------------------------------------------------------------------------
-            if ($isCleanInstall) {
+            if ($isInstall) {
                 $sql = sprintf('SELECT * FROM %s WHERE id = 1 ;', $db->quoteParameter('user'));
                 $res = $db->query($sql);
                 if ($res->fetch()) {
@@ -170,7 +170,6 @@ STR;
                     } else {
                         $io->write(self::green('Administrator password updated.'));
                     }
-
                 } else {
                     // TODO: You should write some code to prompt the user and auto-create an admin user
                     $io->write(self::red('No administrator account found, you will have to install it manually'));
