@@ -13,7 +13,6 @@ use Tk\Db\Map\Model;
  */
 class User extends Model
 {
-    static $HASH_FUNCTION = 'md5';
     
     /**
      * @var int
@@ -77,6 +76,17 @@ class User extends Model
     }
 
     /**
+     *
+     */
+    public function save()
+    {
+        if (!$this->hash) {
+            $this->hash = $this->generateHash();
+        }
+        parent::save();
+    }
+
+    /**
      * Return the users home|dashboard relative url
      *
      * @return string
@@ -85,14 +95,11 @@ class User extends Model
     public function getHomeUrl()
     {
         $access = Access::create($this);
-        
         if ($access->hasRole(Access::ROLE_ADMIN))
             return '/admin/index.html';
         if ($access->hasRole(Access::ROLE_USER))
             return '/user/index.html';
-        return '/index.html';   // Should not get here unless their is no roles
-        //maybe we should throw an exception instead??
-        //throw new \Tk\Exception('No suitable roles found please contact your administrator.'); 
+        return '/index.html';
     }
     
     /**
@@ -125,18 +132,9 @@ class User extends Model
         if ($isTemp) {
             $key .= date('YmdHis');
         }
-        return hash(self::$HASH_FUNCTION, $key);
+        return hash('md5', $key);
     }
 
-    /**
-     * @param $password
-     * @return string
-     */
-    static function hashPassword($password)
-    {
-        return hash(self::$HASH_FUNCTION, $password);
-    }
-    
 }
 
 class UserValidator extends \App\Helper\Validator

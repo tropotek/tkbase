@@ -25,10 +25,10 @@ class PublicPage extends Iface
 
     public function show()
     {
-        /** @var \Dom\Template $template */
+        $this->initPage();
         $template = $this->getTemplate();
 
-        $this->showAlerts();
+        return $template;
     }
 
     /**

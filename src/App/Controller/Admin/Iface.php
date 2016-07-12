@@ -12,7 +12,7 @@ abstract class Iface extends \App\Controller\Iface
     public function __construct($pageTitle = '', $access = 'admin')
     {
         parent::__construct($pageTitle, $access);
-        $this->templatePath = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.admin.path');
+        $this->setTemplatePath($this->getConfig()->getSitePath() . $this->getConfig()->get('template.admin.path'));
     }
 
     /**

@@ -34,7 +34,7 @@ abstract class Iface extends \Dom\Renderer\Renderer
     {
         $this->setAccess($access);
         $this->setPageTitle($pageTitle);
-        $this->templatePath = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.public.path');
+        $this->setTemplatePath($this->getConfig()->getSitePath() . $this->getConfig()->get('template.public.path'));
     }
     
     /**
@@ -57,6 +57,16 @@ abstract class Iface extends \Dom\Renderer\Renderer
     public function getTemplatePath()
     {
         return $this->templatePath;
+    }
+
+    /**
+     * @param $path
+     * @return $this
+     */
+    public function setTemplatePath($path)
+    {
+        $this->templatePath = $path;
+        return $this;
     }
 
     /**

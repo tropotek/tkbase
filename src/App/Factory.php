@@ -19,15 +19,16 @@ class Factory
      * @param string $siteUrl
      * @return \Tk\Config
      */
-    public static function getConfig($sitePath = '', $siteUrl = '')
+    static public function getConfig($sitePath = '', $siteUrl = '')
     {
         return \Tk\Config::getInstance($sitePath, $siteUrl);
     }
+    
 
     /**
      * @return \Tk\Request
      */
-    public static function getRequest()
+    static public function getRequest()
     {
         if (!self::getConfig()->getRequest()) {
             $obj = \Tk\Request::create();
@@ -40,7 +41,7 @@ class Factory
     /**
      * @return \Tk\Cookie
      */
-    public static function getCookie()
+    static public function getCookie()
     {
         if (!self::getConfig()->getCookie()) {
             $obj = new \Tk\Cookie(self::getConfig()->getSiteUrl());
@@ -52,12 +53,12 @@ class Factory
     /**
      * @return \Tk\Session
      */
-    public static function getSession()
+    static public function getSession()
     {
         if (!self::getConfig()->getSession()) {
-            $obj = new \Tk\Session(self::getConfig(), self::getRequest(), self::getCookie());
-            //$obj->start(new \Tk\Session\Adapter\Database( self::getDb() ));
-            $obj->start();
+            $adapter = null;
+            //$adapter = new \Tk\Session\Adapter\Database(self::getDb());
+            $obj = new \Tk\Session($adapter, self::getConfig(), self::getRequest(), self::getCookie());
             self::getConfig()->setSession($obj);
         }
         return self::getConfig()->getSession();
@@ -76,7 +77,7 @@ class Factory
      * @param string $name
      * @return mixed|Pdo
      */
-    public static function getDb($name = 'default')
+    static public function getDb($name = 'default')
     {
         $config = self::getConfig();
         if (!$config->getDb() && $config->has('db.type')) {
@@ -103,7 +104,7 @@ class Factory
      * 
      * @return \Dom\Modifier\Modifier
      */
-    public static function getDomModifier()
+    static public function getDomModifier()
     {
         if (!self::getConfig()->getDomModifier()) {
             $dm = new \Dom\Modifier\Modifier();
@@ -119,7 +120,7 @@ class Factory
      * 
      * @return \Dom\Loader
      */
-    public static function getDomLoader()
+    static public function getDomLoader()
     {   
         if (!self::getConfig()->getDomLoader()) {
             $dl = \Dom\Loader::getInstance()->setParams(self::getConfig()->all());
@@ -135,7 +136,7 @@ class Factory
     /**
      * @return \App\FrontController
      */
-    public static function getFrontController()
+    static public function getFrontController()
     {
         if (!self::getConfig()->getFrontController()) {
             $obj = new \App\FrontController(self::getEventDispatcher(), self::getControllerResolver(), self::getConfig());
@@ -150,7 +151,7 @@ class Factory
      *
      * @return \Tk\EventDispatcher\EventDispatcher
      */
-    public static function getEventDispatcher()
+    static public function getEventDispatcher()
     {
         if (!self::getConfig()->getEventDispatcher()) {
             $obj = new \Tk\EventDispatcher\EventDispatcher(self::getConfig()->getLog());
@@ -164,7 +165,7 @@ class Factory
      *
      * @return \Tk\Controller\ControllerResolver
      */
-    public static function getControllerResolver()
+    static public function getControllerResolver()
     {
         if (!self::getConfig()->getControllerResolver()) {
             $obj = new \Tk\Controller\ControllerResolver(self::getConfig()->getLog());
@@ -179,7 +180,7 @@ class Factory
      *
      * @return \Tk\Auth
      */
-    public static function getAuth()
+    static public function getAuth()
     {
         if (!self::getConfig()->getAuth()) {
             $obj = new \Tk\Auth(new \Tk\Auth\Storage\SessionStorage(self::getConfig()->getSession()));
@@ -198,7 +199,7 @@ class Factory
      * @return \Tk\Auth\Adapter\Iface
      * @throws \Tk\Auth\Exception
      */
-    static function getAuthAdapter($class, $submittedData = [])
+    static public function getAuthAdapter($class, $submittedData = [])
     {
         $config = self::getConfig();
         /** @var \Tk\Auth\Adapter\Iface $adapter */
@@ -235,8 +236,10 @@ class Factory
      * @param $user (optional)
      * @return string
      */
-    static function hashPassword($pwd, $user = null)
+    static public function hashPassword($pwd, $user = null)
     {
+        if (self::getConfig()->get('hash.function'))
+            return hash(self::getConfig()->get('hash.function'), $pwd);
         return hash('md5', $pwd);
     }
     

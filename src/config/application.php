@@ -25,7 +25,6 @@ $config['template.public.path'] = '/html/purpose';
 // Warning: do not change after install, or else 
 //   ALL existing passwords will be invalid and need to be reset.
 $config['hash.function'] = 'md5';
-\App\Db\User::$HASH_FUNCTION = $config['hash.function']; 
 
 // \Tk\Auth\Adapter\DbTable
 $config['system.auth.dbtable.tableName'] = 'user';
@@ -45,7 +44,10 @@ $config['system.auth.adapters'] = array(
 );
 
 
-
+/**
+ * Set the system timezone
+ */
+$config['date.timezone'] = 'Australia/Victoria';
 
 
 // To avoid var dump errors when debug lib not present

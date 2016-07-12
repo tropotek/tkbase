@@ -55,7 +55,8 @@ class AuthHandler implements SubscriberInterface
     public function onControllerAccess(ControllerEvent $event)
     {
         /** @var \App\Controller\Iface $controller */
-        $controller = current($event->getController());
+        $controller = $event->getController();
+
         $user = $controller->getUser();
         if ($controller instanceof \App\Controller\Iface) {
             // TODO: This would be a good place for an ACL or RBAC in the future

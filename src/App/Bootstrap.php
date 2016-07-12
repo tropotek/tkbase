@@ -57,6 +57,10 @@ class Bootstrap
         include($config->getSrcPath() . '/config/config.php');
         
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
+
+        if ($config->has('date.timezone')) {
+            ini_set('date.timezone', $config->get('date.timezone'));
+        }
         
         /**
          * This makes our life easier when dealing with paths. Everything is relative

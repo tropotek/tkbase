@@ -75,7 +75,7 @@ class Login extends Iface
         // Render the form
         $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
         $ren->show();
-        
+
         return $this->getPage()->setPageContent($template);
     }
 

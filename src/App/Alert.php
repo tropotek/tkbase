@@ -194,13 +194,11 @@ class Alert extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInter
     {
         $xmlStr = <<<XML
 <?xml version="1.0" encoding="UTF-8"?>
-<div class="row" choice="show">
-  <div class="col-lg-12">
-      <div class="alert" var="row" repeat="row">
-        <button class="close noblock" data-dismiss="alert">&times;</button>
-        <h4><i choice="icon" var="icon"></i> <strong var="title"></strong></h4>
-        <span var="message"></span>
-      </div>
+<div choice="show">
+  <div class="alert" var="row" repeat="row">
+    <button class="close noblock" data-dismiss="alert">&times;</button>
+    <h4><i choice="icon" var="icon"></i> <strong var="title"></strong></h4>
+    <span var="message"></span>
   </div>
 </div>
 XML;

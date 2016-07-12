@@ -69,18 +69,13 @@ class Edit extends Iface
         
         $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
         $emailF = $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
-        if (!$this->isProfile()) {
-            $f = $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
-            if ($this->user->getId() == $this->getUser()->getId()) {
-                $f->setAttr('readonly')->setAttr('disabled');
-            }
-        }
-        
+
+
         if ($access->isAdmin()) {
             $list = ['Admin' => \App\Auth\Access::ROLE_ADMIN, 'User' => \App\Auth\Access::ROLE_USER];
-            $f = $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
-            if ($this->user->getId() == $this->getUser()->getId()) {
-                $f->setAttr('readonly')->setAttr('disabled');
+            $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
+            if (!$this->isProfile()) {
+                $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
             }
         }
         
@@ -131,11 +126,22 @@ class Edit extends Iface
         
         // Just a small check to ensure the user down not change their own role
         if ($this->user->getId() == $this->getUser()->getId() && $this->user->role != $this->getUser()->role) {
-            \App\Alert::addError('You cannot change your own role information as this will make the system unstable.');
+            //\App\Alert::addError('You cannot change your own role information as this will make the system unstable.');
+            $form->addError('You cannot change your own role information as this will make the system unstable.');
+        }
+        if ($this->user->getId() == $this->getUser()->getId() && !$this->user->active) {
+            //\App\Alert::addError('You cannot change your own active status as this will make the system unstable.');
+            $form->addError('You cannot change your own active status as this will make the system unstable.');
         }
         
         if ($form->hasErrors()) {
             return;
+        }
+
+        // Keep the admin account available and working. (hack for basic sites)
+        if ($this->user->getId() == 1) {
+            $this->user->active = true;
+            $this->user->role = \App\Auth\Access::ROLE_ADMIN;
         }
 
         $this->user->save();

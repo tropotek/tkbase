@@ -25,3 +25,9 @@ VALUES
 ;
 
 
+CREATE TABLE session (
+  session_id VARCHAR(127) NOT NULL PRIMARY KEY,
+  data TEXT NOT NULL,
+  modified TIMESTAMP NOT NULL,
+  created TIMESTAMP NOT NULL
+);
