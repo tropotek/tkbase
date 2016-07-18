@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS "user" (
   username VARCHAR(64),
   password VARCHAR(64),
   role TEXT,
-  active BOOLEAN,
+  active NUMERIC(1) NOT NULL DEFAULT 1,
   hash VARCHAR(64),
   modified TIMESTAMP DEFAULT NOW(),
   created TIMESTAMP DEFAULT NOW(),
@@ -20,6 +20,6 @@ CREATE TABLE IF NOT EXISTS "user" (
 
 INSERT INTO "user" (id, name, email, username, password, role, active, hash, modified, created)
 VALUES
-  (1, 'Administrator', 'admin@example.com', 'admin', MD5('password'), 'admin', true, MD5('1:admin:admin@example.com'), NOW() , NOW()),
-  (2, 'User 1', 'user@example.com', 'user1', MD5('password'), 'user', true, MD5('2:user:user@example.com'), NOW() , NOW())
+  (1, 'Administrator', 'admin@example.com', 'admin', MD5('password'), 'admin', 1, MD5('1:admin:admin@example.com'), NOW() , NOW()),
+  (2, 'User 1', 'user@example.com', 'user1', MD5('password'), 'user', 1, MD5('2:user:user@example.com'), NOW() , NOW())
 ;
