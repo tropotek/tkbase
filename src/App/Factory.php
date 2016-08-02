@@ -233,7 +233,6 @@ class Factory
      */
     static public function hashPassword($pwd, $user = null)
     {
-        vd($pwd);
         if (self::getConfig()->get('hash.function'))
             return hash(self::getConfig()->get('hash.function'), $pwd);
         return hash('md5', $pwd);
