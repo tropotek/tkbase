@@ -56,30 +56,30 @@ class AuthHandler implements SubscriberInterface
     {
         /** @var \App\Controller\Iface $controller */
         $controller = $event->getController();
-
         $user = $controller->getUser();
+
         if ($controller instanceof \App\Controller\Iface) {
-            // TODO: This would be a good place for an ACL or RBAC in the future
-            $access = $event->getRequest()->getAttribute('access');
+
+            // Get page access permission from route params (see config/routes.php)
+            $role = $event->getRequest()->getAttribute('access');
+
+            // Check the user has access to the controller in question
+            if (!$role || empty($role)) return;
             
             // Check the user has access to the controller in question
-            if (empty($access)) return;
+            if (empty($role)) return;
             if (!$user) \Tk\Uri::create('/login.html')->redirect();
-            if (!\App\Auth\Access::create($user)->hasRole($access)) {
-                // Could redirect to a authentication error page...
-                // Could cause a loop if the permissions are stuffed
+            if (!\App\Auth\Acl::create($user)->hasRole($role)) {
+                // Could redirect to a authentication error page.
                 \App\Alert::getInstance()->addWarning('You do not have access to the requested page.');
                 \Tk\Uri::create($user->getHomeUrl())->redirect();
             }
         }
     }
 
-    /**
-     * 
-     * 
-     * @param \App\Event\FormEvent $event
-     */
-    public function onRegister(\App\Event\FormEvent $event)
+
+
+    public function onRegister(\Tk\EventDispatcher\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
@@ -96,7 +96,7 @@ class AuthHandler implements SubscriberInterface
         
     }
 
-    public function onRegisterConfirm(\Tk\Event\RequestEvent $event)
+    public function onRegisterConfirm(\Tk\EventDispatcher\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
@@ -114,7 +114,7 @@ class AuthHandler implements SubscriberInterface
 
     }
 
-    public function onRecover(\Tk\Event\RequestEvent $event)
+    public function onRecover(\Tk\EventDispatcher\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');

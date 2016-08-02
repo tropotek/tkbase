@@ -58,7 +58,7 @@ class Register extends Iface
         }
 
         $this->user = new \App\Db\User();
-        $this->user->role = \App\Auth\Access::ROLE_USER;
+        $this->user->role = \App\Auth\Acl::ROLE_USER;
         
         
         $this->form = new Form('registerForm', $request);
@@ -115,14 +115,15 @@ class Register extends Iface
         $hash = $this->user->generateHash(true);
         $this->user->hash = $hash;
         $this->user->active = false;
-        $this->user->password = \App\Factory::hashPassword($this->user->password, $user);
+        $this->user->password = \App\Factory::hashPassword($this->user->password, $this->user);
         
         $this->user->save();
 
         
         
         // Fire the login event to allow developing of misc auth plugins
-        $event = new \App\Event\FormEvent($form);
+        $event = new \Tk\EventDispatcher\Event();
+        $event->set('form', $form);
         $event->set('user', $this->user);
         $event->set('templatePath', $this->getTemplatePath());
         $this->dispatcher->dispatch('auth.onRegister', $event);
@@ -155,8 +156,8 @@ class Register extends Iface
         $user->hash = $user->generateHash();
         $user->active = true;
         $user->save();
-        
-        $event = new \Tk\Event\RequestEvent($request);
+
+        $event = new \Tk\EventDispatcher\Event();
         $event->set('user', $user);
         $event->set('templatePath', $this->getTemplatePath());
         $this->dispatcher->dispatch('auth.onRegisterConfirm', $event);

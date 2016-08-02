@@ -9,7 +9,7 @@ namespace App\Auth;
  * @link http://www.tropotek.com/
  * @license Copyright 2016 Michael Mifsud
  */
-class Access 
+class Acl
 {
     
     const ROLE_ADMIN = 'admin';
@@ -37,7 +37,7 @@ class Access
      *   - Access::create($user)->isAdmin();
      * 
      * @param \App\Db\User $user
-     * @return Access
+     * @return Acl
      */
     static function create($user)
     {

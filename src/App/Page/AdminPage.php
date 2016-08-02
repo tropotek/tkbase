@@ -20,6 +20,10 @@ class AdminPage extends Iface
      */
     public function __construct(\App\Controller\Iface $controller)
     {
+        if (!$controller->getUser()) {
+            \Tk\Uri::create('/login.html')->redirect();
+        }
+        $this->templatePath = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.admin.path');
         parent::__construct($controller);
     }
 

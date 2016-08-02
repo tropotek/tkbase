@@ -15,6 +15,11 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
      * @var \App\Controller\Iface
      */
     protected $controller = null;
+
+    /**
+     * @var string
+     */
+    protected $templatePath = '';
     
     
     /**
@@ -25,19 +30,19 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
     public function __construct(\App\Controller\Iface $controller)
     {
         $this->controller = $controller;
+        if (!$this->templatePath)
+            $this->templatePath = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.public.path');
 
-        // TODO: Check this call should be here, or called externally????
-        // It could lead to possible rendering issues....
         $this->show();
     }
 
     /**
-     * 
+     *
      * @return string
      */
     public function getTemplatePath()
     {
-        return $this->controller->getTemplatePath();
+        return $this->templatePath;
     }
 
     /**

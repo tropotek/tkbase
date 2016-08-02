@@ -48,7 +48,7 @@ class Contact extends Iface
         $opts = new Field\Option\ArrayIterator(array('General', 'Services', 'Orders'));
         $this->form->addField(new Field\Select('type[]', $opts));
         
-        $this->form->addField(new Field\File('attach[]'));
+        $this->form->addField(new Field\File('attach', $request));
         $this->form->addField(new Field\Textarea('message'));
         
         $this->form->addField(new Event\Button('send', array($this, 'doSubmit')));
@@ -83,7 +83,6 @@ class Contact extends Iface
     public function doSubmit($form)
     {
         $values = $form->getValues();
-
         /** @var Field\File $attach */
         $attach = $form->getField('attach');
 
@@ -97,8 +96,6 @@ class Contact extends Iface
             $form->addFieldError('message', 'Please enter some message text');
         }
 
-        //$form->addFieldError('test', 'ggggg');
-        
         // validate any files
         $attach->isValid();
 
@@ -133,9 +130,10 @@ class Contact extends Iface
         $message = $form->getFieldValue('message');
         $attachCount = '';
 
+        /** @var Field\File $field */
         $field = $form->getField('attach');
-        if ($field->count()) {
-            $attachCount = 'Attachments: ' . $field->count();
+        if ($field->hasFile()) {
+            $attachCount = 'Attachments: ' . $field->getUploadedFile()->getFilename();
         }
 
         $message = <<<MSG

@@ -4,7 +4,7 @@ namespace App\Controller\Admin\User;
 use Tk\Request;
 use Dom\Template;
 use Tk\Form\Field;
-use App\Controller\Admin\Iface;
+use App\Controller\Iface;
 
 /**
  *
@@ -27,7 +27,7 @@ class Manager extends Iface
      */
     public function __construct()
     {
-        parent::__construct('User Manager', array('mammy'));
+        parent::__construct('User Manager');
     }
 
     /**
@@ -90,15 +90,10 @@ class Manager extends Iface
       <div class="panel-heading">
         <i class="fa fa-users fa-fw"></i> Users
       </div>
-      <!-- /.panel-heading -->
-      <div class="panel-body ">
-
+      <div class="panel-body">
         <div var="table"></div>
-
       </div>
-      <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
   </div>
 
 </div>

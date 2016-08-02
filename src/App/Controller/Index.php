@@ -26,12 +26,7 @@ class Index extends Iface
      */
     public function doDefault(Request $request)
     {
-        // TODO: 
-        
-        
-        
-        
-        
+        // TODO:
 
         return $this->showDefault($request);
     }
@@ -59,7 +54,7 @@ class Index extends Iface
      */
     public function __makeTemplate()
     {
-        $tplFile = $this->getTemplatePath().'/xtpl/index.xtpl';
+        $tplFile = $this->getTemplatePath() . '/xtpl/index.xtpl';
         return \Dom\Loader::loadFile($tplFile);
     }
 

@@ -1,7 +1,7 @@
 <?php
 namespace App\Db;
 
-use App\Auth\Access;
+use App\Auth\Acl;
 use Tk\Db\Map\Model;
 
 /**
@@ -94,10 +94,10 @@ class User extends Model
      */
     public function getHomeUrl()
     {
-        $access = Access::create($this);
-        if ($access->hasRole(Access::ROLE_ADMIN))
+        $access = Acl::create($this);
+        if ($access->hasRole(Acl::ROLE_ADMIN))
             return '/admin/index.html';
-        if ($access->hasRole(Access::ROLE_USER))
+        if ($access->hasRole(Acl::ROLE_USER))
             return '/user/index.html';
         return '/index.html';
     }

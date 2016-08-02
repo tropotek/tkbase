@@ -145,7 +145,6 @@ class Factory
         return self::getConfig()->getFrontController();
     }
 
-
     /**
      * get
      *
@@ -173,8 +172,7 @@ class Factory
         }
         return self::getConfig()->getControllerResolver();
     }
-    
-    
+
     /**
      * get
      *
@@ -188,7 +186,6 @@ class Factory
         }
         return self::getConfig()->getAuth();
     }
-
 
     /**
      * A factory method to create an instances of an Auth adapters
@@ -229,8 +226,6 @@ class Factory
         return $adapter;
     }
 
-
-
     /**
      * @param $pwd
      * @param $user (optional)
@@ -238,11 +233,10 @@ class Factory
      */
     static public function hashPassword($pwd, $user = null)
     {
+        vd($pwd);
         if (self::getConfig()->get('hash.function'))
             return hash(self::getConfig()->get('hash.function'), $pwd);
         return hash('md5', $pwd);
     }
-    
-    
-    
+
 }

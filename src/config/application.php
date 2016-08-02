@@ -21,10 +21,19 @@ $config['template.public.path'] = '/html/purpose';
 
 // -- AUTH CONFIG --
 
-// Hash function to use for authentication 
-// Warning: do not change after install, or else 
+// Hash function to use for authentication
+// Warning: do not change after install, or else
 //   ALL existing passwords will be invalid and need to be reset.
 $config['hash.function'] = 'md5';
+
+
+// Authentication adapters
+$config['system.auth.adapters'] = array(
+    'DbTable' => '\Tk\Auth\Adapter\DbTable',
+    //'Config' => '\Tk\Auth\Adapter\Config',
+    'Trap' => '\Tk\Auth\Adapter\Trapdoor'
+    //'LDAP' => '\Tk\Auth\Adapter\Ldap'
+);
 
 // \Tk\Auth\Adapter\DbTable
 $config['system.auth.dbtable.tableName'] = 'user';
@@ -33,15 +42,9 @@ $config['system.auth.dbtable.passwordColumn'] = 'password';
 $config['system.auth.dbtable.activeColumn'] = 'active';
 
 // \Tk\Auth\Adapter\Config
-$config['system.auth.username'] = 'admin';
-$config['system.auth.password'] = 'password';
+//$config['system.auth.username'] = 'admin';
+//$config['system.auth.password'] = 'password';
 
-$config['system.auth.adapters'] = array(
-    'DbTable' => '\Tk\Auth\Adapter\DbTable',
-    //'Config' => '\Tk\Auth\Adapter\Config',
-    'Trap' => '\Tk\Auth\Adapter\Trapdoor'
-    //'LDAP' => '\Tk\Auth\Adapter\Ldap'
-);
 
 
 /**

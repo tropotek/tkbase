@@ -28,12 +28,7 @@ class Index extends Iface
      */
     public function doDefault(Request $request)
     {
-        // TODO: 
-        
-        
-        
-        
-        
+        // TODO:
 
         return $this->show();
     }
@@ -68,15 +63,12 @@ class Index extends Iface
       <div class="panel-heading">
         <i class="fa fa-users fa-fw"></i> Welcome <span var="name"></span>
       </div>
-      <!-- /.panel-heading -->
       <div class="panel-body ">
 
         <p>Something spiffy.....</p>
 
       </div>
-      <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
   </div>
 
 </div>

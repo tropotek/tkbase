@@ -25,17 +25,18 @@ $routes = new \Tk\Routing\RouteCollection();
 $config['site.routes'] = $routes;
 
 // Default Home catchall
-$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault'));
-$routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault'));
-$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault'));
+$params = array();
+$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault', $params));
+$routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault', $params));
+$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault', $params));
 
-$routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault'));
-$routes->add('logout', new \Tk\Routing\Route('/logout.html', 'App\Controller\Logout::doDefault'));
-$routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller\Register::doDefault'));
-$routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault'));
+$routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault', $params));
+$routes->add('logout', new \Tk\Routing\Route('/logout.html', 'App\Controller\Logout::doDefault', $params));
+$routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller\Register::doDefault', $params));
+$routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault', $params));
 
 // Admin Pages
-$params = array('test' => 'admin', 'access' => array('admin'));
+$params = array('access' => \App\Auth\Acl::ROLE_ADMIN);
 $routes->add('admin-home', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Index::doDefault', $params));
 $routes->add('admin-home-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Index::doDefault', $params));
 
@@ -45,7 +46,7 @@ $routes->add('admin-user-profile', new \Tk\Routing\Route('/admin/profile.html', 
 
 
 // User Pages
-$params = array('access' => array('user'));
+$params = array('access' => \App\Auth\Acl::ROLE_USER);
 $routes->add('user-home', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Index::doDefault', $params));
 $routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Index::doDefault', $params));
 

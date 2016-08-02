@@ -45,7 +45,6 @@ class InitProjectEvent
      */
     static function init(Event $event, $isInstall = false)
     {
-        $isCleanInstall = false;
         try {
             $sitePath = $_SERVER['PWD'];
             $io = $event->getIO();

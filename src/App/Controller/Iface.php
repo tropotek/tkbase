@@ -4,21 +4,11 @@ namespace App\Controller;
 
 abstract class Iface extends \Dom\Renderer\Renderer
 {
-    
-    /**
-     * @var array
-     */
-    protected $access = array();
 
     /**
      * @var string
      */
     protected $pageTitle = '';
-
-    /**
-     * @var string
-     */
-    protected $templatePath = '';
     
     /**
      * @var \App\Page\Iface
@@ -28,14 +18,22 @@ abstract class Iface extends \Dom\Renderer\Renderer
 
     /**
      * @param string $pageTitle
-     * @param string $access
      */
-    public function __construct($pageTitle = '', $access = '')
+    public function __construct($pageTitle = '')
     {
-        $this->setAccess($access);
         $this->setPageTitle($pageTitle);
-        $this->setTemplatePath($this->getConfig()->getSitePath() . $this->getConfig()->get('template.public.path'));
+        $this->getPage();
     }
+
+    /**
+     *
+     * @return string
+     */
+    public function getTemplatePath()
+    {
+        return $this->getPage()->getTemplatePath();
+    }
+
     
     /**
      * Get a new instance of the page to display the content in.
@@ -44,29 +42,19 @@ abstract class Iface extends \Dom\Renderer\Renderer
      */
     public function getPage()
     {
+        $pageAccess = $this->getConfig()->getRequest()->getAttribute('access');
+
         if (!$this->page) {
-            $this->page = new \App\Page\PublicPage($this);
+            switch($pageAccess) {
+                case \App\Auth\Acl::ROLE_ADMIN:
+                    $this->page = new \App\Page\AdminPage($this);
+                    break;
+                default:
+                    $this->page = new \App\Page\PublicPage($this);
+                    break;
+            }
         }
         return $this->page;
-    }
-
-    /**
-     * 
-     * @return string
-     */
-    public function getTemplatePath()
-    {
-        return $this->templatePath;
-    }
-
-    /**
-     * @param $path
-     * @return $this
-     */
-    public function setTemplatePath($path)
-    {
-        $this->templatePath = $path;
-        return $this;
     }
 
     /**
@@ -99,9 +87,6 @@ abstract class Iface extends \Dom\Renderer\Renderer
         return \Tk\Config::getInstance();
     }
 
-    
-    
-
     /**
      * Get the currently logged in user
      *
@@ -110,31 +95,6 @@ abstract class Iface extends \Dom\Renderer\Renderer
     public function getUser()
     {
         return $this->getConfig()->getUser();
-    }
-    
-    /**
-     * Add a role(s) that can access this page
-     *
-     * @param string|array $role
-     * @return $this
-     */
-    public function setAccess($role)
-    {
-        if (!$role) return $this;
-        if (!is_array($role)) $role = array($role);
-        $this->access = $role;
-        return $this;
-    }
-
-    /**
-     * Get the access details of this page.
-     * Will return an array of role names that can be checked against the logged in user
-     * 
-     * @return array
-     */
-    public function getAccess()
-    {
-        return $this->access;
     }
     
 

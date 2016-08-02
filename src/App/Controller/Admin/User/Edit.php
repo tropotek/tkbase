@@ -6,7 +6,7 @@ use Dom\Template;
 use Tk\Form;
 use Tk\Form\Field;
 use Tk\Form\Event;
-use App\Controller\Admin\Iface;
+use App\Controller\Iface;
 
 /**
  *
@@ -57,7 +57,7 @@ class Edit extends Iface
     public function doDefault(Request $request)
     {
         $this->user = new \App\Db\User();
-        $access = \App\Auth\Access::create($this->getUser());
+        $access = \App\Auth\Acl::create($this->getUser());
         if ($this->isProfile()) {
             $this->user = $this->getUser();
         } else if ($request->get('userId')) {
@@ -65,14 +65,12 @@ class Edit extends Iface
         }
 
         $this->form = new Form('formEdit');
-
         
         $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
         $emailF = $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
 
-
         if ($access->isAdmin()) {
-            $list = ['Admin' => \App\Auth\Access::ROLE_ADMIN, 'User' => \App\Auth\Access::ROLE_USER];
+            $list = ['Admin' => \App\Auth\Acl::ROLE_ADMIN, 'User' => \App\Auth\Acl::ROLE_USER];
             $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
             if (!$this->isProfile()) {
                 $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
@@ -123,7 +121,6 @@ class Edit extends Iface
         }
         $form->addFieldErrors(\App\Db\UserValidator::create($this->user)->getErrors());
         
-        
         // Just a small check to ensure the user down not change their own role
         if ($this->user->getId() == $this->getUser()->getId() && $this->user->role != $this->getUser()->role) {
             //\App\Alert::addError('You cannot change your own role information as this will make the system unstable.');
@@ -141,7 +138,7 @@ class Edit extends Iface
         // Keep the admin account available and working. (hack for basic sites)
         if ($this->user->getId() == 1) {
             $this->user->active = true;
-            $this->user->role = \App\Auth\Access::ROLE_ADMIN;
+            $this->user->role = \App\Auth\Acl::ROLE_ADMIN;
         }
 
         $this->user->save();
@@ -192,19 +189,14 @@ class Edit extends Iface
         <i class="fa fa-user fa-fw"></i>
         <span var="username"></span>
       </div>
-      <!-- /.panel-heading -->
       <div class="panel-body ">
         <div class="row">
           <div class="col-lg-12">
-
             <div var="formEdit"></div>
-
           </div>
         </div>
       </div>
-      <!-- /.panel-body -->
     </div>
-    <!-- /.panel -->
   </div>
 </div>
 XHTML;
