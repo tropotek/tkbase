@@ -5,13 +5,13 @@
 DROP TABLE IF EXISTS "user";
 CREATE TABLE IF NOT EXISTS "user" (
   id SERIAL PRIMARY KEY,
-  name VARCHAR(64),
-  email VARCHAR(64),
-  username VARCHAR(64),
-  password VARCHAR(64),
+  name VARCHAR(128),
+  email VARCHAR(255),
+  username VARCHAR(128),
+  password VARCHAR(128),
   role TEXT,
   active NUMERIC(1) NOT NULL DEFAULT 1,
-  hash VARCHAR(64),
+  hash VARCHAR(128),
   modified TIMESTAMP DEFAULT NOW(),
   created TIMESTAMP DEFAULT NOW(),
   CONSTRAINT username UNIQUE (username),
