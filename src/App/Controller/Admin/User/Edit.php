@@ -67,7 +67,7 @@ class Edit extends Iface
         $this->form = new Form('formEdit');
         
         $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
-        $emailF = $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
+        $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
 
         if ($access->isAdmin()) {
             $list = ['Admin' => \App\Auth\Acl::ROLE_ADMIN, 'User' => \App\Auth\Acl::ROLE_USER];
@@ -84,22 +84,15 @@ class Edit extends Iface
         $f = $this->form->addField(new Field\Password('confPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setNotes('Change this users password.')->setTabGroup('Password');
         if (!$this->user->getId())
             $f->setRequired(true);
-        
-//        if (!$this->isProfile()) {
-//            $roles = \App\Db\Role::getMapper()->findAll(\Tk\Db\Tool::create('a.id'))->toArray();
-//            $list = new ArrayObjectIterator($roles);
-//            $this->form->addField(new Field\CheckboxGroup('role', $list))->setNotes('Select the access level for this user')->setRequired(true)->setTabGroup('Roles')->setRequired(true);
-//        }
+
 
         $this->form->addField(new Event\Button('update', array($this, 'doSubmit')));
         $this->form->addField(new Event\Button('save', array($this, 'doSubmit')));
         $this->form->addField(new Event\Link('cancel', \Tk\Uri::create('/admin/userManager.html')));
 
-        
-        $this->form->load(\App\Db\UserMap::unmapForm($this->user));
+        $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
         
         $this->form->execute();
-
 
         return $this->show();
     }
@@ -110,8 +103,7 @@ class Edit extends Iface
     public function doSubmit($form)
     {
         // Load the object with data from the form using a helper object
-        //\App\Form\ModelLoader::loadObject($form, $this->user);
-        \App\Db\UserMap::mapForm($form->getValues(), $this->user);
+        \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
         // Password validation needs to be here
         if ($this->form->getFieldValue('newPassword')) {
             if ($this->form->getFieldValue('newPassword') != $this->form->getFieldValue('confPassword')) {
