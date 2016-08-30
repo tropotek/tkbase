@@ -6,7 +6,7 @@
         <div class="col-sm-5">
           <div class="basic-login clearfix">
             <div class="alert alert-danger" role="alert" choice="error"><strong>Error!</strong> <span var="errMsg">Invalid login credentials</span></div>
-            <form role="form" id="loginForm" method="post">
+            <form role="form" id="loginForm" method="post" var="loginForm">
               <input type="hidden" name="act" value="login" />
 
               <div class="form-group" var="username-group">

@@ -33,6 +33,10 @@ class AdminPage extends Iface
         $this->initPage();
         $template = $this->getTemplate();
 
+        if ($this->getConfig()->isDebug()) {
+            $template->setChoice('debug');
+        }
+
         return $template;
     }
 

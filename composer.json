@@ -26,10 +26,10 @@
     },
     "scripts":  {
         "post-install-cmd":  [
-            "App\\Composer\\InitProjectEvent::postInstall"
+            "Ts\\Composer\\InitProjectEvent::postInstall"
         ],
         "post-update-cmd":  [
-            "App\\Composer\\InitProjectEvent::postUpdate"
+            "Ts\\Composer\\InitProjectEvent::postUpdate"
         ]
     },
     "extra":  {
@@ -41,12 +41,14 @@
         "php": ">=5.3.3",
         "ttek/tk-installers": "~2.0",
         "ttek/tk-framework": "~2.0",
+        "ttek/tk-mail": "~2.0",
         "ttek/tk-http": "~2.0",
         "ttek/tk-routing": "~2.0",
         "ttek/tk-auth": "~2.0",
         "ttek/tk-database": "~2.0",
         "ttek/tk-mvc": "~2.0",
         "ttek/tk-domtemplate": "~2.0",
+        "ttek/tk-site": "~2.0",
         "ttek/tk-form": "~2.0",
         "ttek/tk-table": "~2.0",
         "ttek/tk-debug": "~2.0",

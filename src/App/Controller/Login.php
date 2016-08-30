@@ -9,6 +9,9 @@ use Tk\Form\Event;
 use Tk\Auth;
 use Tk\Auth\Result;
 
+use Tk\Auth\AuthEvents;
+use Tk\Event\AuthEvent;
+
 
 /**
  * Class Index
@@ -64,23 +67,6 @@ class Login extends Iface
     }
 
     /**
-     * show()
-     *
-     * @return \App\Page\Iface
-     */
-    public function show()
-    {
-        $template = $this->getTemplate();
-
-        // Render the form
-        $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
-        $ren->show();
-
-        return $this->getPage()->setPageContent($template);
-    }
-
-
-    /**
      * doLogin()
      *
      * @param \Tk\Form $form
@@ -97,30 +83,56 @@ class Login extends Iface
         if (!$form->getFieldValue('password') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('password'))) {
             $form->addFieldError('password', 'Please enter a valid password');
         }
-        
+
         if ($form->hasErrors()) {
             return;
         }
 
-        // Fire the login event to allow developing of misc auth plugins
-        $event = new \App\Event\AuthEvent($auth);
-        $event->replace($form->getValues());
-        $this->dispatcher->dispatch('auth.onLogin', $event);
-        
-        // Use the event to process the login like below....
-        $result = $event->getResult();
-        
-        if (!$result) {
-            $form->addError('Invalid login details');
-            //$form->addError('No valid authentication result received.');
-            return;
+        try {
+            // Fire the login event to allow developing of misc auth plugins
+            $event = new AuthEvent($auth, $form->getValues());
+            $this->dispatcher->dispatch(AuthEvents::LOGIN, $event);
+
+            // Use the event to process the login like below....
+            $result = $event->getResult();
+            if (!$result) {
+                $form->addError('Invalid username or password');
+                return;
+            }
+            if (!$result->isValid()) {
+                $form->addError( implode("<br/>\n", $result->getMessages()) );
+                return;
+            }
+
+            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
+
+        } catch (\Exception $e) {
+            $form->addError($e->getMessage());
         }
-        if ($result->getCode() == Result::SUCCESS) {
-            // Redirect based on role
-            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
+    }
+
+    /**
+     * show()
+     *
+     * @return \App\Page\Iface
+     */
+    public function show()
+    {
+        $template = $this->getTemplate();
+
+        // Render the form
+//        $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
+//        $ren->show();
+
+        // Render the form
+        $fren = new \Tk\Form\Renderer\Dom($this->form);
+        $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
+
+        if ($this->getConfig()->get('site.client.registration')) {
+            $template->setChoice('register');
         }
-        $form->addError( implode("<br/>\n", $result->getMessages()) );
-        return;
+
+        return $this->getPage()->setPageContent($template);
     }
 
 

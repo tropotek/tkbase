@@ -44,6 +44,13 @@ $routes->add('admin-user-manager', new \Tk\Routing\Route('/admin/userManager.htm
 $routes->add('admin-user-edit', new \Tk\Routing\Route('/admin/userEdit.html', 'App\Controller\Admin\User\Edit::doDefault', $params));
 $routes->add('admin-user-profile', new \Tk\Routing\Route('/admin/profile.html', 'App\Controller\Admin\User\Edit::doDefault', $params));
 
+$routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault', $params));
+
+
+// Dev pages
+$routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\Controller\Admin\Dev\Events::doDefault', $params));
+
+
 
 // User Pages
 $params = array('access' => \App\Auth\Acl::ROLE_USER);
