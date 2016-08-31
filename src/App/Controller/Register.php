@@ -51,13 +51,13 @@ class Register extends Iface
     public function doDefault(Request $request)
     {
         if (!$this->getConfig()->get('site.client.registration')) {
-            throw new \Tk\Exception('User registration disabled.');
+            \Ts\Alert::addError('User registration has been disabled on this site.');
+            \Tk\Uri::create('/')->redirect();
         }
         if ($request->has('h')) {
             $this->doConfirmation($request);
         }
         if ($this->getUser()) {
-            // Todo: Redirect to the users homepage
             \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
         }
 
@@ -153,7 +153,7 @@ class Register extends Iface
             throw new \InvalidArgumentException('Cannot locate user. Please contact administrator.');
         }
         /** @var \App\Db\User $user */
-        $user = \App\Db\User::getMapper()->findByHash($hash);
+        $user = \App\Db\UserMap::create()->findByHash($hash);
         if (!$user) {
             throw new \InvalidArgumentException('Cannot locate user. Please contact administrator.');
         }

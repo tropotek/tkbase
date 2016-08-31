@@ -7,8 +7,6 @@ use Tk\Form;
 use Tk\Form\Field;
 use Tk\Form\Event;
 use Tk\Auth;
-use Tk\Auth\Result;
-
 use Tk\Auth\AuthEvents;
 use Tk\Event\AuthEvent;
 

@@ -89,13 +89,13 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
 
         $siteUrl = $this->getConfig()->getSiteUrl();
         $dataUrl = $this->getConfig()->getDataUrl();
-        $themeUrl = $this->getTemplatePath();
+        $templateUrl = $this->getConfig()->getTemplateUrl();
         
         $js = <<<JS
 var config = {
   siteUrl : '$siteUrl',
   dataUrl : '$dataUrl',
-  themeUrl: '$themeUrl' 
+  templateUrl: '$templateUrl' 
 };
 JS;
         $template->appendJs($js, ['data-jsl-priority' => -1000]);

@@ -47,13 +47,10 @@ class AuthHandler implements SubscriberInterface
         $user = $controller->getUser();
 
         if ($controller instanceof \App\Controller\Iface) {
-
             // Get page access permission from route params (see config/routes.php)
             $role = $event->getRequest()->getAttribute('access');
-
             // Check the user has access to the controller in question
             if (!$role || empty($role)) return;
-
             // Check the user has access to the controller in question
             if (empty($role)) return;
             if (!$user) \Tk\Uri::create('/login.html')->redirect();
@@ -80,7 +77,7 @@ class AuthHandler implements SubscriberInterface
             if (!$adapter) continue;
             $result = $event->getAuth()->authenticate($adapter);
             $event->setResult($result);
-            if ($result && $result->getCode() == \Tk\Auth\Result::SUCCESS) {
+            if ($result && $result->isValid()) {
                 break;
             }
         }
@@ -91,7 +88,6 @@ class AuthHandler implements SubscriberInterface
             return;
         }
         $user = \App\Db\UserMap::create()->findByUsername($result->getIdentity());
-
         if (!$user) {
             throw new \Tk\Auth\Exception('User not found: Contact Your Administrator');
         }
@@ -105,16 +101,13 @@ class AuthHandler implements SubscriberInterface
      */
     public function onLoginSuccess(AuthEvent $event)
     {
-
         /** @var \App\Db\User $user */
         $user = $event->get('user');
         if (!$user) {
             throw new \Tk\Exception('No user found.');
         }
-
         $user->lastLogin = \Tk\Date::create();
         $user->save();
-
         \Tk\Uri::create($user->getHomeUrl())->redirect();
 
     }

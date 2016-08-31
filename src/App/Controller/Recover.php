@@ -90,7 +90,6 @@ class Recover extends Iface
         $event->set('user', $user);
         $event->set('password', $newPass);
         $event->set('templatePath', $this->getTemplatePath());
-        
         $this->dispatcher->dispatch(AuthEvents::RECOVER, $event);
         
         \Ts\Alert::addSuccess('You new access details have been sent to your email address.');
