@@ -3,8 +3,8 @@ namespace App\Controller\Admin;
 
 use Tk\Request;
 use Dom\Template;
-use Tk\Form\Field;
 use App\Controller\Iface;
+use Tk\Plugin\Factory;
 
 /**
  *
@@ -17,7 +17,7 @@ class PluginManager extends Iface
 {
 
     /**
-     * @var \Tk\Plugin\Factory
+     * @var Factory
      */
     protected $pluginFactory = null;
     
@@ -33,11 +33,11 @@ class PluginManager extends Iface
     /**
      *
      * @param Request $request
-     * @return \App\Page\Iface|Template|string
+     * @return \App\Page\Iface
      */
     public function doDefault(Request $request)
     {
-        $this->pluginFactory = \Tk\Plugin\Factory::getInstance($this->getConfig());
+        $this->pluginFactory = Factory::getInstance($this->getConfig());
 
         return $this->show();
     }
@@ -100,8 +100,6 @@ jQuery(function ($) {
     $('.deact').click(function (e) {
         return confirm('Are you sure you want to uninstall this plugin?');
     });
-
-
 });
 JS;
         $template->appendJs($js);
@@ -117,7 +115,6 @@ JS;
     public function __makeTemplate()
     {
         $xhtml = <<<XHTML
-<?xml version="1.0" encoding="UTF-8" ?>
 <div class="row">
   <div class="col-md-8 col-sm-12">
     <div class="panel panel-default">
@@ -125,7 +122,6 @@ JS;
         <h3 class="panel-title"><i class="glyphicon glyphicon-compressed"></i> Available Plugins</h3>
       </div>
       <div class="panel-body">
-
 
         <ul class="list-group">
           <li class="list-group-item" repeat="row">
@@ -170,7 +166,6 @@ JS;
       </div>
     </div>
   </div>
-
 
 </div>
 XHTML;
