@@ -6,10 +6,11 @@
  */
 
 $appPath = __DIR__;
-include($appPath . '/vendor/autoload.php');
+$composer = include($appPath . '/vendor/autoload.php');
+\App\Factory::getConfig()->setComposer($composer);
 
+// Execute Application controller
 $request = \App\Factory::getRequest();
 $kernel = \App\Factory::getFrontController();
-
 $response = $kernel->handle($request)->send();
 $kernel->terminate($request, $response);

@@ -114,5 +114,3 @@ class Bootstrap
 
 // called by autoloader, see composer.json -> "autoload" : files []...
 Bootstrap::execute();
-
-var_dump('App');
