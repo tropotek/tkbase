@@ -55,7 +55,7 @@ class Manager extends Iface
         $this->table->addAction(new \Tk\Table\Action\Delete());
         $this->table->addAction(new \Tk\Table\Action\Csv($this->getConfig()->getDb()));
 
-        $users = \App\Db\User::getMapper()->findFiltered($this->table->getFilterValues(), $this->table->makeDbTool('a.name'));
+        $users = \App\Db\UserMap::create()->findFiltered($this->table->getFilterValues(), $this->table->makeDbTool('a.name'));
         $this->table->setList($users);
 
         return $this->show();

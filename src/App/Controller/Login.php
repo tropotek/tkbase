@@ -104,7 +104,7 @@ class Login extends Iface
                 return;
             }
 
-            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
+            $this->dispatcher->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
 
         } catch (\Exception $e) {
             $form->addError($e->getMessage());

@@ -111,7 +111,7 @@ class Edit extends Iface
                 $form->addFieldError('confPassword');
             }
         }
-        $form->addFieldErrors(\App\Db\UserValidator::create($this->user)->getErrors());
+        $form->addFieldErrors($this->user->validate());
         
         // Just a small check to ensure the user down not change their own role
         if ($this->user->getId() == $this->getUser()->getId() && $this->user->role != $this->getUser()->role) {

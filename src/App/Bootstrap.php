@@ -74,8 +74,8 @@ class Bootstrap
             ini_set('error_log', $config['system.log.path']);
             $logger = new Logger('system');
             $handler = new StreamHandler($config['system.log.path'], $config['system.log.level']);
-            //$formatter = new LineFormatter(null, 'H:i:s', true, true);
-            $formatter = new Util\LogLineFormatter();
+            $formatter = new \Tk\Log\MonologLineFormatter();
+            $formatter->setScripTime($config->getScripTime());
             $handler->setFormatter($formatter);
             $logger->pushHandler($handler);
             $config['log'] = $logger;
@@ -98,7 +98,14 @@ class Bootstrap
         Factory::getCookie();
         // * Session    
         Factory::getSession();
-        
+
+        // initalise Dom Loader
+        \App\Factory::getDomLoader();
+
+        // Initiate the default database connection
+        \App\Factory::getDb();
+        // Import config settings from DB
+        $config->import(\Ts\Db\Data::create());
         
         return $config;
     }

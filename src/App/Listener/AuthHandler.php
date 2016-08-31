@@ -77,13 +77,26 @@ class AuthHandler implements SubscriberInterface
         $adapterList = $config->get('system.auth.adapters');
         foreach($adapterList as $name => $class) {
             $adapter = \App\Factory::getAuthAdapter($class, $event->all());
+            if (!$adapter) continue;
             $result = $event->getAuth()->authenticate($adapter);
-            if ($result && $result->getCode() == \Tk\Auth\Result::SUCCESS) { 
-                $config->setUser(\App\Db\UserMap::create()->findByUsername($event->getAuth()->getIdentity()));
-                $event->setResult($result);
-                return;
+            $event->setResult($result);
+            if ($result && $result->getCode() == \Tk\Auth\Result::SUCCESS) {
+                break;
             }
         }
+        if (!$result) {
+            throw new \Tk\Auth\Exception('Invalid username or password');
+        }
+        if (!$result->isValid()) {
+            return;
+        }
+        $user = \App\Db\UserMap::create()->findByUsername($result->getIdentity());
+
+        if (!$user) {
+            throw new \Tk\Auth\Exception('User not found: Contact Your Administrator');
+        }
+        $config->setUser($user);
+        $event->set('user', $user);
     }
 
     /**

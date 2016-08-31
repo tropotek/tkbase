@@ -5,6 +5,7 @@ use Tk\Db\Tool;
 use Tk\Db\Map\ArrayObject;
 use Tk\DataMap\Db;
 use Tk\DataMap\Form;
+use Ts\Db\Mapper;
 
 /**
  * Class UserMapper
@@ -30,9 +31,10 @@ class UserMap extends Mapper
             $this->dbMap->addProperty(new Db\Text('username'));
             $this->dbMap->addProperty(new Db\Text('password'));
             $this->dbMap->addProperty(new Db\Text('role'));
+            $this->dbMap->addProperty(new Db\Date('lastLogin', 'last_login'));
+            $this->dbMap->addProperty(new Db\Text('notes'));
             $this->dbMap->addProperty(new Db\Boolean('active'));
             $this->dbMap->addProperty(new Db\Text('hash'));
-            //$this->dbMap->addProperty(new Db\Date('lastLogin', 'last_login'));
             $this->dbMap->addProperty(new Db\Date('modified'));
             $this->dbMap->addProperty(new Db\Date('created'));
 
@@ -54,6 +56,7 @@ class UserMap extends Mapper
             $this->formMap->addProperty(new Form\Text('email'));
             $this->formMap->addProperty(new Form\Text('username'));
             $this->formMap->addProperty(new Form\Text('password'));
+            $this->formMap->addProperty(new Form\Text('notes'));
             $this->formMap->addProperty(new Form\Text('role'));
             $this->formMap->addProperty(new Form\Boolean('active'));
 
@@ -61,86 +64,7 @@ class UserMap extends Mapper
         }
         return $this->formMap;
     }
-    
-//    public function unmap($obj)
-//    {
-//        $arr = array(
-//            'id' => $obj->id,
-//            'name' => $obj->name,
-//            'email' => $obj->email,
-//            'username' => $obj->username,
-//            'password' => $obj->password,
-//            'role' => $obj->role,
-//            'active' => (int)$obj->active,
-//            'hash' => $obj->hash,
-//            'modified' => $obj->modified->format('Y-m-d H:i:s'),
-//            'created' => $obj->created->format('Y-m-d H:i:s')
-//        );
-//        return $arr;
-//    }
-//
-//    public function map($row)
-//    {
-//        $obj = new User();
-//        $obj->id = $row['id'];
-//        $obj->name = $row['name'];
-//        $obj->email = $row['email'];
-//        $obj->username = $row['username'];
-//        $obj->password = $row['password'];
-//        $obj->role = $row['role'];
-//        $obj->active = ($row['active'] == 1);
-//        $obj->hash = $row['hash'];
-//        if ($row['modified'])
-//            $obj->modified = new \DateTime($row['modified']);
-//        if ($row['created'])
-//            $obj->created = new \DateTime($row['created']);
-//        return $obj;
-//    }
-//
-//    static function mapForm($row, $obj = null)
-//    {
-//        if (!$obj) {
-//            $obj = new User();
-//        }
-//        //$obj->id = $row['id'];
-//        if (isset($row['name']))
-//            $obj->name = $row['name'];
-//        if (isset($row['email']))
-//            $obj->email = $row['email'];
-//        if (isset($row['username']))
-//            $obj->username = $row['username'];
-//        if (isset($row['password']))
-//            $obj->password = $row['password'];
-//        if (isset($row['role']))
-//            $obj->role = $row['role'];
-//        if (isset($row['active']))
-//            $obj->active = ($row['active'] == 'active');
-//
-//        // TODO: This has to be tested, should parse date string using config['system.date.format.php']
-//        if (isset($row['modified']))
-//            $obj->modified = new \DateTime($row['modified']);
-//        if (isset($row['created']))
-//            $obj->created = new \DateTime($row['created']);
-//
-//        return $obj;
-//    }
-//
-//    static function unmapForm($obj)
-//    {
-//        $arr = array(
-//            'id' => $obj->id,
-//            'name' => $obj->name,
-//            'email' => $obj->email,
-//            'username' => $obj->username,
-//            'password' => $obj->password,
-//            'role' => $obj->role,
-//            'active' => (int)$obj->active,
-//            'modified' => $obj->modified->format('Y-m-d H:i:s'),
-//            'created' => $obj->created->format('Y-m-d H:i:s')
-//        );
-//        return $arr;
-//    }
-    
+
     /**
      * 
      * 
@@ -163,8 +87,6 @@ class UserMap extends Mapper
     {
         return $this->select('hash = ' . $this->getDb()->quote($hash))->current();
     }
-
-
 
     /**
      * Find filtered records
