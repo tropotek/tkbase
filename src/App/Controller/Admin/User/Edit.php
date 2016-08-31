@@ -104,6 +104,7 @@ class Edit extends Iface
     {
         // Load the object with data from the form using a helper object
         \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
+
         // Password validation needs to be here
         if ($this->form->getFieldValue('newPassword')) {
             if ($this->form->getFieldValue('newPassword') != $this->form->getFieldValue('confPassword')) {
@@ -135,7 +136,7 @@ class Edit extends Iface
 
         $this->user->save();
 
-        \App\Alert::addSuccess('User record saved!');
+        \Ts\Alert::addSuccess('User record saved!');
         if ($form->getTriggeredEvent()->getName() == 'update') {
             if ($this->isProfile()) {
                 \Tk\Uri::create('/admin/index.html')->redirect();
@@ -172,7 +173,6 @@ class Edit extends Iface
      */
     public function __makeTemplate()
     {
-
         $xhtml = <<<XHTML
 <div class="row">
   <div class="col-lg-12">

@@ -107,7 +107,7 @@ class Contact extends Iface
         }
 
         if ($this->sendEmail($form)) {
-            \App\Alert::addSuccess('<strong>Success!</strong> Your form has been sent.');
+            \Ts\Alert::addSuccess('<strong>Success!</strong> Your form has been sent.');
         }
 
         \Tk\Uri::create()->redirect();

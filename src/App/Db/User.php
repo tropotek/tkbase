@@ -45,6 +45,16 @@ class User extends Model implements \Tk\ValidInterface
     public $role = '';
 
     /**
+     * @var string
+     */
+    public $notes = '';
+
+    /**
+     * @var \DateTime
+     */
+    public $lastLogin = null;
+
+    /**
      * @var bool
      */
     public $active = true;

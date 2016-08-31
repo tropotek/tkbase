@@ -31,7 +31,10 @@ class Alert extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInter
      */
     protected $messages = array();
 
-
+    /**
+     * @var \Tk\Session
+     */
+    protected $session = null;
 
 
     /**
@@ -40,27 +43,31 @@ class Alert extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInter
      *   Alert::getInstance()
      *
      * @param array $msgArray
+     * @param \Tk\Session $session
      */
-    private function __construct($msgArray = array())
+    private function __construct($msgArray = array(), $session = null)
     {
         $this->messages = $msgArray;
+        $this->session = $session;
     }
 
     /**
      * Get an instance of this object
      *
+     * @param \Tk\Session $session
      * @return Alert
      */
-    static function getInstance()
+    static function getInstance($session = null)
     {
-        /** @var \Tk\Session $session */
-        $session = \Tk\Config::getInstance()->getSession();
+        if (!$session)
+            $session = \Tk\Config::getInstance()->getSession();
+
         if (!self::$instance && $session) {
             // TODO: Use the serialise and unserialise interface
             if (isset($session[self::SID])) {
-                self::$instance = new self($session[self::SID]);
+                self::$instance = new self($session[self::SID], $session);
             } else {
-                self::$instance = new self();
+                self::$instance = new self(array(), $session);
                 $session[self::SID] = array();
             }
         }
@@ -87,8 +94,8 @@ class Alert extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInter
             $data['icon'] = $icon;
         }
         self::getInstance()->messages[$type][] = $data;
-        $session = \Tk\Config::getInstance()->getSession();
-        $session[self::SID] = self::getInstance()->messages;
+
+        self::getInstance()->session[self::SID] = self::getInstance()->messages;
     }
 
 
@@ -173,15 +180,8 @@ class Alert extends \Dom\Renderer\Renderer implements \Dom\Renderer\DisplayInter
      */
     public function clear()
     {
-//        $this->messages = array(
-//            self::TYPE_SUCCESS => array(),
-//            self::TYPE_WARNING => array(),
-//            self::TYPE_ERROR => array(),
-//            self::TYPE_INFO => array()
-//        );
         $this->messages = array();
-        $session = \Tk\Config::getInstance()->getSession();
-        $session[self::SID] = self::getInstance()->messages;
+        self::getInstance()->session[self::SID] = self::getInstance()->messages;
         return $this;
     }
 

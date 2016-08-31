@@ -25,15 +25,6 @@ abstract class Iface extends \Dom\Renderer\Renderer
         $this->getPage();
     }
 
-    /**
-     *
-     * @return string
-     */
-    public function getTemplatePath()
-    {
-        return $this->getPage()->getTemplatePath();
-    }
-
     
     /**
      * Get a new instance of the page to display the content in.
@@ -55,6 +46,15 @@ abstract class Iface extends \Dom\Renderer\Renderer
             }
         }
         return $this->page;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getTemplatePath()
+    {
+        return $this->getPage()->getTemplatePath();
     }
 
     /**

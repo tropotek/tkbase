@@ -20,7 +20,6 @@ class Events extends Iface
      */
     protected $table = null;
 
-    
     /**
      *
      */
@@ -36,7 +35,6 @@ class Events extends Iface
      */
     public function doDefault(Request $request)
     {
-
         $this->table = new \Tk\Table('EventList');
         $this->table->setParam('renderer', \Tk\Table\Renderer\Dom\Table::create($this->table));
 
@@ -50,10 +48,13 @@ class Events extends Iface
         $list = $this->convertEventData(\App\Factory::getEventDispatcher()->getAvailableEvents(\App\Factory::getConfig()->getSitePath()));
         $this->table->setList($list);
 
-
         return $this->show();
     }
 
+    /**
+     * @param $eventData
+     * @return array
+     */
     protected function convertEventData($eventData) {
         $data = array();
         foreach ($eventData as $className => $eventArray) {
@@ -70,9 +71,6 @@ class Events extends Iface
         return $data;
     }
 
-
-
-
     /**
      * @return \App\Page\Iface
      */
@@ -84,7 +82,6 @@ class Events extends Iface
 
         return $this->getPage()->setPageContent($template);
     }
-
 
     /**
      * DomTemplate magic method

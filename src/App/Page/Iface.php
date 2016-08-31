@@ -56,18 +56,16 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
         /** @var \Dom\Template $template */
         $template = $this->getTemplate();
 
+        if ($this->getConfig()->get('site.meta.keywords')) {
+            $template->appendMetaTag('keywords', $this->getConfig()->get('site.meta.keywords'));
+        }
+        if ($this->getConfig()->get('site.meta.description')) {
+            $template->appendMetaTag('description', $this->getConfig()->get('site.meta.description'));
+        }
 
         if ($this->getConfig()->get('site.title')) {
             $template->setAttr('siteName', 'title', $this->getConfig()->get('site.title'));
             $template->setTitleText(trim($template->getTitleText() . ' - ' . $this->getConfig()->get('site.title'), '- '));
-        }
-        if ($this->getController()->getPageTitle()) {
-            $template->setTitleText(trim($this->getController()->getPageTitle() . ' - ' . $template->getTitleText(), '- '));
-            $template->insertText('pageHeading', $this->getController()->getPageTitle());
-            $template->setChoice('pageHeading');
-        }
-        if ($this->getConfig()->isDebug()) {
-            $template->setTitleText(trim('DEBUG: ' . $template->getTitleText(), '- '));
         }
 
         if ($this->controller->getUser()) {
@@ -76,27 +74,50 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
             $template->setChoice('login');
         }
 
-        if (\App\Alert::hasMessages()) {
-            $noticeTpl = \App\Alert::getInstance()->show()->getTemplate();
+        if (\Ts\Alert::hasMessages()) {
+            $noticeTpl = \Ts\Alert::getInstance()->show()->getTemplate();
             $template->replaceTemplate('alerts', $noticeTpl)->setChoice('alerts');
             $template->setChoice('alerts');
         }
 
         $siteUrl = $this->getConfig()->getSiteUrl();
         $dataUrl = $this->getConfig()->getDataUrl();
+        $themeUrl = $this->getTemplatePath();
         
         $js = <<<JS
 
 var config = {
   siteUrl : '$siteUrl',
   dataUrl : '$dataUrl',
-  themeUrl: '' 
+  themeUrl: '$themeUrl' 
 };
 JS;
         $template->appendJs($js, ['data-jsl-priority' => -1000]);
 
+        if ($this->getConfig()->get('site.global.js')) {
+            $template->appendJs($this->getConfig()->get('site.global.js'));
+        }
+        if ($this->getConfig()->get('site.global.css')) {
+            $template->appendCss($this->getConfig()->get('site.global.css'));
+        }
 
         return $this;
+    }
+
+    /**
+     *
+     */
+    protected function renderPageTitle()
+    {
+        $template = $this->getTemplate();
+        if ($this->getController()->getPageTitle()) {
+            $template->setTitleText(trim($this->getController()->getPageTitle() . ' - ' . $template->getTitleText(), '- '));
+            $template->insertText('pageHeading', $this->getController()->getPageTitle());
+            $template->setChoice('pageHeading');
+        }
+        if ($this->getConfig()->isDebug()) {
+            $template->setTitleText(trim('DEBUG: ' . $template->getTitleText(), '- '));
+        }
     }
 
 
@@ -137,6 +158,16 @@ JS;
     public function getConfig()
     {
         return \Tk\Config::getInstance();
+    }
+
+    /**
+     * Get the currently logged in user
+     *
+     * @return \App\Db\User
+     */
+    public function getUser()
+    {
+        return $this->getConfig()->getUser();
     }
 
 }
