@@ -166,7 +166,7 @@ class User extends Model implements \Tk\ValidInterface
         if (!$this->username) {
             $errors['username'] = 'Invalid field username value';
         } else {
-            $dup = UserMap::create()->findByUsername($this->username, $this->institutionId);
+            $dup = UserMap::create()->findByUsername($this->username);
             if ($dup && $dup->getId() != $this->getId()) {
                 $errors['username'] = 'This username is already in use';
             }
@@ -174,7 +174,7 @@ class User extends Model implements \Tk\ValidInterface
         if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
             $errors['email'] = 'Please enter a valid email address';
         } else {
-            $dup = UserMap::create()->findByEmail($this->email, $this->institutionId);
+            $dup = UserMap::create()->findByEmail($this->email);
             if ($dup && $dup->getId() != $this->getId()) {
                 $errors['email'] = 'This email is already in use';
             }
