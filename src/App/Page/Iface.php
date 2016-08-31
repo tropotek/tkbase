@@ -63,6 +63,13 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
             $template->appendMetaTag('description', $this->getConfig()->get('site.meta.description'));
         }
 
+        if ($this->getConfig()->get('system.authors'))
+            $template->appendMetaTag('tk-author', $this->getConfig()->get('system.authors'), $template->getTitleElement());
+        if ($this->getConfig()->get('system.project'))
+            $template->appendMetaTag('tk-project', $this->getConfig()->get('system.project'), $template->getTitleElement());
+        if ($this->getConfig()->get('system.version'))
+            $template->appendMetaTag('tk-version', $this->getConfig()->get('system.version'), $template->getTitleElement());
+
         if ($this->getConfig()->get('site.title')) {
             $template->setAttr('siteName', 'title', $this->getConfig()->get('site.title'));
             $template->setTitleText(trim($template->getTitleText() . ' - ' . $this->getConfig()->get('site.title'), '- '));
@@ -128,6 +135,7 @@ JS;
      */
     public function setPageContent($content)
     {
+        $this->renderPageTitle();
         if (!$content) return $this;
         if ($content instanceof \Dom\Template) {
             $this->getTemplate()->appendTemplate('content', $content);
