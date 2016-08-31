@@ -85,7 +85,6 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
         $themeUrl = $this->getTemplatePath();
         
         $js = <<<JS
-
 var config = {
   siteUrl : '$siteUrl',
   dataUrl : '$dataUrl',
@@ -125,7 +124,7 @@ JS;
      * Set the page Content
      *
      * @param string|\Dom\Template|\Dom\Renderer\Iface|\DOMDocument $content
-     * @return PublicPage
+     * @return Iface
      */
     public function setPageContent($content)
     {
