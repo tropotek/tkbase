@@ -106,6 +106,9 @@ class Bootstrap
         \App\Factory::getDb();
         // Import config settings from DB
         $config->replace(\Ts\Db\Data::create());
+
+        // Init the plugins
+        \Tk\Plugin\Factory::getInstance($config);
         
         return $config;
     }

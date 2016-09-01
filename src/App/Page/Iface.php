@@ -107,6 +107,13 @@ JS;
             $template->appendCss($this->getConfig()->get('site.global.css'));
         }
 
+
+        $event = new \Tk\EventDispatcher\Event();
+        $event->set('template', $template);
+        $event->set('page', $this);
+        $event->set('controller', $this->getController());
+        \App\Factory::getEventDispatcher()->dispatch(\App\AppEvents::CONTROLLER_RENDER_POST, $event);
+
         return $this;
     }
 
@@ -135,6 +142,12 @@ JS;
      */
     public function setPageContent($content)
     {
+        // Allow people to hook into the controller result.
+        $event = new \Tk\EventDispatcher\Event();
+        $event->set('controllerContent', $content);
+        $event->set('controller', $this->getController());
+        \App\Factory::getEventDispatcher()->dispatch(\App\AppEvents::CONTROLLER_RENDER_POST, $event);
+
         $this->renderPageTitle();
         if (!$content) return $this;
         if ($content instanceof \Dom\Template) {

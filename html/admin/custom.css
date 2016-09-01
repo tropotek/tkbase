@@ -66,6 +66,8 @@
   padding-bottom: 10px;
 }
 
-
+td.mDoc.key, .ws-normal {
+  white-space: normal;
+}
 
 
