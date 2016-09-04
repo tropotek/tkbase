@@ -145,18 +145,21 @@ class PluginManager extends Iface
         $pluginName = strip_tags(trim($request->get('del')));
         if (!$pluginName) {
             \Ts\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
+            \Tk\Url::create()->reset()->redirect();
             return;
         }
         $pluginPath = $this->pluginFactory->makePluginPath($pluginName);
 
         if (!is_dir($pluginPath)) {
             \Ts\Alert::addWarning('Plugin `' . $pluginName . '` path not found');
+            \Tk\Url::create()->reset()->redirect();
             return;
         }
 
         // So when we install plugins the archive must be left in the main plugin folder
         if ((!is_file($pluginPath.'.zip') && !is_file($pluginPath.'.tar.gz') && !is_file($pluginPath.'.tgz'))) {
             \Ts\Alert::addWarning('Plugin is protected and must be deleted manually.');
+            \Tk\Url::create()->reset()->redirect();
             return;
         }
 
@@ -193,10 +196,22 @@ class PluginManager extends Iface
             if ($this->pluginFactory->isActive($pluginName)) {
                 $repeat->setChoice('active');
                 $repeat->setAttr('deact', 'href', \Tk\Url::create()->reset()->set('deact', $pluginName));
+                
+                $plugin = $this->pluginFactory->getPlugin($pluginName);
+                if (method_exists($plugin, 'getSettingsUrl')) {
+                    $repeat->setAttr('cfg', 'href', $plugin->getSettingsUrl());
+                    $repeat->setChoice('cfg');
+                }
+                
             } else {
                 $repeat->setChoice('inactive');
                 $repeat->setAttr('act', 'href', \Tk\Url::create()->reset()->set('act', $pluginName));
-                $repeat->setAttr('del', 'href', \Tk\Url::create()->reset()->set('del', $pluginName));
+                
+                $pluginPath = $this->pluginFactory->makePluginPath($pluginName);
+                if ((is_file($pluginPath.'.zip') || is_file($pluginPath.'.tar.gz') || is_file($pluginPath.'.tgz'))) {
+                    $repeat->setAttr('del', 'href', \Tk\Url::create()->reset()->set('del', $pluginName));
+                    $repeat->setChoice('del');
+                }
             }
 
             $info = $this->pluginFactory->getPluginInfo($pluginName);
@@ -282,10 +297,10 @@ JS;
                 <p class="comment-text" var="desc" choice="desc"></p>
                 <div class="action pull-right">
                   
-                  <!-- a href="#" class="btn btn-success btn-xs" choice="active" var="cfg"><i class="glyphicon glyphicon-edit"></i> Config</a -->
-                  <span var="pluginHtml" choice="pluginHtml"></span>
                   <a href="#" class="btn btn-primary btn-xs noblock act" choice="inactive" var="act"><i class="glyphicon glyphicon-log-in"></i> Install</a>
-                  <a href="#" class="btn btn-danger btn-xs noblock del" choice="inactive" var="del"><i class="glyphicon glyphicon-remove-circle"></i> Delete</a>
+                  <a href="#" class="btn btn-danger btn-xs noblock del" choice="del" var="del"><i class="glyphicon glyphicon-remove-circle"></i> Delete</a>
+                  
+                  <a href="#" class="btn btn-success btn-xs" choice="cfg" var="cfg"><i class="fa fa-cogs"></i> Config</a>
                   <a href="#" class="btn btn-warning btn-xs noblock deact" choice="active" var="deact"><i class="glyphicon glyphicon-log-out"></i> Uninstall</a>
                   
                 </div>

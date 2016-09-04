@@ -104,6 +104,9 @@ class Bootstrap
         \App\Factory::getDb();
         // Import config settings from DB
         $config->replace(\Ts\Db\Data::create());
+        
+        // Init the plugins
+        Factory::getEventDispatcher();
 
         // initalise Dom Loader
         \App\Factory::getDomLoader();
