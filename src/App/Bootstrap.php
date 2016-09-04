@@ -99,13 +99,14 @@ class Bootstrap
         // * Session    
         Factory::getSession();
 
-        // initalise Dom Loader
-        \App\Factory::getDomLoader();
 
         // Initiate the default database connection
         \App\Factory::getDb();
         // Import config settings from DB
         $config->replace(\Ts\Db\Data::create());
+
+        // initalise Dom Loader
+        \App\Factory::getDomLoader();
 
         // Init the plugins
         \Tk\Plugin\Factory::getInstance($config);

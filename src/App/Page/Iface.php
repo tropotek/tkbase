@@ -107,7 +107,6 @@ JS;
             $template->appendCss($this->getConfig()->get('site.global.css'));
         }
 
-
         $event = new \Tk\EventDispatcher\Event();
         $event->set('template', $template);
         $event->set('page', $this);
