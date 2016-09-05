@@ -32,7 +32,7 @@ class AppEvents
      * @event \Tk\EventDispatcher\Event
      * @var string
      */
-    const PAGE_POST_RENDER = 'page.init.post';
+    const PAGE_POST_RENDER = 'page.render.post';
 
 
 

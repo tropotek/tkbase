@@ -103,7 +103,7 @@ class Bootstrap
         // Initiate the default database connection
         \App\Factory::getDb();
         // Import config settings from DB
-        $config->replace(\Ts\Db\Data::create());
+        $config->replace(\Ts\Db\Data::create()->toArray());
         
         // Init the plugins
         Factory::getEventDispatcher();
