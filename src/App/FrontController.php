@@ -51,6 +51,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
         // (kernel.request)
         $matcher = new \Tk\Routing\UrlMatcher($this->config['site.routes']);
         $this->dispatcher->addSubscriber(new \Tk\Listener\RouteListener($matcher));
+        
         $this->dispatcher->addSubscriber(new \App\Listener\AuthHandler());
         
         // (kernel.controller)

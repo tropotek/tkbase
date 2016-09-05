@@ -106,8 +106,8 @@ class Bootstrap
         \App\Factory::getDb();
         // Import config settings from DB
         $config->replace(\Ts\Db\Data::create());
-        
-        // Init the plugins
+
+        // Init the event dispatcher
         Factory::getEventDispatcher();
 
         // Init the plugins

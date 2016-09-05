@@ -37,15 +37,6 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
     }
 
     /**
-     *
-     * @return string
-     */
-    public function getTemplatePath()
-    {
-        return $this->templatePath;
-    }
-
-    /**
      * Set the page heading, should be set from main controller
      *
      * @return $this
@@ -160,6 +151,15 @@ JS;
             $this->template->insertHtml('content', $content);
         }
         return $this;
+    }
+
+    /**
+     *
+     * @return string
+     */
+    public function getTemplatePath()
+    {
+        return $this->templatePath;
     }
 
     /**
