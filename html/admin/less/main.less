@@ -1,0 +1,108 @@
+/******************************************/
+/** Public Styles                        **/
+/******************************************/
+
+@import '../bower_components/bootstrap/less/bootstrap';
+@import 'table';
+@import 'form';
+@import 'ribbon';
+@import 'starRating';
+
+@icon-font-path:  '@{templateUrl}/default/bower_components/bootstrap/fonts/';
+
+
+.page-header {
+  /*margin: 40px 0 20px;*/
+  margin-top: 20px;
+}
+
+body.public {
+  padding-top: 40px;
+  padding-bottom: 30px;
+  background: #FFF;
+}
+
+.public .container.content {
+  margin-top: 20px;
+}
+
+.public .theme-dropdown .dropdown-menu {
+  display: block;
+  position: static;
+  margin-bottom: 20px;
+}
+
+.public .footer {
+  margin-top: 40px;
+  padding-top: 10px;
+  border-top: 2px outset #CCC;
+}
+
+.nav > li > a > img.profile-image {
+  width: 26px;
+  height: 26px;
+  box-shadow: #c0c0c0 1px 2px 2px;
+  margin-top: -10px;
+}
+.navbar-brand {
+  padding-left: 30px;
+}
+
+
+/******************************************/
+/** General Styles                       **/
+/******************************************/
+.nopadding {
+  padding: 0;
+}
+
+
+#contactForm .form-group {
+  &.has-error .form-control {
+    border-color: #CCC;
+  }
+  .field-error {
+    .make-sm-column(9);
+    .make-sm-column-offset(3);
+    margin-bottom: 5px;
+  }
+}
+
+
+
+.carousel-caption {
+  color: #333;
+  text-shadow: 2px 2px 2px rgba(155, 155, 155,.9);
+  text-align: left;
+  &.slide-one {
+    top: 10px;
+    right: 0;
+    left: auto;
+    width: 50%;
+  }
+  &.slide-two {
+    top: 25px;
+    right: auto;
+    left: 18px;
+    width: 50%;
+  }
+  &.slide-three {
+    top: 25px;
+    right: auto;
+    left: 18px;
+    width: 50%;
+  }
+}
+.carousel-indicators {
+
+  li {
+    border: 1px solid #999;
+  }
+  .active {
+    border: 1px solid transparent;
+    background-color: #333;
+  }
+}
+
+
+
