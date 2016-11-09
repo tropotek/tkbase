@@ -57,7 +57,7 @@ class Factory
     {
         if (!self::getConfig()->getSession()) {
             $adapter = null;
-            $adapter = new \Tk\Session\Adapter\Database(self::getDb(), 'session', new \Tk\Encrypt());
+            $adapter = new \Tk\Session\Adapter\Database(self::getDb(), new \Tk\Encrypt());
             $obj = new \Tk\Session($adapter, self::getConfig(), self::getRequest(), self::getCookie());
             self::getConfig()->setSession($obj);
         }

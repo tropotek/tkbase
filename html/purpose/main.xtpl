@@ -22,6 +22,7 @@
   <!--[if lte IE 8]>
   <link rel="stylesheet" href="css/leaflet.ie.css"/>
   <![endif]-->
+  <link href="js/form/fileinput/jquery.fileinput.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="custom.css"/>
 
@@ -160,6 +161,12 @@
 <script src="js/jquery.sequence-min.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/main-menu.js"></script>
+
+<script src="js/form/fileinput/jquery.fileinput.js"></script>
+<script src="js/form/dualListBox/dual-list-box.js"></script>
+<script src="/vendor/ttek/tk-table/js/jquery.tableOrderBy.js"></script>
+
+<script src="js/custom.js"></script>
 <script src="js/template.js"></script>
 
 </body>
