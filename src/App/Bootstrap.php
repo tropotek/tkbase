@@ -75,7 +75,7 @@ class Bootstrap
             $logger = new Logger('system');
             $handler = new StreamHandler($config['system.log.path'], $config['system.log.level']);
             $formatter = new \Tk\Log\MonologLineFormatter();
-            $formatter->setScripTime($config->getScriptTime());
+            $formatter->setScriptTime($config->getScriptTime());
             $handler->setFormatter($formatter);
             $logger->pushHandler($handler);
             $config['log'] = $logger;
@@ -99,16 +99,23 @@ class Bootstrap
         // * Session    
         Factory::getSession();
 
-        // initalise Dom Loader
-        \App\Factory::getDomLoader();
 
         // Initiate the default database connection
         \App\Factory::getDb();
         // Import config settings from DB
+<<<<<<< HEAD
         $config->replace(\Ts\Db\Data::create());
 
         // Init the event dispatcher
+=======
+        $config->replace(\Ts\Db\Data::create()->toArray());
+        
+        // Init the plugins
+>>>>>>> a8086a67c339a5a45bd2f3d4a72324e940813c58
         Factory::getEventDispatcher();
+
+        // initalise Dom Loader
+        \App\Factory::getDomLoader();
 
         // Init the plugins
         \Tk\Plugin\Factory::getInstance($config);
