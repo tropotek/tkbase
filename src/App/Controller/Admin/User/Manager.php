@@ -82,22 +82,20 @@ class Manager extends Iface
      */
     public function __makeTemplate()
     {
-        $xhtml = <<<XHTML
-<div class="row">
+        $xhtml = <<<HTML
+<div>
 
-  <div class="col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <i class="fa fa-users fa-fw"></i> Users
-      </div>
-      <div class="panel-body">
-        <div var="table"></div>
-      </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-users fa-fw"></i> Users
+    </div>
+    <div class="panel-body">
+      <div var="table"></div>
     </div>
   </div>
 
 </div>
-XHTML;
+HTML;
 
         return \Dom\Loader::load($xhtml);
     }

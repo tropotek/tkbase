@@ -115,10 +115,10 @@ class Settings extends Iface
      */
     public function __makeTemplate()
     {
-        $xhtml = <<<XHTML
-<div class="row" var="content">
+        $xhtml = <<<HTML
+<div>
 
-  <div class="col-lg-12">
+  
     <div class="panel panel-default">
       <div class="panel-heading">
         <i class="fa fa-cogs fa-fw"></i> Actions
@@ -150,7 +150,7 @@ class Settings extends Iface
     </div>
   </div>
 </div>
-XHTML;
+HTML;
 
         return \Dom\Loader::load($xhtml);
     }
