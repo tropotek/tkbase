@@ -18,7 +18,7 @@ $config['site.email'] = 'tkwiki@example.com';
 
 
 // Template folders for pages
-$config['template.admin.path'] = '/html/admin';
+$config['template.admin.path'] = '/html/default';
 $config['template.public.path'] = '/html/purpose';
 
 /**
