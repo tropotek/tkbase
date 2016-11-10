@@ -88,7 +88,6 @@ class PluginManager extends Iface
         }
 
         $dest = $this->getConfig()->getPluginPath() . '/' . $package->getUploadedFile()->getFilename();
-        //vd($dest, str_replace(array('.zip', '.tgz', '.tar.gz'), '', $dest));
         if (is_dir(str_replace(array('.zip', '.tgz', '.tar.gz'), '', $dest))) {
             $form->addFieldError('package', 'A plugin with that name already exists');
         }
