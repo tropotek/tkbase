@@ -113,15 +113,9 @@ class Bootstrap
         // Initiate the default database connection
         \App\Factory::getDb();
         // Import config settings from DB
-<<<<<<< HEAD
-        $config->replace(\Ts\Db\Data::create());
-
-        // Init the event dispatcher
-=======
-        $config->replace(\Ts\Db\Data::create()->toArray());
+        $config->replace(\Ts\Db\Data::create()->all());
         
         // Init the plugins
->>>>>>> a8086a67c339a5a45bd2f3d4a72324e940813c58
         Factory::getEventDispatcher();
 
         // initalise Dom Loader
