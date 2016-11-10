@@ -67,9 +67,11 @@ class FrontController extends \Tk\Kernel\HttpKernel
         //$this->dispatcher->addSubscriber(new \Ts\Listener\ExceptionEmailListener($logger, $this->config->get('site.email'), $this->config->get('site.title')));
 
         // (kernel.terminate)
+        $sh = new \Ts\Listener\ShutdownHandler($logger, $this->config->getScriptTime());
+        $sh->setPageBytes(\App\Factory::getDomFilterPageBytes());
+        $this->dispatcher->addSubscriber($sh);
 
-        $this->dispatcher->addSubscriber(new \Ts\Listener\ShutdownHandler($logger, $this->config->getScriptTime()));
-        
+        // Add your own handlers here
         
     }
 

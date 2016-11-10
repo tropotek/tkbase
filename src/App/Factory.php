@@ -65,6 +65,21 @@ class Factory
     }
 
     /**
+     * getEmailGateway
+     *
+     * @return \Tk\Mail\Gateway
+     */
+    public static function getEmailGateway()
+    {
+        if (!self::getConfig()->getEmailGateway()) {
+            $gateway = new \Tk\Mail\Gateway(self::getConfig());
+            $gateway->setDispatcher(self::getEventDispatcher());
+            self::getConfig()->setEmailGateway($gateway);
+        }
+        return self::getConfig()->getEmailGateway();
+    }
+
+    /**
      * getDb
      * Ways to get the db after calling this method
      *
@@ -111,11 +126,26 @@ class Factory
             $config = self::getConfig();
             $dm->add(new \Dom\Modifier\Filter\UrlPath($config->getSiteUrl()));
             $dm->add(new \Dom\Modifier\Filter\JsLast());
-//            $dm->add(new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
-//                array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl())));
+            $dm->add(new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
+                array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl())));
+            if (self::getConfig()->isDebug()) {
+                $dm->add(self::getDomFilterPageBytes());
+            }
             self::getConfig()->setDomModifier($dm);
         }
         return self::getConfig()->getDomModifier();
+    }
+
+    /**
+     * @return \Dom\Modifier\Filter\PageBytes
+     */
+    public static function getDomFilterPageBytes()
+    {
+        if (!self::getConfig()->getDomFilterPageBytes()) {
+            $obj = new \Dom\Modifier\Filter\PageBytes(self::getConfig()->getSitePath());
+            self::getConfig()->setDomFilterPageBytes($obj);
+        }
+        return self::getConfig()->getDomFilterPageBytes();
     }
 
     /**

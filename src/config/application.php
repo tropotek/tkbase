@@ -21,6 +21,18 @@ $config['site.email'] = 'tkwiki@example.com';
 $config['template.admin.path'] = '/html/admin';
 $config['template.public.path'] = '/html/purpose';
 
+/**
+ * Set the system timezone
+ */
+$config['date.timezone'] = 'Australia/Victoria';
+
+
+// TODO: implement this
+// enable/disable https for site
+//$config['system.https'] = true;
+
+
+
 
 // -- AUTH CONFIG --
 
@@ -51,11 +63,6 @@ $config['system.auth.dbtable.activeColumn'] = 'active';
 //$config['system.auth.password'] = 'password';
 
 
-
-/**
- * Set the system timezone
- */
-$config['date.timezone'] = 'Australia/Victoria';
 
 
 

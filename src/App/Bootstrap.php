@@ -55,13 +55,15 @@ class Bootstrap
         
         // Include any config overriding settings
         include($config->getSrcPath() . '/config/config.php');
-        
-        \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
 
-        if ($config->has('date.timezone')) {
+
+        if ($config->has('date.timezone'))
             ini_set('date.timezone', $config->get('date.timezone'));
+
+        \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
+        if ($config->isDebug()) {
+            \Dom\Template::$enableTracer = true;
         }
-        
         /**
          * This makes our life easier when dealing with paths. Everything is relative
          * to the application root now.
@@ -78,16 +80,24 @@ class Bootstrap
             $formatter->setScriptTime($config->getScriptTime());
             $handler->setFormatter($formatter);
             $logger->pushHandler($handler);
-            $config['log'] = $logger;
+            $config->setLog($logger);
         }
-        
-        
+
         // * Logger [use error_log()]
         \Tk\ErrorHandler::getInstance($config->getLog());
         
         // Return if using cli (Command Line)
         if ($config->isCli()) {
             return $config;
+        }
+
+        if ($config->isDebug()) {
+            error_reporting(-1);
+            //error_reporting(E_ALL | E_STRICT);
+            ini_set('display_errors', 'Off');       // Only log errors?????
+        } else {
+            error_reporting(0);
+            ini_set('display_errors', 'Off');
         }
 
         // --- HTTP only bootstrapping from here ---
@@ -113,6 +123,9 @@ class Bootstrap
 
         // Init the plugins
         \Tk\Plugin\Factory::getInstance($config);
+
+        // Initiate the email gateway
+        \App\Factory::getEmailGateway();
         
         return $config;
     }
