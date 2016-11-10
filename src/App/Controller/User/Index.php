@@ -54,7 +54,7 @@ class Index extends Iface
      */
     public function __makeTemplate()
     {
-        $xhtml = <<<XHTML
+        $xhtml = <<<HTML
 <div class="container">
 <div class="row">
 
@@ -73,7 +73,7 @@ class Index extends Iface
 
 </div>
 </div>
-XHTML;
+HTML;
 
         return \Dom\Loader::load($xhtml);
     }

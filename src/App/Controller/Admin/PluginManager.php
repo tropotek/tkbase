@@ -63,7 +63,7 @@ class PluginManager extends Iface
         }
 
         $this->form = new Form('formEdit');
-        $this->form->addField(new Field\File('package', $request))->setRequired(true);
+        $this->form->addField(new Field\File('package', $request))->setRequired(true)->setAttr('accept', 'zip,tgz,gz');
         $this->form->addField(new Event\Button('upload', array($this, 'doUpload')))->addCssClass('btn-primary');
 
         $this->form->execute();
@@ -88,7 +88,6 @@ class PluginManager extends Iface
         }
 
         $dest = $this->getConfig()->getPluginPath() . '/' . $package->getUploadedFile()->getFilename();
-        //vd($dest, str_replace(array('.zip', '.tgz', '.tar.gz'), '', $dest));
         if (is_dir(str_replace(array('.zip', '.tgz', '.tar.gz'), '', $dest))) {
             $form->addFieldError('package', 'A plugin with that name already exists');
         }
@@ -268,7 +267,7 @@ JS;
      */
     public function __makeTemplate()
     {
-        $xhtml = <<<XHTML
+        $xhtml = <<<HTML
 <div class="row">
   <div class="col-md-8 col-sm-12">
     <div class="panel panel-default">
@@ -326,7 +325,7 @@ JS;
   </div>
 
 </div>
-XHTML;
+HTML;
 
         return \Dom\Loader::load($xhtml);
     }

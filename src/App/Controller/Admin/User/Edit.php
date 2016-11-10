@@ -173,25 +173,20 @@ class Edit extends Iface
      */
     public function __makeTemplate()
     {
-        $xhtml = <<<XHTML
-<div class="row">
-  <div class="col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <i class="fa fa-user fa-fw"></i>
-        <span var="username"></span>
-      </div>
-      <div class="panel-body ">
-        <div class="row">
-          <div class="col-lg-12">
-            <div var="formEdit"></div>
-          </div>
-        </div>
-      </div>
+        $xhtml = <<<HTML
+<div>
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-user fa-fw"></i> <span var="username"></span>
+    </div>
+    <div class="panel-body">
+        <div var="formEdit"></div>
     </div>
   </div>
+    
 </div>
-XHTML;
+HTML;
 
         return \Dom\Loader::load($xhtml);
     }

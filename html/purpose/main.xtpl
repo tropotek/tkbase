@@ -22,6 +22,7 @@
   <!--[if lte IE 8]>
   <link rel="stylesheet" href="css/leaflet.ie.css"/>
   <![endif]-->
+  <link href="js/form/fileinput/jquery.fileinput.css" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="custom.css"/>
 
@@ -91,11 +92,7 @@
   </div>
 
 <div class="container" choice="alerts">
-  <div class="row">
-    <div class="col-md-12">
-      <div var="alerts"></div>
-    </div>
-  </div>
+  <div var="alerts"></div>
 </div>
 
 <div var="content"></div>
@@ -144,11 +141,9 @@
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="footer-copyright">&copy; 2013 mPurpose. All rights reserved.</div>
-      </div>
-    </div>
+
+    <div class="footer-copyright">&copy; 2016 <a href="http://www.tropotek.com.au/" target="_blank">Tropotek</a> All rights reserved.</div>
+
   </div>
 </div>
 
@@ -160,6 +155,12 @@
 <script src="js/jquery.sequence-min.js"></script>
 <script src="js/jquery.bxslider.js"></script>
 <script src="js/main-menu.js"></script>
+
+<script src="js/form/fileinput/jquery.fileinput.js"></script>
+<script src="js/form/dualListBox/dual-list-box.js"></script>
+<script src="/vendor/ttek/tk-table/js/jquery.tableOrderBy.js"></script>
+
+<script src="js/custom.js"></script>
 <script src="js/template.js"></script>
 
 </body>

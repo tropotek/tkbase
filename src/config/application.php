@@ -16,15 +16,22 @@ include_once(__DIR__ . '/routes.php');
 $config['site.title'] = 'Tk2Uni Site';
 $config['site.email'] = 'tkwiki@example.com';
 
-//$config['site.meta.keywords'] = '';
-//$config['site.meta.description'] = '';
-//$config['site.global.js'] = '';
-//$config['site.global.css'] = '';
-
 
 // Template folders for pages
-$config['template.admin.path'] = '/html/admin';
+$config['template.admin.path'] = '/html/default';
 $config['template.public.path'] = '/html/purpose';
+
+/**
+ * Set the system timezone
+ */
+$config['date.timezone'] = 'Australia/Victoria';
+
+
+// TODO: implement this
+// enable/disable https for site
+//$config['system.https'] = true;
+
+
 
 
 // -- AUTH CONFIG --
@@ -57,15 +64,5 @@ $config['system.auth.dbtable.activeColumn'] = 'active';
 
 
 
-/**
- * Set the system timezone
- */
-$config['date.timezone'] = 'Australia/Victoria';
 
 
-// To avoid var dump errors when debug lib not present
-// TODO: there could be a better way to handle this in the future 
-if (!class_exists('\Tk\Vd')) {
-    function vd() {}
-    function vdd() {}
-}
