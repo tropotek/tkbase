@@ -92,11 +92,7 @@
   </div>
 
 <div class="container" choice="alerts">
-  <div class="row">
-    <div class="col-md-12">
-      <div var="alerts"></div>
-    </div>
-  </div>
+  <div var="alerts"></div>
 </div>
 
 <div var="content"></div>
@@ -145,11 +141,9 @@
         </ul>
       </div>
     </div>
-    <div class="row">
-      <div class="col-md-12">
-        <div class="footer-copyright">&copy; 2013 mPurpose. All rights reserved.</div>
-      </div>
-    </div>
+
+    <div class="footer-copyright">&copy; 2016 <a href="http://www.tropotek.com.au/" target="_blank">Tropotek</a> All rights reserved.</div>
+
   </div>
 </div>
 

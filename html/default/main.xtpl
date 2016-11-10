@@ -298,17 +298,17 @@
 
 
 
-  <div id="page-wrapper">
+  <div id="page-wrapper" class="clearfix">
 
-    <div class="row" choice="pageHeading">
-      <div class="col-lg-12">
+    <div class="" choice="pageHeading">
+      <div class="">
         <h1 class="page-header" var="pageHeading">Dashboard</h1>
       </div>
     </div>
     
 
-    <div class="row" choice="alerts">
-      <div class="col-md-12">
+    <div class="" choice="alerts">
+      <div class="">
         <div var="alerts"></div>
       </div>
     </div>
@@ -316,6 +316,7 @@
 
     <div var="content"></div>
 
+    <div class="footer-copyright">&copy; 2016 <a href="http://www.tropotek.com.au/" target="_blank">Tropotek</a> All rights reserved.</div>
   </div>
   <!-- /#page-wrapper -->
 
