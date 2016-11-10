@@ -91,6 +91,8 @@ class Bootstrap
             return $config;
         }
 
+        // --- HTTP only bootstrapping from here ---
+
         if ($config->isDebug()) {
             error_reporting(-1);
             //error_reporting(E_ALL | E_STRICT);
@@ -99,8 +101,6 @@ class Bootstrap
             error_reporting(0);
             ini_set('display_errors', 'Off');
         }
-
-        // --- HTTP only bootstrapping from here ---
         
         // * Request
         Factory::getRequest();
