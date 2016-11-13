@@ -30,7 +30,7 @@ $config['template.public.path'] = '/html/purpose';
 /**
  * Set the system timezone
  */
-//s$config['date.timezone'] = 'Australia/Victoria';
+//$config['date.timezone'] = 'Australia/Victoria';
 
 
 
