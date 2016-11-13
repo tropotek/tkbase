@@ -13,44 +13,38 @@ $config = \Tk\Config::getInstance();
 include_once(__DIR__ . '/session.php');
 include_once(__DIR__ . '/routes.php');
 
-$config['site.title'] = 'Tk2Uni Site';
-$config['site.email'] = 'tkwiki@example.com';
+/*
+ * Setup any default app config values
+ */
+$config['site.title'] = 'Tk2 Site';
+$config['site.email'] = 'user@example.com';
+//$config['site.client.registration'] = false;
+//$config['site.client.activation'] = false;
 
-
-// Template folders for pages
+/*
+ * Template folders for pages
+ */
 $config['template.admin.path'] = '/html/default';
 $config['template.public.path'] = '/html/purpose';
 
 /**
  * Set the system timezone
  */
-$config['date.timezone'] = 'Australia/Victoria';
-
-
-// TODO: implement this
-// enable/disable https for site
-//$config['system.https'] = true;
+//s$config['date.timezone'] = 'Australia/Victoria';
 
 
 
+/*  
+ * ---- AUTH CONFIG ----
+ */
 
-// -- AUTH CONFIG --
+/*
+ * The hash function to use for passwords and general hashing
+ * Warning if you change this after user account creation
+ * users will have to reset/recover their passwords
+ */
+//$config['hash.function'] = 'md5';
 
-// Hash function to use for authentication
-// Warning: do not change after install, or else
-//   ALL existing passwords will be invalid and need to be reset.
-$config['hash.function'] = 'md5';
-
-//$config['site.client.registration'] = false;
-//$config['site.client.activation'] = false;
-
-// Authentication adapters
-$config['system.auth.adapters'] = array(
-    'DbTable' => '\Tk\Auth\Adapter\DbTable',
-    //'Config' => '\Tk\Auth\Adapter\Config',
-    'Trap' => '\Tk\Auth\Adapter\Trapdoor'
-    //'LDAP' => '\Tk\Auth\Adapter\Ldap'
-);
 
 // \Tk\Auth\Adapter\DbTable
 $config['system.auth.dbtable.tableName'] = 'user';
@@ -58,7 +52,19 @@ $config['system.auth.dbtable.usernameColumn'] = 'username';
 $config['system.auth.dbtable.passwordColumn'] = 'password';
 $config['system.auth.dbtable.activeColumn'] = 'active';
 
-// \Tk\Auth\Adapter\Config
+/*
+ * Config for the \Tk\Auth\Adapter\DbTable
+ */
+$config['system.auth.adapters'] = array(
+    'DbTable' => '\Tk\Auth\Adapter\DbTable',
+    //'Config' => '\Tk\Auth\Adapter\Config',
+    'Trap' => '\Tk\Auth\Adapter\Trapdoor'
+    //'LDAP' => '\Tk\Auth\Adapter\Ldap'
+);
+
+/*
+ * \Tk\Auth\Adapter\Config
+ */
 //$config['system.auth.username'] = 'admin';
 //$config['system.auth.password'] = 'password';
 

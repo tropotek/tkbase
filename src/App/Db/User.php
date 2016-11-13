@@ -131,6 +131,20 @@ class User extends Model implements \Tk\ValidInterface
     }
 
     /**
+     * Set the password from a plain string
+     *
+     * @param string $pwd
+     * @throws Exception
+     */
+    public function setPassword($pwd = '')
+    {
+        if (!$pwd) {
+            $pwd = self::createPassword(10);
+        }
+        $this->password = \App\Factory::hashPassword($pwd, $this);
+    }
+
+    /**
      * Helper method to generate user hash
      * 
      * @param bool $isTemp Set this to true, when generate a temporary hash used for registration

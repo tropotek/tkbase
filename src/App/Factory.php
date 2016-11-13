@@ -128,9 +128,9 @@ class Factory
             $dm->add(new \Dom\Modifier\Filter\JsLast());
             $dm->add(new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
                 array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl())));
-            if (self::getConfig()->isDebug()) {
+            if (self::getConfig()->isDebug()) 
                 $dm->add(self::getDomFilterPageBytes());
-            }
+            
             self::getConfig()->setDomModifier($dm);
         }
         return self::getConfig()->getDomModifier();
@@ -260,8 +260,10 @@ class Factory
     }
 
     /**
-     * @param $pwd
-     * @param $user (optional)
+     * 
+     * @link http://php.net/manual/en/function.hash.php
+     * @param string $pwd
+     * @param \App\Db\User $user (optional)
      * @return string
      */
     static public function hashPassword($pwd, $user = null)
