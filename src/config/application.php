@@ -1,23 +1,25 @@
 <?php
 /*
+ * Application default config values
+ * This file should not need to be edited
+ *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
 $config = \Tk\Config::getInstance();
 
-/**
- * Config the session using PHP option names prepended with 'session.'
- * @see http://php.net/session.configuration
- */
 include_once(__DIR__ . '/session.php');
 include_once(__DIR__ . '/routes.php');
 
-/*
- * Setup any default app config values
- */
-$config['site.title'] = 'Tk2 Site';
+
+/**************************************
+ * Default app config values
+ **************************************/
+
+$config['site.title'] = 'Untitled Site';
 $config['site.email'] = 'user@example.com';
+
 //$config['site.client.registration'] = false;
 //$config['site.client.activation'] = false;
 
@@ -45,8 +47,9 @@ $config['template.public.path'] = '/html/purpose';
  */
 //$config['hash.function'] = 'md5';
 
-
-// \Tk\Auth\Adapter\DbTable
+/*
+ * Config for the \Tk\Auth\Adapter\DbTable
+ */
 $config['system.auth.dbtable.tableName'] = 'user';
 $config['system.auth.dbtable.usernameColumn'] = 'username';
 $config['system.auth.dbtable.passwordColumn'] = 'password';
