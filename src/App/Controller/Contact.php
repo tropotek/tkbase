@@ -62,7 +62,7 @@ class Contact extends Iface
     /**
      * show()
      *
-     * @return \App\Page\PublicPage
+     * @return \App\Page\Iface
      */
     public function show()
     {
@@ -103,7 +103,7 @@ class Contact extends Iface
             return;
         }
         if ($attach->hasFile()) {
-            $attach->moveUploadedFile($this->getConfig()->getDataPath() . '/contact/' . date('d-m-Y') . '-' . str_replace('@', '_', $values['email']));
+            $attach->moveTo($this->getConfig()->getDataPath() . '/contact/' . date('d-m-Y') . '-' . str_replace('@', '_', $values['email']));
         }
 
         if ($this->sendEmail($form)) {

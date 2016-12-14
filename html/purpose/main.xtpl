@@ -70,10 +70,13 @@
           <a href="/index.html">Home</a>
         </li>
         <li>
-          <a href="/user/index.html">My Account</a>
+          <a href="#">About</a>
         </li>
         <li>
-          <a href="/contact.html">Contact Us</a>
+          <a href="/contact.html">Contact</a>
+        </li>
+        <li>
+          <a href="/user/index.html">My Account</a>
         </li>
       </ul>
     </nav>

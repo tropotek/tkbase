@@ -4,4 +4,16 @@
   margin-top: 10px;
 }
 
+.tk-form-events .btn {
+  margin-right: 10px;
+}
 
+
+/**
+ * \Tk\Form\Renderer\Dom\Form
+ */
+#contactForm .has-error .text-danger {
+  margin: 5px 0px 5px 28.7%;
+  font-weight: bold;
+  font-style: italic;
+}

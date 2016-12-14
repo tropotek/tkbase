@@ -51,7 +51,7 @@ class Manager extends Iface
         $this->table->addFilter(new Field\Input('keywords'))->setLabel('')->setAttr('placeholder', 'Keywords');
 
         // Actions
-        $this->table->addAction(\Tk\Table\Action\Button::getInstance('New User', 'fa fa-plus', \Tk\Uri::create('admin/userEdit.html')));
+        $this->table->addAction(\Tk\Table\Action\Button::create('New User', 'fa fa-plus', \Tk\Uri::create('admin/userEdit.html')));
         $this->table->addAction(new \Tk\Table\Action\Delete());
         $this->table->addAction(new \Tk\Table\Action\Csv($this->getConfig()->getDb()));
 
