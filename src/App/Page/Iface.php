@@ -102,7 +102,7 @@ JS;
         $event->set('template', $template);
         $event->set('page', $this);
         $event->set('controller', $this->getController());
-        \App\Factory::getEventDispatcher()->dispatch(\App\AppEvents::PAGE_POST_RENDER, $event);
+        \App\Factory::getEventDispatcher()->dispatch(\App\AppEvents::PAGE_INIT, $event);
 
         return $this;
     }
@@ -123,26 +123,26 @@ JS;
         }
     }
 
-
     /**
      * Set the page Content
      *
-     * @param string|\Dom\Template|\Dom\Renderer\Iface|\DOMDocument $content
+     * @param string|\Dom\Template|\Dom\Renderer\RendererInterface|\DOMDocument $content
      * @return Iface
      */
     public function setPageContent($content)
     {
+        $this->renderPageTitle();
+
         // Allow people to hook into the controller result.
         $event = new \Tk\EventDispatcher\Event();
         $event->set('controllerResult', $content);
         $event->set('controller', $this->getController());
-        \App\Factory::getEventDispatcher()->dispatch(\App\AppEvents::CONTROLLER_POST_RENDER, $event);
+        \App\Factory::getEventDispatcher()->dispatch(\App\AppEvents::SHOW, $event);
 
-        $this->renderPageTitle();
         if (!$content) return $this;
         if ($content instanceof \Dom\Template) {
             $this->getTemplate()->appendTemplate('content', $content);
-        } else if ($content instanceof \Dom\Renderer\Iface) {
+        } else if ($content instanceof \Dom\Renderer\RendererInterface) {
             $this->getTemplate()->appendTemplate('content', $content->getTemplate());
         } else if ($content instanceof \DOMDocument) {
             $this->getTemplate()->insertDoc('content', $content);
