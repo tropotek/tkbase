@@ -40,6 +40,7 @@ class Manager extends Iface
         $this->table = new \Tk\Table('tableOne');
 
         $this->table->addCell(new \Tk\Table\Cell\Checkbox('id'));
+        $this->table->addCell(new ActionsCell('action'));
         $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCellCss('key')->setUrl(\Tk\Uri::create('admin/userEdit.html'));
         $this->table->addCell(new \Tk\Table\Cell\Text('username'));
         $this->table->addCell(new \Tk\Table\Cell\Text('email'));
@@ -100,5 +101,33 @@ HTML;
         return \Dom\Loader::load($xhtml);
     }
 
+
+}
+
+class ActionsCell extends \Tk\Table\Cell\Iface
+{
+    public function __construct($property, $label = null)
+    {
+        parent::__construct($property, $label);
+        $this->setOrderProperty('');
+    }
+
+    /**
+     * @param \App\Db\User $obj
+     * @param int|null $rowIdx The current row being rendered (0-n) If null no rowIdx available.
+     * @return string
+     */
+    public function getCellHtml($obj, $rowIdx = null)
+    {
+        $name = $obj->name;
+        $url = htmlentities(\Tk\Uri::create()->set(\App\Listener\MasqueradeHandler::MSQ, $obj->id)->toString());
+        $html = <<<HTML
+<span>
+  <a href="$url" class="btn btn-sm btn-default" title="Masquerade As `$name`"><i class="glyphicon glyphicon-sunglasses"></i></a>
+</span>
+HTML;
+
+        return $html;
+    }
 
 }

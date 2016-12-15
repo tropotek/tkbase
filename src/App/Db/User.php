@@ -76,6 +76,12 @@ class User extends Model implements \Tk\ValidInterface
 
 
     /**
+     * @var \App\Auth\Acl
+     */
+    private $acl = null;
+
+
+    /**
      * User constructor.
      * 
      */
@@ -94,6 +100,17 @@ class User extends Model implements \Tk\ValidInterface
             $this->hash = $this->generateHash();
         }
         parent::save();
+    }
+
+    /**
+     * @return Acl
+     */
+    public function getAcl()
+    {
+        if (!$this->acl) {
+            $this->acl = new Acl($this);
+        }
+        return $this->acl;
     }
 
     /**
@@ -134,7 +151,7 @@ class User extends Model implements \Tk\ValidInterface
      * Set the password from a plain string
      *
      * @param string $pwd
-     * @throws Exception
+     * @throws \Exception
      */
     public function setPassword($pwd = '')
     {
@@ -196,42 +213,3 @@ class User extends Model implements \Tk\ValidInterface
         return $errors;
     }
 }
-
-//class UserValidator extends \App\Helper\Validator
-//{
-//
-//    /**
-//     * Implement the validating rules to apply.
-//     *
-//     */
-//    protected function validate()
-//    {
-//        /** @var User $obj */
-//        $obj = $this->getObject();
-//
-//        if (!$obj->name) {
-//            $this->addError('name', 'Invalid field value.');
-//        }
-//        if (!$obj->username) {
-//            $this->addError('username', 'Invalid field value.');
-//        } else {
-//            $dup = User::getMapper()->findByUsername($obj->username);
-//            if ($dup && $dup->getId() != $obj->getId()) {
-//                $this->addError('username', 'This username is already in use.');
-//            }
-//        }
-//        if (!$obj->role) {
-//            $this->addError('role', 'The user must have a role assigned for the permission system');
-//        }
-//
-//        if (!filter_var($obj->email, FILTER_VALIDATE_EMAIL)) {
-//            $this->addError('email', 'Please enter a valid email address');
-//        } else {
-//            $dup = User::getMapper()->findByEmail($obj->email);
-//            if ($dup && $dup->getId() != $obj->getId()) {
-//                $this->addError('email', 'This email is already in use.');
-//            }
-//        }
-//
-//    }
-//}
