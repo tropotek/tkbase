@@ -51,7 +51,7 @@ class Register extends Iface
     public function doDefault(Request $request)
     {
         if (!$this->getConfig()->get('site.client.registration')) {
-            \Ts\Alert::addError('User registration has been disabled on this site.');
+            \Tk\Alert::addError('User registration has been disabled on this site.');
             \Tk\Uri::create('/')->redirect();
         }
         if ($request->has('h')) {
@@ -134,7 +134,7 @@ class Register extends Iface
 
         
         // Redirect with message to check their email
-        \Ts\Alert::addSuccess('Your New Account Has Been Created.');
+        \Tk\Alert::addSuccess('Your New Account Has Been Created.');
         \Tk\Config::getInstance()->getSession()->set('h', $this->user->hash);
         \Tk\Uri::create()->redirect();
     }
@@ -166,7 +166,7 @@ class Register extends Iface
         $event->set('templatePath', $this->getTemplatePath());
         $this->dispatcher->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
         
-        \Ts\Alert::addSuccess('Account Activation Successful.');
+        \Tk\Alert::addSuccess('Account Activation Successful.');
         \Tk\Uri::create('/login.html')->redirect();
         
     }

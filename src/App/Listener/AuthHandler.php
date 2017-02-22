@@ -56,7 +56,7 @@ class AuthHandler implements SubscriberInterface
             if (!$user) \Tk\Uri::create('/login.html')->redirect();
             if (!$user->getAcl()->hasRole($role)) {
                 // Could redirect to a authentication error page.
-                \Ts\Alert::addWarning('You do not have access to the requested page.');
+                \Tk\Alert::addWarning('You do not have access to the requested page.');
                 \Tk\Uri::create($user->getHomeUrl())->redirect();
             }
         }
