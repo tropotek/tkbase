@@ -28,6 +28,7 @@ $config['site.routes'] = $routes;
 $params = array();
 $routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault', $params));
 $routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault', $params));
+$routes->add('about', new \Tk\Routing\Route('/about.html', 'App\Controller\Index::doDefault', $params));
 $routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault', $params));
 
 $routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault', $params));
@@ -36,7 +37,7 @@ $routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller
 $routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault', $params));
 
 // Admin Pages
-$params = array('access' => \App\Auth\Acl::ROLE_ADMIN);
+$params = array('access' => \App\Db\User::ROLE_ADMIN);
 $routes->add('admin-home', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Index::doDefault', $params));
 $routes->add('admin-home-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Index::doDefault', $params));
 
@@ -54,7 +55,7 @@ $routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\
 
 
 // User Pages
-$params = array('access' => \App\Auth\Acl::ROLE_USER);
+$params = array('access' => \App\Db\User::ROLE_USER);
 $routes->add('user-home', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Index::doDefault', $params));
 $routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Index::doDefault', $params));
 

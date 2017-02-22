@@ -7,10 +7,12 @@
 
 $appPath = __DIR__;
 $composer = include($appPath . '/vendor/autoload.php');
-\App\Factory::getConfig()->setComposer($composer);
 
 // Execute Application controller
 $request = \App\Factory::getRequest();
 $kernel = \App\Factory::getFrontController();
+
+\App\Factory::getConfig()->setComposer($composer);
+
 $response = $kernel->handle($request)->send();
 $kernel->terminate($request, $response);

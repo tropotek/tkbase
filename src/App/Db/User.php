@@ -13,6 +13,8 @@ use Tk\Db\Map\Model;
  */
 class User extends Model implements \Tk\ValidInterface
 {
+    const ROLE_ADMIN = 'admin';
+    const ROLE_USER = 'user';
     
     /**
      * @var int
@@ -122,9 +124,9 @@ class User extends Model implements \Tk\ValidInterface
     public function getHomeUrl()
     {
         $access = Acl::create($this);
-        if ($access->hasRole(Acl::ROLE_ADMIN))
+        if ($access->hasRole(self::ROLE_ADMIN))
             return '/admin/index.html';
-        if ($access->hasRole(Acl::ROLE_USER))
+        if ($access->hasRole(self::ROLE_USER))
             return '/user/index.html';
         return '/index.html';
     }

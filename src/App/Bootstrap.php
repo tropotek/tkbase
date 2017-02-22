@@ -52,9 +52,6 @@ class Bootstrap
         
         // Do not call \Tk\Config::getInstance() before this point
         $config = Factory::getConfig();
-        
-        // Include any config overriding settings
-        include($config->getSrcPath() . '/config/config.php');
 
 
         if ($config->has('date.timezone'))
@@ -122,7 +119,7 @@ class Bootstrap
         \App\Factory::getDomLoader();
 
         // Init the plugins
-        \Tk\Plugin\Factory::getInstance($config);
+        \App\Factory::getPluginFactory();
 
         // Initiate the email gateway
         \App\Factory::getEmailGateway();
