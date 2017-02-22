@@ -11,15 +11,21 @@ namespace App\Auth;
  */
 class Acl
 {
-    
+    /**
+     * @deprecated
+     */
     const ROLE_ADMIN = 'admin';
+    /**
+     * @deprecated
+     */
     const ROLE_USER = 'user';
-    
     
     /**
      * @var \App\Db\User
      */
     protected $user = null;
+
+
 
     /**
      * Access constructor.
@@ -67,7 +73,7 @@ class Acl
      */
     public function isAdmin()
     {
-        return $this->hasRole(self::ROLE_ADMIN);
+        return $this->hasRole(\App\Db\User::ROLE_ADMIN);
     }
 
     /**
@@ -76,7 +82,7 @@ class Acl
      */
     public function isUser()
     {
-        return $this->hasRole(self::ROLE_USER);
+        return $this->hasRole(\App\Db\User::ROLE_USER);
     }
     
     

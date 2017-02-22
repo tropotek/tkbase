@@ -45,16 +45,4 @@ $(document).ready(function() {
     $('select.tk-dualSelect').DualListBox();
   }
 
-  // Make the orderBy fields draggable.
-  if ($.fn.tableOrderBy != undefined) {
-    $('.tk-sortable table tbody').tableOrderBy({
-      selector: '.tk-sortable table tbody'
-    });
-  }
-
-
-
-
-
-
 });

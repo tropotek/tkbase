@@ -41,7 +41,7 @@ class Manager extends Iface
 
         $this->table->addCell(new \Tk\Table\Cell\Checkbox('id'));
         $this->table->addCell(new ActionsCell('action'));
-        $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCellCss('key')->setUrl(\Tk\Uri::create('admin/userEdit.html'));
+        $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCss('key')->setUrl(\Tk\Uri::create('admin/userEdit.html'));
         $this->table->addCell(new \Tk\Table\Cell\Text('username'));
         $this->table->addCell(new \Tk\Table\Cell\Text('email'));
         $this->table->addCell(new \Tk\Table\Cell\Text('role'));
@@ -119,11 +119,18 @@ class ActionsCell extends \Tk\Table\Cell\Iface
      */
     public function getCellHtml($obj, $rowIdx = null)
     {
+        $this->addCss('text-center');
         $name = $obj->name;
         $url = htmlentities(\Tk\Uri::create()->set(\App\Listener\MasqueradeHandler::MSQ, $obj->id)->toString());
+
+        $disable = '';
+        if (\App\Factory::getConfig()->getUser()->id == $obj->id) {
+            $disable = 'disabled="disabled"';
+        }
+
         $html = <<<HTML
 <span>
-  <a href="$url" class="btn btn-sm btn-default" title="Masquerade As `$name`"><i class="glyphicon glyphicon-sunglasses"></i></a>
+  <a href="$url" class="btn btn-xs btn-default" title="Masquerade As `$name`" $disable><i class="glyphicon glyphicon-sunglasses"></i></a>
 </span>
 HTML;
 

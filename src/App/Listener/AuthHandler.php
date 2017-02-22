@@ -118,6 +118,9 @@ class AuthHandler implements SubscriberInterface
      */
     public function onLogout(AuthEvent $event)
     {
+        vd('---------------');
+
+
         $event->getAuth()->clearIdentity();
     }
 

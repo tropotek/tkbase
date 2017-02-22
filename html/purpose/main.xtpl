@@ -70,7 +70,7 @@
           <a href="/index.html">Home</a>
         </li>
         <li>
-          <a href="#">About</a>
+          <a href="/about.html">About</a>
         </li>
         <li>
           <a href="/contact.html">Contact</a>
@@ -161,7 +161,6 @@
 
 <script src="js/form/fileinput/jquery.fileinput.js"></script>
 <script src="js/form/dualListBox/dual-list-box.js"></script>
-<script src="/vendor/ttek/tk-table/js/jquery.tableOrderBy.js"></script>
 
 <script src="js/custom.js"></script>
 <script src="js/template.js"></script>
