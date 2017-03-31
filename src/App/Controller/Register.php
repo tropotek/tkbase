@@ -28,7 +28,7 @@ class Register extends Iface
     private $user = null;
 
     /**
-     * @var \Tk\EventDispatcher\EventDispatcher
+     * @var \Tk\Event\Dispatcher
      */
     private $dispatcher = null;
     

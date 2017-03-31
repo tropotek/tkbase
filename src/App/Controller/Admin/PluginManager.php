@@ -31,7 +31,7 @@ class PluginManager extends Iface
     protected $pluginFactory = null;
 
     /**
-     * @var \Tk\EventDispatcher\EventDispatcher
+     * @var \Tk\Event\Dispatcher
      */
     private $dispatcher = null;
     
