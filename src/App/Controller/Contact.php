@@ -48,7 +48,7 @@ class Contact extends Iface
         $opts = new Field\Option\ArrayIterator(array('General', 'Services', 'Orders'));
         $this->form->addField(new Field\Select('type[]', $opts));
         
-        $this->form->addField(new Field\File('attach', $request));
+        $this->form->addField(new Field\File('attach', '/contact/' . date('d-m-Y') . '-___'));
         $this->form->addField(new Field\Textarea('message'));
         
         $this->form->addField(new Event\Button('send', array($this, 'doSubmit')));
@@ -102,9 +102,9 @@ class Contact extends Iface
         if ($this->form->hasErrors()) {
             return;
         }
-        if ($attach->hasFile()) {
-            $attach->moveTo($this->getConfig()->getDataPath() . '/contact/' . date('d-m-Y') . '-' . str_replace('@', '_', $values['email']));
-        }
+//        if ($attach->hasFile()) {
+//            $attach->moveTo($this->getConfig()->getDataPath() . '/contact/' . date('d-m-Y') . '-' . str_replace('@', '_', $values['email']));
+//        }
 
         if ($this->sendEmail($form)) {
             \Tk\Alert::addSuccess('<strong>Success!</strong> Your form has been sent.');

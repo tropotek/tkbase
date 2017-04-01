@@ -126,7 +126,7 @@ class Register extends Iface
         
         
         // Fire the login event to allow developing of misc auth plugins
-        $event = new \Tk\EventDispatcher\Event();
+        $event = new \Tk\Event\Event();
         $event->set('form', $form);
         $event->set('user', $this->user);
         $event->set('templatePath', $this->getTemplatePath());
@@ -161,7 +161,7 @@ class Register extends Iface
         $user->active = true;
         $user->save();
 
-        $event = new \Tk\EventDispatcher\Event();
+        $event = new \Tk\Event\Event();
         $event->set('user', $user);
         $event->set('templatePath', $this->getTemplatePath());
         $this->dispatcher->dispatch(AuthEvents::REGISTER_CONFIRM, $event);

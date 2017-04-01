@@ -24,6 +24,7 @@ class UserMap extends Mapper
     public function getDbMap()
     {
         if (!$this->dbMap) {
+            $this->setMarkDeleted('del');
             $this->dbMap = new \Tk\DataMap\DataMap();
             $this->dbMap->addPropertyMap(new Db\Integer('id'), 'key');
             $this->dbMap->addPropertyMap(new Db\Text('name'));
@@ -38,8 +39,6 @@ class UserMap extends Mapper
             $this->dbMap->addPropertyMap(new Db\Date('modified'));
             $this->dbMap->addPropertyMap(new Db\Date('created'));
 
-            $this->setMarkDeleted('del');
-            $this->setPrimaryKey($this->dbMap->currentProperty('key')->getColumnName());
         }
         return $this->dbMap;
     }
@@ -60,8 +59,6 @@ class UserMap extends Mapper
             $this->formMap->addPropertyMap(new Form\Text('notes'));
             $this->formMap->addPropertyMap(new Form\Text('role'));
             $this->formMap->addPropertyMap(new Form\Boolean('active'));
-
-            $this->setPrimaryKey($this->formMap->currentProperty('key')->getColumnName());
         }
         return $this->formMap;
     }

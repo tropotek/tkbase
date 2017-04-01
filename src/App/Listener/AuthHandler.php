@@ -122,7 +122,7 @@ class AuthHandler implements Subscriber
     }
 
 
-    public function onRegister(\Tk\EventDispatcher\Event $event)
+    public function onRegister(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
@@ -140,7 +140,7 @@ class AuthHandler implements Subscriber
 
     }
 
-    public function onRegisterConfirm(\Tk\EventDispatcher\Event $event)
+    public function onRegisterConfirm(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
@@ -158,7 +158,7 @@ class AuthHandler implements Subscriber
 
     }
 
-    public function onRecover(\Tk\EventDispatcher\Event $event)
+    public function onRecover(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
