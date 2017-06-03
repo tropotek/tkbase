@@ -94,11 +94,17 @@
     </div>
   </div>
 
+  
+  
+  
 <div class="container" choice="alerts">
   <div var="alerts"></div>
 </div>
 
 <div var="content"></div>
+  
+  
+  
 
 <!-- Footer -->
 <div class="footer">
