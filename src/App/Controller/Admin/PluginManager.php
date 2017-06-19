@@ -31,7 +31,7 @@ class PluginManager extends Iface
     protected $pluginFactory = null;
 
     /**
-     * @var \Tk\EventDispatcher\EventDispatcher
+     * @var \Tk\Event\Dispatcher
      */
     private $dispatcher = null;
     
@@ -63,13 +63,11 @@ class PluginManager extends Iface
         }
 
         $this->form = new Form('formEdit');
-        $this->form->addField(new Field\File('package', $request))->setRequired(true)->setAttr('accept', 'zip,tgz,gz');
-        $this->form->addField(new Event\Button('upload', array($this, 'doUpload')))->addCssClass('btn-primary');
+        $this->form->addField(new Field\File('package', '', $this->getConfig()->getPluginPath()))->setRequired(true)->setAttr('accept', 'zip,tgz,gz')->addCss('fileinput');
+        $this->form->addField(new Event\Button('upload', array($this, 'doUpload')))->addCss('btn-primary');
 
         $this->form->execute();
-
-
-
+        
         return $this->show();
     }
 
@@ -83,11 +81,11 @@ class PluginManager extends Iface
         if (!$package->isValid()) {
             return;
         }
-        if (!preg_match('/\.(zip|gz|tgz)$/i', $package->getUploadedFile()->getFilename())) {
+        if (!preg_match('/\.(zip|gz|tgz)$/i', $package->getValue())) {
             $form->addFieldError('package', 'Please Select a valid plugin file. (zip/tar.gz/tgz only)');
         }
 
-        $dest = $this->getConfig()->getPluginPath() . '/' . $package->getUploadedFile()->getFilename();
+        $dest = $this->getConfig()->getPluginPath() . '/' . $package->getValue();
         if (is_dir(str_replace(array('.zip', '.tgz', '.tar.gz'), '', $dest))) {
             $form->addFieldError('package', 'A plugin with that name already exists');
         }
@@ -96,20 +94,22 @@ class PluginManager extends Iface
             return;
         }
 
-        $package->moveTo($dest);
         $cmd = '';
-        vd(\Tk\File::getExtension($dest));
         if (\Tk\File::getExtension($dest) == 'zip') {
             $cmd  = sprintf('cd %s && unzip %s', escapeshellarg(dirname($dest)), escapeshellarg(basename($dest)));
         } else if (\Tk\File::getExtension($dest) == 'gz' || \Tk\File::getExtension($dest) == 'tgz') {
             $cmd  = sprintf('cd %s && tar zxf %s', escapeshellarg(dirname($dest)), escapeshellarg(basename($dest)));
         }
         if ($cmd) {
-            $msg = exec($cmd);
-            vd($msg);
+            exec($cmd, $output);
         }
+        
+        // TODO: check the plugin is a valid Tk plugin, if not remove the archive and files and throw an error
+        // Look for a Plugin.php file and Class maybe????
+        
+        
 
-        \Ts\Alert::addSuccess('Plugin sucessfully uploaded.');
+        \Tk\Alert::addSuccess('Plugin sucessfully uploaded.');
         \Tk\Uri::create()->reset()->redirect();
     }
 
@@ -118,47 +118,47 @@ class PluginManager extends Iface
     {
         $pluginName = strip_tags(trim($request->get('act')));
         if (!$pluginName) {
-            \Ts\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
+            \Tk\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
             return;
         }
         $this->pluginFactory->activatePlugin($pluginName);
-        \Ts\Alert::addSuccess('Plugin `' . $pluginName . '` activated successfully');
-        \Tk\Url::create()->reset()->redirect();
+        \Tk\Alert::addSuccess('Plugin `' . $pluginName . '` activated successfully');
+        \Tk\Uri::create()->reset()->redirect();
     }
 
     protected function doDeactivatePlugin(Request $request)
     {
         $pluginName = strip_tags(trim($request->get('deact')));
         if (!$pluginName) {
-            \Ts\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
+            \Tk\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
             return;
         }
         $this->pluginFactory->deactivatePlugin($pluginName);
-        \Ts\Alert::addSuccess('Plugin `' . $pluginName . '` deactivated successfully');
+        \Tk\Alert::addSuccess('Plugin `' . $pluginName . '` deactivated successfully');
 
-        \Tk\Url::create()->reset()->redirect();
+        \Tk\Uri::create()->reset()->redirect();
     }
 
     protected function doDeletePlugin(Request $request)
     {
         $pluginName = strip_tags(trim($request->get('del')));
         if (!$pluginName) {
-            \Ts\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
-            \Tk\Url::create()->reset()->redirect();
+            \Tk\Alert::addWarning('Cannot locate Plugin: ' . $pluginName);
+            \Tk\Uri::create()->reset()->redirect();
             return;
         }
         $pluginPath = $this->pluginFactory->makePluginPath($pluginName);
 
         if (!is_dir($pluginPath)) {
-            \Ts\Alert::addWarning('Plugin `' . $pluginName . '` path not found');
-            \Tk\Url::create()->reset()->redirect();
+            \Tk\Alert::addWarning('Plugin `' . $pluginName . '` path not found');
+            \Tk\Uri::create()->reset()->redirect();
             return;
         }
 
         // So when we install plugins the archive must be left in the main plugin folder
         if ((!is_file($pluginPath.'.zip') && !is_file($pluginPath.'.tar.gz') && !is_file($pluginPath.'.tgz'))) {
-            \Ts\Alert::addWarning('Plugin is protected and must be deleted manually.');
-            \Tk\Url::create()->reset()->redirect();
+            \Tk\Alert::addWarning('Plugin is protected and must be deleted manually.');
+            \Tk\Uri::create()->reset()->redirect();
             return;
         }
 
@@ -166,9 +166,9 @@ class PluginManager extends Iface
         if (is_file($pluginPath.'.zip'))  unlink($pluginPath.'.zip');
         if (is_file($pluginPath.'.tar.gz'))  unlink($pluginPath.'.tar.gz');
         if (is_file($pluginPath.'.tgz'))  unlink($pluginPath.'.tgz');
-        \Ts\Alert::addSuccess('Plugin `' . $pluginName . '` deleted successfully');
+        \Tk\Alert::addSuccess('Plugin `' . $pluginName . '` deleted successfully');
 
-        \Tk\Url::create()->reset()->redirect();
+        \Tk\Uri::create()->reset()->redirect();
     }
 
 

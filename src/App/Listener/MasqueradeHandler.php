@@ -1,7 +1,7 @@
 <?php
 namespace App\Listener;
 
-use Tk\EventDispatcher\SubscriberInterface;
+use Tk\Event\Subscriber;
 use Tk\Kernel\KernelEvents;
 use Tk\Event\GetResponseEvent;
 use App\Db\User;
@@ -14,7 +14,7 @@ use Tk\Auth\AuthEvents;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class MasqueradeHandler implements SubscriberInterface
+class MasqueradeHandler implements Subscriber
 {
     /**
      * Session ID
@@ -47,7 +47,7 @@ class MasqueradeHandler implements SubscriberInterface
             if (!$msqUser) throw new \Tk\Exception('Invalid User');
             self::masqueradeLogin($user, $msqUser);
         } catch (\Exception $e) {
-            \Ts\Alert::addWarning($e->getMessage());
+            \Tk\Alert::addWarning($e->getMessage());
         }
     }
 

@@ -45,7 +45,7 @@ class Settings extends Iface
      */
     public function doDefault(Request $request)
     {
-        $this->form = new Form('formEdit', $request);
+        $this->form = Form::create('formEdit');
 
         $this->form->addField(new Field\Input('site.title'))->setLabel('Site Title')->setRequired(true);
         $this->form->addField(new Field\Input('site.email'))->setLabel('Site Email')->setRequired(true);
@@ -85,7 +85,7 @@ class Settings extends Iface
         
         $this->data->save();
         
-        \Ts\Alert::addSuccess('Site settings saved.');
+        \Tk\Alert::addSuccess('Site settings saved.');
         if ($form->getTriggeredEvent()->getName() == 'update') {
             \Tk\Uri::create('/admin/index.html')->redirect();
         }
@@ -95,7 +95,7 @@ class Settings extends Iface
     /**
      * show()
      *
-     * @return \App\Page\PublicPage
+     * @return \App\Page\Iface
      */
     public function show()
     {

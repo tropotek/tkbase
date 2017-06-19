@@ -28,7 +28,7 @@ class Register extends Iface
     private $user = null;
 
     /**
-     * @var \Tk\EventDispatcher\EventDispatcher
+     * @var \Tk\Event\Dispatcher
      */
     private $dispatcher = null;
     
@@ -51,7 +51,7 @@ class Register extends Iface
     public function doDefault(Request $request)
     {
         if (!$this->getConfig()->get('site.client.registration')) {
-            \Ts\Alert::addError('User registration has been disabled on this site.');
+            \Tk\Alert::addError('User registration has been disabled on this site.');
             \Tk\Uri::create('/')->redirect();
         }
         if ($request->has('h')) {
@@ -126,7 +126,7 @@ class Register extends Iface
         
         
         // Fire the login event to allow developing of misc auth plugins
-        $event = new \Tk\EventDispatcher\Event();
+        $event = new \Tk\Event\Event();
         $event->set('form', $form);
         $event->set('user', $this->user);
         $event->set('templatePath', $this->getTemplatePath());
@@ -134,7 +134,7 @@ class Register extends Iface
 
         
         // Redirect with message to check their email
-        \Ts\Alert::addSuccess('Your New Account Has Been Created.');
+        \Tk\Alert::addSuccess('Your New Account Has Been Created.');
         \Tk\Config::getInstance()->getSession()->set('h', $this->user->hash);
         \Tk\Uri::create()->redirect();
     }
@@ -161,12 +161,12 @@ class Register extends Iface
         $user->active = true;
         $user->save();
 
-        $event = new \Tk\EventDispatcher\Event();
+        $event = new \Tk\Event\Event();
         $event->set('user', $user);
         $event->set('templatePath', $this->getTemplatePath());
         $this->dispatcher->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
         
-        \Ts\Alert::addSuccess('Account Activation Successful.');
+        \Tk\Alert::addSuccess('Account Activation Successful.');
         \Tk\Uri::create('/login.html')->redirect();
         
     }

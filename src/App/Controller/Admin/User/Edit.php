@@ -136,7 +136,7 @@ class Edit extends Iface
 
         $this->user->save();
 
-        \Ts\Alert::addSuccess('User record saved!');
+        \Tk\Alert::addSuccess('User record saved!');
         if ($form->getTriggeredEvent()->getName() == 'update') {
             if ($this->isProfile()) {
                 \Tk\Uri::create('/admin/index.html')->redirect();
