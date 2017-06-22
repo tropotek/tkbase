@@ -19,7 +19,7 @@
   <link href="//fonts.googleapis.com/css?family=Open+Sans:400,700,600,800" rel="stylesheet" type="text/css"/>
 
   <!-- Theme css -->
-  <link href="/vendor/ttek/tk-form/js/form/fileinput/jquery.tkFileInput.less" rel="stylesheet" />
+  <link href="/vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput.less" rel="stylesheet" />
   <link rel="stylesheet" href="css/main.css"/>
   <link rel="stylesheet" href="custom.css"/>
 

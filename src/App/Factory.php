@@ -152,9 +152,11 @@ class Factory
             $config = self::getConfig();
             $dm->add(new \Dom\Modifier\Filter\UrlPath($config->getSiteUrl()));
             $dm->add(new \Dom\Modifier\Filter\JsLast());
-            $less = $dm->add(new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
-                array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl())));
-            $less->setCompress(!$config->isDebug());
+            $less = new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
+                array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl()));
+            $dm->add($less);
+            $less->setCompress(true);
+            //$less->setCompress(!$config->isDebug());
             if (self::getConfig()->isDebug()) 
                 $dm->add(self::getDomFilterPageBytes());
             

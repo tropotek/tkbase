@@ -63,7 +63,7 @@ class PluginManager extends Iface
         }
 
         $this->form = new Form('formEdit');
-        $this->form->addField(new Field\File('package', '', $this->getConfig()->getPluginPath()))->setRequired(true)->setAttr('accept', 'zip,tgz,gz')->addCss('fileinput');
+        $this->form->addField(new Field\File('package', '', $this->getConfig()->getPluginPath()))->setRequired(true)->setAttr('accept', 'zip,tgz,gz')->addCss('tk-fileinput');
         $this->form->addField(new Event\Button('upload', array($this, 'doUpload')))->addCss('btn-primary');
 
         $this->form->execute();

@@ -11,6 +11,7 @@
 
   <!-- Bootstrap Core CSS -->
   <link href="less/main.less" rel="stylesheet"/>
+  <link href="/vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput.less" rel="stylesheet" />
 
   <!-- MetisMenu CSS -->
   <link href="bower_components/metisMenu/dist/metisMenu.min.css" rel="stylesheet"/>
@@ -31,7 +32,6 @@
   <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <link href="/vendor/ttek/tk-form/js/form/fileinput/jquery.tkFileInput.less" rel="stylesheet" />
 
   <!-- Custom CSS -->
   <link href="css/custom.css" rel="stylesheet"/>

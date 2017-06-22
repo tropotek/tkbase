@@ -14,10 +14,12 @@
  */
 
 $(document).ready(function() {
-
-  // Style file inputs nicer
-  if ($.fn.fileinput != undefined) {
-    $('input[type=file].fileinput').fileinput({dataUrl: config.dataUrl});
+  
+  // Standard file input
+  if ($.fn.tkFileInput !== undefined) {
+    $('.tk-imageinput').tkImageInput({dataUrl: config.dataUrl});
+    $('.tk-multiinput').tkMultiInput({dataUrl: config.dataUrl});
+    $('.tk-fileinput:not(.tk-imageinput)').tkFileInput({});
   }
 
   // Blur tabs after click to look better
