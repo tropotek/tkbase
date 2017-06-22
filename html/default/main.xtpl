@@ -31,7 +31,7 @@
   <script src="//oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
   <![endif]-->
 
-  <link href="/vendor/ttek/tk-form/js/fileinput/jquery.fileinput.css" rel="stylesheet" />
+  <link href="/vendor/ttek/tk-form/js/form/fileinput/jquery.tkFileInput.less" rel="stylesheet" />
 
   <!-- Custom CSS -->
   <link href="css/custom.css" rel="stylesheet"/>
@@ -334,7 +334,8 @@
 <script src="dist/js/sb-admin-2.js"></script>
 
 <script src="/vendor/ttek/tk-form/js/dualListBox/jquery.dualListBox.js"></script>
-<script src="/vendor/ttek/tk-form/js/fileinput/jquery.fileinput.js"></script>
+<script src="/vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput.js"></script>
+<!--<script src="/vendor/ttek/tk-form/js/fileinput/jquery.fileinput.js"></script>-->
 <script src="/vendor/ttek/tk-table/js/jquery.tableOrderBy.js"></script>
 
 <script src="js/custom.js"></script>
