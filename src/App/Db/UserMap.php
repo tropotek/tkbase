@@ -113,12 +113,34 @@ class UserMap extends Mapper
                 $where .= '(' . substr($w, 0, -3) . ') AND ';
             }
         }
+
+        if (!empty($filter['role'])) {
+            $where .= sprintf('a.role = %s AND ', $this->getDb()->quote($filter['role']));
+        }
+
+        if (!empty($filter['username'])) {
+            $where .= sprintf('a.username = %s AND ', $this->getDb()->quote($filter['username']));
+            if (!empty($filter['password'])) {
+                $where .= sprintf('a.password = %s AND ', $this->getDb()->quote($filter['password']));
+            }
+        }
+
+        if (!empty($filter['email'])) {
+            $where .= sprintf('a.email = %s AND ', $this->getDb()->quote($filter['email']));
+        }
+
         
-//        if (!empty($filter['lti_context_id'])) {
-//            $where .= sprintf('a.lti_context_id = %s AND ', $this->getDb()->quote($filter['lti_context_id']));
-//        }
-
-
+        if (!empty($filter['exclude'])) {
+            if (!is_array($filter['exclude'])) $filter['exclude'] = array($filter['exclude']);
+            $w = '';
+            foreach ($filter['exclude'] as $v) {
+                $w .= sprintf('a.id != %d AND ', (int)$v);
+            }
+            if ($w) {
+                $where .= ' ('. rtrim($w, ' AND ') . ') AND ';
+            }
+        }
+        
         if ($where) {
             $where = substr($where, 0, -4);
         }

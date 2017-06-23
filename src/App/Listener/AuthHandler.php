@@ -29,7 +29,7 @@ class AuthHandler implements Subscriber
         // Only the identity details should be in the auth session not the full user object, to save space and be secure.
         $config = \App\Factory::getConfig();
         $auth = \App\Factory::getAuth();
-        if ($auth->getIdentity()) {
+        if ($auth->getIdentity()) {     // Check if user is logged in
             $user = \App\Db\UserMap::create()->findByUsername($auth->getIdentity());
             $config->setUser($user);
         }
@@ -44,9 +44,11 @@ class AuthHandler implements Subscriber
     {
         /** @var \App\Controller\Iface $controller */
         $controller = $event->getController();
-        $user = $controller->getUser();
 
         if ($controller instanceof \App\Controller\Iface) {
+            $config = \App\Factory::getConfig();
+            $user = $config->getUser();
+            
             // Get page access permission from route params (see config/routes.php)
             $role = $event->getRequest()->getAttribute('access');
             // Check the user has access to the controller in question

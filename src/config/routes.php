@@ -20,9 +20,10 @@
  */
 
 $config = \Tk\Config::getInstance();
-
 $routes = new \Tk\Routing\RouteCollection();
-$config['site.routes'] = $routes;
+$config->setSiteRoutes($routes);
+
+include dirname(__FILE__) . '/ajaxRoutes.php';
 
 // Default Home catchall
 $params = array();
@@ -67,4 +68,3 @@ $routes->add('simpleTest', new \Tk\Routing\Route('/test.html', function ($reques
     vd($config->toString());
     return '<p>This is a simple test</p>';
 }, $params));
-
