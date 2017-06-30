@@ -29,7 +29,20 @@ class FrontController extends \Tk\Kernel\HttpKernel
     public function __construct(Dispatcher $dispatcher, Resolver $resolver, $config)
     {
         parent::__construct($dispatcher, $resolver);
-        $this->config = $config;
+        
+        // Init the plugins
+        Factory::getEventDispatcher();
+
+        // initalise Dom Loader
+        \App\Factory::getDomLoader();
+
+        // Init the plugins
+        \App\Factory::getPluginFactory();
+
+        // Initiate the email gateway
+        \App\Factory::getEmailGateway();
+        
+        
         $this->init();
     }
 
@@ -39,26 +52,36 @@ class FrontController extends \Tk\Kernel\HttpKernel
      */
     public function init()
     {
-        $logger = $this->config->getLog();
+        $logger = $this->getConfig()->getLog();
         
-        $this->dispatcher->addSubscriber(new \Tk\Listener\StartupHandler($logger, $this->config->getRequest(), $this->config->getSession()));
-
-        $matcher = new \Tk\Routing\UrlMatcher($this->config['site.routes']);
-        $this->dispatcher->addSubscriber(new \Tk\Listener\RouteListener($matcher));
-
-        $this->dispatcher->addSubscriber(new \App\Listener\AjaxAuthHandler());
-        $this->dispatcher->addSubscriber(new \App\Listener\AuthHandler());
-        $this->dispatcher->addSubscriber(new \App\Listener\MasqueradeHandler());
-        $this->dispatcher->addSubscriber(new \Tk\Listener\ResponseHandler(Factory::getDomModifier()));
-        $this->dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($logger));
-        //$this->dispatcher->addSubscriber(new \Tk\Listener\ExceptionEmailListener(\App\Factory::getEmailGateway(), $logger, $this->config->get('site.email'), $this->config->get('site.title')));
-
-        $sh = new \Tk\Listener\ShutdownHandler($logger, $this->config->getScriptTime());
+        // Tk Listeners
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\StartupHandler($logger, $this->getConfig()->getRequest(), $this->getConfig()->getSession()));
+        $matcher = new \Tk\Routing\UrlMatcher($this->getConfig()->get('site.routes'));
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\RouteListener($matcher));
+        //$this->getDispatcher()->addSubscriber(new \Tk\Listener\PageHandler($this->getDispatcher()));
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\ResponseHandler(Factory::getDomModifier()));
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionListener($logger));
+        if (!$this->getConfig()->isDebug()) {
+            $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionEmailListener(\App\Factory::getEmailGateway(), $logger,
+                $this->getConfig()->getSiteEmail(), $this->getConfig()->getSiteTitle()));
+        }
+        $sh = new \Tk\Listener\ShutdownHandler($logger, $this->getConfig()->getScriptTime());
         $sh->setPageBytes(\App\Factory::getDomFilterPageBytes());
-        $this->dispatcher->addSubscriber($sh);
-        
-        // Add your own handlers here
-        
+        $this->getDispatcher()->addSubscriber($sh);
+
+        // App Listeners
+        $this->getDispatcher()->addSubscriber(new \App\Listener\AjaxAuthHandler());
+        $this->getDispatcher()->addSubscriber(new \App\Listener\AuthHandler());
+        $this->getDispatcher()->addSubscriber(new \App\Listener\MasqueradeHandler());
+
+    }
+    
+    /**
+     * @return \Tk\Config
+     */
+    public function getConfig() 
+    {
+        return \App\Factory::getConfig();
     }
     
 }

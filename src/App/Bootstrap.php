@@ -112,18 +112,6 @@ class Bootstrap
         // Import config settings from DB
         $config->replace(\Tk\Db\Data::create()->all());
         
-        // Init the plugins
-        Factory::getEventDispatcher();
-
-        // initalise Dom Loader
-        \App\Factory::getDomLoader();
-
-        // Init the plugins
-        \App\Factory::getPluginFactory();
-
-        // Initiate the email gateway
-        \App\Factory::getEmailGateway();
-        
         return $config;
     }
 
