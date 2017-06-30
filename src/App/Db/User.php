@@ -1,7 +1,6 @@
 <?php
 namespace App\Db;
 
-use App\Auth\Acl;
 use Tk\Db\Map\Model;
 
 /**
@@ -105,17 +104,6 @@ class User extends Model implements \Tk\ValidInterface
     }
 
     /**
-     * @return Acl
-     */
-    public function getAcl()
-    {
-        if (!$this->acl) {
-            $this->acl = new Acl($this);
-        }
-        return $this->acl;
-    }
-
-    /**
      * Return the users home|dashboard relative url
      *
      * @return string
@@ -123,10 +111,9 @@ class User extends Model implements \Tk\ValidInterface
      */
     public function getHomeUrl()
     {
-        $access = Acl::create($this);
-        if ($access->hasRole(self::ROLE_ADMIN))
+        if ($this->isAdmin())
             return '/admin/index.html';
-        if ($access->hasRole(self::ROLE_USER))
+        if ($this->isUser())
             return '/user/index.html';
         return '/index.html';
     }
@@ -155,7 +142,7 @@ class User extends Model implements \Tk\ValidInterface
      * @param string $pwd
      * @throws \Exception
      */
-    public function setPassword($pwd = '')
+    public function setNewPassword($pwd = '')
     {
         if (!$pwd) {
             $pwd = self::createPassword(10);
@@ -176,6 +163,40 @@ class User extends Model implements \Tk\ValidInterface
             $key .= date('YmdHis');
         }
         return hash('md5', $key);
+    }
+
+
+    /**
+     * @param string|array $role
+     * @return boolean
+     */
+    public function hasRole($role)
+    {
+        if (!is_array($role)) $role = array($role);
+        foreach ($role as $r) {
+            if ($r == $this->role || preg_match('/'.preg_quote($r).'/', $this->role)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function isAdmin()
+    {
+        return $this->hasRole(\App\Db\User::ROLE_ADMIN);
+    }
+
+    /**
+     *
+     * @return boolean
+     */
+    public function isUser()
+    {
+        return $this->hasRole(\App\Db\User::ROLE_USER);
     }
 
 

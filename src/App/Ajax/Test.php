@@ -15,10 +15,10 @@ class Test
     /**
      * GET
      * http://dev.ttek.org/~godar/Projects/tk2base/api/1.0/testOne
-     * 
-     * 
+     *
+     *
      * @param Request $request
-     * @return \App\Page\Iface
+     * @return \Tk\ResponseJson
      */
     public function doTestOne(Request $request)
     {
@@ -38,7 +38,7 @@ class Test
      *
      *
      * @param Request $request
-     * @return \App\Page\Iface
+     * @return \Tk\ResponseJson
      */
     public function doTestTwo(Request $request)
     {

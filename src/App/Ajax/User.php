@@ -18,7 +18,7 @@ class User
      * 
      * 
      * @param Request $request
-     * @return \App\Page\Iface
+     * @return \Tk\ResponseJson
      */
     public function doFindUser(Request $request)
     {
@@ -42,7 +42,7 @@ class User
      *
      *
      * @param Request $request
-     * @return \App\Page\Iface
+     * @return \Tk\ResponseJson
      */
     public function doTestTwo(Request $request)
     {

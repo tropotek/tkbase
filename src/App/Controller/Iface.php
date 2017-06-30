@@ -6,28 +6,8 @@ namespace App\Controller;
  * @link http://www.tropotek.com/
  * @license Copyright 2016 Michael Mifsud
  */
-abstract class Iface extends \Dom\Renderer\Renderer
+abstract class Iface extends \Tk\Controller\Iface
 {
-
-    /**
-     * @var string
-     */
-    protected $pageTitle = '';
-    
-    /**
-     * @var \App\Page\Iface
-     */
-    protected $page = null;
-
-
-    /**
-     * @param string $pageTitle
-     */
-    public function __construct($pageTitle = '')
-    {
-        $this->setPageTitle($pageTitle);
-        $this->getPage();
-    }
 
     /**
      * Get a new instance of the page to display the content in.
@@ -37,10 +17,9 @@ abstract class Iface extends \Dom\Renderer\Renderer
     public function getPage()
     {
         $pageAccess = $this->getConfig()->getRequest()->getAttribute('access');
-
         if (!$this->page) {
             switch($pageAccess) {
-                case \App\Auth\Acl::ROLE_ADMIN:
+                case \App\Db\User::ROLE_ADMIN:
                     $this->page = new \App\Page\AdminPage($this);
                     break;
                 default:
@@ -52,45 +31,6 @@ abstract class Iface extends \Dom\Renderer\Renderer
     }
 
     /**
-     *
-     * @return string
-     */
-    public function getTemplatePath()
-    {
-        return $this->getPage()->getTemplatePath();
-    }
-
-    /**
-     *
-     * @return string
-     */
-    public function getPageTitle()
-    {
-        return $this->pageTitle;
-    }
-
-    /**
-     *
-     * @param string $pageTitle
-     * @return $this
-     */
-    public function setPageTitle($pageTitle)
-    {
-        $this->pageTitle = $pageTitle;
-        return $this;
-    }
-
-    /**
-     * Get the global config object.
-     *
-     * @return \Tk\Config
-     */
-    public function getConfig()
-    {
-        return \Tk\Config::getInstance();
-    }
-
-    /**
      * Get the currently logged in user
      *
      * @return \App\Db\User
@@ -99,6 +39,20 @@ abstract class Iface extends \Dom\Renderer\Renderer
     {
         return $this->getConfig()->getUser();
     }
-    
+
+    /**
+     * DomTemplate magic method example
+     *
+     * @return \Dom\Template
+     */
+    public function __makeTemplate()
+    {
+        $html = <<<HTML
+<div></div>
+HTML;
+        return \Dom\Loader::load($html);
+        // OR FOR A FILE
+        //return \Dom\Loader::loadFile($this->getTemplatePath().'/public.xtpl');
+    }
 
 }

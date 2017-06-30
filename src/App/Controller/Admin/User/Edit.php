@@ -30,18 +30,6 @@ class Edit extends Iface
 
 
     /**
-     *
-     */
-    public function __construct()
-    {
-        $title = 'User Edit';
-        if ($this->isProfile()) {
-            $title = 'My Profile';
-        }
-        parent::__construct($title);
-    }
-
-    /**
      * @return bool
      */
     public function isProfile() 
@@ -52,12 +40,17 @@ class Edit extends Iface
     /**
      *
      * @param Request $request
-     * @return \App\Page\Iface|Template|string
      */
     public function doDefault(Request $request)
     {
+        $title = 'User Edit';
+        if ($this->isProfile()) {
+            $title = 'My Profile';
+        }
+        $this->setPageTitle($title);
+        
+        
         $this->user = new \App\Db\User();
-        $access = \App\Auth\Acl::create($this->getUser());
         if ($this->isProfile()) {
             $this->user = $this->getUser();
         } else if ($request->get('userId')) {
@@ -69,8 +62,8 @@ class Edit extends Iface
         $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
         $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
 
-        if ($access->isAdmin()) {
-            $list = ['Admin' => \App\Auth\Acl::ROLE_ADMIN, 'User' => \App\Auth\Acl::ROLE_USER];
+        if ($this->user->isAdmin()) {
+            $list = ['Admin' => \App\Db\User::ROLE_ADMIN, 'User' => \App\Db\User::ROLE_USER];
             $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
             if (!$this->isProfile()) {
                 $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
@@ -94,7 +87,6 @@ class Edit extends Iface
         
         $this->form->execute();
 
-        return $this->show();
     }
 
     /**
@@ -131,7 +123,7 @@ class Edit extends Iface
         // Keep the admin account available and working. (hack for basic sites)
         if ($this->user->getId() == 1) {
             $this->user->active = true;
-            $this->user->role = \App\Auth\Acl::ROLE_ADMIN;
+            $this->user->role = \App\Db\User::ROLE_ADMIN;
         }
 
         $this->user->save();
@@ -147,22 +139,22 @@ class Edit extends Iface
     }
 
     /**
-     * @return \App\Page\Iface
+     * @return \Dom\Template
      */
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
+        
+        // Render the form
+        $fren = new \Tk\Form\Renderer\Dom($this->form);
+        $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
         
         if ($this->user->id)
             $template->insertText('username', $this->user->name . ' - [UID ' . $this->user->id . ']');
         else
             $template->insertText('username', 'Create User');
         
-        // Render the form
-        $fren = new \Tk\Form\Renderer\Dom($this->form);
-        $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
-
-        return $this->getPage()->setPageContent($this->getTemplate());
+        return $template;
     }
 
 

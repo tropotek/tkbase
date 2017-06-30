@@ -58,7 +58,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\StartupHandler($logger, $this->getConfig()->getRequest(), $this->getConfig()->getSession()));
         $matcher = new \Tk\Routing\UrlMatcher($this->getConfig()->get('site.routes'));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\RouteListener($matcher));
-        //$this->getDispatcher()->addSubscriber(new \Tk\Listener\PageHandler($this->getDispatcher()));
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\PageHandler($this->getDispatcher()));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\ResponseHandler(Factory::getDomModifier()));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionListener($logger));
         if (!$this->getConfig()->isDebug()) {

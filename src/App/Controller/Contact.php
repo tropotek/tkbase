@@ -22,22 +22,16 @@ class Contact extends Iface
     protected $form = null;
 
     
-    /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('Contact');
-    }
 
     /**
      * doDefault
      *
      * @param Request $request
-     * @return \App\Page\PublicPage
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Contact Us');
+        
         $this->config = \Tk\Config::getInstance();
 
         $this->form = new Form('contactForm');
@@ -53,26 +47,24 @@ class Contact extends Iface
         
         $this->form->addField(new Event\Button('send', array($this, 'doSubmit')));
         
-        // Find and Fire submit event
-        $ret = $this->form->execute();
+        $this->form->execute();
 
-        return $this->show();
     }
 
     /**
      * show()
      *
-     * @return \App\Page\Iface
+     * @return \Dom\Template
      */
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
 
         // Render the form
         $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
         $ren->show();
 
-        return $this->getPage()->setPageContent($template);
+        return $template;
     }
 
     /**
@@ -151,15 +143,5 @@ MSG;
         vd($message);
         return true;
     }
-
-
-    /**
-     * DomTemplate magic method
-     *
-     * @return \Dom\Template
-     */
-    public function __makeTemplate()
-    {
-        return \Dom\Loader::loadFile($this->getTemplatePath().'/xtpl/contact.xtpl');
-    }
+    
 }

@@ -27,29 +27,16 @@ class Register extends Iface
      */
     private $user = null;
 
-    /**
-     * @var \Tk\Event\Dispatcher
-     */
-    private $dispatcher = null;
     
 
     /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('Create New Account');
-        $this->dispatcher = $this->getConfig()->getEventDispatcher();
-        
-    }
-
-    /**
      * @param Request $request
-     * @return \App\Page\Iface
      * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Create New Account');
+        
         if (!$this->getConfig()->get('site.client.registration')) {
             \Tk\Alert::addError('User registration has been disabled on this site.');
             \Tk\Uri::create('/')->redirect();
@@ -62,7 +49,7 @@ class Register extends Iface
         }
 
         $this->user = new \App\Db\User();
-        $this->user->role = \App\Auth\Acl::ROLE_USER;
+        $this->user->role = \App\Db\User::ROLE_USER;
         
         
         $this->form = new Form('registerForm', $request);
@@ -75,11 +62,8 @@ class Register extends Iface
         $this->form->addField(new Event\Button('login', array($this, 'doRegister')));
 
         $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
-        
-        // Find and Fire submit event
         $this->form->execute();
 
-        return $this->show();
     }
 
 
@@ -92,7 +76,6 @@ class Register extends Iface
     public function doRegister($form)
     {
         \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
-
         
         if (!$this->form->getFieldValue('password')) {
             $form->addFieldError('password', 'Please enter a password');
@@ -109,7 +92,7 @@ class Register extends Iface
             $form->addFieldError('passwordConf');
         }
         
-        $form->addFieldErrors(\App\Db\UserValidator::create($this->user)->getErrors());
+        $form->addFieldErrors($this->user->validate());
         
         if ($form->hasErrors()) {
             return;
@@ -129,8 +112,7 @@ class Register extends Iface
         $event = new \Tk\Event\Event();
         $event->set('form', $form);
         $event->set('user', $this->user);
-        $event->set('templatePath', $this->getTemplatePath());
-        $this->dispatcher->dispatch(AuthEvents::REGISTER, $event);
+        \App\Factory::getEventDispatcher()->dispatch(AuthEvents::REGISTER, $event);
 
         
         // Redirect with message to check their email
@@ -163,8 +145,7 @@ class Register extends Iface
 
         $event = new \Tk\Event\Event();
         $event->set('user', $user);
-        $event->set('templatePath', $this->getTemplatePath());
-        $this->dispatcher->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
+        \App\Factory::getEventDispatcher()->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
         
         \Tk\Alert::addSuccess('Account Activation Successful.');
         \Tk\Uri::create('/login.html')->redirect();
@@ -174,7 +155,7 @@ class Register extends Iface
 
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
 
         if (\Tk\Config::getInstance()->getSession()->getOnce('h')) {
             $template->setChoice('success');
@@ -183,27 +164,11 @@ class Register extends Iface
             $template->setChoice('form');
 
             // Render the form
-//            $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
-//            $ren->show();
-
-            // Render the form
             $fren = new \Tk\Form\Renderer\Dom($this->form);
             $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
         }
         
-        return $this->getPage()->setPageContent($template);
+        return $template;
     }
-
-
-    /**
-     * DomTemplate magic method
-     *
-     * @return \Dom\Template
-     */
-    public function __makeTemplate()
-    {
-        $tplFile = $this->getTemplatePath().'/xtpl/register.xtpl';
-        return \Dom\Loader::loadFile($tplFile);
-    }
-
+    
 }

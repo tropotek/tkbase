@@ -26,8 +26,9 @@ $config['site.email'] = 'user@example.com';
 /*
  * Template folders for pages
  */
-$config['template.admin.path'] = '/html/default';
-$config['template.public.path'] = '/html/purpose';
+$config['template.admin.path'] = $config['system.template.path'] . '/default';
+$config['template.public.path'] = $config['system.template.path'] . '/purpose';
+$config['template.xtpl.path'] = $config['system.template.path'] . '/xtpl';
 
 /**
  * Set the system timezone

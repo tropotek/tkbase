@@ -152,11 +152,12 @@ class Factory
             $config = self::getConfig();
             $dm->add(new \Dom\Modifier\Filter\UrlPath($config->getSiteUrl()));
             $dm->add(new \Dom\Modifier\Filter\JsLast());
-            $less = new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
-                array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl()));
-            $dm->add($less);
+
+            $less = $dm->add(new \Dom\Modifier\Filter\Less($config->getSitePath(), $config->getSiteUrl(), $config->getCachePath(),
+                array('siteUrl' => $config->getSiteUrl(), 'dataUrl' => $config->getDataUrl(), 'templateUrl' => $config->getTemplateUrl())));
             $less->setCompress(true);
             //$less->setCompress(!$config->isDebug());
+            
             if (self::getConfig()->isDebug()) 
                 $dm->add(self::getDomFilterPageBytes());
             
@@ -188,7 +189,7 @@ class Factory
             $dl = \Dom\Loader::getInstance()->setParams(self::getConfig()->all());
             $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
             if (self::getConfig()->getTemplatePath()) {
-                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath(self::getConfig()->getTemplatePath() . '/xtpl'));
+                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath(self::getConfig()->getSitePath() . self::getConfig()->getTemplateXtplPath(), 'xtpl'));
             }
             self::getConfig()->setDomLoader($dl);
         }

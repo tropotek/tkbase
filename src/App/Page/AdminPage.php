@@ -1,46 +1,13 @@
 <?php
 namespace App\Page;
 
-use Tk\Request;
-
 /**
- *
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
 class AdminPage extends Iface
 {
-    
-    /**
-     * AdminPage constructor.
-     *
-     * @param \App\Controller\Iface $controller
-     */
-    public function __construct(\App\Controller\Iface $controller)
-    {
-        if (!$controller->getUser()) {
-            \Tk\Uri::create('/login.html')->redirect();
-        }
-        $this->templatePath = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.admin.path');
-        parent::__construct($controller);
-    }
-
-
-    public function show()
-    {
-        $this->initPage();
-        $template = $this->getTemplate();
-
-        if ($this->getConfig()->isDebug()) {
-            $template->setChoice('debug');
-        }
-
-        return $template;
-    }
-
-
     /**
      * DomTemplate magic method
      *
@@ -48,7 +15,7 @@ class AdminPage extends Iface
      */
     public function __makeTemplate()
     {
-        $tplFile =  $this->getTemplatePath().'/main.xtpl';
+        $tplFile = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.admin.path').'/main.xtpl';
         return \Dom\Loader::loadFile($tplFile);
     }
 

@@ -26,20 +26,6 @@ class Login extends Iface
      */
     protected $form = null;
 
-    /**
-     * @var \Tk\Event\Dispatcher
-     */
-    private $dispatcher = null;
-    
-
-    /**
-     * __construct
-     */
-    public function __construct()
-    {
-        parent::__construct('Login');
-        $this->dispatcher = $this->getConfig()->getEventDispatcher();
-    }
     
     /**
      *
@@ -48,6 +34,8 @@ class Login extends Iface
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Login');
+        
         if ($this->getUser()) {
             \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
         }
@@ -59,10 +47,8 @@ class Login extends Iface
         $this->form->addField(new Event\Button('login', array($this, 'doLogin')));
         $this->form->addField(new Event\Link('forgotPassword', \Tk\Uri::create('/recover.html')));
         
-        // Find and Fire submit event
         $this->form->execute();
 
-        return $this->show();
     }
 
     /**
@@ -90,7 +76,7 @@ class Login extends Iface
         try {
             // Fire the login event to allow developing of misc auth plugins
             $event = new AuthEvent($auth, $form->getValues());
-            $this->dispatcher->dispatch(AuthEvents::LOGIN, $event);
+            \App\Factory::getEventDispatcher()->dispatch(AuthEvents::LOGIN, $event);
 
             // Use the event to process the login like below....
             $result = $event->getResult();
@@ -103,7 +89,7 @@ class Login extends Iface
                 return;
             }
 
-            $this->dispatcher->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
+            \App\Factory::getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
 
         } catch (\Exception $e) {
             $form->addError($e->getMessage());
@@ -117,11 +103,7 @@ class Login extends Iface
      */
     public function show()
     {
-        $template = $this->getTemplate();
-
-        // Render the form
-//        $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
-//        $ren->show();
+        $template = parent::show();
 
         // Render the form
         $fren = new \Tk\Form\Renderer\Dom($this->form);
@@ -131,18 +113,7 @@ class Login extends Iface
             $template->setChoice('register');
         }
 
-        return $this->getPage()->setPageContent($template);
-    }
-
-
-    /**
-     * DomTemplate magic method
-     *
-     * @return \Dom\Template
-     */
-    public function __makeTemplate()
-    {
-        return \Dom\Loader::loadFile($this->getTemplatePath() . '/xtpl/login.xtpl');
+        return $template;
     }
 
 }

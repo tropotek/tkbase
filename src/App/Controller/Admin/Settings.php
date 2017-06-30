@@ -28,14 +28,6 @@ class Settings extends Iface
     protected $data = null;
 
     
-    /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('Site Settings');
-        $this->data = \Tk\Db\Data::create();
-    }
 
     /**
      * doDefault
@@ -45,6 +37,9 @@ class Settings extends Iface
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Settings');
+        $this->data = \Tk\Db\Data::create();
+        
         $this->form = Form::create('formEdit');
 
         $this->form->addField(new Field\Input('site.title'))->setLabel('Site Title')->setRequired(true);
@@ -59,7 +54,6 @@ class Settings extends Iface
         $this->form->load($this->data->toArray());
         $this->form->execute();
 
-        return $this->show();
     }
 
     /**
@@ -99,13 +93,13 @@ class Settings extends Iface
      */
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
         
         // Render the form
         $fren = new \Tk\Form\Renderer\Dom($this->form);
         $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
 
-        return $this->getPage()->setPageContent($template);
+        return $template;
     }
 
     /**

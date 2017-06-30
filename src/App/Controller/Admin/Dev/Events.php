@@ -20,21 +20,16 @@ class Events extends Iface
      */
     protected $table = null;
 
-    /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('Available Events');
-    }
+    
     
     /**
      *
      * @param Request $request
-     * @return \App\Page\Iface|Template|string
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Available Events');
+        
         $this->table = new \Tk\Table('EventList');
         $this->table->setParam('renderer', \Tk\Table\Renderer\Dom\Table::create($this->table));
 
@@ -48,7 +43,6 @@ class Events extends Iface
         $list = $this->convertEventData(\App\Factory::getEventDispatcher()->getAvailableEvents(\App\Factory::getConfig()->getSitePath()));
         $this->table->setList($list);
 
-        return $this->show();
     }
 
     /**
@@ -76,11 +70,11 @@ class Events extends Iface
      */
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
 
         $template->replaceTemplate('table', $this->table->getParam('renderer')->show());
 
-        return $this->getPage()->setPageContent($template);
+        return $template;
     }
 
     /**

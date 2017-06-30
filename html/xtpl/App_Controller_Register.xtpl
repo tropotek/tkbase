@@ -4,8 +4,8 @@
     <div class="container">
       <div class="row">
         <div class="col-sm-5">
-          
-          
+
+
           <div class="basic-login clearfix">
             <div choice="success">
               <h2>Success</h2>
@@ -17,7 +17,7 @@
                 Thank You!
               </p>
             </div>
-            
+
             <form role="form" id="registerForm" method="post" choice="form">
               <input type="hidden" name="act" value="register" />
 
@@ -41,14 +41,14 @@
                 <label for="fid-passwordConf"><b>Confirm Password</b></label>
                 <input type="password" name="passwordConf" id="fid-passwordConf" class="form-control" />
               </div>
-              
+
               <div class="form-group">
                 <button type="submit" name="recover" class="btn pull-right">Register</button>
               </div>
             </form>
           </div>
-          
-          
+
+
         </div>
         <div class="col-sm-7 social-login clearfix">
           <p>Or login with your Facebook or Twitter</p>
@@ -57,7 +57,7 @@
             <a href="#" class="btn-twitter-login">Login with Twitter</a>
           </div>
         </div>
-      </div>  
+      </div>
     </div>
   </div>
 

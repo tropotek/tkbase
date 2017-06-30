@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "32261133a991832bcc8adf62b1b4bca6",
-    "content-hash": "a8a1bf58f6c2f3529bf04aad9168f861",
+    "hash": "9740de881a9a654e29523ef0d3f6c56a",
+    "content-hash": "ec45b8bd844be63e98f7c81ab375d9c3",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -416,12 +416,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-database.git",
-                "reference": "b0a3109cf1c62bd4107ed02fec76b86786cd758d"
+                "reference": "a13e090248c2c8105bbf94f784cd91aee4d320e4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/b0a3109cf1c62bd4107ed02fec76b86786cd758d",
-                "reference": "b0a3109cf1c62bd4107ed02fec76b86786cd758d",
+                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/a13e090248c2c8105bbf94f784cd91aee4d320e4",
+                "reference": "a13e090248c2c8105bbf94f784cd91aee4d320e4",
                 "shasum": ""
             },
             "require": {
@@ -456,7 +456,7 @@
                 "database",
                 "tropotek"
             ],
-            "time": "2017-06-22 03:45:19"
+            "time": "2017-06-28 00:28:49"
         },
         {
             "name": "ttek/tk-domtemplate",
@@ -464,12 +464,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-domtemplate.git",
-                "reference": "ff7243ff8952ad9ea7e0bba1fd4aedd49e21a116"
+                "reference": "fc9b0bc7d4132d32cbaa63b86afb4f12ec69e9cb"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-domtemplate/zipball/ff7243ff8952ad9ea7e0bba1fd4aedd49e21a116",
-                "reference": "ff7243ff8952ad9ea7e0bba1fd4aedd49e21a116",
+                "url": "https://api.github.com/repos/tropotek/tk-domtemplate/zipball/fc9b0bc7d4132d32cbaa63b86afb4f12ec69e9cb",
+                "reference": "fc9b0bc7d4132d32cbaa63b86afb4f12ec69e9cb",
                 "shasum": ""
             },
             "require": {
@@ -504,7 +504,7 @@
                 "dom-template",
                 "tropotek"
             ],
-            "time": "2017-06-19 21:34:05"
+            "time": "2017-06-29 04:17:38"
         },
         {
             "name": "ttek/tk-form",
@@ -512,12 +512,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-form.git",
-                "reference": "7241c21e376b844c010f0af16f835c404e2095f3"
+                "reference": "f97c032759f1f5556390cbe76ecf1a0f063d70d6"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-form/zipball/7241c21e376b844c010f0af16f835c404e2095f3",
-                "reference": "7241c21e376b844c010f0af16f835c404e2095f3",
+                "url": "https://api.github.com/repos/tropotek/tk-form/zipball/f97c032759f1f5556390cbe76ecf1a0f063d70d6",
+                "reference": "f97c032759f1f5556390cbe76ecf1a0f063d70d6",
                 "shasum": ""
             },
             "require": {
@@ -553,7 +553,7 @@
                 "form",
                 "tropotek"
             ],
-            "time": "2017-06-22 22:12:49"
+            "time": "2017-06-27 00:55:31"
         },
         {
             "name": "ttek/tk-framework",
@@ -561,12 +561,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-framework.git",
-                "reference": "4e8fb821b35aabbc91d8842c94b05de25b6e5838"
+                "reference": "bc990e042bef6b95e2062bf7a636e7bddbb04895"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/4e8fb821b35aabbc91d8842c94b05de25b6e5838",
-                "reference": "4e8fb821b35aabbc91d8842c94b05de25b6e5838",
+                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/bc990e042bef6b95e2062bf7a636e7bddbb04895",
+                "reference": "bc990e042bef6b95e2062bf7a636e7bddbb04895",
                 "shasum": ""
             },
             "require": {
@@ -606,7 +606,7 @@
                 "framework",
                 "tropotek"
             ],
-            "time": "2017-06-15 02:00:21"
+            "time": "2017-06-28 21:40:45"
         },
         {
             "name": "ttek/tk-http",
@@ -614,12 +614,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-http.git",
-                "reference": "c0d647d588766f1082fadc9b5efc1bdfc5bb8dc2"
+                "reference": "63568230ede20ce562cf846aba34c3191950e7b1"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-http/zipball/c0d647d588766f1082fadc9b5efc1bdfc5bb8dc2",
-                "reference": "c0d647d588766f1082fadc9b5efc1bdfc5bb8dc2",
+                "url": "https://api.github.com/repos/tropotek/tk-http/zipball/63568230ede20ce562cf846aba34c3191950e7b1",
+                "reference": "63568230ede20ce562cf846aba34c3191950e7b1",
                 "shasum": ""
             },
             "require": {
@@ -656,7 +656,7 @@
                 "http",
                 "tropotek"
             ],
-            "time": "2017-06-20 03:54:33"
+            "time": "2017-06-23 03:35:21"
         },
         {
             "name": "ttek/tk-installers",
@@ -767,12 +767,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-mvc.git",
-                "reference": "94892025d8dc062f007e7d9a84c0306e56dcd09b"
+                "reference": "013cf7309b6c0e5bc485c6fc966c5ddb0bc2efd4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/94892025d8dc062f007e7d9a84c0306e56dcd09b",
-                "reference": "94892025d8dc062f007e7d9a84c0306e56dcd09b",
+                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/013cf7309b6c0e5bc485c6fc966c5ddb0bc2efd4",
+                "reference": "013cf7309b6c0e5bc485c6fc966c5ddb0bc2efd4",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +807,7 @@
                 "mvc",
                 "tropotek"
             ],
-            "time": "2017-05-26 00:36:00"
+            "time": "2017-06-30 01:23:41"
         },
         {
             "name": "ttek/tk-plugin",
@@ -911,12 +911,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-table.git",
-                "reference": "d72866574ce0e01605f89b608424879148b38675"
+                "reference": "df8382b2f6cc8e9a043c629fdd972d0fc4837157"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-table/zipball/d72866574ce0e01605f89b608424879148b38675",
-                "reference": "d72866574ce0e01605f89b608424879148b38675",
+                "url": "https://api.github.com/repos/tropotek/tk-table/zipball/df8382b2f6cc8e9a043c629fdd972d0fc4837157",
+                "reference": "df8382b2f6cc8e9a043c629fdd972d0fc4837157",
                 "shasum": ""
             },
             "require": {
@@ -952,7 +952,55 @@
                 "table",
                 "tropotek"
             ],
-            "time": "2017-06-15 02:02:11"
+            "time": "2017-06-29 04:17:32"
+        },
+        {
+            "name": "ttek/tk-ui",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tropotek/tk-ui.git",
+                "reference": "26da6b2f877bea7d7d1f6198223983140ed4935b"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tropotek/tk-ui/zipball/26da6b2f877bea7d7d1f6198223983140ed4935b",
+                "reference": "26da6b2f877bea7d7d1f6198223983140ed4935b",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.3.0",
+                "ttek/tk-framework": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "2.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Tk\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Mifsud",
+                    "email": "info@tropotek.com.au",
+                    "homepage": "http://www.tropotek.com/"
+                }
+            ],
+            "description": "A bootstrap based UI lib for the Tk-lib framework",
+            "keywords": [
+                "bootstrap",
+                "tropotek",
+                "ui"
+            ],
+            "time": "2017-06-29 04:17:25"
         }
     ],
     "packages-dev": [],

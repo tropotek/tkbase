@@ -23,40 +23,28 @@ class Recover extends Iface
      */
     protected $form = null;
 
-    /**
-     * @var \Tk\Event\Dispatcher
-     */
-    private $dispatcher = null;
-
-    /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('Recover Password');
-        $this->dispatcher = $this->getConfig()->getEventDispatcher();
-    }
 
     /**
      * @param Request $request
-     * @return \App\Page\Iface
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Recover Password');
+        
         $this->form = new Form('loginForm', $request);
 
         $this->form->addField(new Field\Input('account'));
         $this->form->addField(new Event\Button('recover', array($this, 'doRecover')));
 
-        // Find and Fire submit event
         $this->form->execute();
-
-        return $this->show();
+        
     }
 
+    /**
+     * @param Form $form
+     */
     public function doRecover($form)
     {
-        
         if (!$form->getFieldValue('account')) {
             $form->addFieldError('account', 'Please enter a valid username or email');
         }
@@ -90,7 +78,7 @@ class Recover extends Iface
         $event->set('user', $user);
         $event->set('password', $newPass);
         $event->set('templatePath', $this->getTemplatePath());
-        $this->dispatcher->dispatch(AuthEvents::RECOVER, $event);
+        \App\Factory::getEventDispatcher()->dispatch(AuthEvents::RECOVER, $event);
         
         \Tk\Alert::addSuccess('You new access details have been sent to your email address.');
         \Tk\Uri::create()->redirect();
@@ -100,24 +88,13 @@ class Recover extends Iface
 
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
+        
         if ($this->getConfig()->get('site.client.registration')) {
             $template->setChoice('register');
         }
         
-        return $this->getPage()->setPageContent($template);
-    }
-
-
-    /**
-     * DomTemplate magic method
-     *
-     * @return \Dom\Template
-     */
-    public function __makeTemplate()
-    {
-        $tplFile = $this->getTemplatePath().'/xtpl/recover.xtpl';
-        return \Dom\Loader::loadFile($tplFile);
+        return $template;
     }
 
 }

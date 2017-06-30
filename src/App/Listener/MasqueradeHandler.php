@@ -81,17 +81,17 @@ class MasqueradeHandler implements Subscriber
         // If not admin their role must be higher in precedence see \App\Db\User::$roleOrder
 //        $userRoleIdx = array_search($user->role, \App\Db\User::$roleOrder);
 //        $msqRoleIdx = array_search($msqUser->role, \App\Db\User::$roleOrder);
-//        if (!$user->hasRole(\App\Auth\Acl::ROLE_ADMIN) && $userRoleIdx >= $msqRoleIdx) {
+//        if (!$user->isAdmin && $userRoleIdx >= $msqRoleIdx) {
 //            return false;
 //        }
 
         // If not admin their role must be higher in precedence see \App\Db\User::$roleOrder
-        if (!$user->getAcl()->isAdmin()) {
+        if (!$user->isAdmin()) {
             return false;
         }
 
         // If not admins they must be of the same institution
-//        if (!$user->hasRole(\App\Auth\Acl::ROLE_ADMIN) && $user->getInstitution()->id != $msqUser->institutionId) {
+//        if (!$user->isAdmin && $user->getInstitution()->id != $msqUser->institutionId) {
 //            return false;
 //        }
         return true;

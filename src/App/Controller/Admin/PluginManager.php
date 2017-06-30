@@ -30,20 +30,7 @@ class PluginManager extends Iface
      */
     protected $pluginFactory = null;
 
-    /**
-     * @var \Tk\Event\Dispatcher
-     */
-    private $dispatcher = null;
     
-
-    /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('Plugin Manager');
-        $this->dispatcher = $this->getConfig()->getEventDispatcher();
-    }
 
     /**
      *
@@ -52,6 +39,7 @@ class PluginManager extends Iface
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('Plugin Manager');
         $this->pluginFactory = Factory::getInstance($this->getConfig());
 
         if ($request->has('act')) {
@@ -68,7 +56,6 @@ class PluginManager extends Iface
 
         $this->form->execute();
         
-        return $this->show();
     }
 
     /**
@@ -106,7 +93,6 @@ class PluginManager extends Iface
         
         // TODO: check the plugin is a valid Tk plugin, if not remove the archive and files and throw an error
         // Look for a Plugin.php file and Class maybe????
-        
         
 
         \Tk\Alert::addSuccess('Plugin sucessfully uploaded.');
@@ -147,7 +133,7 @@ class PluginManager extends Iface
             \Tk\Uri::create()->reset()->redirect();
             return;
         }
-        $pluginPath = $this->pluginFactory->makePluginPath($pluginName);
+        $pluginPath = $this->pluginFactory->getPluginPath($pluginName);
 
         if (!is_dir($pluginPath)) {
             \Tk\Alert::addWarning('Plugin `' . $pluginName . '` path not found');
@@ -173,11 +159,11 @@ class PluginManager extends Iface
 
 
     /**
-     * @return \App\Page\Iface
+     * @return \Dom\Template
      */
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
 
         // Render the form
         $fren = new \Tk\Form\Renderer\Dom($this->form);
@@ -194,7 +180,7 @@ class PluginManager extends Iface
 
             if ($this->pluginFactory->isActive($pluginName)) {
                 $repeat->setChoice('active');
-                $repeat->setAttr('deact', 'href', \Tk\Url::create()->reset()->set('deact', $pluginName));
+                $repeat->setAttr('deact', 'href', \Tk\Uri::create()->reset()->set('deact', $pluginName));
                 
                 $plugin = $this->pluginFactory->getPlugin($pluginName);
                 if (method_exists($plugin, 'getSettingsUrl')) {
@@ -204,11 +190,11 @@ class PluginManager extends Iface
                 
             } else {
                 $repeat->setChoice('inactive');
-                $repeat->setAttr('act', 'href', \Tk\Url::create()->reset()->set('act', $pluginName));
+                $repeat->setAttr('act', 'href', \Tk\Uri::create()->reset()->set('act', $pluginName));
                 
-                $pluginPath = $this->pluginFactory->makePluginPath($pluginName);
+                $pluginPath = $this->pluginFactory->getPluginPath($pluginName);
                 if ((is_file($pluginPath.'.zip') || is_file($pluginPath.'.tar.gz') || is_file($pluginPath.'.tgz'))) {
-                    $repeat->setAttr('del', 'href', \Tk\Url::create()->reset()->set('del', $pluginName));
+                    $repeat->setAttr('del', 'href', \Tk\Uri::create()->reset()->set('del', $pluginName));
                     $repeat->setChoice('del');
                 }
             }
@@ -257,7 +243,7 @@ jQuery(function ($) {
 JS;
         $template->appendJs($js);
 
-        return $this->getPage()->setPageContent($template);
+        return $template;
     }
 
     /**

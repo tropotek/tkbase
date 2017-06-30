@@ -15,35 +15,23 @@ class Index extends Iface
 {
 
     /**
-     *
-     */
-    public function __construct()
-    {
-        parent::__construct('My Account');
-    }
-
-    /**
      * @param Request $request
-     * @return \App\Page\Iface
      */
     public function doDefault(Request $request)
     {
+        $this->setPageTitle('My Account');
         // TODO:
-
-        return $this->show();
+        
+        
     }
-
-
 
     public function show()
     {
-        $template = $this->getTemplate();
+        $template = parent::show();
         
         $template->insertText('name', $this->getUser()->name);
         
-        
-        
-        return $this->getPage()->setPageContent($template);
+        return $template;
     }
 
 
