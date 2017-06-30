@@ -38,7 +38,7 @@ $routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller
 $routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault', $params));
 
 // Admin Pages
-$params = array('access' => \App\Db\User::ROLE_ADMIN);
+$params = array('role' => \App\Db\User::ROLE_ADMIN);
 $routes->add('admin-home', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Index::doDefault', $params));
 $routes->add('admin-home-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Index::doDefault', $params));
 
@@ -56,7 +56,7 @@ $routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\
 
 
 // User Pages
-$params = array('access' => \App\Db\User::ROLE_USER);
+$params = array('role' => \App\Db\User::ROLE_USER);
 $routes->add('user-home', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Index::doDefault', $params));
 $routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Index::doDefault', $params));
 

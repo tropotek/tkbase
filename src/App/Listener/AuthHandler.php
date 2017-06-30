@@ -50,7 +50,7 @@ class AuthHandler implements Subscriber
             $user = $config->getUser();
             
             // Get page access permission from route params (see config/routes.php)
-            $role = $event->getRequest()->getAttribute('access');
+            $role = $event->getRequest()->getAttribute('role');
             // Check the user has access to the controller in question
             if (!$role || empty($role)) return;
             // Check the user has access to the controller in question

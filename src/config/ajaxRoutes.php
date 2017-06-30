@@ -21,7 +21,7 @@ $config = \Tk\Config::getInstance();
 $routes = $config->getSiteRoutes();
 
 
-$params = array('access' => \App\Db\User::ROLE_USER);
+$params = array('role' => \App\Db\User::ROLE_USER);
 
 $routes->add('ajax-test-one', new \Tk\Routing\Route('/api/1.0/testOne', 'App\Ajax\Test::doTestOne', $params, array('GET')));
 $routes->add('ajax-test-two', new \Tk\Routing\Route('/api/1.0/testTwo', 'App\Ajax\Test::doTestTwo', $params, array('POST')));

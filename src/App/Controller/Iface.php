@@ -16,7 +16,7 @@ abstract class Iface extends \Tk\Controller\Iface
      */
     public function getPage()
     {
-        $pageAccess = $this->getConfig()->getRequest()->getAttribute('access');
+        $pageAccess = $this->getConfig()->getRequest()->getAttribute('role');
         if (!$this->page) {
             switch($pageAccess) {
                 case \App\Db\User::ROLE_ADMIN:
