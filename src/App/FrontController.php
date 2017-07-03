@@ -5,8 +5,6 @@ use Tk\Event\Dispatcher;
 use Tk\Controller\Resolver;
 
 /**
- * Class FrontController
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2016 Michael Mifsud
@@ -42,7 +40,6 @@ class FrontController extends \Tk\Kernel\HttpKernel
         // Initiate the email gateway
         \App\Factory::getEmailGateway();
         
-        
         $this->init();
     }
 
@@ -68,6 +65,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $sh = new \Tk\Listener\ShutdownHandler($logger, $this->getConfig()->getScriptTime());
         $sh->setPageBytes(\App\Factory::getDomFilterPageBytes());
         $this->getDispatcher()->addSubscriber($sh);
+
 
         // App Listeners
         $this->getDispatcher()->addSubscriber(new \App\Listener\AjaxAuthHandler());

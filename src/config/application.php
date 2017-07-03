@@ -10,7 +10,6 @@
 $config = \Tk\Config::getInstance();
 
 include_once(__DIR__ . '/session.php');
-include_once(__DIR__ . '/routes.php');
 
 
 /**************************************
@@ -73,6 +72,15 @@ $config['system.auth.adapters'] = array(
 //$config['system.auth.password'] = 'password';
 
 
+
+
+
+// ------------------------------------------------------------
+
+// Include any overriding config options
+include_once(__DIR__ . '/config.php');
+
+// ------------------------------------------------------------
 
 
 
