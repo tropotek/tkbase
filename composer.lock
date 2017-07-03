@@ -4,7 +4,6 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "9740de881a9a654e29523ef0d3f6c56a",
     "content-hash": "ec45b8bd844be63e98f7c81ab375d9c3",
     "packages": [
         {
@@ -218,7 +217,7 @@
                 }
             ],
             "description": "PHPMailer is a full-featured email creation and transfer class for PHP",
-            "time": "2017-03-15 19:32:56"
+            "time": "2017-03-15T19:32:56+00:00"
         },
         {
             "name": "psr/cache",
@@ -767,12 +766,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-mvc.git",
-                "reference": "013cf7309b6c0e5bc485c6fc966c5ddb0bc2efd4"
+                "reference": "0a7b3f43eb72cd71b94f7f248ecceed5c139c35d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/013cf7309b6c0e5bc485c6fc966c5ddb0bc2efd4",
-                "reference": "013cf7309b6c0e5bc485c6fc966c5ddb0bc2efd4",
+                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/0a7b3f43eb72cd71b94f7f248ecceed5c139c35d",
+                "reference": "0a7b3f43eb72cd71b94f7f248ecceed5c139c35d",
                 "shasum": ""
             },
             "require": {
@@ -807,7 +806,7 @@
                 "mvc",
                 "tropotek"
             ],
-            "time": "2017-06-30 01:23:41"
+            "time": "2017-06-30 02:53:50"
         },
         {
             "name": "ttek/tk-plugin",
