@@ -164,7 +164,7 @@
 
   <script src="/vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput.js"></script>
 <!--<script src="js/form/fileinput/jquery.fileinput.js"></script>-->
-<script src="js/form/dualListBox/dual-list-box.js"></script>
+<script src="/vendor/ttek/tk-form/js/dualListBox/jquery.dualListBox.js"></script>
 
 <script src="js/custom.js"></script>
 <script src="js/template.js"></script>
