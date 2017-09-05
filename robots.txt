@@ -1,4 +1,6 @@
-User-agent: * 
+# www.robotstxt.org/
+
+User-agent: *
 Disallow: /lib/
 Disallow: /html/
 Disallow: /data/

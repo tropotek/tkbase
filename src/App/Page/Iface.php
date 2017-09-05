@@ -31,6 +31,11 @@ abstract class Iface extends \Tk\Controller\Page
     {
         $template = parent::show();
 
+        if (\Tk\AlertCollection::hasMessages()) {
+            $template->insertTemplate('alerts', \Tk\AlertCollection::getInstance()->show());
+            $template->setChoice('alerts');
+        }
+
         if ($this->controller->getUser()) {
             $template->setChoice('logout');
         } else {
