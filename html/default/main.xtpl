@@ -7,7 +7,7 @@
   <meta name="description" content=""/>
   <meta name="author" content=""/>
 
-  <title>SB Admin 2 - Bootstrap Admin Theme</title>
+  <title></title>
 
   <!-- Bootstrap Core CSS -->
   <link href="less/main.less" rel="stylesheet"/>
@@ -52,7 +52,7 @@
         <span class="icon-bar"></span>
         <span class="icon-bar"></span>
       </button>
-      <a class="navbar-brand" href="/admin/index.html">TkLib v2.0 Template</a>
+      <a class="navbar-brand" href="/admin/index.html">Tk2Base Admin Template</a>
     </div>
     <!-- /.navbar-header -->
 

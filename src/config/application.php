@@ -16,7 +16,7 @@ include_once(__DIR__ . '/session.php');
  * Default app config values
  **************************************/
 
-$config['site.title'] = 'Untitled Site';
+$config['site.title'] = 'Tk2Base Template';
 $config['site.email'] = 'user@example.com';
 
 //$config['site.client.registration'] = false;

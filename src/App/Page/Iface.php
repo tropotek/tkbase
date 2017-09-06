@@ -27,15 +27,17 @@ abstract class Iface extends \Tk\Controller\Page
      * @return \Dom\Template
      * @throws \Dom\Exception
      */
-    protected function initPage()
+    public function show()
     {
         $template = parent::show();
 
         if ($this->controller->getUser()) {
             $template->setChoice('logout');
+            $template->setAttr('homeUrl', 'href', $this->controller->getUser()->getHomeUrl());
         } else {
             $template->setChoice('login');
         }
+        
         if ($this->getConfig()->isDebug()) {
             $template->setChoice('debug');
         }

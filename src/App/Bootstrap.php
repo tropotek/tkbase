@@ -52,53 +52,51 @@ class Bootstrap
         
         // Do not call \Tk\Config::getInstance() before this point
         $config = Factory::getConfig();
-
-
-        if ($config->has('date.timezone'))
-            ini_set('date.timezone', $config->get('date.timezone'));
+        
+//        if ($config->has('date.timezone'))
+//            ini_set('date.timezone', $config->get('date.timezone'));
 
         \Tk\Uri::$BASE_URL_PATH = $config->getSiteUrl();
         if ($config->isDebug()) {
             \Dom\Template::$enableTracer = true;
         }
-        /**
-         * This makes our life easier when dealing with paths. Everything is relative
-         * to the application root now.
-         */
-        chdir($config->getSitePath());
         
         // This maybe should be created in a Factory or DI Container....
-        $config['log'] = new NullLogger();
-        if (is_readable($config['system.log.path'])) {
-            ini_set('error_log', $config['system.log.path']);
-            $logger = new Logger('system');
-            $handler = new StreamHandler($config['system.log.path'], $config['system.log.level']);
-            $formatter = new \Tk\Log\MonologLineFormatter();
-            $formatter->setScriptTime($config->getScriptTime());
-            $handler->setFormatter($formatter);
-            $logger->pushHandler($handler);
-            $config->setLog($logger);
+        if (is_readable($config->getLogPath())) {
+            if (!\App\Factory::getRequest()->has('nolog')) {
+                $logger = new Logger('system');
+                $handler = new StreamHandler($config->getLogPath(), $config->getLogLevel());
+                $formatter = new \Tk\Log\MonologLineFormatter();
+                $formatter->setScriptTime($config->getScriptTime());
+                $handler->setFormatter($formatter);
+                $logger->pushHandler($handler);
+                $config->setLog($logger);
+                \Tk\Log::getInstance($logger);
+            }
+        }
+
+        if (!$config->isDebug()) {
+            ini_set('display_errors', 'Off');
+            error_reporting(0);
         }
 
         // * Logger [use error_log()]
         \Tk\ErrorHandler::getInstance($config->getLog());
-        
-        // Return if using cli (Command Line)
-        if ($config->isCli()) {
-            return $config;
-        }
 
+        // Initiate the default database connection
+        \App\Factory::getDb();
+        // Import config settings from DB
+        $config->replace(\Tk\Db\Data::create()->all());
+    
+        // Return if using cli (Command Line)
+        if ($config->isCli()) return $config;
+
+        
+        
         // --- HTTP only bootstrapping from here ---
 
         // Include all URL routes
         include($config->getSrcPath() . '/config/routes.php');
-
-        ini_set('display_errors', 'Off');
-        if ($config->isDebug()) {
-            error_reporting(-1);
-        } else {
-            error_reporting(0);
-        }
         
         // * Request
         Factory::getRequest();
@@ -106,12 +104,6 @@ class Bootstrap
         Factory::getCookie();
         // * Session    
         Factory::getSession();
-
-
-        // Initiate the default database connection
-        \App\Factory::getDb();
-        // Import config settings from DB
-        $config->replace(\Tk\Db\Data::create()->all());
         
         return $config;
     }

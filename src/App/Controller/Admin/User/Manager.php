@@ -123,7 +123,7 @@ class ActionsCell extends \Tk\Table\Cell\Iface
 
         $html = <<<HTML
 <span>
-  <a href="$url" class="btn btn-xs btn-default" title="Masquerade As `$name`" $disable><i class="glyphicon glyphicon-sunglasses"></i></a>
+  <a href="$url" class="btn btn-xs btn-default" title="Masquerade As `$name`" $disable><i class="fa fa-user-secret"></i></a>
 </span>
 HTML;
 
