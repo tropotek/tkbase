@@ -19,10 +19,7 @@
     "autoload":  {
         "psr-0":  {
             "": "src/"
-        },
-        "files":  [
-            "src/App/Bootstrap.php"
-        ]
+        }
     },
     "scripts":  {
         "post-install-cmd":  [
@@ -51,8 +48,7 @@
         "ttek/tk-form": "~2.0",
         "ttek/tk-table": "~2.0",
         "ttek/tk-plugin": "~2.0",
-        "ttek/tk-ui": "~2.0",
-        "monolog/monolog": "^1.13@dev"
+        "ttek/tk-ui": "~2.0"
     },
     "require-dev":  {
     }
