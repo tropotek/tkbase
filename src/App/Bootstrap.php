@@ -63,16 +63,16 @@ class Bootstrap
         
         // This maybe should be created in a Factory or DI Container....
         if (is_readable($config->getLogPath())) {
-            if (!\App\Factory::getRequest()->has('nolog')) {
-                $logger = new Logger('system');
-                $handler = new StreamHandler($config->getLogPath(), $config->getLogLevel());
-                $formatter = new \Tk\Log\MonologLineFormatter();
-                $formatter->setScriptTime($config->getScriptTime());
-                $handler->setFormatter($formatter);
-                $logger->pushHandler($handler);
-                $config->setLog($logger);
-                \Tk\Log::getInstance($logger);
-            }
+            $logger = new Logger('system');
+            $handler = new StreamHandler($config->getLogPath(), $config->getLogLevel());
+            $formatter = new \Tk\Log\MonologLineFormatter();
+            $formatter->setScriptTime($config->getScriptTime());
+            $handler->setFormatter($formatter);
+            $logger->pushHandler($handler);
+            $config->setLog($logger);
+            \Tk\Log::getInstance($logger);
+        } else {
+            error_log('Log Path not readable: "' . $config->getLogPath() . '" ');
         }
 
         if (!$config->isDebug()) {

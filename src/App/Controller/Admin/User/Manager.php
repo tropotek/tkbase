@@ -4,7 +4,7 @@ namespace App\Controller\Admin\User;
 use Tk\Request;
 use Dom\Template;
 use Tk\Form\Field;
-use App\Controller\Iface;
+use App\Controller\AdminIface;
 
 /**
  *
@@ -13,7 +13,7 @@ use App\Controller\Iface;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Manager extends Iface
+class Manager extends AdminIface
 {
 
     /**

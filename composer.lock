@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "ec45b8bd844be63e98f7c81ab375d9c3",
+    "content-hash": "bc9327f87b054b583f02a36ff826a073",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -755,12 +755,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-mvc.git",
-                "reference": "e699c6487219d14f424ce30631b911a143613c70"
+                "reference": "03f62240f4e67f6f8d4e251c49ea90e80c2deac2"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/e699c6487219d14f424ce30631b911a143613c70",
-                "reference": "e699c6487219d14f424ce30631b911a143613c70",
+                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/03f62240f4e67f6f8d4e251c49ea90e80c2deac2",
+                "reference": "03f62240f4e67f6f8d4e251c49ea90e80c2deac2",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +795,7 @@
                 "mvc",
                 "tropotek"
             ],
-            "time": "2017-11-23T01:44:59+00:00"
+            "time": "2017-11-20T01:39:14+00:00"
         },
         {
             "name": "ttek/tk-plugin",
@@ -994,9 +994,7 @@
     "packages-dev": [],
     "aliases": [],
     "minimum-stability": "dev",
-    "stability-flags": {
-        "monolog/monolog": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

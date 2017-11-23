@@ -3,7 +3,7 @@ namespace App\Controller\Admin\Dev;
 
 use Tk\Request;
 use Dom\Template;
-use \App\Controller\Iface;
+use \App\Controller\AdminIface;
 
 /**
  *
@@ -12,7 +12,7 @@ use \App\Controller\Iface;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Events extends Iface
+class Events extends AdminIface
 {
 
     /**
@@ -31,7 +31,7 @@ class Events extends Iface
         $this->setPageTitle('Available Events');
         
         $this->table = new \Tk\Table('EventList');
-        $this->table->setParam('renderer', \Tk\Table\Renderer\Dom\Table::create($this->table));
+        $this->table->setRenderer(\Tk\Table\Renderer\Dom\Table::create($this->table));
 
         $this->table->addCell(new \Tk\Table\Cell\Text('name'));
         $this->table->addCell(new \Tk\Table\Cell\Text('value'));
@@ -66,13 +66,13 @@ class Events extends Iface
     }
 
     /**
-     * @return \App\Page\Iface
+     * @return \Dom\Template
      */
     public function show()
     {
         $template = parent::show();
 
-        $template->replaceTemplate('table', $this->table->getParam('renderer')->show());
+        $template->replaceTemplate('table', $this->table->getRenderer()->show());
 
         return $template;
     }

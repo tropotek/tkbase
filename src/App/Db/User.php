@@ -112,10 +112,10 @@ class User extends Model implements \Tk\ValidInterface
     public function getHomeUrl()
     {
         if ($this->isAdmin())
-            return '/admin/index.html';
+            return \Tk\Uri::create('/admin/index.html');
         if ($this->isUser())
-            return '/user/index.html';
-        return '/index.html';
+            return \Tk\Uri::create('/user/index.html');
+        return \Tk\Uri::create('/index.html');
     }
     
     /**

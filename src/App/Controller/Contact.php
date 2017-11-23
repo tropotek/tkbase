@@ -45,7 +45,7 @@ class Contact extends Iface
         $this->form->addField(new Field\File('attach', '/contact/' . date('d-m-Y') . '-___'));
         $this->form->addField(new Field\Textarea('message'));
         
-        $this->form->addField(new Event\Button('send', array($this, 'doSubmit')));
+        $this->form->addField(new Event\Submit('send', array($this, 'doSubmit')));
         
         $this->form->execute();
 

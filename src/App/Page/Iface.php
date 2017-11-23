@@ -26,17 +26,14 @@ abstract class Iface extends \Tk\Controller\Page
             $template->insertTemplate('alerts', \Tk\AlertCollection::getInstance()->show());
             $template->setChoice('alerts');
         }
-
-        if ($this->controller->getUser()) {
+        $user = $this->getUser();
+        if ($user) {
             $template->setChoice('logout');
-            $template->setAttr('homeUrl', 'href', $this->controller->getUser()->getHomeUrl());
+            $template->setAttr('homeUrl', 'href', $user->getHomeUrl());
         } else {
             $template->setChoice('login');
         }
-        
-        if ($this->getConfig()->isDebug()) {
-            $template->setChoice('debug');
-        }
+
 
         return $template;
     }

@@ -29,9 +29,25 @@ class AuthHandler implements Subscriber
         // Only the identity details should be in the auth session not the full user object, to save space and be secure.
         $config = \App\Factory::getConfig();
         $auth = \App\Factory::getAuth();
-        if ($auth->getIdentity()) {     // Check if user is logged in
+        $user = null;                       // public user
+        if ($auth->getIdentity()) {         // Check if user is logged in
             $user = \App\Db\UserMap::create()->findByUsername($auth->getIdentity());
             $config->setUser($user);
+        }
+
+        // Get page access permission from route params (see config/routes.php)
+        $role = $event->getRequest()->getAttribute('role');
+
+        // no role means page is publicly accessible
+        if (!$role || empty($role)) return;
+        if ($user) {
+            if (!$user->hasRole($role)) {
+                // Could redirect to a authentication error page.
+                \Tk\Alert::addWarning('You do not have access to the requested page.');
+                $user->getHomeUrl()->redirect();
+            }
+        } else {
+            \Tk\Uri::create('/login.html')->redirect();
         }
     }
 
@@ -45,23 +61,27 @@ class AuthHandler implements Subscriber
         /** @var \App\Controller\Iface $controller */
         $controller = $event->getController();
 
-        if ($controller instanceof \App\Controller\Iface) {
-            $config = \App\Factory::getConfig();
-            $user = $config->getUser();
-            
-            // Get page access permission from route params (see config/routes.php)
-            $role = $event->getRequest()->getAttribute('role');
-            // Check the user has access to the controller in question
-            if (!$role || empty($role)) return;
-            // Check the user has access to the controller in question
-            if (empty($role)) return;
-            if (!$user) \Tk\Uri::create('/login.html')->redirect();
-            if (!$user->hasRole($role)) {
-                // Could redirect to a authentication error page.
-                \Tk\Alert::addWarning('You do not have access to the requested page.');
-                \Tk\Uri::create($user->getHomeUrl())->redirect();
-            }
-        }
+//        if ($controller instanceof \App\Controller\Iface) {
+//            $config = \App\Factory::getConfig();
+//            /** @var \App\Db\User $user */
+//            $user = $config->getUser();
+//
+//            // Get page access permission from route params (see config/routes.php)
+//            $role = $event->getRequest()->getAttribute('role');
+//
+//            vd($role, $user->hasRole($role));
+//            // Check the user has access to the controller in question
+//            if (!$role || empty($role)) return;
+//            // Check the user has access to the controller in question
+//            if (empty($role)) return;
+//            if (!$user) \Tk\Uri::create('/login.html')->redirect();
+//            if ($user && !$user->hasRole($role)) {
+//                vd($user, $role, $user->hasRole($role));
+//                // Could redirect to a authentication error page.
+//                \Tk\Alert::addWarning('You do not have access to the requested page.');
+//                $user->getHomeUrl()->redirect();
+//            }
+//        }
     }
 
 

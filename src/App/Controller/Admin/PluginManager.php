@@ -3,7 +3,7 @@ namespace App\Controller\Admin;
 
 use Tk\Request;
 use Dom\Template;
-use App\Controller\Iface;
+use App\Controller\AdminIface;
 use Tk\Plugin\Factory;
 use Tk\Form;
 use Tk\Form\Field;
@@ -16,10 +16,8 @@ use Tk\Form\Event;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class PluginManager extends Iface
+class PluginManager extends AdminIface
 {
-
-
     /**
      * @var Form
      */
@@ -30,7 +28,6 @@ class PluginManager extends Iface
      */
     protected $pluginFactory = null;
 
-    
 
     /**
      *
@@ -52,7 +49,7 @@ class PluginManager extends Iface
 
         $this->form = new Form('formEdit');
         $this->form->addField(new Field\File('package', '', $this->getConfig()->getPluginPath()))->setRequired(true)->setAttr('accept', 'zip,tgz,gz')->addCss('tk-fileinput');
-        $this->form->addField(new Event\Button('upload', array($this, 'doUpload')))->addCss('btn-primary');
+        $this->form->addField(new Event\Submit('upload', array($this, 'doUpload')))->addCss('btn-primary');
 
         $this->form->execute();
         
@@ -93,9 +90,8 @@ class PluginManager extends Iface
         
         // TODO: check the plugin is a valid Tk plugin, if not remove the archive and files and throw an error
         // Look for a Plugin.php file and Class maybe????
-        
 
-        \Tk\Alert::addSuccess('Plugin sucessfully uploaded.');
+        \Tk\Alert::addSuccess('Plugin successfully uploaded.');
         \Tk\Uri::create()->reset()->redirect();
     }
 
@@ -167,7 +163,7 @@ class PluginManager extends Iface
 
         // Render the form
         $fren = new \Tk\Form\Renderer\Dom($this->form);
-        $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
+        $template->insertTemplate($this->form->getId(), $fren->show());
 
         $list = $this->pluginFactory->getAvailablePlugins();
         foreach ($list as $pluginName) {
@@ -254,6 +250,8 @@ JS;
     public function __makeTemplate()
     {
         $xhtml = <<<HTML
+<div class="">
+
 <div class="row">
   <div class="col-md-8 col-sm-12">
     <div class="panel panel-default">
@@ -266,14 +264,14 @@ JS;
           <li class="list-group-item" repeat="row">
             <div class="row">
               <div class="col-xs-2 col-md-1">
-                <img class="media-object" src="#" var="icon" style="width: 100%; " choice="icon"/>
+                <img class="media-object" src="#" var="icon" style="width: 100%; " choice="icon" />
               </div>
               <div class="col-xs-10 col-md-11">
                 <div>
                   <h4><a href="#" var="title"></a></h4>
                   <p choice="info">
-                    <span><strong>Name:</strong> <span var="name"></span></span> <br/>
-                    <span><strong>Package:</strong> <span var="package"></span></span> <br/>
+                    <span><strong>Name:</strong> <span var="name"></span></span> <br />
+                    <span><strong>Package:</strong> <span var="package"></span></span> <br />
                     <span choice="version"><strong>Version:</strong> <span var="version"></span></span> <br choice="version" />
                     <span choice="author"><strong>Author:</strong> <span var="author"></span></span> <br />
                     <span choice="www"><strong>Homepage:</strong> <a href="#" var="www" target="_blank">View Website</a></span>
@@ -309,6 +307,8 @@ JS;
       </div>
     </div>
   </div>
+</div>
+
 
 </div>
 HTML;
