@@ -21,9 +21,9 @@
 
 $config = \Tk\Config::getInstance();
 $routes = new \Tk\Routing\RouteCollection();
-$config->setSiteRoutes($routes);
-
+$config['site.routes'] = $routes;
 include dirname(__FILE__) . '/ajaxRoutes.php';
+
 
 // Default Home catchall
 $params = array();
@@ -52,8 +52,6 @@ $routes->add('admin-plugin-manager', new \Tk\Routing\Route('/admin/plugins.html'
 
 // Dev pages
 $routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\Controller\Admin\Dev\Events::doDefault', $params));
-
-
 
 // User Pages
 $params = array('role' => \App\Db\User::ROLE_USER);

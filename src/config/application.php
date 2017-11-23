@@ -78,7 +78,7 @@ $config['system.auth.adapters'] = array(
 // ------------------------------------------------------------
 
 // Include any overriding config options
-include_once(__DIR__ . '/config.php');
+include_once(dirname(__FILE__) . '/config.php');
 
 // ------------------------------------------------------------
 

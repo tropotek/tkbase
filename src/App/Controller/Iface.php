@@ -16,16 +16,19 @@ abstract class Iface extends \Tk\Controller\Iface
      */
     public function getPage()
     {
-        $pageAccess = $this->getConfig()->getRequest()->getAttribute('role');
+        $role = $this->getConfig()->getRequest()->getAttribute('role');
+        if (is_array($role)) $role = current($role);
+
         if (!$this->page) {
-            switch($pageAccess) {
+            switch($role) {
                 case \App\Db\User::ROLE_ADMIN:
-                    $this->page = new \App\Page\AdminPage($this);
+                    $this->page = new \App\Page\AdminPage();
                     break;
                 default:
-                    $this->page = new \App\Page\PublicPage($this);
+                    $this->page = new \App\Page\PublicPage();
                     break;
             }
+            $this->page->setController($this);
         }
         return $this->page;
     }

@@ -59,7 +59,7 @@ class Register extends Iface
         $this->form->addField(new Field\Input('username'));
         $this->form->addField(new Field\Password('password'));
         $this->form->addField(new Field\Password('passwordConf'));
-        $this->form->addField(new Event\Button('login', array($this, 'doRegister')));
+        $this->form->addField(new Event\Submit('login', array($this, 'doRegister')));
 
         $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
         $this->form->execute();
@@ -152,7 +152,9 @@ class Register extends Iface
         
     }
 
-
+    /**
+     * @return \Dom\Template
+     */
     public function show()
     {
         $template = parent::show();
@@ -165,7 +167,7 @@ class Register extends Iface
 
             // Render the form
             $fren = new \Tk\Form\Renderer\Dom($this->form);
-            $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
+            $template->insertTemplate($this->form->getId(), $fren->show());
         }
         
         return $template;

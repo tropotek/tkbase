@@ -6,7 +6,7 @@ use Dom\Template;
 use Tk\Form;
 use Tk\Form\Field;
 use Tk\Form\Event;
-use App\Controller\Iface;
+use App\Controller\AdminIface;
 
 /**
  *
@@ -15,7 +15,7 @@ use App\Controller\Iface;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Edit extends Iface
+class Edit extends AdminIface
 {
 
     /**
@@ -79,8 +79,8 @@ class Edit extends Iface
             $f->setRequired(true);
 
 
-        $this->form->addField(new Event\Button('update', array($this, 'doSubmit')));
-        $this->form->addField(new Event\Button('save', array($this, 'doSubmit')));
+        $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));
+        $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
         $this->form->addField(new Event\Link('cancel', \Tk\Uri::create('/admin/userManager.html')));
 
         $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
@@ -147,7 +147,7 @@ class Edit extends Iface
         
         // Render the form
         $fren = new \Tk\Form\Renderer\Dom($this->form);
-        $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
+        $template->insertTemplate($this->form->getId(), $fren->show());
         
         if ($this->user->id)
             $template->insertText('username', $this->user->name . ' - [UID ' . $this->user->id . ']');

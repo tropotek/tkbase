@@ -44,7 +44,7 @@ class Login extends Iface
 
         $this->form->addField(new Field\Input('username'));
         $this->form->addField(new Field\Password('password'));
-        $this->form->addField(new Event\Button('login', array($this, 'doLogin')));
+        $this->form->addField(new Event\Submit('login', array($this, 'doLogin')));
         $this->form->addField(new Event\Link('forgotPassword', \Tk\Uri::create('/recover.html')));
         
         $this->form->execute();
@@ -99,7 +99,7 @@ class Login extends Iface
     /**
      * show()
      *
-     * @return \App\Page\Iface
+     * @return \Dom\Template
      */
     public function show()
     {
@@ -107,7 +107,7 @@ class Login extends Iface
 
         // Render the form
         $fren = new \Tk\Form\Renderer\Dom($this->form);
-        $template->insertTemplate($this->form->getId(), $fren->show()->getTemplate());
+        $template->insertTemplate($this->form->getId(), $fren->show());
 
         if ($this->getConfig()->get('site.client.registration')) {
             $template->setChoice('register');
