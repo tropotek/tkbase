@@ -6,7 +6,6 @@
  */
 $config = \Tk\Config::getInstance();
 
-
 // Database access
 $config['db.type'] = 'mysql';
 $config['db.host'] = 'localhost';

@@ -10,16 +10,7 @@ namespace App\Page;
  */
 abstract class Iface extends \Tk\Controller\Page
 {
-    
-    /**
-     * Iface constructor.
-     *
-     * @param \App\Controller\Iface $controller
-     */
-    public function __construct(\App\Controller\Iface $controller)
-    {
-        parent::__construct($controller);
-    }
+
 
     /**
      * Set the page heading, should be set from main controller
@@ -57,6 +48,7 @@ abstract class Iface extends \Tk\Controller\Page
      */
     public function getUser()
     {
+        vd($this->getConfig());
         return $this->getConfig()->getUser();
     }
 
