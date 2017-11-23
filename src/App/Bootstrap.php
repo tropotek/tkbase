@@ -78,8 +78,6 @@ class Bootstrap
         if (!$config->isDebug()) {
             ini_set('display_errors', 'Off');
             error_reporting(0);
-        } else {
-            \Dom\Template::$enableTracer = true;
         }
 
         // * Logger [use error_log()]
