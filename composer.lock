@@ -755,12 +755,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-mvc.git",
-                "reference": "03f62240f4e67f6f8d4e251c49ea90e80c2deac2"
+                "reference": "e699c6487219d14f424ce30631b911a143613c70"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/03f62240f4e67f6f8d4e251c49ea90e80c2deac2",
-                "reference": "03f62240f4e67f6f8d4e251c49ea90e80c2deac2",
+                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/e699c6487219d14f424ce30631b911a143613c70",
+                "reference": "e699c6487219d14f424ce30631b911a143613c70",
                 "shasum": ""
             },
             "require": {
@@ -795,7 +795,7 @@
                 "mvc",
                 "tropotek"
             ],
-            "time": "2017-11-20T01:39:14+00:00"
+            "time": "2017-11-23T01:44:59+00:00"
         },
         {
             "name": "ttek/tk-plugin",
