@@ -45,6 +45,7 @@ abstract class Iface extends \Tk\Controller\Page
      */
     public function getUser()
     {
+        vd($this->getConfig());
         return $this->getConfig()->getUser();
     }
 
