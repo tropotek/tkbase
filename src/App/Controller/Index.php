@@ -11,10 +11,9 @@ use Tk\Request;
 class Index extends Iface
 {
 
-    
+
     /**
      * @param Request $request
-     * @return \App\Page\Iface
      */
     public function doDefault(Request $request)
     {

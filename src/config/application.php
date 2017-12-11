@@ -31,7 +31,7 @@ $config['template.admin'] = $config['system.template.path'].'/default/main.xtpl'
 $config['template.public'] = $config['system.template.path'].'/purpose/main.xtpl';
 
 // Path for renderer custom templates
-$config['template.xtpl.path'] = $config['template.admin.path'] . '/xtpl';
+$config['template.xtpl.path'] = $config['system.template.path'] . '/xtpl';
 
 
 /**
