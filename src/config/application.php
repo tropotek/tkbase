@@ -25,9 +25,14 @@ $config['site.email'] = 'user@example.com';
 /*
  * Template folders for pages
  */
-$config['template.admin.path'] = $config['system.template.path'] . '/default';
-$config['template.public.path'] = $config['system.template.path'] . '/purpose';
-$config['template.xtpl.path'] = $config['system.template.path'] . '/xtpl';
+$config['system.template.path'] = '/html';
+
+$config['template.admin'] = $config['system.template.path'].'/default/main.xtpl';
+$config['template.public'] = $config['system.template.path'].'/purpose/main.xtpl';
+
+// Path for renderer custom templates
+$config['template.xtpl.path'] = $config['template.admin.path'] . '/xtpl';
+
 
 /**
  * Set the system timezone

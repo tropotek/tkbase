@@ -13,10 +13,11 @@ class PublicPage extends Iface
      * DomTemplate magic method
      *
      * @return \Dom\Template
+     * @throws \Dom\Exception
      */
     public function __makeTemplate()
     {
-        $tplFile =  $this->getConfig()->getSitePath() . $this->getConfig()->get('template.public.path') . '/main.xtpl';
+        $tplFile =  $this->getConfig()->getSitePath() . $this->getConfig()->get('template.public');
         return \Dom\Loader::loadFile($tplFile);
     }
 
