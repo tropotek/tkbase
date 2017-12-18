@@ -28,9 +28,6 @@ class FrontController extends \Tk\Kernel\HttpKernel
     {
         parent::__construct($dispatcher, $resolver);
 
-        // initalise Dom Loader
-        \App\Factory::getDomLoader();
-
         // Init the plugins
         \App\Factory::getPluginFactory();
 
