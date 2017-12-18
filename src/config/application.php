@@ -27,11 +27,17 @@ $config['site.email'] = 'user@example.com';
  */
 $config['system.template.path'] = '/html';
 
-$config['template.admin'] = $config['system.template.path'].'/default/main.xtpl';
-$config['template.public'] = $config['system.template.path'].'/purpose/main.xtpl';
+$config['template.admin'] = $config['system.template.path'].'/default/admin.html';
+$config['template.public'] = $config['system.template.path'].'/purpose/public.html';
 
-// Path for renderer custom templates
+/*
+ * This path is where designers can place templates that override the system default templates.
+ * Relative Path for renderer custom templates, this will reside in the above user template folders
+ * EG: $path = dirname($config['template.admin']) . $config['template.xtpl.path'];
+ * @var {templatePath} will be replaced by the path of the current user page template
+ */
 $config['template.xtpl.path'] = $config['system.template.path'] . '/xtpl';
+$config['template.xtpl.ext'] = '.xtpl';
 
 
 /**

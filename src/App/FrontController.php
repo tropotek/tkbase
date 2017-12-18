@@ -27,9 +27,6 @@ class FrontController extends \Tk\Kernel\HttpKernel
     public function __construct(Dispatcher $dispatcher, Resolver $resolver, $config)
     {
         parent::__construct($dispatcher, $resolver);
-        
-        // Init the plugins
-        Factory::getEventDispatcher();
 
         // initalise Dom Loader
         \App\Factory::getDomLoader();
@@ -66,12 +63,12 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $sh->setPageBytes(\App\Factory::getDomFilterPageBytes());
         $this->getDispatcher()->addSubscriber($sh);
 
-
         // App Listeners
         $this->getDispatcher()->addSubscriber(new \App\Listener\AjaxAuthHandler());
         $this->getDispatcher()->addSubscriber(new \App\Listener\AuthHandler());
         $this->getDispatcher()->addSubscriber(new \App\Listener\MasqueradeHandler());
         $this->getDispatcher()->addSubscriber(new \App\Listener\ActionPanelHandler());
+        $this->getDispatcher()->addSubscriber(new \App\Listener\PageTemplateHandler());
 
     }
     

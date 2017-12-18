@@ -178,16 +178,21 @@ class Factory
 
     /**
      * getDomLoader
-     * 
+     *
      * @return \Dom\Loader
      */
-    static public function getDomLoader()
-    {   
+    public static function getDomLoader()
+    {
         if (!self::getConfig()->getDomLoader()) {
             $dl = \Dom\Loader::getInstance()->setParams(self::getConfig()->all());
             $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
-            if (self::getConfig()->getTemplatePath()) {
-                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath(self::getConfig()->getSitePath() . self::getConfig()->getTemplateXtplPath(), 'xtpl'));
+            /** @var \App\Controller\Iface $controller */
+            $controller = self::getRequest()->getAttribute('controller.object');
+            if ($controller->getPage()) {
+                $config = self::getConfig();
+                $templatePath = dirname($controller->getPage()->getTemplatePath());
+                $xtplPath = str_replace('{templatePath}', $templatePath, $config['template.xtpl.path']);
+                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($xtplPath, $config['template.xtpl.ext']));
             }
             self::getConfig()->setDomLoader($dl);
         }
