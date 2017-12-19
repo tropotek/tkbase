@@ -37,7 +37,8 @@ $config['template.public'] = $config['system.template.path'].'/purpose/public.ht
  * EG: $path = dirname($config['template.admin']) . $config['template.xtpl.path'];
  * @var {templatePath} will be replaced by the path of the current user page template
  */
-$config['template.xtpl.path'] = $config->getSitePath() . $config['system.template.path'] . '/xtpl';
+//$config['template.xtpl.path'] = $config->getSitePath() . $config['system.template.path'] . '/xtpl';
+$config['template.xtpl.path'] = '{templatePath}/xtpl';
 $config['template.xtpl.ext'] = '.xtpl';
 
 
