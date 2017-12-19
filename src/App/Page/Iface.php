@@ -2,15 +2,12 @@
 namespace App\Page;
 
 /**
- *
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
 abstract class Iface extends \Tk\Controller\Page
 {
-
 
     /**
      * Set the page heading, should be set from main controller
@@ -22,20 +19,18 @@ abstract class Iface extends \Tk\Controller\Page
     {
         $template = parent::show();
 
-        $template->hide('alerts');
         if (\Tk\AlertCollection::hasMessages()) {
             $template->insertTemplate('alerts', \Tk\AlertCollection::getInstance()->show());
-            $template->show('alerts');
+            $template->setChoice('alerts');
         }
 
         $user = $this->getUser();
-        $template->hide('login');
-        $template->hide('logout');
         if ($user) {
-            $template->show('logout');
+            $template->setChoice('logout');
             $template->setAttr('user-home', 'href', $user->getHomeUrl());
+            $template->setAttr('userUrl', 'href', $user->getHomeUrl());
         } else {
-            $template->show('login');
+            $template->setChoice('login');
         }
 
         return $template;
