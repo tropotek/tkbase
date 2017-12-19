@@ -16,24 +16,27 @@ abstract class Iface extends \Tk\Controller\Page
      * Set the page heading, should be set from main controller
      *
      * @return \Dom\Template
-     * @throws \Dom\Exception
+     * @throws \Exception
      */
     public function show()
     {
         $template = parent::show();
 
+        $template->hide('alerts');
         if (\Tk\AlertCollection::hasMessages()) {
             $template->insertTemplate('alerts', \Tk\AlertCollection::getInstance()->show());
-            $template->setChoice('alerts');
-        }
-        $user = $this->getUser();
-        if ($user) {
-            $template->setChoice('logout');
-            $template->setAttr('homeUrl', 'href', $user->getHomeUrl());
-        } else {
-            $template->setChoice('login');
+            $template->show('alerts');
         }
 
+        $user = $this->getUser();
+        $template->hide('login');
+        $template->hide('logout');
+        if ($user) {
+            $template->show('logout');
+            $template->setAttr('user-home', 'href', $user->getHomeUrl());
+        } else {
+            $template->show('login');
+        }
 
         return $template;
     }
