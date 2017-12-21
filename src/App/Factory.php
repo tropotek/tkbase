@@ -3,8 +3,6 @@ namespace App;
 use Tk\Db\Pdo;
 
 /**
- * Class Factory
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2016 Michael Mifsud
@@ -137,11 +135,12 @@ class Factory
         }
         return self::getConfig()->getDb();
     }
-    
+
     /**
      * get a dom Modifier object
-     * 
+     *
      * @return \Dom\Modifier\Modifier
+     * @throws \Tk\Exception
      */
     static public function getDomModifier()
     {
@@ -178,16 +177,22 @@ class Factory
 
     /**
      * getDomLoader
-     * 
+     *
      * @return \Dom\Loader
      */
-    static public function getDomLoader()
-    {   
+    public static function getDomLoader()
+    {
         if (!self::getConfig()->getDomLoader()) {
             $dl = \Dom\Loader::getInstance()->setParams(self::getConfig()->all());
             $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
-            if (self::getConfig()->getTemplatePath()) {
-                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath(self::getConfig()->getSitePath() . self::getConfig()->getTemplateXtplPath(), 'xtpl'));
+            /** @var \App\Controller\Iface $controller */
+            //vd(self::getRequest()->getAttributes());
+            $controller = self::getRequest()->getAttribute('controller.object');
+            if ($controller->getPage()) {
+                $config = self::getConfig();
+                $templatePath = dirname($controller->getPage()->getTemplatePath());
+                $xtplPath = str_replace('{templatePath}', $templatePath, $config['template.xtpl.path']);
+                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($xtplPath, $config['template.xtpl.ext']));
             }
             self::getConfig()->setDomLoader($dl);
         }
@@ -207,8 +212,6 @@ class Factory
     }
 
     /**
-     * get
-     *
      * @return \Tk\Event\Dispatcher
      */
     static public function getEventDispatcher()
@@ -221,22 +224,18 @@ class Factory
     }
 
     /**
-     * get
-     *
-     * @return \Tk\Controller\ControllerResolver
+     * @return \Tk\Controller\Resolver
      */
     static public function getControllerResolver()
     {
         if (!self::getConfig()->getControllerResolver()) {
-            $obj = new \Tk\Controller\Resolver(self::getConfig()->getLog());
+            $obj = new \Tk\Controller\PageResolver(self::getConfig()->getLog());
             self::getConfig()->setControllerResolver($obj);
         }
         return self::getConfig()->getControllerResolver();
     }
 
     /**
-     * get
-     *
      * @return \Tk\Auth
      */
     static public function getAuth()
@@ -250,7 +249,6 @@ class Factory
 
     /**
      * A factory method to create an instances of an Auth adapters
-     *
      *
      * @param string $class
      * @param array $submittedData
@@ -288,7 +286,6 @@ class Factory
     }
 
     /**
-     * 
      * @link http://php.net/manual/en/function.hash.php
      * @param string $pwd
      * @param \App\Db\User $user (optional)

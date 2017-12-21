@@ -8,15 +8,5 @@ namespace App\Page;
  */
 class AdminPage extends Iface
 {
-    /**
-     * DomTemplate magic method
-     *
-     * @return \Dom\Template
-     */
-    public function __makeTemplate()
-    {
-        $tplFile = $this->getConfig()->getSitePath() . $this->getConfig()->get('template.admin.path').'/main.xtpl';
-        return \Dom\Loader::loadFile($tplFile);
-    }
 
 }

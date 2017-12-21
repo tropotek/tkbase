@@ -25,9 +25,22 @@ $config['site.email'] = 'user@example.com';
 /*
  * Template folders for pages
  */
-$config['template.admin.path'] = $config['system.template.path'] . '/default';
-$config['template.public.path'] = $config['system.template.path'] . '/purpose';
-$config['template.xtpl.path'] = $config['system.template.path'] . '/xtpl';
+$config['system.template.path'] = '/html';
+
+//$config['template.admin'] = $config['system.template.path'].'/default/admin.html';
+$config['template.admin'] = $config['system.template.path'].'/sbadmin/admin.html';
+$config['template.public'] = $config['system.template.path'].'/purpose/public.html';
+
+/*
+ * This path is where designers can place templates that override the system default templates.
+ * Relative Path for renderer custom templates, this will reside in the above user template folders
+ * EG: $path = dirname($config['template.admin']) . $config['template.xtpl.path'];
+ * @var {templatePath} will be replaced by the path of the current user page template
+ */
+//$config['template.xtpl.path'] = $config->getSitePath() . $config['system.template.path'] . '/xtpl';
+$config['template.xtpl.path'] = '{templatePath}/xtpl';
+$config['template.xtpl.ext'] = '.xtpl';
+
 
 /**
  * Set the system timezone

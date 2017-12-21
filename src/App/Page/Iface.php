@@ -2,8 +2,6 @@
 namespace App\Page;
 
 /**
- *
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
@@ -11,12 +9,11 @@ namespace App\Page;
 abstract class Iface extends \Tk\Controller\Page
 {
 
-
     /**
      * Set the page heading, should be set from main controller
      *
      * @return \Dom\Template
-     * @throws \Dom\Exception
+     * @throws \Exception
      */
     public function show()
     {
@@ -26,14 +23,15 @@ abstract class Iface extends \Tk\Controller\Page
             $template->insertTemplate('alerts', \Tk\AlertCollection::getInstance()->show());
             $template->setChoice('alerts');
         }
+
         $user = $this->getUser();
         if ($user) {
             $template->setChoice('logout');
-            $template->setAttr('homeUrl', 'href', $user->getHomeUrl());
+            $template->setAttr('user-home', 'href', $user->getHomeUrl());
+            $template->setAttr('userUrl', 'href', $user->getHomeUrl());
         } else {
             $template->setChoice('login');
         }
-
 
         return $template;
     }
@@ -45,7 +43,6 @@ abstract class Iface extends \Tk\Controller\Page
      */
     public function getUser()
     {
-        vd($this->getConfig());
         return $this->getConfig()->getUser();
     }
 

@@ -2,7 +2,6 @@
 namespace App\Controller;
 
 use Tk\Request;
-use Dom\Template;
 use Tk\Form;
 use Tk\Form\Field;
 use Tk\Form\Event;
@@ -12,8 +11,6 @@ use Tk\Event\AuthEvent;
 
 
 /**
- * Class Index
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
@@ -26,11 +23,10 @@ class Login extends Iface
      */
     protected $form = null;
 
-    
+
     /**
-     *
      * @param Request $request
-     * @return Template
+     * @throws \Exception
      */
     public function doDefault(Request $request)
     {
@@ -52,10 +48,7 @@ class Login extends Iface
     }
 
     /**
-     * doLogin()
-     *
      * @param \Tk\Form $form
-     * @throws \Tk\Exception
      */
     public function doLogin($form)
     {
@@ -97,8 +90,6 @@ class Login extends Iface
     }
 
     /**
-     * show()
-     *
      * @return \Dom\Template
      */
     public function show()
