@@ -147,7 +147,7 @@ class User extends Model implements \Tk\ValidInterface
         if (!$pwd) {
             $pwd = self::createPassword(10);
         }
-        $this->password = \App\Factory::hashPassword($pwd, $this);
+        $this->password = \App\Config::getInstance()->hashPassword($pwd, $this);
     }
 
     /**

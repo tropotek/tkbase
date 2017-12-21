@@ -11,35 +11,42 @@ use Tk\Controller\Resolver;
  */
 class FrontController extends \Tk\Kernel\HttpKernel
 {
-    
     /**
-     * @var \Tk\Config
+     * @var null|\Tk\Plugin\Factory
      */
-    protected $config = null;
-    
+    public $pluginFactory = null;
+
+    /**
+     * @var null|\Tk\Mail\Gateway
+     */
+    public $emailGateway = null;
+
+
     /**
      * Constructor.
      *
      * @param Dispatcher $dispatcher
      * @param Resolver $resolver
      * @param $config
+     * @throws \Tk\Exception
      */
     public function __construct(Dispatcher $dispatcher, Resolver $resolver, $config)
     {
         parent::__construct($dispatcher, $resolver);
 
         // Init the plugins
-        \App\Factory::getPluginFactory();
+        $this->pluginFactory = $this->getConfig()->getPluginFactory();
 
         // Initiate the email gateway
-        \App\Factory::getEmailGateway();
+        $this->emailGateway = $this->getConfig()->getEmailGateway();
         
         $this->init();
     }
 
     /**
      * init Application front controller
-     * 
+     *
+     * @throws \Tk\Exception
      */
     public function init()
     {
@@ -50,14 +57,14 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $matcher = new \Tk\Routing\UrlMatcher($this->getConfig()->get('site.routes'));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\RouteListener($matcher));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\PageHandler($this->getDispatcher()));
-        $this->getDispatcher()->addSubscriber(new \Tk\Listener\ResponseHandler(Factory::getDomModifier()));
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\ResponseHandler($this->getConfig()->getDomModifier()));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionListener($logger));
         if (!$this->getConfig()->isDebug()) {
-            $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionEmailListener(\App\Factory::getEmailGateway(), $logger,
+            $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionEmailListener($this->emailGateway, $logger,
                 $this->getConfig()->getSiteEmail(), $this->getConfig()->getSiteTitle()));
         }
         $sh = new \Tk\Listener\ShutdownHandler($logger, $this->getConfig()->getScriptTime());
-        $sh->setPageBytes(\App\Factory::getDomFilterPageBytes());
+        $sh->setPageBytes($this->getConfig()->getDomFilterPageBytes());
         $this->getDispatcher()->addSubscriber($sh);
 
         // App Listeners
@@ -70,11 +77,11 @@ class FrontController extends \Tk\Kernel\HttpKernel
     }
     
     /**
-     * @return \Tk\Config
+     * @return \App\Config
      */
     public function getConfig() 
     {
-        return \App\Factory::getConfig();
+        return \App\Config::getInstance();
     }
     
 }

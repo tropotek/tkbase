@@ -31,7 +31,6 @@ class MasqueradeHandler implements Subscriber
      * Add any headers to the final response.
      *
      * @param GetResponseEvent $event
-     * @throws \Tk\Exception
      */
     public function onMasquerade(GetResponseEvent $event)
     {
@@ -40,7 +39,7 @@ class MasqueradeHandler implements Subscriber
 
         try {
             /** @var User $user */
-            $user = \App\Factory::getConfig()->getUser();
+            $user = $this->getConfig()->getUser();
             if (!$user) throw new \Tk\Exception('Invalid User');
             /** @var User $msqUser */
             $msqUser = \App\Db\UserMap::create()->find($request->get(self::MSQ));
@@ -69,7 +68,8 @@ class MasqueradeHandler implements Subscriber
         if (!$msqUser || !$user) return false;
         if ($user->id == $msqUser->id) return false;
 
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        $config = \App\Config::getInstance();
+        $msqArr = $config->getSession()->get(self::SID);
         if (is_array($msqArr)) {    // Check if we are already masquerading as this user in the queue
             foreach ($msqArr as $data) {
                 if ($data['userId'] == $msqUser->id) return false;
@@ -108,8 +108,9 @@ class MasqueradeHandler implements Subscriber
      */
     public static function isMasquerading()
     {
-        if (!\App\Factory::getSession()->has(self::SID)) return 0;
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        $config = \App\Config::getInstance();
+        if (!$config->getSession()->has(self::SID)) return 0;
+        $msqArr = $config->getSession()->get(self::SID);
         return count($msqArr);
     }
 
@@ -118,15 +119,16 @@ class MasqueradeHandler implements Subscriber
      * @param User $user
      * @param User $msqUser
      * @return bool|void
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
     public static function masqueradeLogin($user, $msqUser)
     {
         if (!$msqUser || !$user) return;
         if ($user->id == $msqUser->id) return;
 
+        $config = \App\Config::getInstance();
         // Get the masquerade queue from the session
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        $msqArr = $config->getSession()->get(self::SID);
         if (!is_array($msqArr)) $msqArr = array();
 
         if (!self::canMasqueradeAs($user, $msqUser)) {
@@ -140,22 +142,25 @@ class MasqueradeHandler implements Subscriber
         );
         array_push($msqArr, $userData);
         // Save the updated masquerade queue
-        \App\Factory::getSession()->set(self::SID, $msqArr);
+        $config->getSession()->set(self::SID, $msqArr);
 
         // Login as the selected user
-        \App\Factory::getAuth()->getStorage()->write($msqUser->username);
+        $config->getAuth()->getStorage()->write($msqUser->username);
         \Tk\Uri::create($msqUser->getHomeUrl())->redirect();
     }
 
     /**
      * masqueradeLogout
      *
+     * @throws \Tk\Exception
      */
     public static function masqueradeLogout()
     {
         if (!self::isMasquerading()) return;
         if (!\App\Factory::getAuth()->hasIdentity()) return;
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        $config = \App\Config::getInstance();
+
+        $msqArr = $config->getSession()->get(self::SID);
         if (!is_array($msqArr) || !count($msqArr)) return;
 
         $userData = array_pop($msqArr);
@@ -163,11 +168,11 @@ class MasqueradeHandler implements Subscriber
             throw new \Tk\Exception('Session data corrupt. Clear session data and try again.');
 
         // Save the updated masquerade queue
-        \App\Factory::getSession()->set(self::SID, $msqArr);
+        $config->getSession()->set(self::SID, $msqArr);
 
         /** @var User $user */
         $user = \App\Db\UserMap::create()->find($userData['userId']);
-        \App\Factory::getAuth()->getStorage()->write($user->username);
+        $config->getAuth()->getStorage()->write($user->username);
 
         \Tk\Uri::create($userData['url'])->redirect();
     }
@@ -184,6 +189,13 @@ class MasqueradeHandler implements Subscriber
         }
     }
 
+    /**
+     * @return \App\Config
+     */
+    public function getConfig()
+    {
+        return \App\Config::getInstance();
+    }
 
 
     /**

@@ -102,7 +102,7 @@ class Register extends Iface
         $hash = $this->user->generateHash(true);
         $this->user->hash = $hash;
         $this->user->active = false;
-        $this->user->password = \App\Factory::hashPassword($this->user->password, $this->user);
+        $this->user->password = $this->getConfig()->hashPassword($this->user->password, $this->user);
         
         $this->user->save();
 
@@ -112,7 +112,7 @@ class Register extends Iface
         $event = new \Tk\Event\Event();
         $event->set('form', $form);
         $event->set('user', $this->user);
-        \App\Factory::getEventDispatcher()->dispatch(AuthEvents::REGISTER, $event);
+        $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::REGISTER, $event);
 
         
         // Redirect with message to check their email
@@ -145,7 +145,7 @@ class Register extends Iface
 
         $event = new \Tk\Event\Event();
         $event->set('user', $user);
-        \App\Factory::getEventDispatcher()->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
+        $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
         
         \Tk\Alert::addSuccess('Account Activation Successful.');
         \Tk\Uri::create('/login.html')->redirect();

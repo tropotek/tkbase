@@ -69,7 +69,7 @@ class Recover extends Iface
         }
 
         $newPass = $user->createPassword();
-        $user->password = \App\Factory::hashPassword($newPass, $user);
+        $user->password = $this->getConfig()->hashPassword($newPass, $user);
         $user->save();
         
         // Fire the login event to allow developing of misc auth plugins
@@ -78,7 +78,7 @@ class Recover extends Iface
         $event->set('user', $user);
         $event->set('password', $newPass);
         $event->set('templatePath', $this->getTemplatePath());
-        \App\Factory::getEventDispatcher()->dispatch(AuthEvents::RECOVER, $event);
+        $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::RECOVER, $event);
         
         \Tk\Alert::addSuccess('You new access details have been sent to your email address.');
         \Tk\Uri::create()->redirect();

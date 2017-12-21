@@ -18,7 +18,7 @@ class PageTemplateHandler implements Subscriber
     {
         /** @var \App\Controller\Iface $controller */
         $controller = $event->get('controller');
-        $config = \App\Factory::getConfig();
+        $config = \App\Config::getInstance();
 
         $role = 'public';
         if ($config->getRequest()->getAttribute('role'))
@@ -27,7 +27,7 @@ class PageTemplateHandler implements Subscriber
 
         // Setup the template loader
         $controller->getPage()->setTemplatePath($config->getSitePath() . $templatePath);
-        \App\Factory::getDomLoader();
+        $config->getDomLoader();
     }
 
     /**

@@ -117,7 +117,7 @@ class ActionsCell extends \Tk\Table\Cell\Iface
         $url = htmlentities(\Tk\Uri::create()->set(\App\Listener\MasqueradeHandler::MSQ, $obj->id)->toString());
 
         $disable = '';
-        if (\App\Factory::getConfig()->getUser()->id == $obj->id) {
+        if (\App\Config::getInstance()->getUser()->id == $obj->id) {
             $disable = 'disabled="disabled"';
         }
 

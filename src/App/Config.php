@@ -1,6 +1,7 @@
 <?php
 namespace App;
 
+use Tk\Db\Pdo;
 
 /**
  * @author Michael Mifsud <info@tropotek.com>
@@ -57,21 +58,29 @@ class Config extends \Tk\Config
     }
 
     /**
-     * Create a page for the request
+     * Ways to get the db after calling this method
      *
-     * @param \Tk\Controller\Iface $controller
-     * @return \Tk\Controller\Page
+     *  - \Uni\Config::getInstance()->getDb()       //
+     *  - \Tk\Db\Pdo::getInstance()                //
+     *
+     * Note: If you are creating a base lib then the DB really should be sent in via a param or method.
+     *
+     * @param string $name
+     * @return mixed|Pdo
      */
-    public static function createPage($controller)
+    public function getDb($name = 'db')
     {
-        $page = new \TK\Controller\Page();
-        $page->setController($controller);
-        if (!$controller->getPageTitle()) {     // Set a default page Title for the crumbs
-            $controller->setPageTitle($controller->getDefaultTitle());
+        if (!$this->get('db') && $this->has($name.'.type')) {
+            try {
+                $pdo = Pdo::getInstance($name, $this->getGroup($name, true));
+                $this->set('db', $pdo);
+            } catch (\Exception $e) {
+                error_log('<p>Config::getDb(): ' . $e->getMessage() . '</p>');
+                exit;
+            }
         }
-        return $page;
+        return $this->get('db');
     }
-
 
     /**
      * getFrontController
@@ -88,23 +97,105 @@ class Config extends \Tk\Config
     }
 
     /**
-     * getPluginFactory
+     * getEventDispatcher
      *
-     * @return \Tk\Plugin\Factory
+     * @return \Tk\Event\Dispatcher
      */
-    public function getPluginFactory()
+    public function getEventDispatcher()
     {
-        if (!$this->get('plugin.factory')) {
-            $this->set('plugin.factory', \Tk\Plugin\Factory::getInstance($this->getDb(), $this->getPluginPath(), $this->getEventDispatcher()));
+        if (!$this->get('event.dispatcher')) {
+            $obj = new \Tk\Event\Dispatcher($this->getLog());
+            $this->set('event.dispatcher', $obj);
         }
-        return $this->get('plugin.factory');
+        return $this->get('event.dispatcher');
     }
 
+    /**
+     * getResolver
+     *
+     * @return \Tk\Controller\Resolver
+     */
+    public function getResolver()
+    {
+        if (!$this->get('resolver')) {
+            $obj = new \Tk\Controller\PageResolver($this->getLog());
+            $this->set('resolver', $obj);
+        }
+        return $this->get('resolver');
+    }
 
+    /**
+     * get a dom Modifier object
+     *
+     * @return \Dom\Modifier\Modifier
+     * @throws \Tk\Exception
+     */
+    public function getDomModifier()
+    {
+        if (!$this->get('dom.modifier')) {
+            $dm = new \Dom\Modifier\Modifier();
+            $dm->add(new \Dom\Modifier\Filter\UrlPath($this->getSiteUrl()));
+            $dm->add(new \Dom\Modifier\Filter\JsLast());
+            if (class_exists('Dom\Modifier\Filter\Less')) {
+                $less = $dm->add(new \Dom\Modifier\Filter\Less($this->getSitePath(), $this->getSiteUrl(), $this->getCachePath(),
+                    array('siteUrl' => $this->getSiteUrl(), 'dataUrl' => $this->getDataUrl(), 'templateUrl' => $this->getTemplateUrl())));
+                $less->setCompress(true);
+            }
+            if ($this->isDebug()) {
+                $dm->add($this->getDomFilterPageBytes());
+            }
+            $this->set('dom.modifier', $dm);
+        }
+        return $this->get('dom.modifier');
+    }
 
+    /**
+     * @return \Dom\Modifier\Filter\PageBytes
+     */
+    public function getDomFilterPageBytes()
+    {
+        if (!$this->get('dom.filter.page.bytes')) {
+            $obj = new \Dom\Modifier\Filter\PageBytes($this->getSitePath());
+            $this->set('dom.filter.page.bytes', $obj);
+        }
+        return $this->get('dom.filter.page.bytes');
+    }
 
+    /**
+     * getDomLoader
+     *
+     * @return \Dom\Loader
+     */
+    public function getDomLoader()
+    {
+        if (!$this->get('dom.loader')) {
+            $dl = \Dom\Loader::getInstance()->setParams($this->all());
+            $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
+            /** @var \App\Controller\Iface $controller */
+            $controller = $this->getRequest()->getAttribute('controller.object');
+            if ($controller->getPage()) {
+                $templatePath = dirname($controller->getPage()->getTemplatePath());
+                $xtplPath = str_replace('{templatePath}', $templatePath, $this['template.xtpl.path']);
+                $dl->addAdapter(new \Dom\Loader\Adapter\ClassPath($xtplPath, $this['template.xtpl.ext']));
+            }
+            $this->set('dom.loader', $dl);
+        }
+        return $this->get('dom.loader');
+    }
 
-
+    /**
+     * getAuth
+     *
+     * @return \Tk\Auth
+     */
+    public function getAuth()
+    {
+        if (!$this->get('auth')) {
+            $obj = new \Tk\Auth(new \Tk\Auth\Storage\SessionStorage($this->getSession()));
+            $this->set('auth', $obj);
+        }
+        return $this->get('auth');
+    }
 
     /**
      * A helper method to create an instance of an Auth adapter
@@ -146,6 +237,56 @@ class Config extends \Tk\Config
     }
 
     /**
+     * getEmailGateway
+     *
+     * @return \Tk\Mail\Gateway
+     */
+    public function getEmailGateway()
+    {
+        if (!$this->get('email.gateway')) {
+            $gateway = new \Tk\Mail\Gateway($this);
+            $gateway->setDispatcher($this->getEventDispatcher());
+            $this->set('email.gateway', $gateway);
+        }
+        return $this->get('email.gateway');
+    }
+
+    /**
+     * getPluginFactory
+     *
+     * @return \Tk\Plugin\Factory
+     */
+    public function getPluginFactory()
+    {
+        if (!$this->get('plugin.factory')) {
+            $this->set('plugin.factory', \Tk\Plugin\Factory::getInstance($this->getDb(), $this->getPluginPath(), $this->getEventDispatcher()));
+        }
+        return $this->get('plugin.factory');
+    }
+
+
+
+
+    // -----------------  DI functions  ----------------------------------
+
+
+    /**
+     * Create a page for the request
+     *
+     * @param \Tk\Controller\Iface $controller
+     * @return \Tk\Controller\Page
+     */
+    public static function createPage($controller)
+    {
+        $page = new \TK\Controller\Page();
+        $page->setController($controller);
+        if (!$controller->getPageTitle()) {     // Set a default page Title for the crumbs
+            $controller->setPageTitle($controller->getDefaultTitle());
+        }
+        return $page;
+    }
+
+    /**
      * hashPassword
      *
      * @param $pwd
@@ -184,9 +325,85 @@ class Config extends \Tk\Config
     }
 
 
+    /**
+     * Helper Method
+     * Make a default HTML template to create HTML emails
+     * usage:
+     *  $message->setBody($message->createHtmlTemplate($bodyStr));
+     *
+     * @param string $body
+     * @param bool $showFooter
+     * @return string
+     * @todo: Probably not the best place for this..... Dependant on the App
+     */
+    public static function createMailTemplate($body, $showFooter = true)
+    {
+        $request = self::getInstance()->getRequest();
+        $foot = '';
+        if (!self::getInstance()->isCli() && $showFooter) {
+            $foot .= sprintf('<i>Page:</i> <a href="%s">%s</a><br/>', $request->getUri()->toString(), $request->getUri()->toString());
+            if ($request->getReferer()) {
+                $foot .= sprintf('<i>Referer:</i> <span>%s</span><br/>', $request->getReferer()->toString());
+            }
+            $foot .= sprintf('<i>IP Address:</i> <span>%s</span><br/>', $request->getIp());
+            $foot .= sprintf('<i>User Agent:</i> <span>%s</span>', $request->getUserAgent());
+        }
+
+        $defaultHtml = sprintf('
+<html>
+<head>
+  <title>Email</title>
+
+<style type="text/css">
+body {
+  font-family: arial,sans-serif;
+  font-size: 80%%;
+  padding: 5px;
+  background-color: #FFF;
+}
+table {
+  font-size: 0.9em;
+}
+th, td {
+  vertical-align: top;
+}
+table {
+
+}
+th {
+  text-align: left;
+}
+td {
+  padding: 4px 5px;
+}
+.content {
+  padding: 0px 0px 0px 20px;
+}
+p {
+  margin: 0px 0px 10px 0px;
+  padding: 0px;
+}
+</style>
+</head>
+<body>
+  <div class="content">%s</div>
+  <p>&#160;</p>
+  <hr />
+  <div class="footer">
+    <p>
+      %s
+    </p>
+  </div>
+</body>
+</html>', $body, $foot);
+
+        return $defaultHtml;
+    }
 
 
-    // DI functions
+
+
+
 
 
 

@@ -27,8 +27,8 @@ class AuthHandler implements Subscriber
     {
         // if a user is in the session add them to the global config
         // Only the identity details should be in the auth session not the full user object, to save space and be secure.
-        $config = \App\Factory::getConfig();
-        $auth = \App\Factory::getAuth();
+        $config = \App\Config::getInstance();
+        $auth = $config->getAuth();
         $user = null;                       // public user
         if ($auth->getIdentity()) {         // Check if user is logged in
             $user = \App\Db\UserMap::create()->findByUsername($auth->getIdentity());
@@ -91,11 +91,12 @@ class AuthHandler implements Subscriber
      */
     public function onLogin(AuthEvent $event)
     {
-        $config = \App\Factory::getConfig();
+        /** @var \App\Config $config */
+        $config = \App\Config::getInstance();
         $result = null;
         $adapterList = $config->get('system.auth.adapters');
         foreach($adapterList as $name => $class) {
-            $adapter = \App\Factory::getAuthAdapter($class, $event->all());
+            $adapter = $config->getAuthDbTableAdapter($class, $event->all());
             if (!$adapter) continue;
             $result = $event->getAuth()->authenticate($adapter);
             $event->setResult($result);
@@ -143,7 +144,10 @@ class AuthHandler implements Subscriber
         $event->getAuth()->clearIdentity();
     }
 
-
+    /**
+     * @param \Tk\Event\Event $event
+     * @throws \Tk\Mail\Exception
+     */
     public function onRegister(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -157,11 +161,15 @@ class AuthHandler implements Subscriber
         $body->setAttr('url', 'href', $url->toString());
         $subject = 'Account Registration Request.';
 
-        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Factory::getConfig()->get('site.email'));
-        \App\Factory::getEmailGateway()->send($message);
+        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
+        \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
+    /**
+     * @param \Tk\Event\Event $event
+     * @throws \Tk\Mail\Exception
+     */
     public function onRegisterConfirm(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -175,11 +183,15 @@ class AuthHandler implements Subscriber
         $body->setAttr('url', 'href', $url->toString());
         $subject = 'Account Registration Activation.';
 
-        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Factory::getConfig()->get('site.email'));
-        \App\Factory::getEmailGateway()->send($message);
+        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
+        \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
+    /**
+     * @param \Tk\Event\Event $event
+     * @throws \Tk\Mail\Exception
+     */
     public function onRecover(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -195,8 +207,8 @@ class AuthHandler implements Subscriber
         $body->setAttr('url', 'href', $url->toString());
         $subject = 'Account Password Recovery.';
 
-        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Factory::getConfig()->get('site.email'));
-        \App\Factory::getEmailGateway()->send($message);
+        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
+        \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
