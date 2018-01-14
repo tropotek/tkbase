@@ -91,19 +91,11 @@ class AuthHandler implements Subscriber
      */
     public function onLogin(AuthEvent $event)
     {
-<<<<<<< HEAD
-=======
-        /** @var \App\Config $config */
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
         $config = \App\Config::getInstance();
         $result = null;
         $adapterList = $config->get('system.auth.adapters');
         foreach($adapterList as $name => $class) {
-<<<<<<< HEAD
             $adapter = $config->getAuthAdapter($class, $event->all());
-=======
-            $adapter = $config->getAuthDbTableAdapter($class, $event->all());
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
             if (!$adapter) continue;
             $result = $event->getAuth()->authenticate($adapter);
             $event->setResult($result);
@@ -151,10 +143,7 @@ class AuthHandler implements Subscriber
         $event->getAuth()->clearIdentity();
     }
 
-    /**
-     * @param \Tk\Event\Event $event
-     * @throws \Tk\Mail\Exception
-     */
+
     public function onRegister(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -169,18 +158,10 @@ class AuthHandler implements Subscriber
         $subject = 'Account Registration Request.';
 
         $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
-<<<<<<< HEAD
         \App\Factory::getEmailGateway()->send($message);
-=======
-        \App\Config::getInstance()->getEmailGateway()->send($message);
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
     }
 
-    /**
-     * @param \Tk\Event\Event $event
-     * @throws \Tk\Mail\Exception
-     */
     public function onRegisterConfirm(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -195,18 +176,10 @@ class AuthHandler implements Subscriber
         $subject = 'Account Registration Activation.';
 
         $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
-<<<<<<< HEAD
         \App\Factory::getEmailGateway()->send($message);
-=======
-        \App\Config::getInstance()->getEmailGateway()->send($message);
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
     }
 
-    /**
-     * @param \Tk\Event\Event $event
-     * @throws \Tk\Mail\Exception
-     */
     public function onRecover(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -223,11 +196,7 @@ class AuthHandler implements Subscriber
         $subject = 'Account Password Recovery.';
 
         $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
-<<<<<<< HEAD
         \App\Factory::getEmailGateway()->send($message);
-=======
-        \App\Config::getInstance()->getEmailGateway()->send($message);
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
     }
 
@@ -264,6 +233,6 @@ class AuthHandler implements Subscriber
             AuthEvents::RECOVER => 'onRecover'
         );
     }
-    
-    
+
+
 }

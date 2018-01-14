@@ -30,10 +30,7 @@ class PageTemplateHandler implements Subscriber
         // Setup the template loader
         $controller->getPage()->setTemplatePath($config->getSitePath() . $templatePath);
         $config->getDomLoader();
-<<<<<<< HEAD
 
-=======
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
     }
 
     /**

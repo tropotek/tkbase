@@ -14,7 +14,7 @@ class User extends Model implements \Tk\ValidInterface
 {
     const ROLE_ADMIN = 'admin';
     const ROLE_USER = 'user';
-    
+
     /**
      * @var int
      */
@@ -85,7 +85,7 @@ class User extends Model implements \Tk\ValidInterface
 
     /**
      * User constructor.
-     * 
+     *
      */
     public function __construct()
     {
@@ -132,21 +132,18 @@ class User extends Model implements \Tk\ValidInterface
             $pwd = \App\Config::getInstance()->generatePassword(10);
         }
         $this->password = \App\Config::getInstance()->hashPassword($pwd, $this);
-<<<<<<< HEAD
         return $this;
-=======
->>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
     }
 
     /**
      * Helper method to generate user hash
-     * 
+     *
      * @param bool $isTemp Set this to true, when generate a temporary hash used for registration
      * @return string
      */
-    public function generateHash($isTemp = false) 
+    public function generateHash($isTemp = false)
     {
-        $key = sprintf('%s:%s:%s', $this->getVolatileId(), $this->username, $this->email); 
+        $key = sprintf('%s:%s:%s', $this->getVolatileId(), $this->username, $this->email);
         if ($isTemp) {
             $key .= date('YmdHis');
         }
