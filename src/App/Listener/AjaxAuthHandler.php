@@ -27,9 +27,9 @@ class AjaxAuthHandler implements Subscriber
     {
         // if a user is in the session add them to the global config
         // Only the identity details should be in the auth session not the full user object, to save space and be secure.
-        $config = \App\Factory::getConfig();
+        $config = \App\Config::getInstance();
+
         if (preg_match('|^/api/|', $event->getRequest()->getUri()->getRelativePath())) {
-            
             // TODO: Authenticate any AJAX API calls
             
         }

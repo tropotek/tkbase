@@ -40,7 +40,7 @@ class Events extends AdminIface
 
         $this->table->addAction(\Tk\Table\Action\Csv::create());
 
-        $list = $this->convertEventData(\App\Factory::getEventDispatcher()->getAvailableEvents(\App\Factory::getConfig()->getSitePath()));
+        $list = $this->convertEventData(\App\Factory::getEventDispatcher()->getAvailableEvents(\App\Config::getInstance()->getSitePath()));
         $this->table->setList($list);
 
     }

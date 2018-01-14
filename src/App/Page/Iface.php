@@ -24,11 +24,11 @@ abstract class Iface extends \Tk\Controller\Page
             $template->setChoice('alerts');
         }
 
-        $user = $this->getUser();
-        if ($user) {
+        if ($this->getUser()) {
             $template->setChoice('logout');
-            $template->setAttr('user-home', 'href', $user->getHomeUrl());
-            $template->setAttr('userUrl', 'href', $user->getHomeUrl());
+            $template->insertText('username', $this->getUser()->name);
+            $template->setAttr('user-home', 'href', $this->getUser()->getHomeUrl());
+            $template->setAttr('userUrl', 'href', $this->getUser()->getHomeUrl());
         } else {
             $template->setChoice('login');
         }

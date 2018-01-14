@@ -75,11 +75,12 @@ class User extends Model implements \Tk\ValidInterface
      */
     public $created = null;
 
-
     /**
-     * @var \App\Auth\Acl
+     * @var string
      */
-    private $acl = null;
+    public $ip = '';
+
+
 
 
     /**
@@ -90,6 +91,7 @@ class User extends Model implements \Tk\ValidInterface
     {
         $this->modified = new \DateTime();
         $this->created = new \DateTime();
+        $this->ip = \App\Config::getInstance()->getRequest()->getIp();
     }
 
     /**
@@ -117,37 +119,20 @@ class User extends Model implements \Tk\ValidInterface
             return \Tk\Uri::create('/user/index.html');
         return \Tk\Uri::create('/index.html');
     }
-    
-    /**
-     * Create a random password
-     *
-     * @param int $length
-     * @return string
-     */
-    public static function createPassword($length = 8)
-    {
-        $chars = '234567890abcdefghjkmnpqrstuvwxyzABCDEFGHJKMNPQRSTUVWXYZ';
-        $i = 0;
-        $password = '';
-        while ($i <= $length) {
-            $password .= $chars[mt_rand(0, strlen($chars) - 1)];
-            $i++;
-        }
-        return $password;
-    }
 
     /**
      * Set the password from a plain string
      *
      * @param string $pwd
-     * @throws \Exception
+     * @return User
      */
     public function setNewPassword($pwd = '')
     {
         if (!$pwd) {
-            $pwd = self::createPassword(10);
+            $pwd = \App\Config::getInstance()->generatePassword(10);
         }
-        $this->password = \App\Factory::hashPassword($pwd, $this);
+        $this->password = \App\Config::getInstance()->hashPassword($pwd, $this);
+        return $this;
     }
 
     /**

@@ -40,7 +40,7 @@ class MasqueradeHandler implements Subscriber
 
         try {
             /** @var User $user */
-            $user = \App\Factory::getConfig()->getUser();
+            $user = \App\Config::getInstance()->getUser();
             if (!$user) throw new \Tk\Exception('Invalid User');
             /** @var User $msqUser */
             $msqUser = \App\Db\UserMap::create()->find($request->get(self::MSQ));

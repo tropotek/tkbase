@@ -18,16 +18,19 @@ class PageTemplateHandler implements Subscriber
     {
         /** @var \App\Controller\Iface $controller */
         $controller = $event->get('controller');
-        $config = \App\Factory::getConfig();
+        $config = \App\Config::getInstance();
 
         $role = 'public';
-        if ($config->getRequest()->getAttribute('role'))
+        if ($config->getRequest()->getAttribute('role')) {
             $role = $config->getRequest()->getAttribute('role');
+            if (is_array($role)) $role = current($role);
+        }
         $templatePath = $config['template.' . $role];
 
         // Setup the template loader
         $controller->getPage()->setTemplatePath($config->getSitePath() . $templatePath);
-        \App\Factory::getDomLoader();
+        $config->getDomLoader();
+
     }
 
     /**
