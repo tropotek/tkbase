@@ -20,11 +20,11 @@ class Events extends AdminIface
      */
     protected $table = null;
 
-    
-    
+
     /**
      *
      * @param Request $request
+     * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
@@ -40,7 +40,11 @@ class Events extends AdminIface
 
         $this->table->addAction(\Tk\Table\Action\Csv::create());
 
+<<<<<<< HEAD
         $list = $this->convertEventData(\App\Factory::getEventDispatcher()->getAvailableEvents(\App\Config::getInstance()->getSitePath()));
+=======
+        $list = $this->convertEventData($this->getConfig()->getEventDispatcher()->getAvailableEvents($this->getConfig()->getSitePath()));
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
         $this->table->setList($list);
 
     }

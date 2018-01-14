@@ -14,6 +14,19 @@ use Tk\Controller\Resolver;
  */
 class FrontController extends \Tk\Kernel\HttpKernel
 {
+<<<<<<< HEAD
+=======
+    /**
+     * @var null|\Tk\Plugin\Factory
+     */
+    public $pluginFactory = null;
+
+    /**
+     * @var null|\Tk\Mail\Gateway
+     */
+    public $emailGateway = null;
+
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
     /**
      * Constructor.
@@ -28,11 +41,19 @@ class FrontController extends \Tk\Kernel\HttpKernel
         parent::__construct($dispatcher, $resolver);
 
         // Init the plugins
+<<<<<<< HEAD
         $this->getConfig()->getPluginFactory();
 
         // Initiate the email gateway
         $this->getConfig()->getEmailGateway();
 
+=======
+        $this->pluginFactory = $this->getConfig()->getPluginFactory();
+
+        // Initiate the email gateway
+        $this->emailGateway = $this->getConfig()->getEmailGateway();
+        
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
         $this->init();
     }
 
@@ -53,6 +74,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\RouteListener($matcher));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\PageHandler($this->getDispatcher()));
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\ResponseHandler($this->getConfig()->getDomModifier()));
+<<<<<<< HEAD
 
         // Exception Handling
         $this->getDispatcher()->addSubscriber(new \Tk\Listener\LogExceptionListener($logger));
@@ -64,6 +86,12 @@ class FrontController extends \Tk\Kernel\HttpKernel
         if (!$this->getConfig()->isDebug()) {
             $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionEmailListener($this->getConfig()->getEmailGateway(), $logger,
                 $this->getConfig()->get('site.email'), $this->getConfig()->get('site.title')));
+=======
+        $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionListener($logger));
+        if (!$this->getConfig()->isDebug()) {
+            $this->getDispatcher()->addSubscriber(new \Tk\Listener\ExceptionEmailListener($this->emailGateway, $logger,
+                $this->getConfig()->getSiteEmail(), $this->getConfig()->getSiteTitle()));
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
         }
 
         $sh = new \Tk\Listener\ShutdownHandler($logger, $this->getConfig()->getScriptTime());

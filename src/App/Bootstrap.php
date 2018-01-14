@@ -46,6 +46,7 @@ class Bootstrap
     {
         if (version_compare(phpversion(), '5.3.0', '<')) {
             // php version must be high enough to support traits
+<<<<<<< HEAD
             throw new \Exception('Your PHP5 version must be greater than 5.3.0 [Curr Ver: ' . phpversion() . ']. (Recommended: php 7.0+)');
         }
 
@@ -53,6 +54,12 @@ class Bootstrap
         $config = \App\Config::create();
         include($config->getSrcPath() . '/config/application.php');
 
+=======
+            throw new \Exception('Your PHP5 version must be greater than 5.4.0 [Curr Ver: '.phpversion().']');
+        }
+
+        $config = \App\Config::getInstance();
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
         // This maybe should be created in a Factory or DI Container....
         if (is_readable($config->getLogPath())) {
@@ -84,6 +91,10 @@ class Bootstrap
         $config->getDb();
         $config->replace(\Tk\Db\Data::create()->all());
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
         // Return if using cli (Command Line)
         if ($config->isCli()) return $config;
 

@@ -70,6 +70,14 @@ abstract class Iface extends \Tk\Controller\Iface
     }
 
     /**
+     * @return \App\Config
+     */
+    public function getConfig()
+    {
+        return parent::getConfig();
+    }
+
+    /**
      * DomTemplate magic method example
      *
      * @return \Dom\Template

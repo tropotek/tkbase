@@ -132,7 +132,10 @@ class User extends Model implements \Tk\ValidInterface
             $pwd = \App\Config::getInstance()->generatePassword(10);
         }
         $this->password = \App\Config::getInstance()->hashPassword($pwd, $this);
+<<<<<<< HEAD
         return $this;
+=======
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
     }
 
     /**

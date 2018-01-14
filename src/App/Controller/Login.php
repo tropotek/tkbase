@@ -53,7 +53,7 @@ class Login extends Iface
     public function doLogin($form)
     {
         /** @var Auth $auth */
-        $auth = \App\Factory::getAuth();
+        $auth = $this->getConfig()->getAuth();
 
         if (!$form->getFieldValue('username') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('username'))) {
             $form->addFieldError('username', 'Please enter a valid username');
@@ -69,7 +69,7 @@ class Login extends Iface
         try {
             // Fire the login event to allow developing of misc auth plugins
             $event = new AuthEvent($auth, $form->getValues());
-            \App\Factory::getEventDispatcher()->dispatch(AuthEvents::LOGIN, $event);
+            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN, $event);
 
             // Use the event to process the login like below....
             $result = $event->getResult();
@@ -82,7 +82,7 @@ class Login extends Iface
                 return;
             }
 
-            \App\Factory::getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
+            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
 
         } catch (\Exception $e) {
             $form->addError($e->getMessage());

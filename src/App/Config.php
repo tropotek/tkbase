@@ -1,6 +1,11 @@
 <?php
 namespace App;
 
+<<<<<<< HEAD
+=======
+use Tk\Db\Pdo;
+
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 /**
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
@@ -9,6 +14,7 @@ namespace App;
 class Config extends \Tk\Config
 {
 
+<<<<<<< HEAD
     /**
      * A factory method to create an instances of an Auth adapters
      *
@@ -131,6 +137,8 @@ class Config extends \Tk\Config
     /* ****************************************************************************************** */
 
 
+=======
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
     /**
      * getRequest
@@ -169,7 +177,12 @@ class Config extends \Tk\Config
     public function getSession()
     {
         if (!parent::getSession()) {
+<<<<<<< HEAD
             $adapter = $this->getSessionAdapter();
+=======
+            $adapter = null;
+            $adapter = new \Tk\Session\Adapter\Database($this->getDb(), new \Tk\Encrypt());
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
             $obj = \Tk\Session::getInstance($adapter, $this, $this->getRequest(), $this->getCookie());
             parent::setSession($obj);
         }
@@ -177,6 +190,7 @@ class Config extends \Tk\Config
     }
 
     /**
+<<<<<<< HEAD
      * getSessionAdapter
      *
      * @return \Tk\Session\Adapter\Iface|null
@@ -194,6 +208,32 @@ class Config extends \Tk\Config
 
 
 
+=======
+     * Ways to get the db after calling this method
+     *
+     *  - \Uni\Config::getInstance()->getDb()       //
+     *  - \Tk\Db\Pdo::getInstance()                //
+     *
+     * Note: If you are creating a base lib then the DB really should be sent in via a param or method.
+     *
+     * @param string $name
+     * @return mixed|Pdo
+     */
+    public function getDb($name = 'db')
+    {
+        if (!$this->get('db') && $this->has($name.'.type')) {
+            try {
+                $pdo = Pdo::getInstance($name, $this->getGroup($name, true));
+                $this->set('db', $pdo);
+            } catch (\Exception $e) {
+                error_log('<p>Config::getDb(): ' . $e->getMessage() . '</p>');
+                exit;
+            }
+        }
+        return $this->get('db');
+    }
+
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
     /**
      * getFrontController
      *
@@ -236,6 +276,7 @@ class Config extends \Tk\Config
         return $this->get('resolver');
     }
 
+<<<<<<< HEAD
 
 
     /**
@@ -263,6 +304,8 @@ class Config extends \Tk\Config
         return $this->get('db');
     }
 
+=======
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
     /**
      * get a dom Modifier object
      *
@@ -310,7 +353,11 @@ class Config extends \Tk\Config
         if (!$this->get('dom.loader')) {
             $dl = \Dom\Loader::getInstance()->setParams($this->all());
             $dl->addAdapter(new \Dom\Loader\Adapter\DefaultLoader());
+<<<<<<< HEAD
             /** @var \Tk\Controller\Iface $controller */
+=======
+            /** @var \App\Controller\Iface $controller */
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
             $controller = $this->getRequest()->getAttribute('controller.object');
             if ($controller->getPage()) {
                 $templatePath = dirname($controller->getPage()->getTemplatePath());
@@ -337,6 +384,48 @@ class Config extends \Tk\Config
     }
 
     /**
+<<<<<<< HEAD
+=======
+     * A helper method to create an instance of an Auth adapter
+     *
+     * @param string $class
+     * @param array $submittedData
+     * @return \Tk\Auth\Adapter\Iface
+     * @throws \Tk\Auth\Exception
+     */
+    public function getAuthDbTableAdapter($class, $submittedData = array())
+    {
+
+        /** @var \Tk\Auth\Adapter\Iface $adapter */
+        $adapter = null;
+        switch($class) {
+            case '\Tk\Auth\Adapter\Config':
+                $adapter = new $class($this['system.auth.username'], $this['system.auth.password']);
+                break;
+            case '\Tk\Auth\Adapter\Ldap':
+                $adapter = new $class($this['system.auth.ldap.host'], $this['system.auth.ldap.baseDn'], $this['system.auth.ldap.filter'],
+                    $this['system.auth.ldap.port'], $this['system.auth.ldap.tls']);
+                break;
+            case '\Tk\Auth\Adapter\DbTable':
+                /** @var \Tk\Auth\Adapter\DbTable $adapter */
+                $adapter = new $class($this['db'], $this['system.auth.dbtable.tableName'],
+                    $this['system.auth.dbtable.usernameColumn'], $this['system.auth.dbtable.passwordColumn'],
+                    $this['system.auth.dbtable.activeColumn']);
+                $adapter->setHashCallback(array($this, 'hashPassword'));
+                break;
+            case '\Tk\Auth\Adapter\Trapdoor':
+                $adapter = new $class();
+                break;
+            default:
+                throw new \Tk\Auth\Exception('Cannot locate adapter class: ' . $class);
+        }
+        // send the user submitted username and password to the adapter
+        $adapter->replace($submittedData);
+        return $adapter;
+    }
+
+    /**
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
      * getEmailGateway
      *
      * @return \Tk\Mail\Gateway
@@ -366,6 +455,7 @@ class Config extends \Tk\Config
 
 
 
+<<<<<<< HEAD
     /**
      * @return Db\User
      */
@@ -387,6 +477,10 @@ class Config extends \Tk\Config
 
 
     //  -----------------------  Create methods  -----------------------
+=======
+
+    // -----------------  DI functions  ----------------------------------
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
 
     /**
@@ -397,7 +491,11 @@ class Config extends \Tk\Config
      */
     public static function createPage($controller)
     {
+<<<<<<< HEAD
         $page = new \Tk\Controller\Page();
+=======
+        $page = new \TK\Controller\Page();
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
         $page->setController($controller);
         if (!$controller->getPageTitle()) {     // Set a default page Title for the crumbs
             $controller->setPageTitle($controller->getDefaultTitle());
@@ -406,6 +504,7 @@ class Config extends \Tk\Config
     }
 
     /**
+<<<<<<< HEAD
      * @param string $formId
      * @param string $method
      * @param string|null $action
@@ -468,6 +567,45 @@ class Config extends \Tk\Config
         }
         return $ap;
     }
+=======
+     * hashPassword
+     *
+     * @param $pwd
+     * @param \App\Db\User $user (optional)
+     * @return string
+     */
+    public function hashPassword($pwd, $user = null)
+    {
+        $salt = '';
+        // TODO: enable salt for more secure passwords
+//        if ($user) {    // Use salted password
+//            if (method_exists($user, 'getHash'))
+//                $salt = $user->getHash();
+//            else if ($user->hash)
+//                $salt = $user->hash;
+//        }
+        return $this->hash($pwd, $salt);
+    }
+
+    /**
+     * Hash a string using the system config set algorithm
+     *
+     * @link http://php.net/manual/en/function.hash.php
+     * @param string $str
+     * @param string $salt (optional)
+     * @param string $algo Name of selected hashing algorithm (i.e. "md5", "sha256", "haval160,4", etc..)
+     *
+     * @return string
+     */
+    public function hash($str, $salt = '', $algo = 'md5')
+    {
+        if ($salt) $str .= $salt;
+        if ($this->get('hash.function'))
+            $algo = $this->get('hash.function');
+        return hash($algo, $str);
+    }
+
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 
     /**
      * Helper Method
@@ -548,4 +686,10 @@ p {
 
 
 
+<<<<<<< HEAD
+=======
+
+
+
+>>>>>>> 573c23c28fe7fda9066c66f2276cc1d0f6d44197
 }

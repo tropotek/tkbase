@@ -6,6 +6,7 @@ use Tk\Db\Pdo;
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2016 Michael Mifsud
+ * @deprecated
  */
 class Factory2
 {
@@ -297,5 +298,7 @@ class Factory2
             return hash(self::getConfig()->get('hash.function'), $pwd);
         return hash('md5', $pwd);
     }
+
+
 
 }
