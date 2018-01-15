@@ -49,10 +49,8 @@ class Bootstrap
             throw new \Exception('Your PHP5 version must be greater than 5.3.0 [Curr Ver: ' . phpversion() . ']. (Recommended: php 7.0+)');
         }
 
-
         $config = \App\Config::create();
         include($config->getSrcPath() . '/config/application.php');
-
 
         // This maybe should be created in a Factory or DI Container....
         if (is_readable($config->getLogPath())) {

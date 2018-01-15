@@ -27,11 +27,12 @@ class MasqueradeHandler implements Subscriber
      */
     const MSQ = 'msq';
 
+
+
     /**
      * Add any headers to the final response.
      *
      * @param GetResponseEvent $event
-     * @throws \Tk\Exception
      */
     public function onMasquerade(GetResponseEvent $event)
     {
@@ -52,9 +53,6 @@ class MasqueradeHandler implements Subscriber
     }
 
 
-
-
-
     // -------------------  Masquerade functions  -------------------
 
     /**
@@ -69,7 +67,7 @@ class MasqueradeHandler implements Subscriber
         if (!$msqUser || !$user) return false;
         if ($user->id == $msqUser->id) return false;
 
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        $msqArr = \App\Config::getInstance()->getSession()->get(self::SID);
         if (is_array($msqArr)) {    // Check if we are already masquerading as this user in the queue
             foreach ($msqArr as $data) {
                 if ($data['userId'] == $msqUser->id) return false;
@@ -108,8 +106,8 @@ class MasqueradeHandler implements Subscriber
      */
     public static function isMasquerading()
     {
-        if (!\App\Factory::getSession()->has(self::SID)) return 0;
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        if (!\App\Config::getInstance()->getSession()->has(self::SID)) return 0;
+        $msqArr = \App\Config::getInstance()->getSession()->get(self::SID);
         return count($msqArr);
     }
 
@@ -118,7 +116,7 @@ class MasqueradeHandler implements Subscriber
      * @param User $user
      * @param User $msqUser
      * @return bool|void
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
     public static function masqueradeLogin($user, $msqUser)
     {
@@ -126,7 +124,7 @@ class MasqueradeHandler implements Subscriber
         if ($user->id == $msqUser->id) return;
 
         // Get the masquerade queue from the session
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        $msqArr = \App\Config::getInstance()->getSession()->get(self::SID);
         if (!is_array($msqArr)) $msqArr = array();
 
         if (!self::canMasqueradeAs($user, $msqUser)) {
@@ -140,22 +138,23 @@ class MasqueradeHandler implements Subscriber
         );
         array_push($msqArr, $userData);
         // Save the updated masquerade queue
-        \App\Factory::getSession()->set(self::SID, $msqArr);
+        \App\Config::getInstance()->getSession()->set(self::SID, $msqArr);
 
         // Login as the selected user
-        \App\Factory::getAuth()->getStorage()->write($msqUser->username);
+        \App\Config::getInstance()->getAuth()->getStorage()->write($msqUser->username);
         \Tk\Uri::create($msqUser->getHomeUrl())->redirect();
     }
 
     /**
      * masqueradeLogout
      *
+     * @throws \Tk\Exception
      */
     public static function masqueradeLogout()
     {
         if (!self::isMasquerading()) return;
-        if (!\App\Factory::getAuth()->hasIdentity()) return;
-        $msqArr = \App\Factory::getSession()->get(self::SID);
+        if (!\App\Config::getInstance()->getAuth()->hasIdentity()) return;
+        $msqArr = \App\Config::getInstance()->getSession()->get(self::SID);
         if (!is_array($msqArr) || !count($msqArr)) return;
 
         $userData = array_pop($msqArr);
@@ -163,11 +162,11 @@ class MasqueradeHandler implements Subscriber
             throw new \Tk\Exception('Session data corrupt. Clear session data and try again.');
 
         // Save the updated masquerade queue
-        \App\Factory::getSession()->set(self::SID, $msqArr);
+        \App\Config::getInstance()->getSession()->set(self::SID, $msqArr);
 
         /** @var User $user */
         $user = \App\Db\UserMap::create()->find($userData['userId']);
-        \App\Factory::getAuth()->getStorage()->write($user->username);
+        \App\Config::getInstance()->getAuth()->getStorage()->write($user->username);
 
         \Tk\Uri::create($userData['url'])->redirect();
     }

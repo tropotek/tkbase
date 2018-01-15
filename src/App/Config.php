@@ -33,7 +33,7 @@ class Config extends \Tk\Config
                 $adapter = new $class($this['db'], $this['system.auth.dbtable.tableName'],
                     $this['system.auth.dbtable.usernameColumn'], $this['system.auth.dbtable.passwordColumn'],
                     $this['system.auth.dbtable.activeColumn']);
-                $adapter->setHashCallback(array(__CLASS__, 'hashPassword'));
+                $adapter->setHashCallback(array($this, 'hashPassword'));
                 break;
             case '\Tk\Auth\Adapter\Trapdoor':
                 $adapter = new $class();
@@ -56,7 +56,7 @@ class Config extends \Tk\Config
     public function hashPassword($pwd, $user = null)
     {
         $salt = '';
-        if ($user) {    // Use salted password
+        if ($user && false) {    // TODO: Use salted password
             if (method_exists($user, 'getHash'))
                 $salt = $user->getHash();
             else if ($user->hash)

@@ -26,38 +26,28 @@ abstract class Iface extends \Tk\Controller\Iface
     }
 
     /**
-     * @return string
-     */
-    public function getPageRole()
-    {
-        $role = $this->getRequest()->getAttribute('role');
-        if (is_array($role)) $role = current($role);
-        return $role;
-    }
-
-    /**
      * Get a new instance of the page to display the content in.
      *
      * @return \App\Page\Iface
      */
-//    public function getPage()
-//    {
-//        $role = $this->getConfig()->getRequest()->getAttribute('role');
-//        if (is_array($role)) $role = current($role);
-//
-//        if (!$this->page) {
-//            switch($role) {
-//                case \App\Db\User::ROLE_ADMIN:
-//                    $this->page = new \App\Page\AdminPage();
-//                    break;
-//                default:
-//                    $this->page = new \App\Page\PublicPage();
-//                    break;
-//            }
-//            $this->page->setController($this);
-//        }
-//        return $this->page;
-//    }
+    public function getPage()
+    {
+        $role = $this->getConfig()->getRequest()->getAttribute('role');
+        if (is_array($role)) $role = current($role);
+
+        if (!$this->page) {
+            switch($role) {
+                case \App\Db\User::ROLE_ADMIN:
+                    $this->page = new \App\Page\AdminPage();
+                    break;
+                default:
+                    $this->page = new \App\Page\PublicPage();
+                    break;
+            }
+            $this->page->setController($this);
+        }
+        return $this->page;
+    }
 
     /**
      * Get the currently logged in user
@@ -70,7 +60,7 @@ abstract class Iface extends \Tk\Controller\Iface
     }
 
     /**
-     * @return \App\Config
+     * @return \Tk\Config|\App\Config
      */
     public function getConfig()
     {

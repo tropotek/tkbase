@@ -103,12 +103,14 @@ class AuthHandler implements Subscriber
                 break;
             }
         }
+
         if (!$result) {
             throw new \Tk\Auth\Exception('Invalid username or password');
         }
         if (!$result->isValid()) {
             return;
         }
+        
         $user = \App\Db\UserMap::create()->findByUsername($result->getIdentity());
         if (!$user) {
             throw new \Tk\Auth\Exception('User not found: Contact Your Administrator');
@@ -144,6 +146,10 @@ class AuthHandler implements Subscriber
     }
 
 
+    /**
+     * @param \Tk\Event\Event $event
+     * @throws \Tk\Mail\Exception
+     */
     public function onRegister(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -158,10 +164,14 @@ class AuthHandler implements Subscriber
         $subject = 'Account Registration Request.';
 
         $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
-        \App\Factory::getEmailGateway()->send($message);
+        \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
+    /**
+     * @param \Tk\Event\Event $event
+     * @throws \Tk\Mail\Exception
+     */
     public function onRegisterConfirm(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -176,10 +186,14 @@ class AuthHandler implements Subscriber
         $subject = 'Account Registration Activation.';
 
         $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
-        \App\Factory::getEmailGateway()->send($message);
+        \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
+    /**
+     * @param \Tk\Event\Event $event
+     * @throws \Tk\Mail\Exception
+     */
     public function onRecover(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
@@ -196,7 +210,7 @@ class AuthHandler implements Subscriber
         $subject = 'Account Password Recovery.';
 
         $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
-        \App\Factory::getEmailGateway()->send($message);
+        \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 

@@ -21,10 +21,10 @@ class Events extends AdminIface
     protected $table = null;
 
 
-
     /**
      *
      * @param Request $request
+     * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
@@ -40,7 +40,7 @@ class Events extends AdminIface
 
         $this->table->addAction(\Tk\Table\Action\Csv::create());
 
-        $list = $this->convertEventData(\App\Factory::getEventDispatcher()->getAvailableEvents(\App\Config::getInstance()->getSitePath()));
+        $list = $this->convertEventData(\App\Config::getInstance()->getEventDispatcher()->getAvailableEvents(\App\Config::getInstance()->getSitePath()));
         $this->table->setList($list);
 
     }
@@ -86,15 +86,6 @@ class Events extends AdminIface
     {
         $xhtml = <<<HTML
 <div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <i class="fa fa-cogs fa-fw"></i> Actions
-    </div>
-    <div class="panel-body">
-      <a href="javascript: window.history.back();" class="btn btn-default"><i class="fa fa-arrow-left"></i> <span>Back</span></a>
-    </div>
-  </div>
 
   <div class="panel panel-default">
     <div class="panel-heading">
