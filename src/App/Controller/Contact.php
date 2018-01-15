@@ -95,7 +95,7 @@ class Contact extends Iface
             return;
         }
 //        if ($attach->hasFile()) {
-//            $attach->moveTo($this->getConfig()->getDataPath() . '/contact/' . date('d-m-Y') . '-' . str_replace('@', '_', $values['email']));
+//            $attach->moveFile($this->getConfig()->getDataPath() . '/contact/' . date('d-m-Y') . '-' . str_replace('@', '_', $values['email']));
 //        }
 
         if ($this->sendEmail($form)) {

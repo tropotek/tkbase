@@ -46,4 +46,14 @@ abstract class Iface extends \Tk\Controller\Page
         return $this->getConfig()->getUser();
     }
 
+    /**
+     * Get the global config object.
+     *
+     * @return \App\Config
+     */
+    public function getConfig()
+    {
+        return \App\Config::getInstance();
+    }
+
 }

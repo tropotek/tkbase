@@ -59,9 +59,9 @@ class Recover extends Iface
         /** @var \App\Db\User $user */
         $user = null;
         if (filter_var($account, FILTER_VALIDATE_EMAIL)) {
-            $user = \App\Db\User::getMapper()->findByEmail($account);
+            $user = \App\Db\UserMap::create()->findByEmail($account);
         } else {
-            $user = \App\Db\User::getMapper()->findByUsername($account);
+            $user = \App\Db\UserMap::create()->findByUsername($account);
         }
         if (!$user) {
             $form->addFieldError('account', 'Please enter a valid username or email');
@@ -77,7 +77,7 @@ class Recover extends Iface
         $event->set('form', $form);
         $event->set('user', $user);
         $event->set('password', $newPass);
-        $event->set('templatePath', $this->getTemplatePath());
+        //$event->set('templatePath', $this->getTemplatePath());
         $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::RECOVER, $event);
         
         \Tk\Alert::addSuccess('You new access details have been sent to your email address.');

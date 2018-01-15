@@ -20,10 +20,9 @@ class FrontController extends \Tk\Kernel\HttpKernel
      *
      * @param Dispatcher $dispatcher
      * @param Resolver $resolver
-     * @param $config
      * @throws \Tk\Exception
      */
-    public function __construct(Dispatcher $dispatcher, Resolver $resolver, $config)
+    public function __construct(Dispatcher $dispatcher, Resolver $resolver)
     {
         parent::__construct($dispatcher, $resolver);
 

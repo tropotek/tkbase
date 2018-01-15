@@ -2,8 +2,6 @@
 namespace App\Controller;
 
 use Tk\Request;
-use Dom\Template;
-
 use Tk\Auth\AuthEvents;
 use Tk\Event\AuthEvent;
 

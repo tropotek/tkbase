@@ -9,8 +9,6 @@ use Tk\Auth\AuthEvents;
 
 
 /**
- * Class Index
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
@@ -27,10 +25,10 @@ class Register extends Iface
      */
     private $user = null;
 
-    
 
     /**
      * @param Request $request
+     * @throws \Exception
      * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
@@ -71,7 +69,6 @@ class Register extends Iface
      * doLogin()
      *
      * @param \Tk\Form $form
-     * @throws \Tk\Exception
      */
     public function doRegister($form)
     {
