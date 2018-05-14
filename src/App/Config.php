@@ -355,6 +355,8 @@ class Config extends \Tk\Config
      * getPluginFactory
      *
      * @return \Tk\Plugin\Factory
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Plugin\Exception
      */
     public function getPluginFactory()
     {

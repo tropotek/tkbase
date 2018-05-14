@@ -54,7 +54,7 @@ class Index extends Iface
       <div class="panel-body ">
 
         <p>Something spiffy.....</p>
-
+        <p><a href="/logout.html">Logout ;-)</a></p>
       </div>
     </div>
   </div>
