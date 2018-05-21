@@ -34,12 +34,16 @@ class Edit extends AdminIface
      */
     public function isProfile() 
     {
-        return  (\Tk\Uri::create()->getBasename() == 'profile.html');
+        return  (\Tk\Uri::create()->basename() == 'profile.html');
     }
 
     /**
      *
      * @param Request $request
+     * @throws Form\Exception
+     * @throws \ReflectionException
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {

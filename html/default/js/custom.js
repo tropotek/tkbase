@@ -9,8 +9,6 @@
  *   <script src="js/form/dualListBox/dual-list-box.js"></script>
  *   <script src="/vendor/ttek/tk-table/js/jquery.tableOrderBy.js"></script>
  *   <script src="js/custom.js"></script>
- *
- *
  */
 
 $(document).ready(function() {
@@ -26,7 +24,7 @@ $(document).ready(function() {
   $('a[role=tab]').click(function() { $(this).blur(); });
 
   // Manage date fields
-  if ($.fn.datepicker != undefined) {
+  if ($.fn.datepicker !== undefined) {
     $('input.date').each(function (i, el) {
       el = $(el);
       var tpl = $('<div class="input-group col-md-2">' +
@@ -43,12 +41,12 @@ $(document).ready(function() {
   }
 
   // Dual select list box renderer
-  if ($.fn.DualListBox != undefined) {
+  if ($.fn.DualListBox !== undefined) {
     $('select.tk-dualSelect').DualListBox();
   }
 
   // Make the orderBy fields draggable.
-  if ($.fn.tableOrderBy != undefined) {
+  if ($.fn.tableOrderBy !== undefined) {
     $('.tk-sortable table tbody').tableOrderBy({
       selector: '.tk-sortable table tbody'
     });
