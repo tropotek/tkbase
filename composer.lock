@@ -717,12 +717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-database.git",
-                "reference": "b1f829e445bf23e8848f30ec874ebe5030f6bc74"
+                "reference": "47170efad3aff4becd7b445c1d040d1fd2c08605"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/b1f829e445bf23e8848f30ec874ebe5030f6bc74",
-                "reference": "b1f829e445bf23e8848f30ec874ebe5030f6bc74",
+                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/47170efad3aff4becd7b445c1d040d1fd2c08605",
+                "reference": "47170efad3aff4becd7b445c1d040d1fd2c08605",
                 "shasum": ""
             },
             "require": {
@@ -756,7 +756,7 @@
                 "database",
                 "tropotek"
             ],
-            "time": "2018-05-23T23:38:53+00:00"
+            "time": "2018-05-25T20:23:36+00:00"
         },
         {
             "name": "ttek/tk-domtemplate",
@@ -962,12 +962,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-installers.git",
-                "reference": "c6600ffc0ff67270695a2f944747258958f073e6"
+                "reference": "2c05dc7ba99ac325e059355d5233ed17fc1ec173"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/c6600ffc0ff67270695a2f944747258958f073e6",
-                "reference": "c6600ffc0ff67270695a2f944747258958f073e6",
+                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/2c05dc7ba99ac325e059355d5233ed17fc1ec173",
+                "reference": "2c05dc7ba99ac325e059355d5233ed17fc1ec173",
                 "shasum": ""
             },
             "require": {
@@ -1007,7 +1007,7 @@
                 "tools",
                 "tropotek"
             ],
-            "time": "2018-05-16T00:23:21+00:00"
+            "time": "2018-05-25T20:23:44+00:00"
         },
         {
             "name": "ttek/tk-mail",
