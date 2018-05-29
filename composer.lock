@@ -1,7 +1,7 @@
 {
     "_readme": [
         "This file locks the dependencies of your project to a known state",
-        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
+        "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
     "content-hash": "bc9327f87b054b583f02a36ff826a073",
@@ -717,12 +717,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-database.git",
-                "reference": "d960cf07bbb434be5740dbdf5ea4d2ba85a6a2b6"
+                "reference": "7557e92748d050e220427acdc725fdc5bbe9ccc9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/d960cf07bbb434be5740dbdf5ea4d2ba85a6a2b6",
-                "reference": "d960cf07bbb434be5740dbdf5ea4d2ba85a6a2b6",
+                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/7557e92748d050e220427acdc725fdc5bbe9ccc9",
+                "reference": "7557e92748d050e220427acdc725fdc5bbe9ccc9",
                 "shasum": ""
             },
             "require": {
@@ -756,7 +756,7 @@
                 "database",
                 "tropotek"
             ],
-            "time": "2018-05-25T20:28:29+00:00"
+            "time": "2018-05-27T23:14:13+00:00"
         },
         {
             "name": "ttek/tk-domtemplate",
@@ -812,12 +812,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-form.git",
-                "reference": "d5d453753d9af85d56f759eca8d842adb148ed07"
+                "reference": "5c45de0f7fdd408186efdfc81a8612c8b541741a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-form/zipball/d5d453753d9af85d56f759eca8d842adb148ed07",
-                "reference": "d5d453753d9af85d56f759eca8d842adb148ed07",
+                "url": "https://api.github.com/repos/tropotek/tk-form/zipball/5c45de0f7fdd408186efdfc81a8612c8b541741a",
+                "reference": "5c45de0f7fdd408186efdfc81a8612c8b541741a",
                 "shasum": ""
             },
             "require": {
@@ -851,7 +851,7 @@
                 "form",
                 "tropotek"
             ],
-            "time": "2018-05-24T02:14:29+00:00"
+            "time": "2018-05-28T21:01:30+00:00"
         },
         {
             "name": "ttek/tk-framework",
@@ -962,12 +962,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-installers.git",
-                "reference": "2c05dc7ba99ac325e059355d5233ed17fc1ec173"
+                "reference": "ed72744ab3a9040197814a9be6764f6a0ee937a4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/2c05dc7ba99ac325e059355d5233ed17fc1ec173",
-                "reference": "2c05dc7ba99ac325e059355d5233ed17fc1ec173",
+                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/ed72744ab3a9040197814a9be6764f6a0ee937a4",
+                "reference": "ed72744ab3a9040197814a9be6764f6a0ee937a4",
                 "shasum": ""
             },
             "require": {
@@ -1007,7 +1007,7 @@
                 "tools",
                 "tropotek"
             ],
-            "time": "2018-05-25T20:23:44+00:00"
+            "time": "2018-05-27T22:53:18+00:00"
         },
         {
             "name": "ttek/tk-mail",
