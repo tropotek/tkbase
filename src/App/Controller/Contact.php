@@ -7,8 +7,6 @@ use Tk\Form\Event;
 use Tk\Form\Field;
 
 /**
- * Class Contact
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
@@ -21,12 +19,13 @@ class Contact extends Iface
      */
     protected $form = null;
 
-    
 
     /**
      * doDefault
      *
      * @param Request $request
+     * @throws Form\Exception
+     * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
@@ -55,6 +54,8 @@ class Contact extends Iface
      * show()
      *
      * @return \Dom\Template
+     * @throws Form\Exception
+     * @throws \Dom\Exception
      */
     public function show()
     {
@@ -140,7 +141,7 @@ Message:
 $attachCount
 MSG;
         
-        vd($message);
+        //vd($message);
         return true;
     }
     

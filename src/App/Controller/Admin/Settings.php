@@ -27,20 +27,22 @@ class Settings extends AdminIface
      */
     protected $data = null;
 
-    
 
     /**
      * doDefault
      *
      * @param Request $request
-     * @return \App\Page\PublicPage
+     * @return void
+     * @throws Form\Exception
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
         $this->setPageTitle('Settings');
         $this->data = \Tk\Db\Data::create();
 
-        $this->getActionPanel()->addButton(new \Tk\Ui\Button('Plugins', \Tk\Uri::create('/admin/plugins.html'), 'fa fa-plug'));
+        $this->getActionPanel()->add(new \Tk\Ui\Button('Plugins', \Tk\Uri::create('/admin/plugins.html'), 'fa fa-plug'));
 
         $this->form = Form::create('formEdit');
         $this->form->setRenderer(new \Tk\Form\Renderer\Dom($this->form));
@@ -63,6 +65,7 @@ class Settings extends AdminIface
      * doSubmit()
      *
      * @param Form $form
+     * @throws \Tk\Db\Exception
      */
     public function doSubmit($form)
     {
