@@ -2680,6 +2680,7 @@ span.color-red {
 }
 .tk-alert-container .alert {
   box-shadow: 2px 2px 2px #EFEFEF;
+  min-width: 300px;
 }
 
 .tk-login-panel {

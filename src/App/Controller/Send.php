@@ -67,6 +67,9 @@ class Send extends Iface
         }
         foreach ($request->all() as $k => $v) {
             if ($k == 'send' || $k[0] == '__') continue;
+            if (is_array($v)) {
+                $v = implode(', ', $v);
+            }
             $message->set($k, $v);
         }
         // Send message to client

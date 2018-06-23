@@ -30,8 +30,7 @@ class Contact extends Iface
     public function doDefault(Request $request)
     {
         $this->setPageTitle('Contact Us');
-        
-        $this->config = \Tk\Config::getInstance();
+
 
         $this->form = new Form('contactForm');
         

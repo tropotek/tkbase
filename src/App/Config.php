@@ -490,12 +490,11 @@ class Config extends \Tk\Config
         $request = $config->getRequest();
 
         $template = null;
-        if ($request->has('__template')) {
-            $xtplFile = str_replace(array('./', '../'), '', strip_tags(trim($xtplFile)));
-            $xtplFile = $config->get('template.xtpl.path') . '/mail/' . $xtplFile;
-            if (is_file($xtplFile))
-                $template = file_get_contents($xtplFile);
-        }
+        $xtplFile = str_replace(array('./', '../'), '', strip_tags(trim($xtplFile)));
+        $xtplFile = $config->get('template.xtpl.path') . '/mail/' . $xtplFile . $config->get('template.xtpl.ext');
+        if (is_file($xtplFile))
+            $template = file_get_contents($xtplFile);
+
         if (!$template) {
             \Tk\Alert::addWarning('Message cannot be sent. Please contact site administrator.');
         }
