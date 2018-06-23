@@ -75,6 +75,9 @@ class Send extends Iface
         // Send message to client
         $this->getConfig()->getEmailGateway()->send($message);
 
+        // TODO: Handle files and attach them to the message.
+
+
         // Send message to site admin
         $message->reset();
         $message->addTo($siteEmail);
