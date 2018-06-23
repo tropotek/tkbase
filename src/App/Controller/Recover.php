@@ -26,15 +26,21 @@ class Recover extends Iface
 
     /**
      * @param Request $request
+     * @throws Form\Exception
+     * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
         $this->setPageTitle('Recover Password');
-        
-        $this->form = new Form('loginForm', $request);
+
+        $this->form = \App\Config::createForm('recover-account');
+        $this->form->setRenderer(\App\Config::createFormRenderer($this->form));
+
+
 
         $this->form->addField(new Field\Input('account'));
-        $this->form->addField(new Event\Submit('recover', array($this, 'doRecover')));
+        $this->form->addField(new Event\Submit('recover', array($this, 'doRecover')))->addCss('btn btn-lg btn-primary btn-ss');
+        $this->form->addField(new Event\Link('login', \Tk\Uri::create('/login.html'), ''))->removeCss('btn btn-sm btn-default btn-once');
 
         $this->form->execute();
         
@@ -42,6 +48,7 @@ class Recover extends Iface
 
     /**
      * @param Form $form
+     * @throws \Tk\Db\Exception
      */
     public function doRecover($form)
     {
@@ -89,10 +96,14 @@ class Recover extends Iface
     public function show()
     {
         $template = parent::show();
-        
+
+        // Render the form
+        $template->insertTemplate('form', $this->form->getRenderer()->show());
+
         if ($this->getConfig()->get('site.client.registration')) {
             $template->setChoice('register');
         }
+
         
         return $template;
     }

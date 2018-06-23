@@ -27,9 +27,8 @@ $config['site.email'] = 'user@example.com';
  */
 $config['system.template.path'] = '/html';
 
-$config['template.admin'] = $config['system.template.path'].'/default/admin.html';
-//$config['template.admin'] = $config['system.template.path'].'/sbadmin/admin.html';
-$config['template.public'] = $config['system.template.path'].'/purpose/public.html';
+$config['template.admin'] = $config['system.template.path'].'/admin/admin.html';
+$config['template.public'] = $config['system.template.path'].'/public/public.html';
 
 /*
  * This path is where designers can place templates that override the system default templates.

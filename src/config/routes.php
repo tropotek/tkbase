@@ -30,13 +30,19 @@ include dirname(__FILE__) . '/ajaxRoutes.php';
 $params = array();
 $routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault', $params));
 $routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault', $params));
-$routes->add('about', new \Tk\Routing\Route('/about.html', 'App\Controller\Index::doDefault', $params));
 $routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault', $params));
 
 $routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault', $params));
 $routes->add('logout', new \Tk\Routing\Route('/logout.html', 'App\Controller\Logout::doDefault', $params));
 $routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller\Register::doDefault', $params));
 $routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault', $params));
+
+
+
+// Controller Pages (formsa and DB content, etc...)
+$routes->add('events', new \Tk\Routing\Route('/events.html', 'App\Controller\EventView::doDefault', array()));
+$routes->add('subscribe', new \Tk\Routing\Route('/subscribe.html', 'App\Controller\Subscriber::doDefault', $params));
+$routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::doDefault', $params));
 
 // Admin Pages
 $params = array('role' => \App\Db\User::ROLE_ADMIN);
@@ -50,6 +56,14 @@ $routes->add('admin-user-profile', new \Tk\Routing\Route('/admin/profile.html', 
 $routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault', $params));
 $routes->add('admin-plugin-manager', new \Tk\Routing\Route('/admin/plugins.html', 'App\Controller\Admin\PluginManager::doDefault', $params));
 
+$routes->add('admin-subscriber-manager', new \Tk\Routing\Route('/admin/subscriberManager.html', 'App\Controller\Admin\Subscriber\Manager::doDefault', $params));
+$routes->add('admin-subscriber-edit', new \Tk\Routing\Route('/admin/subscriberEdit.html', 'App\Controller\Admin\Subscriber\Edit::doDefault', $params));
+
+$routes->add('admin-event-manager', new \Tk\Routing\Route('/admin/eventManager.html', 'App\Controller\Admin\Event\Manager::doDefault', $params));
+$routes->add('admin-event-edit', new \Tk\Routing\Route('/admin/eventEdit.html', 'App\Controller\Admin\Event\Edit::doDefault', $params));
+
+$routes->add('admin-maillog-manager', new \Tk\Routing\Route('/admin/mailLogManager.html', 'App\Controller\Admin\MailLog\Manager::doDefault', $params));
+$routes->add('admin-maillog-view', new \Tk\Routing\Route('/admin/mailLogView.html', 'App\Controller\Admin\MailLog\View::doDefault', $params));
 
 // Dev pages
 $routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\Controller\Admin\Dev\Events::doDefault', $params));

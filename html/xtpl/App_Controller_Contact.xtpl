@@ -47,20 +47,20 @@
               </div>
 
               <div class="form-group">
-                <label for="contactEmail" class="col-sm-3 control-label">
+                <label for="fid-email" class="col-sm-3 control-label">
                   <b>Email *</b>
                 </label>
                 <div class="col-sm-9">
-                  <input type="text" class="form-control" name="email" id="email" placeholder=""/>
+                  <input type="text" class="form-control" name="email" id="fid-email" placeholder=""/>
                 </div>
               </div>
 
               <div class="form-group" var="group-type">
-                <label for="prependedInput" class="col-sm-3 control-label">
+                <label for="fid-type" class="col-sm-3 control-label">
                   <b>Topic</b>
                 </label>
                 <div class="col-sm-9">
-                  <select class="form-control" name="type[]" id="type" multiple="true">
+                  <select class="form-control" name="type[]" id="fid-type" multiple="true">
                     <option value="">Please select topic...</option>
                     <option value="General">General</option>
                     <option value="Services">Services</option>
@@ -70,20 +70,20 @@
               </div>
 
               <div class="form-group">
-                <label for="contactEmail" class="col-sm-3 control-label">
+                <label for="fid-attach" class="col-sm-3 control-label">
                   <b>Attach</b>
                 </label>
                 <div class="col-sm-9">
-                  <input type="file" name="attach" id="attach" multiple="true" />
+                  <input type="file" name="attach" id="fid-attach" multiple="true" />
                 </div>
               </div>
 
               <div class="form-group" var="group-message">
-                <label for="message" class="col-sm-3 control-label">
+                <label for="fid-message" class="col-sm-3 control-label">
                   <b>Message *</b>
                 </label>
                 <div class="col-sm-9">
-                  <textarea class="form-control" rows="5" name="message" id="message"></textarea>
+                  <textarea class="form-control" rows="5" name="message" id="fid-message"></textarea>
                 </div>
               </div>
 

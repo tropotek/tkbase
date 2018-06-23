@@ -61,13 +61,16 @@ class Edit extends AdminIface
             $this->user = \App\Db\User::getMapper()->find($request->get('userId'));
         }
 
-        $this->form = new Form('formEdit');
+        //$this->form = new Form('user-edit');
+        $this->form->setEnableRequiredAttr();
+        $this->form = \App\Config::getInstance()->createForm('user-edit');
+        $this->form->setRenderer(\App\Config::getInstance()->createFormRenderer($this->form));
         
         $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
         $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
 
         if ($this->user->isAdmin()) {
-            $list = ['Admin' => \App\Db\User::ROLE_ADMIN, 'User' => \App\Db\User::ROLE_USER];
+            $list = array('Admin' => \App\Db\User::ROLE_ADMIN, 'User' => \App\Db\User::ROLE_USER);
             $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
             if (!$this->isProfile()) {
                 $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
@@ -95,6 +98,8 @@ class Edit extends AdminIface
 
     /**
      * @param \Tk\Form $form
+     * @throws \ReflectionException
+     * @throws \Tk\Db\Exception
      */
     public function doSubmit($form)
     {
@@ -132,7 +137,7 @@ class Edit extends AdminIface
 
         $this->user->save();
 
-        \Tk\Alert::addSuccess('User record saved!');
+        \Tk\Alert::addSuccess('Record saved!');
         if ($form->getTriggeredEvent()->getName() == 'update') {
             if ($this->isProfile()) {
                 \Tk\Uri::create('/admin/index.html')->redirect();
@@ -144,17 +149,17 @@ class Edit extends AdminIface
 
     /**
      * @return \Dom\Template
+     * @throws \Dom\Exception
      */
     public function show()
     {
         $template = parent::show();
         
         // Render the form
-        $fren = new \Tk\Form\Renderer\Dom($this->form);
-        $template->insertTemplate($this->form->getId(), $fren->show());
+        $template->insertTemplate('form', $this->form->getRenderer()->show());
         
         if ($this->user->id)
-            $template->insertText('username', $this->user->name . ' - [UID ' . $this->user->id . ']');
+            $template->insertText('username', $this->user->name . ' - [ID ' . $this->user->id . ']');
         else
             $template->insertText('username', 'Create User');
         
@@ -177,7 +182,7 @@ class Edit extends AdminIface
       <i class="fa fa-user fa-fw"></i> <span var="username"></span>
     </div>
     <div class="panel-body">
-        <div var="formEdit"></div>
+        <div var="form"></div>
     </div>
   </div>
     

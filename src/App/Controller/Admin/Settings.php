@@ -27,6 +27,15 @@ class Settings extends AdminIface
      */
     protected $data = null;
 
+    /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('Settings');
+        $this->getCrumbs()->reset();
+    }
 
     /**
      * doDefault
@@ -39,7 +48,7 @@ class Settings extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Settings');
+
         $this->data = \Tk\Db\Data::create();
 
         $this->getActionPanel()->add(new \Tk\Ui\Button('Plugins', \Tk\Uri::create('/admin/plugins.html'), 'fa fa-plug'));
@@ -49,8 +58,13 @@ class Settings extends AdminIface
 
         $this->form->addField(new Field\Input('site.title'))->setLabel('Site Title')->setRequired(true);
         $this->form->addField(new Field\Input('site.email'))->setLabel('Site Email')->setRequired(true);
-        $this->form->addField(new Field\Checkbox('site.client.registration'))->setLabel('Client Registration')->setNotes('Allow users to create new accounts');
-        $this->form->addField(new Field\Checkbox('site.client.activation'))->setLabel('Client Activation')->setNotes('Allow users to activate their own accounts');
+        $this->form->addField(new Field\Input('site.google.map.key'))->setLabel('Google API Key')
+            ->setNotes('<a href="https://cloud.google.com/maps-platform/" target="_blank">Get Google Maps Api Key</a> And be sure to enable `Maps Javascript API`, `Maps Embed API` and `Places API for Web` for this site.');
+
+        $this->form->addField(new Field\Checkbox('site.client.registration'))->setLabel('Client Registration')
+            ->setNotes('Allow users to create new accounts');
+//        $this->form->addField(new Field\Checkbox('site.client.activation'))->setLabel('Client Activation')
+//            ->setNotes('Users accounts will be active onc registered, no manula activation required.');
 
         $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
@@ -98,6 +112,8 @@ class Settings extends AdminIface
     public function show()
     {
         $template = parent::show();
+
+        $this->getActionPanel()->add(\Tk\Ui\Button::create('Users', \Tk\Uri::create('/admin/userManager.html'), 'fa fa-users'));
         
         // Render the form
         $template->insertTemplate('form', $this->form->getRenderer()->show());

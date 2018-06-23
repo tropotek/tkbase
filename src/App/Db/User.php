@@ -4,8 +4,6 @@ namespace App\Db;
 use Tk\Db\Map\Model;
 
 /**
- * Class User
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
@@ -140,6 +138,7 @@ class User extends Model implements \Tk\ValidInterface
      *
      * @param bool $isTemp Set this to true, when generate a temporary hash used for registration
      * @return string
+     * @throws \Tk\Db\Exception
      */
     public function generateHash($isTemp = false)
     {
@@ -191,6 +190,7 @@ class User extends Model implements \Tk\ValidInterface
      * objects for use within forms.
      *
      * @return array
+     * @throws \Tk\Db\Exception
      */
     public function validate()
     {

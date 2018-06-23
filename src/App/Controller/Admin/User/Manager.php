@@ -20,18 +20,23 @@ class Manager extends AdminIface
      * @var \Tk\Table
      */
     protected $table = null;
-    
 
 
     /**
      *
      * @param Request $request
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Exception
+     * @throws \Tk\Form\Exception
+     * @throws \Exception
      */
     public function doDefault(Request $request)
     {
         $this->setPageTitle('User Manager');
-        
-        $this->table = new \Tk\Table('tableOne');
+
+        //$this->table = new \Tk\Table('tableOne');
+        $this->table = \App\Config::getInstance()->createTable('user-list');
+        $this->table->setRenderer(\App\Config::getInstance()->createTableRenderer($this->table));
 
         $this->table->addCell(new \Tk\Table\Cell\Checkbox('id'));
         $this->table->addCell(new ActionsCell('action'));
@@ -47,24 +52,23 @@ class Manager extends AdminIface
 
         // Actions
         $this->table->addAction(\Tk\Table\Action\Button::createButton('New User', 'fa fa-plus', \Tk\Uri::create('admin/userEdit.html')));
-        $this->table->addAction(new \Tk\Table\Action\Delete());
         $this->table->addAction(new \Tk\Table\Action\Csv($this->getConfig()->getDb()));
+        $this->table->addAction(new \Tk\Table\Action\Delete());
 
-        $users = \App\Db\UserMap::create()->findFiltered($this->table->getFilterValues(), $this->table->makeDbTool('a.name'));
+        $users = \App\Db\UserMap::create()->findFiltered($this->table->getFilterValues(), $this->table->getTool('a.name'));
         $this->table->setList($users);
 
     }
 
     /**
      * @return \Dom\Template
+     * @throws \Dom\Exception
      */
     public function show()
     {
         $template = parent::show();
-        
-        $ren =  \Tk\Table\Renderer\Dom\Table::create($this->table);
-        $ren->show();
-        $template->replaceTemplate('table', $ren->getTemplate());
+
+        $template->replaceTemplate('table', $this->table->getRenderer()->show());
         
         return $template;
     }

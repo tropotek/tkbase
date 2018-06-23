@@ -68,6 +68,15 @@ abstract class Iface extends \Tk\Controller\Iface
     }
 
     /**
+     * @return \Tk\Ui\Crumbs
+     * @throws \Exception
+     */
+    public function getCrumbs()
+    {
+        return \Tk\Ui\Crumbs::getInstance();
+    }
+
+    /**
      * DomTemplate magic method example
      *
      * @return \Dom\Template

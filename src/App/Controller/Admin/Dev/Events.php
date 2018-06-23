@@ -20,6 +20,16 @@ class Events extends AdminIface
      */
     protected $table = null;
 
+    /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('Available Events');
+        $this->getCrumbs()->reset();
+    }
+
 
     /**
      *
@@ -28,7 +38,6 @@ class Events extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Available Events');
 
         $this->table = new \Tk\Table('EventList');
         $this->table->setRenderer(\Tk\Table\Renderer\Dom\Table::create($this->table));

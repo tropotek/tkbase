@@ -22,6 +22,7 @@ class AuthHandler implements Subscriber
      * do any auth init setup
      *
      * @param GetResponseEvent $event
+     * @throws \Tk\Db\Exception
      */
     public function onSystemInit(GetResponseEvent $event)
     {
@@ -148,68 +149,66 @@ class AuthHandler implements Subscriber
 
     /**
      * @param \Tk\Event\Event $event
-     * @throws \Tk\Mail\Exception
+     * @throws \Exception
      */
     public function onRegister(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
+        $config = \App\Config::getInstance();
 
-        // on success email user confirmation
-        $body = \Dom\Loader::loadFile($event->get('templatePath').'/xtpl/mail/account.registration.xtpl');
-        $body->insertText('name', $user->name);
         $url = \Tk\Uri::create('/register.html')->set('h', $user->hash);
-        $body->insertText('url', $url->toString());
-        $body->setAttr('url', 'href', $url->toString());
-        $subject = 'Account Registration Request.';
 
-        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
+        $message = $config->createMessage('account.activated');
+        $message->setSubject('Account Registration.');
+        $message->addTo($user->email);
+        $message->set('name', $user->name);
+        $message->set('activate-url', $url->toString());
         \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
     /**
      * @param \Tk\Event\Event $event
-     * @throws \Tk\Mail\Exception
+     * @throws \Exception
      */
     public function onRegisterConfirm(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
+        $config = \App\Config::getInstance();
 
         // Send an email to confirm account active
-        $body = \Dom\Loader::loadFile($event->get('templatePath').'/xtpl/mail/account.activated.xtpl');
-        $body->insertText('name', $user->name);
         $url = \Tk\Uri::create('/login.html');
-        $body->insertText('url', $url->toString());
-        $body->setAttr('url', 'href', $url->toString());
-        $subject = 'Account Registration Activation.';
 
-        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
+        $message = $config->createMessage('account.activated');
+        $message->setSubject('Account Activation.');
+        $message->addTo($user->email);
+        $message->set('name', $user->name);
+        $message->set('login-url', $url->toString());
         \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }
 
     /**
      * @param \Tk\Event\Event $event
-     * @throws \Tk\Mail\Exception
+     * @throws \Exception
      */
     public function onRecover(\Tk\Event\Event $event)
     {
         /** @var \App\Db\User $user */
         $user = $event->get('user');
         $pass = $event->get('password');
+        $config = \App\Config::getInstance();
 
-        // Send an email to confirm account active
-        $body = \Dom\Loader::loadFile($event->get('templatePath').'/xtpl/mail/account.recover.xtpl');
-        $body->insertText('name', $user->name);
-        $body->insertText('password', $pass);
         $url = \Tk\Uri::create('/login.html');
-        $body->insertText('url', $url->toString());
-        $body->setAttr('url', 'href', $url->toString());
-        $subject = 'Account Password Recovery.';
 
-        $message = new \Tk\Mail\Message($body->toString(), $subject, $user->email, \App\Config::getInstance()->get('site.email'));
+        $message = $config->createMessage('account.activated');
+        $message->setSubject('Password Recovery');
+        $message->addTo($user->email);
+        $message->set('name', $user->name);
+        $message->set('password', $pass);
+        $message->set('login-url', $url->toString());
         \App\Config::getInstance()->getEmailGateway()->send($message);
 
     }

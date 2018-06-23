@@ -32,16 +32,17 @@ class Login extends Iface
     {
         $this->setPageTitle('Login');
         
-        if ($this->getUser()) {
-            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
-        }
+//        if ($this->getUser()) {
+//            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
+//        }
 
-        $this->form = new Form('loginForm');
+        $this->form = \App\Config::createForm('login-form');
+        $this->form->setRenderer(\App\Config::createFormRenderer($this->form));
 
         $this->form->addField(new Field\Input('username'));
         $this->form->addField(new Field\Password('password'));
-        $this->form->addField(new Event\Submit('login', array($this, 'doLogin')));
-        $this->form->addField(new Event\Link('forgotPassword', \Tk\Uri::create('/recover.html')));
+        $this->form->addField(new Event\Submit('login', array($this, 'doLogin')))->addCss('btn btn-lg btn-primary btn-ss');
+        $this->form->addField(new Event\Link('forgotPassword', \Tk\Uri::create('/recover.html'), ''))->removeCss('btn btn-sm btn-default btn-once');
         
         $this->form->execute();
 
@@ -91,14 +92,14 @@ class Login extends Iface
 
     /**
      * @return \Dom\Template
+     * @throws \Dom\Exception
      */
     public function show()
     {
         $template = parent::show();
 
         // Render the form
-        $fren = new \Tk\Form\Renderer\Dom($this->form);
-        $template->insertTemplate($this->form->getId(), $fren->show());
+        $template->insertTemplate('form', $this->form->getRenderer()->show());
 
         if ($this->getConfig()->get('site.client.registration')) {
             $template->setChoice('register');

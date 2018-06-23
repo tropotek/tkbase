@@ -10,6 +10,14 @@ class Config extends \Tk\Config
 {
 
     /**
+     * @return mixed
+     */
+    public static function getGoogleMapKey()
+    {
+        return trim(self::getInstance()->get('site.google.map.key'));
+    }
+
+    /**
      * A factory method to create an instances of an Auth adapters
      *
      * @param string $class
@@ -165,6 +173,7 @@ class Config extends \Tk\Config
      * getSession
      *
      * @return \Tk\Session
+     * @throws \Tk\Db\Exception
      */
     public function getSession()
     {
@@ -180,6 +189,7 @@ class Config extends \Tk\Config
      * getSessionAdapter
      *
      * @return \Tk\Session\Adapter\Iface|null
+     * @throws \Tk\Db\Exception
      */
     public function getSessionAdapter()
     {
@@ -192,17 +202,16 @@ class Config extends \Tk\Config
     }
 
 
-
-
     /**
      * getFrontController
      *
      * @return \App\FrontController
+     * @throws \Tk\Exception
      */
     public function getFrontController()
     {
         if (!$this->get('front.controller')) {
-            $obj = new \App\FrontController($this->getEventDispatcher(), $this->getResolver(), $this);
+            $obj = new \App\FrontController($this->getEventDispatcher(), $this->getResolver());
             $this->set('front.controller', $obj);
         }
         return parent::get('front.controller');
@@ -235,8 +244,6 @@ class Config extends \Tk\Config
         }
         return $this->get('resolver');
     }
-
-
 
     /**
      * Ways to get the db after calling this method
@@ -326,6 +333,7 @@ class Config extends \Tk\Config
      * getAuth
      *
      * @return \Tk\Auth
+     * @throws \Tk\Db\Exception
      */
     public function getAuth()
     {
@@ -416,7 +424,8 @@ class Config extends \Tk\Config
     public static function createForm($formId, $method = \Tk\Form::METHOD_POST, $action = null)
     {
         $form = \Tk\Form::create($formId, $method, $action);
-        $form->addCss('form-horizontal');
+        //$form->addCss('form-horizontal');
+        $form->setEnableRequiredAttr();
         return $form;
     }
 
@@ -427,7 +436,7 @@ class Config extends \Tk\Config
     public static function createFormRenderer($form)
     {
         $obj = new \Tk\Form\Renderer\Dom($form);
-        $obj->setFieldGroupClass(\Tk\Form\Renderer\FieldGroup::class);
+        //$obj->setFieldGroupClass(\Tk\Form\Renderer\FieldGroup::class);
         return $obj;
     }
 
@@ -465,87 +474,40 @@ class Config extends \Tk\Config
     {
         $ap = \Tk\Ui\Admin\ActionPanel::create($title, $icon);
         if ($withBack) {
-            $ap->addButton(\Tk\Ui\Button::create('Back', 'javascript: window.history.back();', 'fa fa-arrow-left'))
+            $ap->add(\Tk\Ui\Button::create('Back', 'javascript: window.history.back();', 'fa fa-arrow-left'))
                 ->addCss('btn-default btn-once back');
         }
         return $ap;
     }
 
     /**
-     * Helper Method
-     * Make a default HTML template to create HTML emails
-     * usage:
-     *  $message->setBody($message->createHtmlTemplate($bodyStr));
-     *
-     * @param string $body
-     * @param bool $showFooter
-     * @return string
-     * @todo: Probably not the best place for this..... Dependant on the App
+     * @param string $xtplFile The mail template filename as found in the /html/xtpl/mail folder
+     * @return \Tk\Mail\CurlyMessage
      */
-    public static function createMailTemplate($body, $showFooter = true)
+    public function createMessage($xtplFile)
     {
-        $request = self::getInstance()->getRequest();
-        $foot = '';
-        if (!self::getInstance()->isCli() && $showFooter) {
-            $foot .= sprintf('<i>Page:</i> <a href="%s">%s</a><br/>', $request->getUri()->toString(), $request->getUri()->toString());
-            if ($request->getReferer()) {
-                $foot .= sprintf('<i>Referer:</i> <span>%s</span><br/>', $request->getReferer()->toString());
-            }
-            $foot .= sprintf('<i>IP Address:</i> <span>%s</span><br/>', $request->getIp());
-            $foot .= sprintf('<i>User Agent:</i> <span>%s</span>', $request->getUserAgent());
+        $config = self::getInstance();
+        $request = $config->getRequest();
+
+        $template = null;
+        if ($request->has('__template')) {
+            $xtplFile = str_replace(array('./', '../'), '', strip_tags(trim($xtplFile)));
+            $xtplFile = $config->get('template.xtpl.path') . '/mail/' . $xtplFile;
+            if (is_file($xtplFile))
+                $template = file_get_contents($xtplFile);
         }
+        if (!$template) {
+            \Tk\Alert::addWarning('Message cannot be sent. Please contact site administrator.');
+        }
+        $message = \Tk\Mail\CurlyMessage::create($template);
+        $message->setFrom($config->get('site.email'));
+        $message->set('_uri', $request->getUri()->toString());
+        $message->set('_referer', $request->getReferer()->toString());
+        $message->set('_ip', $request->getIp());
+        $message->set('_user_agent', $request->getUserAgent());
 
-        $defaultHtml = sprintf('
-<html>
-<head>
-  <title>Email</title>
-
-<style type="text/css">
-body {
-  font-family: arial,sans-serif;
-  font-size: 80%%;
-  padding: 5px;
-  background-color: #FFF;
-}
-table {
-  font-size: 0.9em;
-}
-th, td {
-  vertical-align: top;
-}
-table {
-
-}
-th {
-  text-align: left;
-}
-td {
-  padding: 4px 5px;
-}
-.content {
-  padding: 0px 0px 0px 20px;
-}
-p {
-  margin: 0px 0px 10px 0px;
-  padding: 0px;
-}
-</style>
-</head>
-<body>
-  <div class="content">%s</div>
-  <p>&#160;</p>
-  <hr />
-  <div class="footer">
-    <p>
-      %s
-    </p>
-  </div>
-</body>
-</html>', $body, $foot);
-
-        return $defaultHtml;
+        return $message;
     }
-
 
 
 

@@ -64,10 +64,9 @@ class UserMap extends Mapper
     }
 
     /**
-     * 
-     * 
      * @param $username
-     * @return mixed
+     * @return \Tk\Db\Map\Model|User
+     * @throws \Tk\Db\Exception
      */
     public function findByUsername($username)
     {
@@ -75,12 +74,21 @@ class UserMap extends Mapper
         return $result->current();
     }
 
-
+    /**
+     * @param $email
+     * @return \Tk\Db\Map\Model|User
+     * @throws \Tk\Db\Exception
+     */
     public function findByEmail($email)
     {
         return $this->select('email = ' . $this->getDb()->quote($email))->current();
     }
 
+    /**
+     * @param $hash
+     * @return \Tk\Db\Map\Model|User
+     * @throws \Tk\Db\Exception
+     */
     public function findByHash($hash)
     {
         return $this->select('hash = ' . $this->getDb()->quote($hash))->current();
@@ -91,7 +99,8 @@ class UserMap extends Mapper
      *
      * @param array $filter
      * @param Tool $tool
-     * @return ArrayObject
+     * @return ArrayObject|User[]
+     * @throws \Tk\Db\Exception
      */
     public function findFiltered($filter = array(), $tool = null)
     {

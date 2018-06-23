@@ -42,22 +42,24 @@ class Register extends Iface
         if ($request->has('h')) {
             $this->doConfirmation($request);
         }
-        if ($this->getUser()) {
-            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
-        }
+//        if ($this->getUser()) {
+//            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
+//        }
 
         $this->user = new \App\Db\User();
         $this->user->role = \App\Db\User::ROLE_USER;
         
-        
-        $this->form = new Form('registerForm', $request);
+
+        $this->form = \App\Config::createForm('register-account');
+        $this->form->setRenderer(\App\Config::createFormRenderer($this->form));
 
         $this->form->addField(new Field\Input('name'));
         $this->form->addField(new Field\Input('email'));
         $this->form->addField(new Field\Input('username'));
         $this->form->addField(new Field\Password('password'));
-        $this->form->addField(new Field\Password('passwordConf'));
-        $this->form->addField(new Event\Submit('login', array($this, 'doRegister')));
+        $this->form->addField(new Field\Password('passwordConf'))->setLabel('Password Confirm');
+        $this->form->addField(new Event\Submit('register', array($this, 'doRegister')))->addCss('btn btn-lg btn-primary btn-ss');
+        $this->form->addField(new Event\Link('forgotPassword', \Tk\Uri::create('/recover.html'), ''))->removeCss('btn btn-sm btn-default btn-once');
 
         $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
         $this->form->execute();
@@ -69,6 +71,8 @@ class Register extends Iface
      * doLogin()
      *
      * @param \Tk\Form $form
+     * @throws \ReflectionException
+     * @throws \Tk\Db\Exception
      */
     public function doRegister($form)
     {
@@ -120,9 +124,10 @@ class Register extends Iface
 
     /**
      * Activate the user account if not activated already, then trash the request hash....
-     * 
-     * 
+     *
+     *
      * @param Request $request
+     * @throws \Tk\Db\Exception
      */
     public function doConfirmation($request)
     {
@@ -151,20 +156,23 @@ class Register extends Iface
 
     /**
      * @return \Dom\Template
+     * @throws \Dom\Exception
      */
     public function show()
     {
         $template = parent::show();
 
-        if (\Tk\Config::getInstance()->getSession()->getOnce('h')) {
+        if ($this->getConfig()->get('site.client.registration')) {
+            $template->setChoice('register');
+        }
+
+        if ($this->getConfig()->getSession()->getOnce('h')) {
             $template->setChoice('success');
             
         } else {
             $template->setChoice('form');
-
             // Render the form
-            $fren = new \Tk\Form\Renderer\Dom($this->form);
-            $template->insertTemplate($this->form->getId(), $fren->show());
+            $template->insertTemplate('form', $this->form->getRenderer()->show());
         }
         
         return $template;

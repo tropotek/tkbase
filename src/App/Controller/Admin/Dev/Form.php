@@ -19,6 +19,16 @@ class Form extends AdminIface
 
 
     /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('Multiple File upload');
+        $this->getCrumbs()->reset();
+    }
+
+    /**
      *
      * @param Request $request
      * @throws \Tk\Exception
@@ -26,7 +36,6 @@ class Form extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Multiple File upload');
 
         $this->form = new \Tk\Form('formEdit');
 

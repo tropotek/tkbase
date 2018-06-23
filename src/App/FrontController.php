@@ -59,28 +59,40 @@ class FrontController extends \Tk\Kernel\HttpKernel
         // Tk Listeners
         $dispatcher->addSubscriber(new \Tk\Listener\StartupHandler($logger, $request, $config->getSession()));
 
-        // Exception Handling
-        $dispatcher->addSubscriber(new \Tk\Listener\LogExceptionListener($logger));
+
+        // Exception Handling, log first so we can grab the session log
+        $dispatcher->addSubscriber(new \Tk\Listener\LogExceptionListener($logger, true));
+
         if (preg_match('|^/ajax/.+|', $request->getUri()->getRelativePath())) { // If ajax request
             $dispatcher->addSubscriber(new \Tk\Listener\JsonExceptionListener($config->isDebug()));
         } else {
             $dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($config->isDebug()));
         }
-        if (!$config->isDebug()) {
-            $dispatcher->addSubscriber(new \Tk\Listener\ExceptionEmailListener($config->getEmailGateway(), $logger,
-                $config->get('site.email'), $config->get('site.title')));
+        if ($config->get('system.email.exception')) {
+            $listener = new \Tk\Listener\ExceptionEmailListener(
+                $config->getEmailGateway(),
+                $config->get('system.email.exception'),
+                $config->get('site.title')
+            );
+            $dispatcher->addSubscriber($listener);
+            $config->set('exception.email.listener', $listener);
         }
+
 
         $sh = new \Tk\Listener\ShutdownHandler($logger, $config->getScriptTime());
         $sh->setPageBytes($config->getDomFilterPageBytes());
         $dispatcher->addSubscriber($sh);
 
         // App Listeners
+        $dispatcher->addSubscriber(new \Tk\Listener\CrumbsHandler());
+        $dispatcher->addSubscriber(new \App\Listener\CrumbsHandler());
+
         $dispatcher->addSubscriber(new \App\Listener\AjaxAuthHandler());
         $dispatcher->addSubscriber(new \App\Listener\AuthHandler());
         $dispatcher->addSubscriber(new \App\Listener\MasqueradeHandler());
         $dispatcher->addSubscriber(new \App\Listener\ActionPanelHandler());
         $dispatcher->addSubscriber(new \App\Listener\PageTemplateHandler());
+        $dispatcher->addSubscriber(new \App\Listener\MailLogHandler());
 
     }
 
