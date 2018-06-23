@@ -1,4 +1,4 @@
-<div class="tk-register">
+<div class="tk-login-panel tk-register">
   <div choice="success">
     <h2>Success</h2>
     <p>
@@ -13,5 +13,4 @@
   <form role="form" id="registerForm" method="post" choice="form" var="form"></form>
 
 
-</div>
 </div>

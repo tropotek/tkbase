@@ -1,4 +1,4 @@
-<div class="tk-login">
+<div class="tk-login-panel tk-login">
 
   <form role="form" id="loginForm" method="post" var="form"></form>
   <div class="not-member" choice="register">

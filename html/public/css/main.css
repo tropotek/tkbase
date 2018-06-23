@@ -2681,3 +2681,8 @@ span.color-red {
 .tk-alert-container .alert {
   box-shadow: 2px 2px 2px #EFEFEF;
 }
+
+.tk-login-panel {
+  margin: 40px auto;
+  width: 30%;
+}

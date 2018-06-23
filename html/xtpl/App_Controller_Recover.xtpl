@@ -1,4 +1,4 @@
-<div class="tk-recover">
+<div class="tk-login-panel tk-recover">
 
   <form role="form" id="loginForm" method="post" var="form"></form>
 
