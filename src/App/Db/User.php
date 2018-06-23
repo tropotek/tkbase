@@ -93,7 +93,7 @@ class User extends Model implements \Tk\ValidInterface
     }
 
     /**
-     *
+     * @throws \Tk\Db\Exception
      */
     public function save()
     {
