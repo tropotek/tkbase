@@ -58,13 +58,13 @@ class Settings extends AdminIface
 
         $this->form->addField(new Field\Input('site.title'))->setLabel('Site Title')->setRequired(true);
         $this->form->addField(new Field\Input('site.email'))->setLabel('Site Email')->setRequired(true);
+        $this->form->addField(new Field\Input('site.meta.keywords'))->setLabel('SEO Keywords')->setRequired(true);
+        $this->form->addField(new Field\Input('site.meta.description'))->setLabel('SEO Description')->setRequired(true);
         $this->form->addField(new Field\Input('site.google.map.key'))->setLabel('Google API Key')
             ->setNotes('<a href="https://cloud.google.com/maps-platform/" target="_blank">Get Google Maps Api Key</a> And be sure to enable `Maps Javascript API`, `Maps Embed API` and `Places API for Web` for this site.');
 
-        $this->form->addField(new Field\Checkbox('site.client.registration'))->setLabel('Client Registration')
-            ->setNotes('Allow users to create new accounts');
-//        $this->form->addField(new Field\Checkbox('site.client.activation'))->setLabel('Client Activation')
-//            ->setNotes('Users accounts will be active onc registered, no manula activation required.');
+//        $this->form->addField(new Field\Checkbox('site.client.registration'))->setLabel('Client Registration')
+//            ->setNotes('Enable Client registrations to be submitted');
 
         $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
@@ -113,7 +113,7 @@ class Settings extends AdminIface
     {
         $template = parent::show();
 
-        $this->getActionPanel()->add(\Tk\Ui\Button::create('Users', \Tk\Uri::create('/admin/userManager.html'), 'fa fa-users'));
+        //$this->getActionPanel()->add(\Tk\Ui\Button::create('Users', \Tk\Uri::create('/admin/userManager.html'), 'fa fa-users'));
         
         // Render the form
         $template->insertTemplate('form', $this->form->getRenderer()->show());

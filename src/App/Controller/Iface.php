@@ -69,7 +69,6 @@ abstract class Iface extends \Tk\Controller\Iface
 
     /**
      * @return \Tk\Ui\Crumbs
-     * @throws \Exception
      */
     public function getCrumbs()
     {

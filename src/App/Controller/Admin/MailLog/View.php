@@ -28,6 +28,17 @@ class View extends AdminIface
 
 
     /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('Mail Log View');
+    }
+
+
+
+    /**
      *
      * @param Request $request
      * @throws Form\Exception
@@ -37,14 +48,7 @@ class View extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Mail Log View');
-
-
-        if ($request->get('mailLogId')) {
-            $this->mailLog = \App\Db\MailLog::getMapper()->find($request->get('mailLogId'));
-        }
-
-
+        $this->mailLog = \App\Db\MailLog::getMapper()->find($request->get('mailLogId'));
 
 
     }
@@ -56,7 +60,6 @@ class View extends AdminIface
     public function show()
     {
         $template = parent::show();
-
 
         $template->insertText('subject', $this->mailLog->subject);
         $template->insertText('created', $this->mailLog->created->format(\Tk\Date::FORMAT_LONG_DATETIME));

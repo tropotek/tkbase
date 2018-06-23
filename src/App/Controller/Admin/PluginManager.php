@@ -32,7 +32,11 @@ class PluginManager extends AdminIface
     /**
      *
      * @param Request $request
-     * @return \App\Page\Iface
+     * @return void
+     * @throws Form\Exception
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Exception
+     * @throws \Tk\Plugin\Exception
      */
     public function doDefault(Request $request)
     {
@@ -95,7 +99,11 @@ class PluginManager extends AdminIface
         \Tk\Uri::create()->reset()->redirect();
     }
 
-
+    /**
+     * @param Request $request
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Plugin\Exception
+     */
     protected function doActivatePlugin(Request $request)
     {
         $pluginName = strip_tags(trim($request->get('act')));
@@ -108,6 +116,11 @@ class PluginManager extends AdminIface
         \Tk\Uri::create()->reset()->redirect();
     }
 
+    /**
+     * @param Request $request
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Plugin\Exception
+     */
     protected function doDeactivatePlugin(Request $request)
     {
         $pluginName = strip_tags(trim($request->get('deact')));
@@ -121,6 +134,9 @@ class PluginManager extends AdminIface
         \Tk\Uri::create()->reset()->redirect();
     }
 
+    /**
+     * @param Request $request
+     */
     protected function doDeletePlugin(Request $request)
     {
         $pluginName = strip_tags(trim($request->get('del')));
@@ -156,6 +172,8 @@ class PluginManager extends AdminIface
 
     /**
      * @return \Dom\Template
+     * @throws \Dom\Exception
+     * @throws \Tk\Db\Exception
      */
     public function show()
     {

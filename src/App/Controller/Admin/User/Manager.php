@@ -23,6 +23,17 @@ class Manager extends AdminIface
 
 
     /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('User Manager');
+        $this->getCrumbs()->reset();
+    }
+
+
+    /**
      *
      * @param Request $request
      * @throws \Tk\Db\Exception
@@ -32,15 +43,13 @@ class Manager extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('User Manager');
-
         //$this->table = new \Tk\Table('tableOne');
         $this->table = \App\Config::getInstance()->createTable('user-list');
         $this->table->setRenderer(\App\Config::getInstance()->createTableRenderer($this->table));
 
         $this->table->addCell(new \Tk\Table\Cell\Checkbox('id'));
         $this->table->addCell(new ActionsCell('action'));
-        $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCss('key')->setUrl(\Tk\Uri::create('/admin/userEdit.html'));
+        $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCss('key')->setUrl(\Tk\Uri::create('admin/userEdit.html'));
         $this->table->addCell(new \Tk\Table\Cell\Text('username'));
         $this->table->addCell(new \Tk\Table\Cell\Text('email'));
         $this->table->addCell(new \Tk\Table\Cell\Text('role'));
@@ -67,7 +76,7 @@ class Manager extends AdminIface
     {
         $template = parent::show();
 
-        $this->getActionPanel()->add(\Tk\Ui\Button::create('Add User', \Tk\Uri::create('/admin/userEdit.html'), 'fa fa-user-o'));
+        $this->getActionPanel()->add(\Tk\Ui\Button::create('Add User', \Tk\Uri::create('/admin/userEdit.html'), 'fa fa-user'));
 
         $template->replaceTemplate('table', $this->table->getRenderer()->show());
         

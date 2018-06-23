@@ -30,15 +30,15 @@ class Edit extends AdminIface
 
 
     /**
-     * @return bool
+     * @throws \Exception
      */
-    public function isProfile() 
+    public function __construct()
     {
-        return  (\Tk\Uri::create()->basename() == 'profile.html');
+        parent::__construct();
+        $this->setPageTitle('User Edit');
     }
 
     /**
-     *
      * @param Request $request
      * @throws Form\Exception
      * @throws \ReflectionException
@@ -47,48 +47,44 @@ class Edit extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $title = 'User Edit';
-        if ($this->isProfile()) {
-            $title = 'My Profile';
-        }
-        $this->setPageTitle($title);
-        
+
         
         $this->user = new \App\Db\User();
-        if ($this->isProfile()) {
-            $this->user = $this->getUser();
-        } else if ($request->get('userId')) {
+        if ($request->get('userId')) {
             $this->user = \App\Db\User::getMapper()->find($request->get('userId'));
         }
 
-        //$this->form = new Form('user-edit');
-        $this->form->setEnableRequiredAttr();
         $this->form = \App\Config::getInstance()->createForm('user-edit');
         $this->form->setRenderer(\App\Config::getInstance()->createFormRenderer($this->form));
-        
-        $this->form->addField(new Field\Input('name'))->setRequired(true)->setTabGroup('Details');
-        $this->form->addField(new Field\Input('email'))->setRequired(true)->setTabGroup('Details');
 
-        if ($this->user->isAdmin()) {
-            $list = array('Admin' => \App\Db\User::ROLE_ADMIN, 'User' => \App\Db\User::ROLE_USER);
-            $this->form->addField(new Field\Select('role', $list))->setTabGroup('Details');
-            if (!$this->isProfile()) {
-                $this->form->addField(new Field\Checkbox('active'))->setTabGroup('Details');
-            }
-        }
-        
+
+        $tab = 'Details';
+        $list = array('Admin' => \App\Db\User::ROLE_ADMIN, 'User' => \App\Db\User::ROLE_USER);
+        $this->form->addField(new Field\Select('role', $list))->setTabGroup($tab)->setRequired(true);
+        $this->form->addField(new Field\Input('username'))->setTabGroup($tab)->setRequired(true);
+        $this->form->addField(new Field\Input('email'))->setTabGroup($tab)->setRequired(true);
+        $this->form->addField(new Field\Input('name'))->setTabGroup($tab)->setRequired(true);
+        if ($this->user->getId() != 1)
+            $this->form->addField(new Field\Checkbox('active'))->setTabGroup($tab);
+
+
+        $tab = 'Password';
         $this->form->setAttr('autocomplete', 'off');
-        $f = $this->form->addField(new Field\Password('newPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setTabGroup('Password');
+        $f = $this->form->addField(new Field\Password('newPassword'))->setAttr('placeholder', 'Click to edit')
+            ->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")
+            ->setTabGroup($tab);
         if (!$this->user->getId())
             $f->setRequired(true);
-        $f = $this->form->addField(new Field\Password('confPassword'))->setAttr('placeholder', 'Click to edit')->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")->setNotes('Change this users password.')->setTabGroup('Password');
+        $f = $this->form->addField(new Field\Password('confPassword'))->setAttr('placeholder', 'Click to edit')
+            ->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")
+            ->setNotes('Change this users password.')->setTabGroup($tab);
         if (!$this->user->getId())
             $f->setRequired(true);
 
 
         $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
-        $this->form->addField(new Event\Link('cancel', \Tk\Uri::create('/admin/userManager.html')));
+        $this->form->addField(new Event\Link('cancel', $this->getCrumbs()->getBackUrl()));
 
         $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
         
@@ -98,10 +94,11 @@ class Edit extends AdminIface
 
     /**
      * @param \Tk\Form $form
+     * @param \Tk\Form\Event\Iface $event
      * @throws \ReflectionException
      * @throws \Tk\Db\Exception
      */
-    public function doSubmit($form)
+    public function doSubmit($form, $event)
     {
         // Load the object with data from the form using a helper object
         \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
@@ -117,11 +114,9 @@ class Edit extends AdminIface
         
         // Just a small check to ensure the user down not change their own role
         if ($this->user->getId() == $this->getUser()->getId() && $this->user->role != $this->getUser()->role) {
-            //\App\Alert::addError('You cannot change your own role information as this will make the system unstable.');
             $form->addError('You cannot change your own role information as this will make the system unstable.');
         }
         if ($this->user->getId() == $this->getUser()->getId() && !$this->user->active) {
-            //\App\Alert::addError('You cannot change your own active status as this will make the system unstable.');
             $form->addError('You cannot change your own active status as this will make the system unstable.');
         }
         
@@ -138,13 +133,10 @@ class Edit extends AdminIface
         $this->user->save();
 
         \Tk\Alert::addSuccess('Record saved!');
+        $event->setRedirect(\Tk\Uri::create());
         if ($form->getTriggeredEvent()->getName() == 'update') {
-            if ($this->isProfile()) {
-                \Tk\Uri::create('/admin/index.html')->redirect();
-            }
-            \Tk\Uri::create('/admin/userManager.html')->redirect();
+            $event->setRedirect($this->getCrumbs()->getBackUrl());
         }
-        \Tk\Uri::create()->redirect();
     }
 
     /**

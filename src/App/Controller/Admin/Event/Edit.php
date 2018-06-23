@@ -26,6 +26,15 @@ class Edit extends AdminIface
      */
     private $event = null;
 
+    /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('Event Edit');
+    }
+
 
     /**
      *
@@ -38,14 +47,12 @@ class Edit extends AdminIface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Event Edit');
         
         $this->event = new \App\Db\Event();
         if ($request->get('eventId')) {
             $this->event = \App\Db\Event::getMapper()->find($request->get('eventId'));
         }
 
-        //$this->form = new Form('event-edit');
         $this->form = \App\Config::getInstance()->createForm('event-edit');
         $this->form->setRenderer(\App\Config::getInstance()->createFormRenderer($this->form));
 
@@ -74,7 +81,7 @@ class Edit extends AdminIface
 
         $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
-        $this->form->addField(new Event\Link('cancel', \Tk\Uri::create('/admin/eventManager.html')));
+        $this->form->addField(new Event\Link('cancel', $this->getCrumbs()->getBackUrl()));
 
         $this->form->load(\App\Db\EventMap::create()->unmapForm($this->event));
         
@@ -84,10 +91,11 @@ class Edit extends AdminIface
 
     /**
      * @param \Tk\Form $form
+     * @param \Tk\Form\Event\Iface $event
      * @throws \ReflectionException
      * @throws \Tk\Db\Exception
      */
-    public function doSubmit($form)
+    public function doSubmit($form, $event)
     {
         // Load the object with data from the form using a helper object
         \App\Db\EventMap::create()->mapForm($form->getValues(), $this->event);
@@ -101,11 +109,12 @@ class Edit extends AdminIface
 
         $this->event->save();
 
+
         \Tk\Alert::addSuccess('Record saved!');
+        $event->setRedirect(\Tk\Uri::create());
         if ($form->getTriggeredEvent()->getName() == 'update') {
-            \Tk\Uri::create('/admin/eventManager.html')->redirect();
+            $event->setRedirect($this->getCrumbs()->getBackUrl());
         }
-        \Tk\Uri::create()->redirect();
     }
 
     /**

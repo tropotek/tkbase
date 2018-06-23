@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller\Admin\Subscriber;
+namespace App\Controller\Admin\User;
 
 use Tk\Request;
 use Dom\Template;
@@ -9,11 +9,13 @@ use Tk\Form\Event;
 use App\Controller\AdminIface;
 
 /**
+ *
+ *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Edit extends AdminIface
+class Profile extends AdminIface
 {
 
     /**
@@ -22,9 +24,10 @@ class Edit extends AdminIface
     protected $form = null;
 
     /**
-     * @var \App\Db\Subscriber
+     * @var \App\Db\User
      */
-    private $subscriber = null;
+    private $user = null;
+
 
     /**
      * @throws \Exception
@@ -32,41 +35,45 @@ class Edit extends AdminIface
     public function __construct()
     {
         parent::__construct();
-        $this->setPageTitle('Subscriber Edit');
+        $this->setPageTitle('My Profile');
+        $this->getCrumbs()->reset();
     }
-
 
     /**
      *
      * @param Request $request
      * @throws Form\Exception
      * @throws \ReflectionException
-     * @throws \Tk\Db\Exception
      * @throws \Tk\Exception
      */
     public function doDefault(Request $request)
     {
-        
-        $this->subscriber = new \App\Db\Subscriber();
-        if ($request->get('subscriberId')) {
-            $this->subscriber = \App\Db\Subscriber::getMapper()->find($request->get('subscriberId'));
-        }
+        $this->user = $this->getUser();
 
-        //$this->form = new Form('subscriber-edit');
-        $this->form = \App\Config::getInstance()->createForm('subscriber-edit');
+        $this->form = \App\Config::getInstance()->createForm('user-edit');
         $this->form->setRenderer(\App\Config::getInstance()->createFormRenderer($this->form));
-        
-        $this->form->addField(new Field\Input('name'))->setRequired(true);
+
+        $this->form->addField(new Field\Html('username'))->setRequired(true);
         $this->form->addField(new Field\Input('email'))->setRequired(true);
-        $this->form->addField(new Field\Checkbox('active'));
-        $this->form->addField(new Field\Textarea('notes'))->setNotes('Notes only visible to admin users.');
+        $this->form->addField(new Field\Input('name'))->setRequired(true);
+
+        $this->form->setAttr('autocomplete', 'off');
+        $f = $this->form->addField(new Field\Password('newPassword'))->setAttr('placeholder', 'Click to edit')
+            ->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');");
+        if (!$this->user->getId())
+            $f->setRequired(true);
+        $f = $this->form->addField(new Field\Password('confPassword'))->setAttr('placeholder', 'Click to edit')
+            ->setAttr('readonly')->setAttr('onfocus', "this.removeAttribute('readonly');this.removeAttribute('placeholder');")
+            ->setNotes('Change this users password.');
+        if (!$this->user->getId())
+            $f->setRequired(true);
 
 
         $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
         $this->form->addField(new Event\Link('cancel', $this->getCrumbs()->getBackUrl()));
 
-        $this->form->load(\App\Db\SubscriberMap::create()->unmapForm($this->subscriber));
+        $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
         
         $this->form->execute();
 
@@ -81,17 +88,30 @@ class Edit extends AdminIface
     public function doSubmit($form, $event)
     {
         // Load the object with data from the form using a helper object
-        \App\Db\SubscriberMap::create()->mapForm($form->getValues(), $this->subscriber);
+        \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
 
         // Password validation needs to be here
-        $form->addFieldErrors($this->subscriber->validate());
-
+        if ($this->form->getFieldValue('newPassword')) {
+            if ($this->form->getFieldValue('newPassword') != $this->form->getFieldValue('confPassword')) {
+                $form->addFieldError('newPassword', 'Passwords do not match.');
+                $form->addFieldError('confPassword');
+            }
+        }
+        $form->addFieldErrors($this->user->validate());
+        
+        // Just a small check to ensure the user down not change their own role
+        if ($this->user->getId() == $this->getUser()->getId() && $this->user->role != $this->getUser()->role) {
+            $form->addError('You cannot change your own role information as this will make the system unstable.');
+        }
+        if ($this->user->getId() == $this->getUser()->getId() && !$this->user->active) {
+            $form->addError('You cannot change your own active status as this will make the system unstable.');
+        }
+        
         if ($form->hasErrors()) {
             return;
         }
 
-        $this->subscriber->save();
-
+        $this->user->save();
 
         \Tk\Alert::addSuccess('Record saved!');
         $event->setRedirect(\Tk\Uri::create());
@@ -110,11 +130,7 @@ class Edit extends AdminIface
         
         // Render the form
         $template->insertTemplate('form', $this->form->getRenderer()->show());
-        
-        if ($this->subscriber->id)
-            $template->insertText('username', $this->subscriber->name . ' - [ID ' . $this->subscriber->id . ']');
-        else
-            $template->insertText('username', 'Create User');
+        $template->insertText('username', $this->user->name . ' - [ID ' . $this->user->id . ']');
         
         return $template;
     }

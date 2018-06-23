@@ -45,16 +45,12 @@ class Index extends AdminIface
     {
         $xhtml = <<<HTML
 <div>
-
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <i class="glyphicon glyphicon-cog"></i> Dashboard
-    </div>
-    <div class="panel-body">
-      <p>TODO: </p>
-    </div>
-  </div>
-
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
 </div>
 HTML;
 
