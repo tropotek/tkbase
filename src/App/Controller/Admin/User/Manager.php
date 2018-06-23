@@ -40,7 +40,7 @@ class Manager extends AdminIface
 
         $this->table->addCell(new \Tk\Table\Cell\Checkbox('id'));
         $this->table->addCell(new ActionsCell('action'));
-        $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCss('key')->setUrl(\Tk\Uri::create('admin/userEdit.html'));
+        $this->table->addCell(new \Tk\Table\Cell\Text('name'))->addCss('key')->setUrl(\Tk\Uri::create('/admin/userEdit.html'));
         $this->table->addCell(new \Tk\Table\Cell\Text('username'));
         $this->table->addCell(new \Tk\Table\Cell\Text('email'));
         $this->table->addCell(new \Tk\Table\Cell\Text('role'));
@@ -51,9 +51,8 @@ class Manager extends AdminIface
         $this->table->addFilter(new Field\Input('keywords'))->setLabel('')->setAttr('placeholder', 'Keywords');
 
         // Actions
-        $this->table->addAction(\Tk\Table\Action\Button::createButton('New User', 'fa fa-plus', \Tk\Uri::create('admin/userEdit.html')));
         $this->table->addAction(new \Tk\Table\Action\Csv($this->getConfig()->getDb()));
-        $this->table->addAction(new \Tk\Table\Action\Delete());
+        $this->table->addAction(new \Tk\Table\Action\Delete())->setExcludeList(array('1'));
 
         $users = \App\Db\UserMap::create()->findFiltered($this->table->getFilterValues(), $this->table->getTool('a.name'));
         $this->table->setList($users);
@@ -67,6 +66,8 @@ class Manager extends AdminIface
     public function show()
     {
         $template = parent::show();
+
+        $this->getActionPanel()->add(\Tk\Ui\Button::create('Add User', \Tk\Uri::create('/admin/userEdit.html'), 'fa fa-user-o'));
 
         $template->replaceTemplate('table', $this->table->getRenderer()->show());
         
