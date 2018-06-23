@@ -43,6 +43,7 @@ try {
 
     $app->setDispatcher($dispatcher);
     $app->add(new \App\Console\Cron());
+    $app->add(new \App\Console\Upgrade());
 
     $app->run($input, $output);
 } catch (Exception $e) {
