@@ -16,21 +16,49 @@ own site.
 
 ## Installation
 
-Start by getting the dependant libs:
-
+  1. First setup a database for the site and keep the login details handy.
+  2. Make sure you have the latest version of composer [https://getcomposer.org/download/] installed.
+  3. Use the following commands:  
 ~~~bash
-# git clone https://github.com/tropotek/tk2base.git
-# cd tk2base
+# git clone https://github.com/tropotek/safesoda.git
+# cd safesoda
 # composer install
 ~~~
+  4. Edit the `/src/App/config/config.php` file to your required settings.
+  5. You may have to change the permissions of the `/data/` folder so apache can read and write to it.
+  6. To enable debug mode and logging edit the `/src/config/config.php` file to suit your server.
+     tail the log for more info on any errors.
 
-Then edit the /src/App/config/config.php file to your required settings.
 
-Next check the /src/App/sql folder for any .sql files you need to install to your database
+
+## Upgrading
+
+~~~bash
+# git reset --hard
+# git checkout master
+# git pull
+# composer update
+~~~
+
+__Warning:__ This could potentially break the site. Be sure to backup any DB and 
+site files before running these commands
+
 
 ## Introduction
 
+### Editing The HTML
 
+In the folder `/html/xtpl` and `/html/xtpl-content` you will find all the content templates for the site.
+
+
+#### Template URL paths
+When editing a path to a file there are 3 types of paths, use the first one to access theme files and use the
+other two to access files outside of the theme. 
+For example if we where editing the public.html template:
+
+  1. Theme Relative: `./css/somefile.css` would be translated into `http://domain.com/html/public/css/somefile.css`
+  2. Full Path 1: `css/somefile.css` would be translated into `http://domain.com/css/somefile.css`
+  3. Full Path 2: `/css/somefile.css` would be translated into `http://domain.com/css/somefile.css`
 
 
 
