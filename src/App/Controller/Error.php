@@ -81,8 +81,6 @@ class Error extends Iface
             $template->setChoice('log');
         }
 
-
-
         return $template;
     }
 

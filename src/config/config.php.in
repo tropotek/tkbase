@@ -16,10 +16,10 @@ $config['db.pass'] = 'password';
 
 
 // Log/Debug settings
-$config['debug'] = false;
-$config['log.level'] = \Psr\Log\LogLevel::INFO;
-$config['log.path'] = '/home/user/log/error.log';
-$config['system.debug.email'] = 'root@localhost';
+//$config['debug'] = true;
+//$config['log.level'] = \Psr\Log\LogLevel::DEBUG;
+//$config['log.path'] = '/home/user/log/error.log';
+//$config['system.debug.email'] = 'root@localhost';
 
 
 
