@@ -3,13 +3,13 @@
  *
  */
 
-let project_core = function () {
+var project_core = function () {
   "use strict";
 
   /**
    * Dual select list box renderer
    */
-  let initDualListBox = function() {
+  var initDualListBox = function() {
     if ($.fn.DualListBox === undefined) {
       console.warn('DualListBox plugin not available.');
       return;
@@ -22,7 +22,7 @@ let project_core = function () {
   /**
    * init the file field renderer
    */
-  let initTkFileInput = function() {
+  var initTkFileInput = function() {
     if ($.fn.tkFileInput === undefined) {
       console.warn('tkFileInput plugin not available.');
       return;
@@ -34,19 +34,12 @@ let project_core = function () {
   };
 
   /**
-   * remove focus on menu links
-   */
-  let initLinkBlur = function() {
-    $('a[role=tab]').click(function() { $(this).blur(); });
-  };
-
-  /**
    * Init the datetime plugin
    * for single dates and date range fields
    * `.date` = single date text field
    * `.input-datetimerange` = 2 text box range field group
    */
-  let initDatetimePicker = function() {
+  var initDatetimePicker = function() {
     if ($.fn.datetimepicker === undefined) {
       console.warn('datetimepicker plugin not available.');
       return;
@@ -66,9 +59,9 @@ let project_core = function () {
     });
 
     $('.input-datetimerange').each(function() {
-      let inputGroup = $(this);
-      let start = inputGroup.find('input').first();
-      let end = inputGroup.find('input').last();
+      var inputGroup = $(this);
+      var start = inputGroup.find('input').first();
+      var end = inputGroup.find('input').last();
       start.datetimepicker({
         todayHighlight: true,
         format: 'dd/mm/yyyy hh:ii',
@@ -90,16 +83,16 @@ let project_core = function () {
 
       start.datetimepicker().on('changeDate', function(e) {
         //end.datetimepicker('setStartDate', e.date);
-        let startDate = start.datetimepicker('getDate');
-        let endDate = end.datetimepicker('getDate');
+        var startDate = start.datetimepicker('getDate');
+        var endDate = end.datetimepicker('getDate');
         if (startDate > endDate) {
           end.datetimepicker('setDate', startDate);
         }
       });
       end.datetimepicker().on('changeDate', function(e) {
         //start.datetimepicker('setEndDate', e.date);
-        let startDate = start.datetimepicker('getDate');
-        let endDate = end.datetimepicker('getDate');
+        var startDate = start.datetimepicker('getDate');
+        var endDate = end.datetimepicker('getDate');
         if (endDate < startDate) {
           start.datetimepicker('setDate', endDate);
         }
@@ -111,12 +104,12 @@ let project_core = function () {
   /**
    * Tiny MCE setup
    */
-  let initTinymce = function() {
+  var initTinymce = function() {
     if ($.fn.tinymce === undefined) {
       console.warn('tinymce plugin not available.');
       return;
     }
-    let mceOpts = {
+    var mceOpts = {
       theme: 'modern',
       plugins: [
         'advlist autolink autosave link image lists charmap print preview hr anchor',
@@ -139,9 +132,9 @@ let project_core = function () {
       file_picker_callback : _elFinderPickerCallback
     };
     $('textarea.mce').each(function () {
-      let el = $(this);
+      var el = $(this);
       if (el.hasClass('.mce-min')) {
-        let mceOpts  = $.extend({}, mceOpts, {
+        var mceOpts  = $.extend({}, mceOpts, {
           plugins: ['advlist autolink autosave link image lists charmap hr anchor code textcolor colorpicker textpattern'],
           toolbar1: 'bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright ' +
             'alignjustify | bullist numlist | link unlink | removeformat code charmap',
@@ -161,7 +154,7 @@ let project_core = function () {
    * @returns {boolean}
    * @private
    */
-  let _elFinderPickerCallback  = function() {
+  var _elFinderPickerCallback  = function() {
     tinymce.activeEditor.windowManager.open({
       file: config.templateUrl + '/app/js/elFinder/elfinder.html', // use an absolute path!
       title: 'File Manager',
@@ -171,7 +164,7 @@ let project_core = function () {
       config: config
     }, {
       oninsert: function (file, fm) {
-        let url, reg, info;
+        var url, reg, info;
         // URL normalization
         url = fm.convAbsUrl(file.url);
         // Make file info
@@ -193,17 +186,31 @@ let project_core = function () {
     return false;
   };
 
+
+  /**
+   * remove focus on menu links
+   */
+  var initLinkBlur = function() {
+    $('body').on('click', 'a[role=tab]', function () {
+      $(this).blur();
+    });
+    //$('a[role=tab]').click(function() { $(this).blur(); });
+  };
+
   /**
    *
    */
-  let initMasquerade = function () {
-    // Live events, work even when content replaced
-    $('body')
-      .on('click', 'a[role=tab]', function() { $(this).blur(); })   // Blur tabs after click
-      .on('click', '.tk-masquerade', function () {
+  var initMasqueradeConfirm = function() {
+    $('body').on('click', '.tk-msq, .tk-masquerade', function () {
         return confirm('You are about to masquerade as the selected user?');
-      })
-      .on('click', '.tk-remove', function () {
+      });
+  };
+
+  /**
+   *
+   */
+  var initTableDeleteConfirm = function() {
+    $('body').on('click', '.tk-remove', function () {
         return confirm('Are you sure you want to remove this item?');
       });
   };
@@ -215,7 +222,8 @@ let project_core = function () {
     , initTkFileInput: initTkFileInput
     , initDualListBox: initDualListBox
     , initTinymce: initTinymce
-    , initMasquerade: initMasquerade
+    , initMasqueradeConfirm: initMasqueradeConfirm
+    , initTableDeleteConfirm : initTableDeleteConfirm
   }
 
 }();

@@ -484,7 +484,7 @@ class Config extends \Tk\Config
      * @param string $xtplFile The mail template filename as found in the /html/xtpl/mail folder
      * @return \Tk\Mail\CurlyMessage
      */
-    public function createMessage($xtplFile)
+    public function createMessage($xtplFile = 'default')
     {
         $config = self::getInstance();
         $request = $config->getRequest();

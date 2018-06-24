@@ -71,6 +71,7 @@ class Contact extends Iface
      * doSubmit()
      *
      * @param Form $form
+     * @throws \Tk\Exception
      */
     public function doSubmit($form)
     {
@@ -100,6 +101,8 @@ class Contact extends Iface
 
         if ($this->sendEmail($form)) {
             \Tk\Alert::addSuccess('<strong>Success!</strong> Your form has been sent.');
+        } else {
+            \Tk\Alert::addError('<strong>Error!</strong> Something went wrong and your message has not been sent.');
         }
 
         \Tk\Uri::create()->redirect();
@@ -111,6 +114,8 @@ class Contact extends Iface
      *
      * @param Form $form
      * @return bool
+     * @throws \Tk\Exception
+     * @throws \Exception
      */
     private function sendEmail($form)
     {
@@ -128,7 +133,7 @@ class Contact extends Iface
             $attachCount = 'Attachments: ' . $field->getUploadedFile()->getFilename();
         }
 
-        $message = <<<MSG
+        $content = <<<MSG
 Dear $name,
 
 Email: $email
@@ -139,9 +144,13 @@ Message:
 
 $attachCount
 MSG;
-        
-        //vd($message);
-        return true;
+
+        $message = $this->getConfig()->createMessage();
+        $message->addTo($email);
+        $message->setSubject($this->getConfig()->get('site.title') . ':  Contact Form Submission - ' . $name);
+        $message->set('content', $content);
+
+        return $this->getConfig()->getEmailGateway()->send($message);
     }
     
 }
