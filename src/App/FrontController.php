@@ -66,7 +66,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
         if (preg_match('|^/ajax/.+|', $request->getUri()->getRelativePath())) { // If ajax request
             $dispatcher->addSubscriber(new \Tk\Listener\JsonExceptionListener($config->isDebug()));
         } else {
-            $dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($config->isDebug()));
+            $dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($config->isDebug(), 'App\Controller\Error'));
         }
         if ($config->get('system.email.exception')) {
             $listener = new \Tk\Listener\ExceptionEmailListener(
