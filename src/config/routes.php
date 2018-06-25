@@ -28,6 +28,10 @@ include dirname(__FILE__) . '/ajaxRoutes.php';
 
 // Default Home catchall
 $params = array();
+// Used to redirect index.php request back home
+$routes->add('public-index-php-fix', new \Tk\Routing\Route('/index.php', function ($request) use ($config) {
+    \Tk\Uri::create('/')->redirect();
+}, $params));
 $routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault', $params));
 $routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault', $params));
 $routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault', $params));
@@ -76,8 +80,7 @@ $routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\U
 $routes->add('user-profile', new \Tk\Routing\Route('/user/profile.html', 'App\Controller\Admin\User\Profile::doDefault', $params));
 
 
-
-
+$params = array();
 // Example: How to do a simple controller/route all-in-one
 $routes->add('simpleTest', new \Tk\Routing\Route('/test.html', function ($request) use ($config) {
     vd($config->toString());
