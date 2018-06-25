@@ -134,7 +134,7 @@ var project_core = function () {
     $('textarea.mce').each(function () {
       var el = $(this);
       if (el.hasClass('.mce-min')) {
-        var mceOpts  = $.extend({}, mceOpts, {
+        var opts  = $.extend({}, mceOpts, {
           plugins: ['advlist autolink autosave link image lists charmap hr anchor code textcolor colorpicker textpattern'],
           toolbar1: 'bold italic underline strikethrough | forecolor backcolor | alignleft aligncenter alignright ' +
             'alignjustify | bullist numlist | link unlink | removeformat code charmap',
@@ -142,13 +142,15 @@ var project_core = function () {
           toolbar3: '',
         });
       } else if (el.hasClass('.mce-med')) {
-        mceOpts.height = el.data('height') ? el.data('height') : 250;
+        opts.height = el.data('height') ? el.data('height') : 250;
       } else {
-        mceOpts.height = el.data('height') ? el.data('height') : 400;
+        opts.height = el.data('height') ? el.data('height') : 400;
       }
-      el.tinymce(mceOpts);
+      el.tinymce(opts);
     });
   };
+
+
   /**
    * private elFinder callback function
    * @returns {boolean}
