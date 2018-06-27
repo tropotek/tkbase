@@ -32,6 +32,10 @@ class Upgrade extends Iface
         parent::execute($input, $output);
 
         $config = \App\Config::getInstance();
+        if ($config->isDebug()) {
+            $this->writeError('Error: Only run this command in a live environment.');
+            return;
+        }
         
         $cmdList = array(
             'git reset --hard',

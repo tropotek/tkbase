@@ -36,7 +36,7 @@ $config['template.public'] = $config['system.template.path'].'/public/public.htm
  * EG: $path = dirname($config['template.admin']) . $config['template.xtpl.path'];
  * @var {templatePath} will be replaced by the path of the current user page template
  */
-$config['template.xtpl.path'] = $config->getSitePath() . $config['system.template.path'] . '/xtpl';
+$config['template.xtpl.path'] = $config->getSitePath() . $config['system.template.path'] . '/app/xtpl';
 //$config['template.xtpl.path'] = '{templatePath}/xtpl';
 $config['template.xtpl.ext'] = '.xtpl';
 
@@ -71,13 +71,6 @@ $config['log.session'] = $config->getTempPath().'/session.log';
 //$config['system.form.required.attr.enabled'] = false;
 
 /*
- * Set this to an array of email addresses you would like a copy of all emails
- * sent to. The addresses will be added to the BCC of the message in the mail gateway
- * array
- */
-//$config['mail.bcc'] = null;
-
-/*
  * Enable exception emails
  */
 //$config['system.email.exception'] = array('user@example.com');
@@ -87,10 +80,8 @@ $config['log.session'] = $config->getTempPath().'/session.log';
  */
 //$config['mail.bcc'] = array('user1@example.edu.au');
 
-/*
- * Enable logs on each dispatched event
- */
-//$config['event.dispatcher.log'] = true;
+
+
 
 
 /*  
@@ -127,8 +118,6 @@ $config['system.auth.adapters'] = array(
  */
 //$config['system.auth.username'] = 'admin';
 //$config['system.auth.password'] = 'password';
-
-
 
 
 

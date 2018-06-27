@@ -68,14 +68,13 @@ class FrontController extends \Tk\Kernel\HttpKernel
         } else {
             $dispatcher->addSubscriber(new \Tk\Listener\ExceptionListener($config->isDebug(), 'App\Controller\Error'));
         }
+
         if ($config->get('system.email.exception')) {
-            $listener = new \Tk\Listener\ExceptionEmailListener(
+            $dispatcher->addSubscriber(new \Tk\Listener\ExceptionEmailListener(
                 $config->getEmailGateway(),
                 $config->get('system.email.exception'),
                 $config->get('site.title')
-            );
-            $dispatcher->addSubscriber($listener);
-            $config->set('exception.email.listener', $listener);
+            ));
         }
 
 

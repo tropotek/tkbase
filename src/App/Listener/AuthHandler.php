@@ -23,8 +23,9 @@ class AuthHandler implements Subscriber
      *
      * @param GetResponseEvent $event
      * @throws \Tk\Db\Exception
+     * @throws \Exception
      */
-    public function onSystemInit(GetResponseEvent $event)
+    public function onRequest(GetResponseEvent $event)
     {
         // if a user is in the session add them to the global config
         // Only the identity details should be in the auth session not the full user object, to save space and be secure.
@@ -50,39 +51,6 @@ class AuthHandler implements Subscriber
         } else {
             \Tk\Uri::create('/login.html')->redirect();
         }
-    }
-
-    /**
-     * Check the user has access to this controller
-     *
-     * @param ControllerEvent $event
-     */
-    public function onControllerAccess(ControllerEvent $event)
-    {
-        /** @var \App\Controller\Iface $controller */
-        $controller = $event->getController();
-
-//        if ($controller instanceof \App\Controller\Iface) {
-//            $config = \App\Config::getInstance();
-//            /** @var \App\Db\User $user */
-//            $user = $config->getUser();
-//
-//            // Get page access permission from route params (see config/routes.php)
-//            $role = $event->getRequest()->getAttribute('role');
-//
-//            vd($role, $user->hasRole($role));
-//            // Check the user has access to the controller in question
-//            if (!$role || empty($role)) return;
-//            // Check the user has access to the controller in question
-//            if (empty($role)) return;
-//            if (!$user) \Tk\Uri::create('/login.html')->redirect();
-//            if ($user && !$user->hasRole($role)) {
-//                vd($user, $role, $user->hasRole($role));
-//                // Could redirect to a authentication error page.
-//                \Tk\Alert::addWarning('You do not have access to the requested page.');
-//                $user->getHomeUrl()->redirect();
-//            }
-//        }
     }
 
 
@@ -144,6 +112,7 @@ class AuthHandler implements Subscriber
     public function onLogout(AuthEvent $event)
     {
         $event->getAuth()->clearIdentity();
+        //\App\Config::getInstance()->getSession()->destroy();
     }
 
 
@@ -236,8 +205,7 @@ class AuthHandler implements Subscriber
     public static function getSubscribedEvents()
     {
         return array(
-            KernelEvents::REQUEST => 'onSystemInit',
-            KernelEvents::CONTROLLER => 'onControllerAccess',
+            KernelEvents::REQUEST => 'onRequest',
             AuthEvents::LOGIN => 'onLogin',
             AuthEvents::LOGIN_SUCCESS => 'onLoginSuccess',
             AuthEvents::LOGOUT => 'onLogout',

@@ -107,7 +107,6 @@ class User extends Model implements \Tk\ValidInterface
      * Return the users home|dashboard relative url
      *
      * @return string
-     * @throws \Exception
      */
     public function getHomeUrl()
     {

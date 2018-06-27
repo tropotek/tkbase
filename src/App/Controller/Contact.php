@@ -42,6 +42,10 @@ class Contact extends Iface
         
         $this->form->addField(new Field\File('attach', '/contact/' . date('d-m-Y') . '-___'));
         $this->form->addField(new Field\Textarea('message'));
+
+        if ($this->getConfig()->get('google.recaptcha.publicKey'))
+            $this->form->addField(new Field\ReCapture('capture', $this->getConfig()->get('google.recaptcha.publicKey'),
+                $this->getConfig()->get('google.recaptcha.privateKey')));
         
         $this->form->addField(new Event\Submit('send', array($this, 'doSubmit')));
         
@@ -125,12 +129,16 @@ class Contact extends Iface
         if (is_array($form->getFieldValue('type')))
             $type = implode(', ', $form->getFieldValue('type'));
         $message = $form->getFieldValue('message');
-        $attachCount = '';
 
+        $attachCount = '';
         /** @var Field\File $field */
         $field = $form->getField('attach');
         if ($field->hasFile()) {
-            $attachCount = 'Attachments: ' . $field->getUploadedFile()->getFilename();
+            $attachCount = '<br/><b>Attachments:</b> ';
+            foreach ($field->getUploadedFiles() as $file) {
+                $attachCount = $file->getFilename() . ', ';
+            }
+            $attachCount = rtrim($attachCount, ', ');
         }
 
         $content = <<<MSG
@@ -149,7 +157,9 @@ MSG;
         $message->addTo($email);
         $message->setSubject($this->getConfig()->get('site.title') . ':  Contact Form Submission - ' . $name);
         $message->set('content', $content);
-
+        if ($field->hasFile()) {
+            $message->addAttachment($field->getUploadedFile()->getFile(), $field->getUploadedFile()->getFilename());
+        }
         return $this->getConfig()->getEmailGateway()->send($message);
     }
     
