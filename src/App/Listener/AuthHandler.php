@@ -61,15 +61,19 @@ class AuthHandler implements Subscriber
     public function onLogin(AuthEvent $event)
     {
         $config = \App\Config::getInstance();
+        $auth = $config->getAuth();
+
         $result = null;
-        $adapterList = $config->get('system.auth.adapters');
-        foreach($adapterList as $name => $class) {
-            $adapter = $config->getAuthAdapter($class, $event->all());
-            if (!$adapter) continue;
-            $result = $event->getAuth()->authenticate($adapter);
-            $event->setResult($result);
-            if ($result && $result->isValid()) {
-                break;
+        if (!$event->getAdapter()) {
+            $adapterList = $config->get('system.auth.adapters');
+            foreach ($adapterList as $name => $class) {
+                $event->setAdapter($config->getAuthAdapter($class, $event->all()));
+                if (!$event->getAdapter()) continue;
+                $result = $auth->authenticate($event->getAdapter());
+                $event->setResult($result);
+                if ($result && $result->isValid()) {
+                    break;
+                }
             }
         }
 
@@ -84,8 +88,6 @@ class AuthHandler implements Subscriber
         if (!$user) {
             throw new \Tk\Auth\Exception('User not found: Contact Your Administrator');
         }
-        $config->setUser($user);
-        $event->set('user', $user);
     }
 
     /**
@@ -94,14 +96,30 @@ class AuthHandler implements Subscriber
      */
     public function onLoginSuccess(AuthEvent $event)
     {
-        /** @var \App\Db\User $user */
-        $user = $event->get('user');
-        if (!$user) {
-            throw new \Tk\Exception('No user found.');
+        $result = $event->getResult();
+        if (!$result) {
+            throw new \Tk\Auth\Exception('Invalid login credentials');
         }
+        if (!$result->isValid()) {
+            return;
+        }
+
+        /* @var \App\Db\User $user */
+        $user = \App\Db\UserMap::create()->find($result->getIdentity());
+        if (!$user) {
+            throw new \Tk\Auth\Exception('Invalid user login credentials');
+        }
+        if (!$user->active) {
+            throw new \Tk\Auth\Exception('Inactive account, please contact your administrator.');
+        }
+
+        if($user && $event->getRedirect() == null) {
+            $event->setRedirect($user->getHomeUrl());
+        }
+
+        // Update the user record.
         $user->lastLogin = \Tk\Date::create();
         $user->save();
-        \Tk\Uri::create($user->getHomeUrl())->redirect();
 
     }
 
