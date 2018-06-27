@@ -111,8 +111,16 @@ class AuthHandler implements Subscriber
      */
     public function onLogout(AuthEvent $event)
     {
-        $event->getAuth()->clearIdentity();
-        //\App\Config::getInstance()->getSession()->destroy();
+        $config = \App\Config::getInstance();
+        $auth = $config->getAuth();
+        $url = $event->getRedirect();
+        if (!$url) {
+            $url = \Tk\Uri::create('/index.html');
+            $event->setRedirect($url);
+        }
+
+        $auth->clearIdentity();
+        $config->getSession()->destroy();
     }
 
 
