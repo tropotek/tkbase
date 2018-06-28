@@ -105,7 +105,7 @@ class AuthHandler implements Subscriber
         }
 
         /* @var \App\Db\User $user */
-        $user = \App\Db\UserMap::create()->find($result->getIdentity());
+        $user = \App\Db\UserMap::create()->findByUsername($result->getIdentity());
         if (!$user) {
             throw new \Tk\Auth\Exception('Invalid user login credentials');
         }

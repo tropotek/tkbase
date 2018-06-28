@@ -50,6 +50,7 @@ class Login extends Iface
 
     /**
      * @param \Tk\Form $form
+     * @throws \Tk\Db\Exception
      */
     public function doLogin($form)
     {
@@ -69,7 +70,8 @@ class Login extends Iface
 
         try {
             // Fire the login event to allow developing of misc auth plugins
-            $event = new AuthEvent($auth, $form->getValues());
+            $event = new AuthEvent();
+            $event->replace($form->getValues());
             $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN, $event);
 
             // Use the event to process the login like below....
@@ -83,7 +85,14 @@ class Login extends Iface
                 return;
             }
 
-            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $event);
+            // Copy the event to avoid propagation issues
+            $sEvent = new AuthEvent($event->getAdapter());
+            $sEvent->replace($event->all());
+            $sEvent->setResult($event->getResult());
+            $sEvent->setRedirect($event->getRedirect());
+            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $sEvent);
+            if ($sEvent->getRedirect())
+                $sEvent->getRedirect()->redirect();
 
         } catch (\Exception $e) {
             $form->addError($e->getMessage());
