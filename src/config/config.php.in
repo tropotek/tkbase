@@ -27,7 +27,13 @@ $config['db.pass'] = 'password';
 /*
  * Send copies of all system emails to these recipients (not error emails)
  */
-$config['mail.bcc'] = array('user1@example.edu.au');
+//$config['mail.bcc'] = array('user1@example.edu.au');
+
+/*
+ * Enable logging of triggered events
+ * Default: false
+ */
+//$config['event.dispatcher.log'] = false;
 
 /*
  * Debug settings
