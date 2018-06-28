@@ -79,8 +79,6 @@ class User extends Model implements \Tk\ValidInterface
     public $ip = '';
 
 
-
-
     /**
      * User constructor.
      *
@@ -141,9 +139,9 @@ class User extends Model implements \Tk\ValidInterface
      */
     public function generateHash($isTemp = false)
     {
-        $key = sprintf('%s:%s:%s', $this->getVolatileId(), $this->username, $this->email);
+        $key = sprintf('%s%s', $this->getVolatileId(), $this->username);
         if ($isTemp) {
-            $key .= date('YmdHis');
+            $key .= date('-YmdHis');
         }
         return hash('md5', $key);
     }
@@ -195,9 +193,9 @@ class User extends Model implements \Tk\ValidInterface
     {
         $errors = array();
 
-        if (!$this->name) {
-            $errors['name'] = 'Invalid field name value';
-        }
+//        if (!$this->name) {
+//            $errors['name'] = 'Invalid field name value';
+//        }
         if (!$this->role) {
             $errors['role'] = 'Invalid field role value';
         }
@@ -209,12 +207,14 @@ class User extends Model implements \Tk\ValidInterface
                 $errors['username'] = 'This username is already in use';
             }
         }
-        if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
-            $errors['email'] = 'Please enter a valid email address';
-        } else {
-            $dup = UserMap::create()->findByEmail($this->email);
-            if ($dup && $dup->getId() != $this->getId()) {
-                $errors['email'] = 'This email is already in use';
+        if ($this->email) {
+            if (!filter_var($this->email, FILTER_VALIDATE_EMAIL)) {
+                $errors['email'] = 'Please enter a valid email address';
+            } else {
+                $dup = UserMap::create()->findByEmail($this->email);
+                if ($dup && $dup->getId() != $this->getId()) {
+                    $errors['email'] = 'This email is already in use';
+                }
             }
         }
         return $errors;
