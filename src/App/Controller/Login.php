@@ -23,6 +23,13 @@ class Login extends Iface
      */
     protected $form = null;
 
+    /**
+     * Login constructor.
+     */
+    public function __construct()
+    {
+        $this->setPageTitle('Login');
+    }
 
     /**
      * @param Request $request
@@ -30,11 +37,6 @@ class Login extends Iface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Login');
-        
-//        if ($this->getUser()) {
-//            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
-//        }
 
         $this->form = \App\Config::createForm('login-form');
         $this->form->setRenderer(\App\Config::createFormRenderer($this->form));

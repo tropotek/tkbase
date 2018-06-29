@@ -26,6 +26,15 @@ class Register extends Iface
     private $user = null;
 
 
+
+    /**
+     * Login constructor.
+     */
+    public function __construct()
+    {
+        $this->setPageTitle('Register New Account');
+    }
+
     /**
      * @param Request $request
      * @throws \Exception
@@ -33,8 +42,6 @@ class Register extends Iface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Create New Account');
-        
         if (!$this->getConfig()->get('site.client.registration')) {
             \Tk\Alert::addError('User registration has been disabled on this site.');
             \Tk\Uri::create('/')->redirect();
@@ -42,9 +49,6 @@ class Register extends Iface
         if ($request->has('h')) {
             $this->doConfirmation($request);
         }
-//        if ($this->getUser()) {
-//            \Tk\Uri::create($this->getUser()->getHomeUrl())->redirect();
-//        }
 
         $this->user = new \App\Db\User();
         $this->user->role = \App\Db\User::ROLE_USER;
@@ -63,7 +67,6 @@ class Register extends Iface
 
         $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
         $this->form->execute();
-
     }
 
 
@@ -104,7 +107,6 @@ class Register extends Iface
         $this->user->hash = $hash;
         $this->user->active = false;
         $this->user->password = $this->getConfig()->hashPassword($this->user->password, $this->user);
-        
         $this->user->save();
 
         

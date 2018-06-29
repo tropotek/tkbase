@@ -24,6 +24,15 @@ class Recover extends Iface
     protected $form = null;
 
 
+
+    /**
+     * Login constructor.
+     */
+    public function __construct()
+    {
+        $this->setPageTitle('Recover Password');
+    }
+
     /**
      * @param Request $request
      * @throws Form\Exception
@@ -31,12 +40,8 @@ class Recover extends Iface
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('Recover Password');
-
         $this->form = \App\Config::createForm('recover-account');
         $this->form->setRenderer(\App\Config::createFormRenderer($this->form));
-
-
 
         $this->form->addField(new Field\Input('account'));
         $this->form->addField(new Event\Submit('recover', array($this, 'doRecover')))->addCss('btn btn-lg btn-primary btn-ss');
@@ -104,7 +109,6 @@ class Recover extends Iface
             $template->setChoice('register');
         }
 
-        
         return $template;
     }
 
