@@ -111,6 +111,10 @@ class Profile extends AdminIface
             return;
         }
 
+        if ($this->form->getFieldValue('newPassword')) {
+            $this->user->setNewPassword($this->form->getFieldValue('newPassword'));
+        }
+
         $this->user->save();
 
         \Tk\Alert::addSuccess('Record saved!');

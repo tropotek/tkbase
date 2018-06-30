@@ -124,6 +124,10 @@ class Edit extends AdminIface
             return;
         }
 
+        if ($this->form->getFieldValue('newPassword')) {
+            $this->user->setNewPassword($this->form->getFieldValue('newPassword'));
+        }
+
         // Keep the admin account available and working. (hack for basic sites)
         if ($this->user->getId() == 1) {
             $this->user->active = true;
