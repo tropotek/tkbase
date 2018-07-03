@@ -52,17 +52,15 @@ class Login extends Iface
 
     /**
      * @param \Tk\Form $form
+     * @param \Tk\Form\Event\Iface $event
      * @throws \Tk\Db\Exception
      */
-    public function doLogin($form)
+    public function doLogin($form, $event)
     {
-        /** @var Auth $auth */
-        $auth = $this->getConfig()->getAuth();
-
-        if (!$form->getFieldValue('username') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('username'))) {
+        if (!$form->getFieldValue('username')) {
             $form->addFieldError('username', 'Please enter a valid username');
         }
-        if (!$form->getFieldValue('password') || !preg_match('/[a-z0-9_ -]{4,32}/i', $form->getFieldValue('password'))) {
+        if (!$form->getFieldValue('password')) {
             $form->addFieldError('password', 'Please enter a valid password');
         }
 
@@ -72,12 +70,12 @@ class Login extends Iface
 
         try {
             // Fire the login event to allow developing of misc auth plugins
-            $event = new AuthEvent();
-            $event->replace($form->getValues());
-            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN, $event);
+            $e = new AuthEvent();
+            $e->replace($form->getValues());
+            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN, $e);
 
             // Use the event to process the login like below....
-            $result = $event->getResult();
+            $result = $e->getResult();
             if (!$result) {
                 $form->addError('Invalid username or password');
                 return;
@@ -88,13 +86,13 @@ class Login extends Iface
             }
 
             // Copy the event to avoid propagation issues
-            $sEvent = new AuthEvent($event->getAdapter());
-            $sEvent->replace($event->all());
-            $sEvent->setResult($event->getResult());
-            $sEvent->setRedirect($event->getRedirect());
-            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $sEvent);
-            if ($sEvent->getRedirect())
-                $sEvent->getRedirect()->redirect();
+            $e2 = new AuthEvent($e->getAdapter());
+            $e2->replace($e->all());
+            $e2->setResult($e->getResult());
+            $e2->setRedirect($e->getRedirect());
+            $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGIN_SUCCESS, $e2);
+            if ($e2->getRedirect())
+                $e2->getRedirect()->redirect();
 
         } catch (\Exception $e) {
             $form->addError($e->getMessage());

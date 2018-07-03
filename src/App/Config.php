@@ -118,6 +118,7 @@ class Config extends \Tk\Config
      * @param string $name
      * @param bool $active
      * @return Db\User
+     * @throws \Tk\Db\Exception
      */
     public function createNewUser($username, $email, $password = '', $name = '', $active = true)
     {

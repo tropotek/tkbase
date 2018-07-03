@@ -52,7 +52,6 @@ class Register extends Iface
 
         $this->user = new \App\Db\User();
         $this->user->role = \App\Db\User::ROLE_USER;
-        
 
         $this->form = \App\Config::createForm('register-account');
         $this->form->setRenderer(\App\Config::createFormRenderer($this->form));
@@ -71,16 +70,15 @@ class Register extends Iface
 
 
     /**
-     * doLogin()
-     *
      * @param \Tk\Form $form
+     * @param \Tk\Form\Event\Iface $event
      * @throws \ReflectionException
      * @throws \Tk\Db\Exception
      */
-    public function doRegister($form)
+    public function doRegister($form, $event)
     {
         \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
-        
+
         if (!$this->form->getFieldValue('password')) {
             $form->addFieldError('password', 'Please enter a password');
             $form->addFieldError('passwordConf');
@@ -95,9 +93,9 @@ class Register extends Iface
             $form->addFieldError('password', 'Passwords do not match.');
             $form->addFieldError('passwordConf');
         }
-        
+
         $form->addFieldErrors($this->user->validate());
-        
+
         if ($form->hasErrors()) {
             return;
         }
@@ -109,27 +107,25 @@ class Register extends Iface
         $this->user->password = $this->getConfig()->hashPassword($this->user->password, $this->user);
         $this->user->save();
 
-        
-        
         // Fire the login event to allow developing of misc auth plugins
-        $event = new \Tk\Event\Event();
-        $event->set('form', $form);
-        $event->set('user', $this->user);
-        $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::REGISTER, $event);
+        $e = new \Tk\Event\Event();
+        $e->set('form', $form);
+        $e->set('user', $this->user);
+        $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::REGISTER, $e);
 
-        
+
         // Redirect with message to check their email
         \Tk\Alert::addSuccess('Your New Account Has Been Created.');
         \Tk\Config::getInstance()->getSession()->set('h', $this->user->hash);
-        \Tk\Uri::create()->redirect();
+        $event->setRedirect(\Tk\Uri::create());
     }
 
     /**
      * Activate the user account if not activated already, then trash the request hash....
      *
-     *
      * @param Request $request
      * @throws \Tk\Db\Exception
+     * @throws \Tk\Exception
      */
     public function doConfirmation($request)
     {
@@ -150,10 +146,10 @@ class Register extends Iface
         $event = new \Tk\Event\Event();
         $event->set('user', $user);
         $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::REGISTER_CONFIRM, $event);
-        
+
         \Tk\Alert::addSuccess('Account Activation Successful.');
         \Tk\Uri::create('/login.html')->redirect();
-        
+
     }
 
     /**
@@ -170,14 +166,14 @@ class Register extends Iface
 
         if ($this->getConfig()->getSession()->getOnce('h')) {
             $template->setChoice('success');
-            
+
         } else {
             $template->setChoice('form');
             // Render the form
             $template->insertTemplate('form', $this->form->getRenderer()->show());
         }
-        
+
         return $template;
     }
-    
+
 }
