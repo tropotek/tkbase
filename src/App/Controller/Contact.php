@@ -128,7 +128,7 @@ class Contact extends Iface
         $type = '';
         if (is_array($form->getFieldValue('type')))
             $type = implode(', ', $form->getFieldValue('type'));
-        $message = $form->getFieldValue('message');
+        $messageStr = $form->getFieldValue('message');
 
         $attachCount = '';
         /** @var Field\File $field */
@@ -142,15 +142,19 @@ class Contact extends Iface
         }
 
         $content = <<<MSG
+<p>
 Dear $name,
-
-Email: $email
+</p>
+<p>
+Email: $email<br/>
 Type: $type
-
-Message:
-  $message
-
+</p>
+<p>Message:<br/>
+  $messageStr
+</p>
+<p>
 $attachCount
+</p>
 MSG;
 
         $message = $this->getConfig()->createMessage();
