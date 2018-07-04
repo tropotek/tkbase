@@ -379,7 +379,15 @@ class Config extends \Tk\Config
         return $this->get('plugin.factory');
     }
 
-
+    /**
+     * Return the back URI if available, otherwise it will return the home URI
+     *
+     * @return \Tk\Uri
+     */
+    public function getBackUrl()
+    {
+        return \App\Ui\Crumbs::getInstance()->getBackUrl();
+    }
 
     /**
      * @return Db\User

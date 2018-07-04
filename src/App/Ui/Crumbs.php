@@ -82,7 +82,6 @@ class Crumbs extends \Dom\Renderer\Renderer
      * @param null|\App\Db\User $user
      * @param null|\Tk\Session $session
      * @return Crumbs
-     * @throws \Exception
      */
     public static function getInstance($user = null, $session = null)
     {
@@ -136,7 +135,6 @@ class Crumbs extends \Dom\Renderer\Renderer
 
     /**
      * save the state of the crumb stack to the session
-     * @throws \Exception
      */
     public static function save()
     {

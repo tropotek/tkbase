@@ -51,7 +51,7 @@ class Settings extends AdminIface
 
         $this->data = \Tk\Db\Data::create();
 
-        $this->getActionPanel()->add(new \Tk\Ui\Button('Plugins', \Tk\Uri::create('/admin/plugins.html'), 'fa fa-plug'));
+        $this->getActionPanel()->add(\Tk\Ui\Button::create('Plugins', \Tk\Uri::create('/admin/plugins.html'), 'fa fa-plug'));
 
         $this->form = Form::create('formEdit');
         $this->form->setRenderer(new \Tk\Form\Renderer\Dom($this->form));
