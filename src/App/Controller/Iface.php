@@ -72,7 +72,7 @@ abstract class Iface extends \Tk\Controller\Iface
      */
     public function getCrumbs()
     {
-        return \Tk\Ui\Crumbs::getInstance();
+        return $this->getConfig()->getCrumbs();
     }
 
     /**

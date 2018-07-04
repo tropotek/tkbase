@@ -386,8 +386,17 @@ class Config extends \Tk\Config
      */
     public function getBackUrl()
     {
-        return \App\Ui\Crumbs::getInstance()->getBackUrl();
+        return $this->getCrumbs()->getBackUrl();
     }
+
+    /**
+     * @return \Tk\Ui\Crumbs
+     */
+    public function getCrumbs()
+    {
+        return \Tk\Ui\Crumbs::getInstance();
+    }
+
 
     /**
      * @return Db\User
