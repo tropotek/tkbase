@@ -104,7 +104,7 @@ class Register extends Iface
         $hash = $this->user->generateHash(true);
         $this->user->hash = $hash;
         $this->user->active = false;
-        $this->user->password = $this->getConfig()->hashPassword($this->user->password, $this->user);
+        $this->user->setNewPassword($this->user->password);
         $this->user->save();
 
         // Fire the login event to allow developing of misc auth plugins
@@ -154,7 +154,6 @@ class Register extends Iface
 
     /**
      * @return \Dom\Template
-     * @throws \Dom\Exception
      */
     public function show()
     {

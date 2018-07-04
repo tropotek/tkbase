@@ -18,11 +18,10 @@ class Logout extends Iface
      */
     public function doDefault(Request $request)
     {
-        
         $event = new AuthEvent();
         $this->getConfig()->getEventDispatcher()->dispatch(AuthEvents::LOGOUT, $event);
-        
-        \Tk\Uri::create('/index.html')->redirect();
+        if ($event->getRedirect())
+            $event->getRedirect()->redirect();
     }
 
 }
