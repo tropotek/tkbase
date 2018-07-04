@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "129ce61346cc4b2faa4d9bde8623473b",
+    "content-hash": "b4d0796df68340227f462fe2ac9ba98e",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -664,100 +664,6 @@
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
             "time": "2018-05-21T10:06:52+00:00"
-        },
-        {
-            "name": "ttek-plg/mailog",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tropotek/plg-mailog.git",
-                "reference": "b6f350021d0ddc21ccc2bd544aae0d32c4f09eaa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-mailog/zipball/b6f350021d0ddc21ccc2bd544aae0d32c4f09eaa",
-                "reference": "b6f350021d0ddc21ccc2bd544aae0d32c4f09eaa",
-                "shasum": ""
-            },
-            "require": {
-                "ttek/tk-installers": "~2.0"
-            },
-            "type": "ttek-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Ml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Mifsud",
-                    "homepage": "http://www.tropotek.com/"
-                }
-            ],
-            "description": "Tk2 lib mail loging plugin",
-            "homepage": "http://www.tropotek.com/",
-            "keywords": [
-                "mailog",
-                "plugin",
-                "tropotek"
-            ],
-            "time": "2018-07-04T21:59:04+00:00"
-        },
-        {
-            "name": "ttek-plg/sample",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tropotek/plg-sample.git",
-                "reference": "c6dc7064eb0bfd1d897cbfa695c0ef3d1878aaaa"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-sample/zipball/c6dc7064eb0bfd1d897cbfa695c0ef3d1878aaaa",
-                "reference": "c6dc7064eb0bfd1d897cbfa695c0ef3d1878aaaa",
-                "shasum": ""
-            },
-            "require": {
-                "ttek/tk-installers": "~2.0"
-            },
-            "type": "ttek-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Eg\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Mifsud",
-                    "homepage": "http://www.tropotek.com/"
-                }
-            ],
-            "description": "Example Tk2 Lib plugin",
-            "homepage": "http://www.tropotek.com/",
-            "keywords": [
-                "example",
-                "plugin",
-                "tropotek"
-            ],
-            "time": "2018-07-04T22:03:21+00:00"
         },
         {
             "name": "ttek/tk-auth",
