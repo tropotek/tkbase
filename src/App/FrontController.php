@@ -92,7 +92,7 @@ class FrontController extends \Tk\Kernel\HttpKernel
         $dispatcher->addSubscriber(new \App\Listener\ActionPanelHandler());
         $dispatcher->addSubscriber(new \App\Listener\PageTemplateHandler());
         $dispatcher->addSubscriber(new \App\Listener\MailHandler());
-        $dispatcher->addSubscriber(new \App\Listener\MailLogHandler());
+//        $dispatcher->addSubscriber(new \App\Listener\MailLogHandler());
 
     }
 

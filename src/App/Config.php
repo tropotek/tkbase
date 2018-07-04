@@ -524,7 +524,7 @@ class Config extends \Tk\Config
         $message->setFrom($config->get('site.email'));
         $message->set('_uri', $request->getUri()->toString());
         $message->set('_referer', $request->getReferer()->toString());
-        $message->set('_ip', $request->getIp());
+        //$message->set('_ip', $request->getIp());
         $message->set('_user_agent', $request->getUserAgent());
 
         return $message;

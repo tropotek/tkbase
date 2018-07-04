@@ -66,8 +66,8 @@ $routes->add('admin-subscriber-edit', new \Tk\Routing\Route('/admin/subscriberEd
 $routes->add('admin-event-manager', new \Tk\Routing\Route('/admin/eventManager.html', 'App\Controller\Admin\Event\Manager::doDefault', $params));
 $routes->add('admin-event-edit', new \Tk\Routing\Route('/admin/eventEdit.html', 'App\Controller\Admin\Event\Edit::doDefault', $params));
 
-$routes->add('admin-maillog-manager', new \Tk\Routing\Route('/admin/mailLogManager.html', 'App\Controller\Admin\MailLog\Manager::doDefault', $params));
-$routes->add('admin-maillog-view', new \Tk\Routing\Route('/admin/mailLogView.html', 'App\Controller\Admin\MailLog\View::doDefault', $params));
+//$routes->add('admin-maillog-manager', new \Tk\Routing\Route('/admin/mailLogManager.html', 'App\Controller\Admin\MailLog\Manager::doDefault', $params));
+//$routes->add('admin-maillog-view', new \Tk\Routing\Route('/admin/mailLogView.html', 'App\Controller\Admin\MailLog\View::doDefault', $params));
 
 // Dev pages
 $routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\Controller\Admin\Dev\Events::doDefault', $params));
