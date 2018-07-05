@@ -9,8 +9,6 @@ use Tk\Form\Event;
 use App\Controller\AdminIface;
 
 /**
- *
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
