@@ -21,7 +21,7 @@ class AdminIface extends Iface implements \Dom\Renderer\DisplayInterface
     public function __construct()
     {
         $this->actionPanel = \Tk\Ui\Admin\ActionPanel::create('Actions', 'fa fa-cogs');
-        $this->actionPanel->addButton(\Tk\Ui\Button::create('Back', 'javascript: window.history.back();', 'fa fa-arrow-left'))
+        $this->actionPanel->add(\Tk\Ui\Button::create('Back', 'javascript: window.history.back();', 'fa fa-arrow-left'))
             ->addCss('btn-default btn-once back');
     }
 
