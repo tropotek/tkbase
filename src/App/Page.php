@@ -1,12 +1,12 @@
 <?php
-namespace App\Page;
+namespace App;
 
 /**
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-abstract class Iface extends \Tk\Controller\Page
+class Page extends \Tk\Controller\Page
 {
 
     /**

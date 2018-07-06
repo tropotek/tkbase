@@ -422,14 +422,12 @@ class Config extends \Tk\Config
 
 
     /**
-     * Create a page for the request
-     *
      * @param \Tk\Controller\Iface $controller
      * @return \Tk\Controller\Page
      */
-    public static function createPage($controller)
+    public function createPage($controller)
     {
-        $page = new \Tk\Controller\Page();
+        $page = new \App\Page();
         $page->setController($controller);
         if (!$controller->getPageTitle()) {     // Set a default page Title for the crumbs
             $controller->setPageTitle($controller->getDefaultTitle());
