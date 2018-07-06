@@ -218,6 +218,17 @@ var project_core = function () {
       });
   };
 
+  //**
+  var initGrowLikeAlerts = function () {
+    // Growl like alert messages that fade out.
+    $('.tk-alert-container .alert').each(function() {
+      var a = $(this);
+      setTimeout(function () {
+        a.fadeOut(1000);
+      }, 5000);
+    });
+  };
+
 
   return {
     initDatetimePicker: initDatetimePicker
@@ -227,6 +238,7 @@ var project_core = function () {
     , initTinymce: initTinymce
     , initMasqueradeConfirm: initMasqueradeConfirm
     , initTableDeleteConfirm : initTableDeleteConfirm
+    , initGrowLikeAlerts : initGrowLikeAlerts
   }
 
 }();
