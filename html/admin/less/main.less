@@ -2,14 +2,21 @@
 /** Public Styles                        **/
 /******************************************/
 
-@import '../bower_components/bootstrap/less/bootstrap';
-@import 'table';
-@import 'form';
-@import 'ribbon';
-@import 'starRating';
-//@import  '@{sitePath}/vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput.less';
 
-@icon-font-path:  '@{templateUrl}/admin/bower_components/bootstrap/fonts/';
+// Variable "templateUrl" comes from the site defined variables see the Dom Modifier Less class
+//@siteUrl: '/';
+//@dataUrl: '/data';
+//@templateUrl: '/html';
+@template-path:  '@{templateUrl}/admin';
+
+@import '../bower_components/bootstrap/less/bootstrap';
+@import '../../app/less/app';
+@import '../../../vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput';
+
+
+
+@icon-font-path:  '@{template-path}/bower_components/bootstrap/fonts/';
+
 
 
 .page-header {
@@ -46,8 +53,9 @@ body.public {
   margin-top: -10px;
 }
 .navbar-brand {
-  padding-left: 30px;
+
 }
+
 
 
 /******************************************/
@@ -57,6 +65,19 @@ body.public {
   padding: 0;
 }
 
+.tk-login-panel {
+  margin: 40px auto;
+  width: 40%;
+  .tk-form-events {
+
+  }
+  .btn {
+    margin-right: 10px;
+  }
+}
+.not-member {
+  margin-top: 20px;
+}
 
 #contactForm .form-group {
   &.has-error .form-control {
@@ -69,10 +90,11 @@ body.public {
   }
 }
 
-.tk-ui-action-panel .btn {
-  margin-right: 10px;
+.tk-ui-action-panel {
+  .btn {
+    margin-right: 5px;
+  }
 }
-
 
 .carousel-caption {
   color: #333;
@@ -110,3 +132,39 @@ body.public {
 
 
 
+.thumbnail (@width: 110px, @height: 110px, @margin: 0px) {
+  width: @width;
+  height: @height;
+  margin: @margin;
+  padding: 0px;
+  overflow:hidden;
+  position:relative;
+  text-align: left;
+
+  img.nailthumb-image {
+    margin: 0px;
+    padding: 0px;
+    max-width: none;
+    text-align: left;
+    float: left;
+  }
+  span.nailthumb-title {
+    background:none repeat scroll 0 0 rgba(0, 0, 0, 0.5);
+    bottom:0;
+    color:White;
+    display:block;
+    font-size:9px;
+    height:20px;
+    left:0;
+    margin-top: 2px;
+    line-height:20px;
+    position:relative;
+    text-align:center;
+    width:100%;
+    overflow: hidden;
+    float: left;
+    .nailthumb-title-scroller {
+      padding-left: 2px;
+    }
+  }
+}
