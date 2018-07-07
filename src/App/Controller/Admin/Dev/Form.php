@@ -54,7 +54,7 @@ class Form extends AdminIface
         $this->form->addField(new \Tk\Form\Event\Submit('save', array($this, 'doSubmit')));
         $this->form->addField(new \Tk\Form\Event\Link('cancel', \Tk\Uri::create('/admin/index.html')));
 
-        //$this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
+        //$this->form->load(\Bs\Db\UserMap::create()->unmapForm($this->user));
 
         $this->form->execute();
 
@@ -66,7 +66,7 @@ class Form extends AdminIface
     public function doSubmit($form)
     {
         // Load the object with data from the form using a helper object
-        //\App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
+        //\Bs\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
 
         if ($form->hasErrors()) {
             return;

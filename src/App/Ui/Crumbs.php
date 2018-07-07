@@ -46,7 +46,7 @@ class Crumbs extends \Dom\Renderer\Renderer
     protected $list = array();
 
     /**
-     * @var \App\Db\User
+     * @var \Bs\Db\User
      */
     protected $user = null;
 
@@ -58,7 +58,7 @@ class Crumbs extends \Dom\Renderer\Renderer
 
     /**
      * Crumbs constructor.
-     * @param \App\Db\User $user
+     * @param \Bs\Db\User $user
      * @param \Tk\Session $session
      */
     protected function __construct($user, $session)
@@ -68,7 +68,7 @@ class Crumbs extends \Dom\Renderer\Renderer
     }
 
     /**
-     * @param \App\Db\User $user
+     * @param \Bs\Db\User $user
      * @param \Tk\Session $session
      * @return static
      */
@@ -79,7 +79,7 @@ class Crumbs extends \Dom\Renderer\Renderer
     }
 
     /**
-     * @param null|\App\Db\User $user
+     * @param null|\Bs\Db\User $user
      * @param null|\Tk\Session $session
      * @return Crumbs
      */
@@ -158,7 +158,7 @@ class Crumbs extends \Dom\Renderer\Renderer
     }
 
     /**
-     * @return \App\Db\User
+     * @return \Bs\Db\User
      */
     public function getUser()
     {

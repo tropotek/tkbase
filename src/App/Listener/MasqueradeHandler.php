@@ -4,7 +4,7 @@ namespace App\Listener;
 use Tk\Event\Subscriber;
 use Tk\Kernel\KernelEvents;
 use Tk\Event\GetResponseEvent;
-use App\Db\User;
+use Bs\Db\User;
 use Tk\Event\AuthEvent;
 use Tk\Auth\AuthEvents;
 
@@ -44,7 +44,7 @@ class MasqueradeHandler implements Subscriber
             $user = \App\Config::getInstance()->getUser();
             if (!$user) throw new \Tk\Exception('Invalid User');
             /** @var User $msqUser */
-            $msqUser = \App\Db\UserMap::create()->find($request->get(self::MSQ));
+            $msqUser = \Bs\Db\UserMap::create()->find($request->get(self::MSQ));
             if (!$msqUser) throw new \Tk\Exception('Invalid User');
             self::masqueradeLogin($user, $msqUser);
         } catch (\Exception $e) {
@@ -76,14 +76,14 @@ class MasqueradeHandler implements Subscriber
 
         // Get the users role precedence order index
 
-        // If not admin their role must be higher in precedence see \App\Db\User::$roleOrder
-//        $userRoleIdx = array_search($user->role, \App\Db\User::$roleOrder);
-//        $msqRoleIdx = array_search($msqUser->role, \App\Db\User::$roleOrder);
+        // If not admin their role must be higher in precedence see \Bs\Db\User::$roleOrder
+//        $userRoleIdx = array_search($user->role, \Bs\Db\User::$roleOrder);
+//        $msqRoleIdx = array_search($msqUser->role, \Bs\Db\User::$roleOrder);
 //        if (!$user->isAdmin && $userRoleIdx >= $msqRoleIdx) {
 //            return false;
 //        }
 
-        // If not admin their role must be higher in precedence see \App\Db\User::$roleOrder
+        // If not admin their role must be higher in precedence see \Bs\Db\User::$roleOrder
         if (!$user->isAdmin()) {
             return false;
         }
@@ -165,7 +165,7 @@ class MasqueradeHandler implements Subscriber
         \App\Config::getInstance()->getSession()->set(self::SID, $msqArr);
 
         /** @var User $user */
-        $user = \App\Db\UserMap::create()->find($userData['userId']);
+        $user = \Bs\Db\UserMap::create()->find($userData['userId']);
         \App\Config::getInstance()->getAuth()->getStorage()->write($user->username);
 
         \Tk\Uri::create($userData['url'])->redirect();

@@ -22,7 +22,7 @@ class Profile extends AdminIface
     protected $form = null;
 
     /**
-     * @var \App\Db\User
+     * @var \Bs\Db\User
      */
     private $user = null;
 
@@ -71,7 +71,7 @@ class Profile extends AdminIface
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
         $this->form->addField(new Event\Link('cancel', $this->getCrumbs()->getBackUrl()));
 
-        $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
+        $this->form->load(\Bs\Db\UserMap::create()->unmapForm($this->user));
         
         $this->form->execute();
 
@@ -86,7 +86,7 @@ class Profile extends AdminIface
     public function doSubmit($form, $event)
     {
         // Load the object with data from the form using a helper object
-        \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
+        \Bs\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
 
         // Password validation needs to be here
         if ($this->form->getFieldValue('newPassword')) {

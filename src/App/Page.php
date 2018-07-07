@@ -41,7 +41,7 @@ class Page extends \Tk\Controller\Page
     /**
      * Get the currently logged in user
      *
-     * @return \App\Db\User
+     * @return \Bs\Db\User
      */
     public function getUser()
     {

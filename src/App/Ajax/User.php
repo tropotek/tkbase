@@ -24,7 +24,7 @@ class User
     {
         $status = 200;
 
-        $data = \App\Db\UserMap::create()->findFiltered($request->all())->toArray();
+        $data = \Bs\Db\UserMap::create()->findFiltered($request->all())->toArray();
         
         return \Tk\ResponseJson::createJson($data, $status);
 

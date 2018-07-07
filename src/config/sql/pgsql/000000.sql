@@ -21,6 +21,7 @@ CREATE TABLE IF NOT EXISTS "user" (
   CONSTRAINT email UNIQUE (email)
 );
 
+-- TODO: this could be a security risk we should get the admin user details from the Installer script
 INSERT INTO "user" (id, name, email, username, password, role, active, hash, modified, created)
 VALUES
   (1, 'Administrator', 'admin@example.com', 'admin', MD5('password'), 'admin', 1, MD5('1:admin:admin@example.com'), NOW() , NOW()),

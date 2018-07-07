@@ -24,7 +24,7 @@ class Edit extends AdminIface
     protected $form = null;
 
     /**
-     * @var \App\Db\User
+     * @var \Bs\Db\User
      */
     private $user = null;
 
@@ -49,9 +49,9 @@ class Edit extends AdminIface
     {
 
         
-        $this->user = new \App\Db\User();
+        $this->user = new \Bs\Db\User();
         if ($request->get('userId')) {
-            $this->user = \App\Db\User::getMapper()->find($request->get('userId'));
+            $this->user = \Bs\Db\User::getMapper()->find($request->get('userId'));
         }
 
         $this->form = \App\Config::getInstance()->createForm('user-edit');
@@ -59,7 +59,7 @@ class Edit extends AdminIface
 
 
         $tab = 'Details';
-        $list = array('Admin' => \App\Db\User::ROLE_ADMIN, 'User' => \App\Db\User::ROLE_USER);
+        $list = array('Admin' => \Bs\Db\User::ROLE_ADMIN, 'User' => \Bs\Db\User::ROLE_USER);
         $this->form->addField(new Field\Select('role', $list))->setTabGroup($tab)->setRequired(true);
         $this->form->addField(new Field\Input('username'))->setTabGroup($tab)->setRequired(true);
         $this->form->addField(new Field\Input('email'))->setTabGroup($tab)->setRequired(true);
@@ -86,7 +86,7 @@ class Edit extends AdminIface
         $this->form->addField(new Event\Submit('save', array($this, 'doSubmit')));
         $this->form->addField(new Event\Link('cancel', $this->getCrumbs()->getBackUrl()));
 
-        $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
+        $this->form->load(\Bs\Db\UserMap::create()->unmapForm($this->user));
         
         $this->form->execute();
 
@@ -101,7 +101,7 @@ class Edit extends AdminIface
     public function doSubmit($form, $event)
     {
         // Load the object with data from the form using a helper object
-        \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
+        \Bs\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
 
         // Password validation needs to be here
         if ($this->form->getFieldValue('newPassword')) {
@@ -131,7 +131,7 @@ class Edit extends AdminIface
         // Keep the admin account available and working. (hack for basic sites)
         if ($this->user->getId() == 1) {
             $this->user->active = true;
-            $this->user->role = \App\Db\User::ROLE_ADMIN;
+            $this->user->role = \Bs\Db\User::ROLE_ADMIN;
         }
 
         $this->user->save();

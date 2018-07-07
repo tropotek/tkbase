@@ -33,7 +33,7 @@ class AuthHandler implements Subscriber
         $auth = $config->getAuth();
         $user = null;                       // public user
         if ($auth->getIdentity()) {         // Check if user is logged in
-            $user = \App\Db\UserMap::create()->findByUsername($auth->getIdentity());
+            $user = \Bs\Db\UserMap::create()->findByUsername($auth->getIdentity());
             $config->setUser($user);
         }
 
@@ -84,7 +84,7 @@ class AuthHandler implements Subscriber
             return;
         }
         
-        $user = \App\Db\UserMap::create()->findByUsername($result->getIdentity());
+        $user = \Bs\Db\UserMap::create()->findByUsername($result->getIdentity());
         if (!$user) {
             throw new \Tk\Auth\Exception('User not found: Contact Your Administrator');
         }
@@ -104,8 +104,8 @@ class AuthHandler implements Subscriber
             return;
         }
 
-        /* @var \App\Db\User $user */
-        $user = \App\Db\UserMap::create()->findByUsername($result->getIdentity());
+        /* @var \Bs\Db\User $user */
+        $user = \Bs\Db\UserMap::create()->findByUsername($result->getIdentity());
         if (!$user) {
             throw new \Tk\Auth\Exception('Invalid user login credentials');
         }
@@ -148,7 +148,7 @@ class AuthHandler implements Subscriber
      */
     public function onRegister(\Tk\Event\Event $event)
     {
-        /** @var \App\Db\User $user */
+        /** @var \Bs\Db\User $user */
         $user = $event->get('user');
         $config = \App\Config::getInstance();
 
@@ -169,7 +169,7 @@ class AuthHandler implements Subscriber
      */
     public function onRegisterConfirm(\Tk\Event\Event $event)
     {
-        /** @var \App\Db\User $user */
+        /** @var \Bs\Db\User $user */
         $user = $event->get('user');
         $config = \App\Config::getInstance();
 
@@ -191,7 +191,7 @@ class AuthHandler implements Subscriber
      */
     public function onRecover(\Tk\Event\Event $event)
     {
-        /** @var \App\Db\User $user */
+        /** @var \Bs\Db\User $user */
         $user = $event->get('user');
         $pass = $event->get('password');
         $config = \App\Config::getInstance();

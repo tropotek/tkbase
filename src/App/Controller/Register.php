@@ -21,7 +21,7 @@ class Register extends Iface
     protected $form = null;
 
     /**
-     * @var \App\Db\User
+     * @var \Bs\Db\User
      */
     private $user = null;
 
@@ -50,8 +50,8 @@ class Register extends Iface
             $this->doConfirmation($request);
         }
 
-        $this->user = new \App\Db\User();
-        $this->user->role = \App\Db\User::ROLE_USER;
+        $this->user = new \Bs\Db\User();
+        $this->user->role = \Bs\Db\User::ROLE_USER;
 
         $this->form = \App\Config::createForm('register-account');
         $this->form->setRenderer(\App\Config::createFormRenderer($this->form));
@@ -64,7 +64,7 @@ class Register extends Iface
         $this->form->addField(new Event\Submit('register', array($this, 'doRegister')))->addCss('btn btn-lg btn-primary btn-ss');
         $this->form->addField(new Event\Link('forgotPassword', \Tk\Uri::create('/recover.html'), ''))->removeCss('btn btn-sm btn-default btn-once');
 
-        $this->form->load(\App\Db\UserMap::create()->unmapForm($this->user));
+        $this->form->load(\Bs\Db\UserMap::create()->unmapForm($this->user));
         $this->form->execute();
     }
 
@@ -77,7 +77,7 @@ class Register extends Iface
      */
     public function doRegister($form, $event)
     {
-        \App\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
+        \Bs\Db\UserMap::create()->mapForm($form->getValues(), $this->user);
 
         if (!$this->form->getFieldValue('password')) {
             $form->addFieldError('password', 'Please enter a password');
@@ -134,8 +134,8 @@ class Register extends Iface
         if (!$hash) {
             throw new \InvalidArgumentException('Cannot locate user. Please contact administrator.');
         }
-        /** @var \App\Db\User $user */
-        $user = \App\Db\UserMap::create()->findByHash($hash);
+        /** @var \Bs\Db\User $user */
+        $user = \Bs\Db\UserMap::create()->findByHash($hash);
         if (!$user) {
             throw new \InvalidArgumentException('Cannot locate user. Please contact administrator.');
         }

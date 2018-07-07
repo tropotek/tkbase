@@ -63,7 +63,7 @@ class Manager extends AdminIface
         $this->table->addAction(new \Tk\Table\Action\Csv($this->getConfig()->getDb()));
         $this->table->addAction(new \Tk\Table\Action\Delete())->setExcludeList(array('1'));
 
-        $users = \App\Db\UserMap::create()->findFiltered($this->table->getFilterValues(), $this->table->getTool('a.name'));
+        $users = \Bs\Db\UserMap::create()->findFiltered($this->table->getFilterValues(), $this->table->getTool('a.name'));
         $this->table->setList($users);
 
     }
@@ -120,7 +120,7 @@ class ActionsCell extends \Tk\Table\Cell\Iface
     }
 
     /**
-     * @param \App\Db\User $obj
+     * @param \Bs\Db\User $obj
      * @param int|null $rowIdx The current row being rendered (0-n) If null no rowIdx available.
      * @return string
      */

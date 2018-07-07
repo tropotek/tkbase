@@ -49,6 +49,7 @@
         "ttek/tk-table": "~2.0",
         "ttek/tk-plugin": "~2.0",
         "ttek/tk-ui": "~2.0",
+        "ttek/tk-base": "~1.0",
         "ttek-plg/mailog": "~1.0",
         "ttek-plg/sample": "~1.0"
     },
