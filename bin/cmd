@@ -24,7 +24,7 @@ try {
     $config = \App\Config::getInstance();
 
     if ($config->getSiteHost())
-      $_SERVER['HTTP_HOST'] = $config->getSiteHost();
+        $_SERVER['HTTP_HOST'] = $config->getSiteHost();
 
     $app = new Application($config->get('site.title') , $config->get('system.info.version'));
 
@@ -44,7 +44,10 @@ try {
     $app->setDispatcher($dispatcher);
     $app->add(new \App\Console\Cron());
     $app->add(new \App\Console\Upgrade());
+
     if ($config->isDebug()) {
+        $app->add(new \App\Console\Debug());
+        $app->add(new \App\Console\Mirror());
         $app->add(new \App\Console\Test());
     }
 

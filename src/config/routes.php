@@ -66,8 +66,6 @@ $routes->add('admin-subscriber-edit', new \Tk\Routing\Route('/admin/subscriberEd
 $routes->add('admin-event-manager', new \Tk\Routing\Route('/admin/eventManager.html', 'App\Controller\Admin\Event\Manager::doDefault', $params));
 $routes->add('admin-event-edit', new \Tk\Routing\Route('/admin/eventEdit.html', 'App\Controller\Admin\Event\Edit::doDefault', $params));
 
-//$routes->add('admin-maillog-manager', new \Tk\Routing\Route('/admin/mailLogManager.html', 'App\Controller\Admin\MailLog\Manager::doDefault', $params));
-//$routes->add('admin-maillog-view', new \Tk\Routing\Route('/admin/mailLogView.html', 'App\Controller\Admin\MailLog\View::doDefault', $params));
 
 // Dev pages
 $routes->add('dev-events', new \Tk\Routing\Route('/admin/dev/events.html', 'App\Controller\Admin\Dev\Events::doDefault', $params));
@@ -79,9 +77,13 @@ $routes->add('user-home', new \Tk\Routing\Route('/user/index.html', 'App\Control
 $routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Index::doDefault', $params));
 $routes->add('user-profile', new \Tk\Routing\Route('/user/profile.html', 'App\Controller\Admin\User\Profile::doDefault', $params));
 
-
 $params = array();
-// Example: How to do a simple controller/route all-in-one
+
+// Ajax Routes
+$routes->add('ajax-find-user', new \Tk\Routing\Route('/ajax/findUser', 'App\Ajax\User::doFindUser', $params, array('POST')));
+
+
+// Example: How to do a simple inline controller all-in-one
 $routes->add('simpleTest', new \Tk\Routing\Route('/test.html', function ($request) use ($config) {
     vd($config->toString());
     return '<p>This is a simple test</p>';

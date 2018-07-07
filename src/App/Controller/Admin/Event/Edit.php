@@ -60,7 +60,7 @@ class Edit extends AdminIface
         $tab = 'Details';
         if ($this->event->getId())
             $this->form->addField(new Field\Input('title'))->setTabGroup($tab);
-        $this->form->addField(new \App\Form\Field\DateTimeRange('date'))->setRequired()->setTabGroup($tab);
+        $this->form->addField(new Field\DateRange('date'))->setType(Field\DateRange::TYPE_DATETIME)->setRequired()->setTabGroup($tab);
         $this->form->addField(new Field\Input('rsvp'))->setRequired()->setTabGroup($tab);
         $this->form->addField(new Field\Checkbox('active'))->setTabGroup($tab);
         $this->form->addField(new Field\Textarea('notes'))->setTabGroup($tab)->setNotes('Notes only visible to admin users.');
@@ -76,7 +76,7 @@ class Edit extends AdminIface
         $this->form->addField(new Field\Hidden('country'));
         $this->form->addField(new Field\Input('address'))->setRequired()->setTabGroup($tab)
             ->setNotes('Select a location on the map or enter the address manually');
-        $this->form->addField(new \App\Form\Field\GmapSelect('map'))->setTabGroup($tab);
+        $this->form->addField(new Field\GmapSelect('map'))->setTabGroup($tab);
 
 
         $this->form->addField(new Event\Submit('update', array($this, 'doSubmit')));

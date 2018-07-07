@@ -9,13 +9,6 @@ namespace App;
 class Config extends \Tk\Config
 {
 
-    /**
-     * @return mixed
-     */
-    public static function getGoogleMapKey()
-    {
-        return trim(self::getInstance()->get('site.google.map.key'));
-    }
 
     /**
      * A factory method to create an instances of an Auth adapters
