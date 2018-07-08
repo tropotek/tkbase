@@ -15,7 +15,6 @@ class Js
     /**
      * @param \Dom\Template $template
      * @param array $params
-     * @throws \Tk\Db\Exception
      */
     public static function includeGoogleMaps($template, $params = array())
     {

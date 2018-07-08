@@ -13,6 +13,12 @@ $config['db.name'] = 'table';
 $config['db.user'] = 'username';
 $config['db.pass'] = 'password';
 
+
+//$config['google.map.key']           = 'AIzaSyCSGICa1zdV6i2LV5GKLymRwjix03qYIeM';
+//$config['google.recaptcha.publicKey']  = '6Ldg2wsUAAAAALpMHPiHEtZJ_SGycdDa11Kt_IOh';
+//$config['google.recaptcha.privateKey'] = '6Ldg2wsUAAAAANCLllmQfCg5jSWUbJD6rSjEmtSL';
+
+
 /*
  * Required for ./bin scripts to have correctly Formed URLS
  */

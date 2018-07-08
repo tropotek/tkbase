@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "129ce61346cc4b2faa4d9bde8623473b",
+    "content-hash": "a98289a9d9016d84c4b0d74a459ee5ba",
     "packages": [
         {
             "name": "monolog/monolog",
@@ -806,6 +806,53 @@
             "time": "2018-06-28T22:47:23+00:00"
         },
         {
+            "name": "ttek/tk-base",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tropotek/tk-base.git",
+                "reference": "1687049b1fedc3a832384b4256f7d158906a0509"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/1687049b1fedc3a832384b4256f7d158906a0509",
+                "reference": "1687049b1fedc3a832384b4256f7d158906a0509",
+                "shasum": ""
+            },
+            "require": {
+                "ttek/tk-framework": "~2.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-0": {
+                    "Bs\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Michael Mifsud",
+                    "email": "info@tropotek.com.au",
+                    "homepage": "http://www.tropotek.com/"
+                }
+            ],
+            "description": "Base site library for the Tk lib",
+            "keywords": [
+                "Tk",
+                "base",
+                "tropotek"
+            ],
+            "time": "2018-07-07T22:06:45+00:00"
+        },
+        {
             "name": "ttek/tk-database",
             "version": "dev-master",
             "source": {
@@ -1007,12 +1054,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-http.git",
-                "reference": "cc0192f8282a0547978b77597488bd4a09b86c4e"
+                "reference": "aef222464f65f9bbe2230647c3917850849b9b96"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-http/zipball/cc0192f8282a0547978b77597488bd4a09b86c4e",
-                "reference": "cc0192f8282a0547978b77597488bd4a09b86c4e",
+                "url": "https://api.github.com/repos/tropotek/tk-http/zipball/aef222464f65f9bbe2230647c3917850849b9b96",
+                "reference": "aef222464f65f9bbe2230647c3917850849b9b96",
                 "shasum": ""
             },
             "require": {
@@ -1048,7 +1095,7 @@
                 "http",
                 "tropotek"
             ],
-            "time": "2018-07-04T22:03:14+00:00"
+            "time": "2018-07-07T22:06:17+00:00"
         },
         {
             "name": "ttek/tk-installers",
@@ -1056,12 +1103,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-installers.git",
-                "reference": "ffdfc27e87359c35bae4db40d57932b999e0e268"
+                "reference": "bed8e0e4d7f912157b4fd5ae1bf5c548a757228e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/ffdfc27e87359c35bae4db40d57932b999e0e268",
-                "reference": "ffdfc27e87359c35bae4db40d57932b999e0e268",
+                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/bed8e0e4d7f912157b4fd5ae1bf5c548a757228e",
+                "reference": "bed8e0e4d7f912157b4fd5ae1bf5c548a757228e",
                 "shasum": ""
             },
             "require": {
@@ -1101,7 +1148,7 @@
                 "tools",
                 "tropotek"
             ],
-            "time": "2018-07-07T21:25:33+00:00"
+            "time": "2018-07-07T21:35:03+00:00"
         },
         {
             "name": "ttek/tk-mail",
