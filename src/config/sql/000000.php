@@ -1,7 +1,4 @@
 <?php
-/**
- *
- */
 
 $config = \App\Config::getInstance();
 //try {
