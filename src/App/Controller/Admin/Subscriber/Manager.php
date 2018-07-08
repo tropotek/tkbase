@@ -6,8 +6,6 @@ use Dom\Template;
 use Tk\Form\Field;
 
 /**
- *
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud

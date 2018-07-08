@@ -8,7 +8,7 @@ use Tk\Request;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class EventView extends Iface
+class EventView extends \Bs\Controller\Iface
 {
     /**
      * @var string
@@ -26,8 +26,9 @@ class EventView extends Iface
 
     /**
      * @return \Dom\Template
-     * @throws \Tk\Db\Exception
      * @throws \Dom\Exception
+     * @throws \Tk\Db\Exception
+     * @throws \Tk\Exception
      */
     public function show()
     {

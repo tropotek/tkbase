@@ -1,15 +1,8 @@
 <?php
 namespace App\Controller;
 
-use App\Db\SubscriberMap;
-use Tk\Alert;
 use Tk\Request;
 use Tk\Form;
-use Tk\Form\Field;
-use Tk\Form\Event;
-use Tk\Auth;
-use Tk\Auth\AuthEvents;
-use Tk\Event\AuthEvent;
 
 
 /**
@@ -17,7 +10,7 @@ use Tk\Event\AuthEvent;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Subscriber extends Iface
+class Subscriber extends \Bs\Controller\Iface
 {
 
     /**

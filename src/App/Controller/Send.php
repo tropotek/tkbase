@@ -9,7 +9,7 @@ use Tk\Form;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Send extends Iface
+class Send extends \Bs\Controller\Iface
 {
 
     /**

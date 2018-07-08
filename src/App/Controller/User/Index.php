@@ -4,8 +4,6 @@ namespace App\Controller\User;
 use Tk\Request;
 
 /**
- * Class Index
- *
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud

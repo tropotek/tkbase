@@ -1,13 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- *
- * @date 16-05-2016
- * @author Michael Mifsud <info@tropotek.com>
- * @link http://www.tropotek.com/
- * @license Copyright 2016 Michael Mifsud
- */
-
 /* 
  * NOTE: Be sure to add routes in correct order as the first match will win
  * 
@@ -25,8 +16,6 @@ $routes = $config->getSiteRoutes();
 
 // Public Pages
 $params = array();
-$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault', $params));
-$routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault', $params));
 
 $routes->add('events', new \Tk\Routing\Route('/events.html', 'App\Controller\EventView::doDefault', array()));
 $routes->add('subscribe', new \Tk\Routing\Route('/subscribe.html', 'App\Controller\Subscriber::doDefault', $params));

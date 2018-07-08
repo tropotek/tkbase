@@ -8,14 +8,24 @@
 //@dataUrl: '/data';
 //@templateUrl: '/html';
 @template-path:  '@{templateUrl}/admin';
+@base-lib-path:  '../../../vendor/ttek/tk-base';
 
 @import '../bower_components/bootstrap/less/bootstrap';
-@import '../../app/less/app';
+@import '../bower_components/font-awesome/less/font-awesome';
 @import '../../../vendor/ttek/tk-form/js/fileinput/jquery.tkFileInput';
 
+@fa-font-path:      "@{template-path}/bower_components/font-awesome/fonts";
+@icon-font-path:    '@{template-path}/bower_components/bootstrap/fonts/';
+
+// Tk base lib ()
+@import '@{base-lib-path}/assets/less/bootstrap3/table';
+@import '@{base-lib-path}/assets/less/bootstrap3/form';
+@import '@{base-lib-path}/assets/less/bootstrap3/ribbon';
+@import '@{base-lib-path}/assets/less/bootstrap3/starRating';
+@import '@{base-lib-path}/assets/less/bootstrap3/growlLike';
+@import '@{base-lib-path}/assets/js/bootstrap-datetimepicker/less/datetimepicker';
 
 
-@icon-font-path:  '@{template-path}/bower_components/bootstrap/fonts/';
 
 
 
