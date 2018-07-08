@@ -14,6 +14,15 @@ $config['db.user'] = 'username';
 $config['db.pass'] = 'password';
 
 /*
+ * Setup what paths to check when migrating SQL
+ */
+$config['sql.migrate.list'] = array(
+    'App Sql' => $config->getSrcPath() . '/config',
+    'Plugin Sql' => $config->getPluginPath(),
+    'Lib Sql' => $config->getVendorPath() . '/ttek/tk-base'
+);
+
+/*
  * Default Google API keys
  */
 //$config['google.map.key']           = 'AIzaSyCSGICa1zdV6i2LV5GKLymRwjix03qYIeM';
