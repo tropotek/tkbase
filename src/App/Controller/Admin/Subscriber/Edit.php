@@ -6,14 +6,13 @@ use Dom\Template;
 use Tk\Form;
 use Tk\Form\Field;
 use Tk\Form\Event;
-use App\Controller\AdminIface;
 
 /**
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Edit extends AdminIface
+class Edit extends \Bs\Controller\AdminIface
 {
 
     /**
@@ -31,7 +30,6 @@ class Edit extends AdminIface
      */
     public function __construct()
     {
-        parent::__construct();
         $this->setPageTitle('Subscriber Edit');
     }
 

@@ -2,14 +2,13 @@
 namespace App\Controller\Admin\Dev;
 
 use Tk\Request;
-use \App\Controller\AdminIface;
 
 /**
  * @author Michael Mifsud <info@tropotek.com>
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Form extends AdminIface
+class Form extends \Bs\Controller\AdminIface
 {
 
     /**
@@ -23,7 +22,6 @@ class Form extends AdminIface
      */
     public function __construct()
     {
-        parent::__construct();
         $this->setPageTitle('Multiple File upload');
         $this->getCrumbs()->reset();
     }
