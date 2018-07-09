@@ -11,7 +11,7 @@ use Symfony\Component\Console\Input\InputOption;
  * @see http://www.tropotek.com/
  * @license Copyright 2017 Michael Mifsud
  */
-class Test extends Iface
+class Test extends \Bs\Console\Iface
 {
 
     /**

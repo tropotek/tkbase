@@ -10,19 +10,6 @@ namespace App;
 class Bootstrap extends \Bs\Bootstrap
 {
 
-    /**
-     * @return \Bs\Bootstrap
-     * @throws \Exception
-     */
-    public static function execute()
-    {
-        $config = parent::execute();
-
-
-
-        return $config;
-    }
-
 }
 
 
