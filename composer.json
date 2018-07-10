@@ -51,6 +51,8 @@
         "ttek/tk-ui": "~2.0",
         "ttek/tk-base": "~1.0",
         "ttek-plg/mailog": "~1.0",
+        "ttek-plg/events": "~1.0",
+        "ttek-plg/subscribers": "~1.0",
         "ttek-plg/sample": "~1.0"
     },
     "require-dev":  {
