@@ -23,8 +23,8 @@ $routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::d
 
 // Admin Pages
 $params = array('role' => \Bs\Db\User::ROLE_ADMIN);
-$routes->add('admin-home', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Index::doDefault', $params));
-$routes->add('admin-home-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Index::doDefault', $params));
+$routes->add('admin-dashboard', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Dashboard::doDefault', $params));
+$routes->add('admin-dashboard-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Dashboard::doDefault', $params));
 $routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault', $params));
 
 $routes->add('admin-subscriber-manager', new \Tk\Routing\Route('/admin/subscriberManager.html', 'App\Controller\Admin\Subscriber\Manager::doDefault', $params));
@@ -36,8 +36,8 @@ $routes->add('dev-form', new \Tk\Routing\Route('/admin/dev/form.html', 'App\Cont
 
 // User Pages
 $params = array('role' => \Bs\Db\User::ROLE_USER);
-$routes->add('user-home', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Index::doDefault', $params));
-$routes->add('user-home-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Index::doDefault', $params));
+$routes->add('user-dashboard', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Dashboard::doDefault', $params));
+$routes->add('user-dashboard-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Dashboard::doDefault', $params));
 
 
 
