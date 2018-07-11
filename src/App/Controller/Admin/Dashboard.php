@@ -8,7 +8,7 @@ use Tk\Request;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Index extends \Bs\Controller\Admin\Index
+class Dashboard extends \Bs\Controller\AdminIface
 {
     /**
      * @throws \Exception
