@@ -22,10 +22,6 @@ $app['environment'] = $env;
 try {
 
     $config = \App\Config::getInstance();
-
-    if ($config->getSiteHost())
-        $_SERVER['HTTP_HOST'] = $config->getSiteHost();
-
     $app = new Application($config->get('site.title') , $config->get('system.info.version'));
 
     $log = null;
