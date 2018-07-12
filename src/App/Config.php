@@ -12,19 +12,15 @@ class Config extends \Bs\Config
 
 
     /**
-     * getFrontController
-     *
-     * @return \Bs\FrontController
+     * @param \Tk\Event\Dispatcher $dispatcher
+     * @throws \Tk\Db\Exception
      * @throws \Tk\Exception
      */
-    public function getFrontController()
+    public function setupDispatcher($dispatcher)
     {
-        if (!$this->get('front.controller')) {
-            $obj = new \App\FrontController($this->getEventDispatcher(), $this->getResolver());
-            $this->set('front.controller', $obj);
-        }
-        return parent::get('front.controller');
+        \App\Dispatch::create($dispatcher);
     }
+
 
 
 

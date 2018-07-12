@@ -14,53 +14,14 @@ $config['db.user'] = 'username';
 $config['db.pass'] = 'password';
 
 /*
- * Setup what paths to check when migrating SQL
- */
-$config['sql.migrate.list'] = array(
-    'App Sql' => $config->getSrcPath() . '/config',
-    'Plugin Sql' => $config->getPluginPath(),
-    'Lib Sql' => $config->getVendorPath() . '/ttek/tk-base'
-);
-
-/*
- * Default Google API keys
- */
-//$config['google.map.key']           = 'AIzaSyCSGICa1zdV6i2LV5GKLymRwjix03qYIeM';
-//$config['google.recaptcha.publicKey']  = '6Ldg2wsUAAAAALpMHPiHEtZJ_SGycdDa11Kt_IOh';
-//$config['google.recaptcha.privateKey'] = '6Ldg2wsUAAAAANCLllmQfCg5jSWUbJD6rSjEmtSL';
-
-/*
- * Template folders for pages
- */
-//$config['system.template.path'] = '/html';
-//$config['template.admin'] = $config['system.template.path'].'/admin/admin.html';
-//$config['template.public'] = $config['system.template.path'].'/public/public.html';
-/*
- * This path is where designers can place templates that override the system default templates.
- * Relative Path for renderer custom templates, this will reside in the above user template folders
- * EG: $path = dirname($config['template.admin']) . $config['template.xtpl.path'];
- * @var {templatePath} will be replaced by the path of the current user page template
- */
-//$config['template.xtpl.path'] = $config->getSitePath() . $config['system.template.path'] . '/xtpl';
-////$config['template.xtpl.path'] = '{templatePath}/xtpl';
-//$config['template.xtpl.ext'] = '.xtpl';
-
-
-/*
- * Required for ./bin scripts to have correctly Formed URLS
- */
-//$config['site.host'] = 'example.com';
-//$config['site.url']  = '/';
-
-/*
  * Enable exception emails
  */
-//$config['system.email.exception'] = array('dev@example.com');
+//$config['system.email.exception'] = array('user@example.com');
 
 /*
  * Send copies of all system emails to these recipients (not error emails)
  */
-//$config['mail.bcc'] = array('dev@example.com');
+//$config['mail.bcc'] = array('user1@example.edu.au');
 
 /*
  * Enable logging of triggered events
