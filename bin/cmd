@@ -6,10 +6,6 @@ use Symfony\Component\Console\Application;
 use Symfony\Component\Console\Input\ArgvInput;
 use Symfony\Component\Console\Output\ConsoleOutput;
 
-
-// Ensure only one instance running
-//exec("ps aux | grep " . basename(__FILE__), $output, $return);
-//if (count($output) > 3) exit();
 set_time_limit(0);
 
 $input = new ArgvInput();
@@ -31,10 +27,10 @@ try {
     $dispatcher = new \Tk\Sym\EventDispatcher($log);
     $config->set('event.dispatcher', $dispatcher);
     $config->setupDispatcher($dispatcher);
-    $config->setupDispatcher($dispatcher);
-
-
     $app->setDispatcher($dispatcher);
+
+    // Add available console commands
+
     $app->add(new \App\Console\Cron());
     $app->add(new \Bs\Console\Upgrade());
     if ($config->isDebug()) {

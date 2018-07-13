@@ -13,6 +13,7 @@
 
 $config = \App\Config::getInstance();
 $routes = $config->getRouteCollection();
+if (!$routes) return;
 
 // Public Pages
 $params = array();
