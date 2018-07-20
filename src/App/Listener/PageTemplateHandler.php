@@ -11,19 +11,8 @@ use Tk\Kernel\KernelEvents;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class OnPageShowHandler implements Subscriber
+class PageTemplateHandler implements Subscriber
 {
-
-//    public function onControllerShow(\Tk\Event\Event $event)
-//    {
-//        $controller = $event->get('controller');
-//        if ($controller instanceof \Bs\Controller\Iface) {
-//            $template = $controller->getTemplate();
-//
-//
-//
-//        }
-//    }
 
     /**
      * @param \Tk\Event\Event $event
@@ -64,7 +53,6 @@ class OnPageShowHandler implements Subscriber
     public static function getSubscribedEvents()
     {
         return array(
-            //\Tk\PageEvents::CONTROLLER_SHOW =>  array('onControllerShow', 0),
             \Tk\PageEvents::PAGE_SHOW =>  array('onPageShow', 0)
         );
     }
