@@ -22,13 +22,13 @@ $routes->add('events', new \Tk\Routing\Route('/events.html', 'App\Controller\Eve
 $routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::doDefault', $params));
 
 // Admin Pages
-$params = array('role' => \Bs\Db\User::ROLE_ADMIN);
+//$params = array('role' => \Bs\Db\User::ROLE_ADMIN);
 $routes->add('admin-dashboard', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Dashboard::doDefault', $params));
 $routes->add('admin-dashboard-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Dashboard::doDefault', $params));
 $routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault', $params));
 
 // User Pages
-$params = array('role' => \Bs\Db\User::ROLE_USER);
+//$params = array('role' => \Bs\Db\User::ROLE_USER);
 $routes->add('user-dashboard', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Dashboard::doDefault', $params));
 $routes->add('user-dashboard-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Dashboard::doDefault', $params));
 
