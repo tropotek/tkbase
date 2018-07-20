@@ -54,6 +54,8 @@ class Test extends \Bs\Console\Iface
             }
         }
 
+        sleep(20);
+
 //        foreach ($sqlMigrateList as $searchPath) {
 //            $this->write('Search Path: ' . $searchPath);
 //            if (is_dir($searchPath)) {
