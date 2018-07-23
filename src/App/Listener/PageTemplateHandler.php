@@ -11,16 +11,16 @@ use Tk\Kernel\KernelEvents;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class PageTemplateHandler implements Subscriber
+class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
 {
 
     /**
      * @param \Tk\Event\Event $event
-     * @throws \Tk\Db\Exception
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
-    public function onPageShow(\Tk\Event\Event $event)
+    public function showPage(\Tk\Event\Event $event)
     {
+        parent::showPage($event);
         $controller = $event->get('controller');
         if ($controller instanceof \Bs\Controller\Iface) {
             $page = $controller->getPage();
@@ -44,16 +44,5 @@ class PageTemplateHandler implements Subscriber
     {
         return \App\Config::getInstance();
     }
-    
-    /**
-     * getSubscribedEvents
-     * 
-     * @return array
-     */
-    public static function getSubscribedEvents()
-    {
-        return array(
-            \Tk\PageEvents::PAGE_SHOW =>  array('onPageShow', 0)
-        );
-    }
+
 }

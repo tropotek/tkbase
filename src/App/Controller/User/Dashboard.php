@@ -40,23 +40,18 @@ class Dashboard extends \Bs\Controller\AdminIface
     public function __makeTemplate()
     {
         $xhtml = <<<HTML
-<div class="container">
-<div class="row">
+<div class="">
 
-  <div class="col-lg-12">
-    <div class="panel panel-default">
-      <div class="panel-heading">
-        <i class="fa fa-users fa-fw"></i> Welcome <span var="name"></span>
-      </div>
-      <div class="panel-body ">
-
-        <p>Something spiffy.....</p>
-        <p><a href="/logout.html">Logout ;-)</a></p>
-      </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <i class="fa fa-users fa-fw"></i> Welcome <span var="name"></span>
+    </div>
+    <div class="panel-body ">
+      <p>Something spiffy.....</p>
+      <p><a href="/logout.html">Logout ;-)</a></p>
     </div>
   </div>
-
-</div>
+    
 </div>
 HTML;
 
