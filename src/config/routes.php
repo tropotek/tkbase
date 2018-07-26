@@ -16,19 +16,18 @@ $routes = $config->getRouteCollection();
 if (!$routes) return;
 
 // Public Pages
-$params = array();
+$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault'));
+$routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault'));
 
-$routes->add('events', new \Tk\Routing\Route('/events.html', 'App\Controller\EventView::doDefault', array()));
-$routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::doDefault', $params));
+$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault'));
+$routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::doDefault'));
 
 // Admin Pages
-//$params = array('role' => \Bs\Db\User::ROLE_ADMIN);
-$routes->add('admin-dashboard', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Dashboard::doDefault', $params));
-$routes->add('admin-dashboard-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Dashboard::doDefault', $params));
-$routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault', $params));
+$routes->add('admin-dashboard', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Dashboard::doDefault'));
+$routes->add('admin-dashboard-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Dashboard::doDefault'));
+$routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault'));
 
 // User Pages
-//$params = array('role' => \Bs\Db\User::ROLE_USER);
-$routes->add('user-dashboard', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Dashboard::doDefault', $params));
-$routes->add('user-dashboard-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Dashboard::doDefault', $params));
+$routes->add('user-dashboard', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Dashboard::doDefault'));
+$routes->add('user-dashboard-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Dashboard::doDefault'));
 
