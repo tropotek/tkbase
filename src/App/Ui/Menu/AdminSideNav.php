@@ -7,7 +7,7 @@ namespace App\Ui\Menu;
  * @link http://www.tropotek.com/
  * @license Copyright 2016 Michael Mifsud
  */
-class AdminSideBar extends Iface
+class AdminSideNav extends Iface
 {
 
 

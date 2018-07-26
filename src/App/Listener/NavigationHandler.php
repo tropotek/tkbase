@@ -51,10 +51,10 @@ class NavigationHandler implements Subscriber
         $nav = null;
         switch ($user->getRole()) {
             case \Bs\Db\User::ROLE_ADMIN:
-                $nav = new \App\Ui\Menu\AdminSideBar();
+                $nav = new \App\Ui\Menu\AdminSideNav();
                 break;
             case \Bs\Db\User::ROLE_USER:
-                $nav = new \App\Ui\Menu\UserSideBar();
+                $nav = new \App\Ui\Menu\UserSideNav();
                 break;
         }
         return $nav;

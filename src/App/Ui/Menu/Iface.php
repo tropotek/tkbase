@@ -47,7 +47,7 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
     }
 
     /**
-     * @return User
+     * @return UserSideNav
      */
     public function getUser()
     {
