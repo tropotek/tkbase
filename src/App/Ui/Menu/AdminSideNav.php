@@ -36,7 +36,6 @@ class AdminSideNav extends Iface
   <li><a href="#"><i class="fa fa-cogs fa-fw"></i> System<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level" var="system-nav">
       <li><a href="/admin/settings.html"><i class="fa fa-gear fa-fw"></i> Settings</a></li>
-       <li><a href="/admin/userManager.html"><i class="fa fa-users fa-fw"></i> Users</a></li>
     </ul>
   </li>
   <li><a href="#"><i class="fa fa-globe fa-fw"></i> Site<span class="fa arrow"></span></a>
@@ -46,7 +45,7 @@ class AdminSideNav extends Iface
   </li>
   <li choice="debug"><a href="#"><i class="fa fa-bug fa-fw"></i> Development<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level" var="debug-nav">
-      <li choice="debug"><a href="/admin/dev/events.html"><i class="fa fa-empire fa-fw"></i> Events</a></li>
+      <li choice="debug"><a href="/admin/dev/dispatcherEvents.html"><i class="fa fa-empire fa-fw"></i> Events</a></li>
     </ul>
   </li>
   

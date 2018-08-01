@@ -24,7 +24,7 @@ class UserSideNav extends Iface
   
   <li><a href="#"><i class="fa fa-cogs fa-fw"></i> System<span class="fa arrow"></span></a>
     <ul class="nav nav-second-level" var="system-menu">
-      <li><a href="/user/settings.html"><i class="fa fa-user fa-fw"></i> My Profile</a></li>
+      <li><a href="/user/profile.html"><i class="fa fa-user fa-fw"></i> My Profile</a></li>
     </ul>
   </li>
   <!--<li><a href="#"><i class="fa fa-globe fa-fw"></i> Site<span class="fa arrow"></span></a>-->
