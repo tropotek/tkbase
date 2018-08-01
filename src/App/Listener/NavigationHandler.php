@@ -49,11 +49,11 @@ class NavigationHandler implements Subscriber
     protected function createNavSideBar($user)
     {
         $nav = null;
-        switch ($user->getRole()) {
-            case \Bs\Db\User::ROLE_ADMIN:
+        switch ($user->getRoleType()) {
+            case \Bs\Db\Role::TYPE_ADMIN:
                 $nav = new \App\Ui\Menu\AdminSideNav();
                 break;
-            case \Bs\Db\User::ROLE_USER:
+            case \Bs\Db\Role::TYPE_USER:
                 $nav = new \App\Ui\Menu\UserSideNav();
                 break;
         }
