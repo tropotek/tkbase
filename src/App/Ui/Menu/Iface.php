@@ -27,6 +27,13 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
             $template->setChoice('debug');
         }
 
+        if ($this->getUser()) {
+            $perms = $this->getUser()->getRole()->getPermissions();
+            foreach ($perms as $perm) {
+                $template->setChoice($perm);
+            }
+        }
+
         return $template;
     }
 
@@ -47,7 +54,7 @@ abstract class Iface extends \Dom\Renderer\Renderer implements \Dom\Renderer\Dis
     }
 
     /**
-     * @return UserSideNav
+     * @return User
      */
     public function getUser()
     {

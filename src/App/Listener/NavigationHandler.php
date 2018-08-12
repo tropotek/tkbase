@@ -34,6 +34,15 @@ class NavigationHandler implements Subscriber
                     $template->replaceTemplate($config->get('template.var.page.side-nav'), $sidebar->show());
                 }
 
+                $dropdownNav = $this->createDropdownNav($user);
+                if ($dropdownNav)
+                    $template->replaceTemplate('dropdown-nav', $dropdownNav->show());
+
+//                $actionsNav = $this->createNewActionsNav($user);
+//                if ($actionsNav)
+//                    $template->appendTemplate('header-nav-left', $actionsNav->show());
+
+
                 // Insert the user nav
 
 
@@ -55,6 +64,39 @@ class NavigationHandler implements Subscriber
                 break;
             case \Bs\Db\Role::TYPE_USER:
                 $nav = new \App\Ui\Menu\UserSideNav();
+                break;
+        }
+        return $nav;
+    }
+
+    /**
+     * @param \Bs\Db\User $user
+     * @return null|\Dom\Renderer\DisplayInterface
+     */
+    protected function createDropdownNav($user)
+    {
+        $nav = null;
+        switch ($user->getRoleType()) {
+            case \Bs\Db\Role::TYPE_ADMIN:
+                $nav = new \App\Ui\Menu\AdminDropdownNav();
+                break;
+            case \Bs\Db\Role::TYPE_USER:
+                $nav = new \App\Ui\Menu\UserDropdownNav();
+                break;
+        }
+        return $nav;
+    }
+
+    /**
+     * @param \Bs\Db\User $user
+     * @return null|\Dom\Renderer\DisplayInterface
+     */
+    protected function createNewActionsNav($user)
+    {
+        $nav = null;
+        switch ($user->getRoleType()) {
+            case \Bs\Db\Role::TYPE_ADMIN:
+                $nav = new \App\Ui\Menu\AdminActionsNav();
                 break;
         }
         return $nav;

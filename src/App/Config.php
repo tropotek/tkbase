@@ -33,4 +33,17 @@ class Config extends \Bs\Config
     }
 
 
+
+
+    /**
+     * @param \Tk\Table $table
+     * @return \Tk\Table\Renderer\Dom\Table
+     */
+    public function createTableRenderer($table)
+    {
+        $obj = \Tk\Table\Renderer\Dom\Table::create($table);
+        $table->removeCss('table-bordered table-striped');
+        return $obj;
+    }
+
 }

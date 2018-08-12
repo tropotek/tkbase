@@ -30,6 +30,28 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
             $user = $controller->getUser();
 
 
+            $uri = \Bs\Uri::create();
+            //if ($user && $uri->getRoleType(\Tk\ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
+            if ($user) {
+                // About dialog
+                $dialog = new \Bs\Ui\AboutDialog();
+                $template->appendTemplate($template->getBodyElement(), $dialog->show());
+
+                // Logout dialog
+                $dialog = new \Bs\Ui\LogoutDialog();
+                $template->appendTemplate($template->getBodyElement(), $dialog->show());
+
+                $template->setAttr('user-image', 'src', $this->getConfig()->getTemplateUrl() . '/app/img/user.png');
+
+                // Set permission choices
+                $perms = $user->getRole()->getPermissions();
+                foreach ($perms as $perm) {
+                    $template->setChoice($perm);
+                    $controller->getTemplate()->setChoice($perm);
+                }
+
+            }
+
             // Add anything to the page template here ...
 
 

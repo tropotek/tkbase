@@ -1,0 +1,37 @@
+<ul class="nav navbar-nav nav-pills nav-stacked" var="nav">
+
+  <li class="nav-header nav-header-first d-none d-lg-block">Navigation</li>
+
+  <li><a href="/admin"><i class="fa fa-dashboard"></i> <span>Dashboard</span></a></li>
+  <li><a href="/admin/settings.html"><i class="fa fa-cogs"></i> <span>Settings</span></a></li>
+
+  <!--<li>-->
+  <!--<a href="#" class="dropdown-toggle dropdown-nocaret">-->
+  <!--<i class="fa fa-cogs"></i><span>System</span> <i class="fa fa-angle-right drop-icon"></i>-->
+  <!--</a>-->
+  <!--<ul class="submenu" var="system-nav">-->
+  <!--<li><a href="/admin/settings.html">Settings</a></li>-->
+  <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+  <!--<a href="#" class="dropdown-toggle dropdown-nocaret"><i class="fa fa-tasks"></i><span>Jobs</span> <i class="fa fa-angle-right drop-icon"></i></a>-->
+  <!--<ul class="submenu" var="task-nav">-->
+  <!--<li><a href="/admin/projectManager.html">Projects</a></li>-->
+
+  <!--</ul>-->
+  <!--</li>-->
+  <!--<li>-->
+  <!--<a href="#" class="dropdown-toggle dropdown-nocaret"><i class="fa fa-calculator"></i><span>Accounts</span> <i class="fa fa-angle-right drop-icon"></i></a>-->
+  <!--<ul class="submenu" var="accounts-nav">-->
+
+  <!--</ul>-->
+  <!--</li>-->
+  <li choice="debug" class="nav-header d-none d-lg-block">Development</li>
+  <li choice="debug">
+    <a href="#" class="dropdown-toggle dropdown-nocaret"><i class="fa fa-bug"></i><span>Tk2Lib</span> <i class="fa fa-angle-right drop-icon"></i></a>
+    <ul class="submenu" var="debug-nav">
+      <li><a href="/admin/dev/dispatcherEvents.html"><span>Event Dispatcher</span></a></li>
+    </ul>
+  </li>
+
+</ul>
