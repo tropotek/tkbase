@@ -26,6 +26,7 @@
 
   <!--</ul>-->
   <!--</li>-->
+
   <li choice="debug" class="nav-header d-none d-lg-block">Development</li>
   <li choice="debug">
     <a href="#" class="dropdown-toggle dropdown-nocaret"><i class="fa fa-bug"></i><span>Tk2Lib</span> <i class="fa fa-angle-right drop-icon"></i></a>
