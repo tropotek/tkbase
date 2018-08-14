@@ -41,8 +41,6 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
                 $dialog = new \Bs\Ui\LogoutDialog();
                 $template->appendTemplate($template->getBodyElement(), $dialog->show());
 
-                $template->setAttr('user-image', 'src', $this->getConfig()->getTemplateUrl() . '/app/img/user.png');
-
                 // Set permission choices
                 $perms = $user->getRole()->getPermissions();
                 foreach ($perms as $perm) {
