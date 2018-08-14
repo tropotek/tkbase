@@ -28,7 +28,7 @@ $config['system.theme.admin'] = $config['system.template.path'] . '/cube';
 
 
 $config['template.admin'] = $config['system.theme.admin'].'/admin.html';
-$config['template.user'] = $config['system.theme.admin'].'/admin.html';
+$config['template.user'] = $config['system.theme.admin'].'/user.html';
 $config['template.public'] = $config['system.theme.public'].'/public.html';
 
 $config['template.error']   = $config['system.theme.admin'] . '/error.html';

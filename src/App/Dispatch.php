@@ -20,8 +20,6 @@ class Dispatch extends \Bs\Dispatch
         parent::init();
         $dispatcher = $this->getDispatcher();
 
-        $dispatcher->addSubscriber(new \App\Listener\NavigationHandler());
-
     }
 
 }

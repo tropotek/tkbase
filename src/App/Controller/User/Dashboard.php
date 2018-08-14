@@ -12,14 +12,22 @@ class Dashboard extends \Bs\Controller\AdminIface
 {
 
     /**
+     * @throws \Exception
+     */
+    public function __construct()
+    {
+        parent::__construct();
+        $this->setPageTitle('My Account');
+        $this->getActionPanel()->setEnabled(false);
+        $this->getCrumbs()->reset();
+    }
+
+    /**
      * @param Request $request
      */
     public function doDefault(Request $request)
     {
-        $this->setPageTitle('My Account');
-        // TODO:
-        
-        
+
     }
 
     public function show()

@@ -17,6 +17,10 @@ body.theme-tropotek {
 		background-color: transparent;
 		width: 221px;
 	}
+	.navbar-light .navbar-brand:focus, .navbar-light .navbar-brand:hover {
+		color: #c4e9ff;
+	}
+
 	#nav-col,
 	#page-wrapper {
 		background-color: $whblNavColBg;
