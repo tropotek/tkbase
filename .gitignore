@@ -1,11 +1,20 @@
-/.htaccess
-.idea
+# System Files
+[Tt]humbs.db
+*.DS_Store
+/.idea
 .directory
-*.swp
-*.bak
-/_notes
-/data
+
+# Project directories
 /assets
 /vendor
-/src/config/config.php
 /plugin
+/_notes
+/data
+/data_*
+/docs/api
+
+# Project Files
+/src/config/config.php
+/.htaccess
+/*.bak
+
