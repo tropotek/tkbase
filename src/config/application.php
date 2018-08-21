@@ -24,7 +24,7 @@ $config['system.template.path'] = '/html';
 $config['system.theme.public'] = $config['system.template.path'] . '/public';
 
 $config['system.theme.admin'] = $config['system.template.path'] . '/admin';
-$config['system.theme.admin'] = $config['system.template.path'] . '/cube';
+//$config['system.theme.admin'] = $config['system.template.path'] . '/cube';
 
 
 $config['template.admin'] = $config['system.theme.admin'].'/admin.html';
@@ -32,7 +32,7 @@ $config['template.user'] = $config['system.theme.admin'].'/user.html';
 $config['template.public'] = $config['system.theme.public'].'/public.html';
 
 $config['template.error']   = $config['system.theme.admin'] . '/error.html';
-$config['template.login']   = $config['template.public'] . '/login.html';
+$config['template.login']   = $config['system.theme.admin'] . '/login.html';
 
 
 
