@@ -9,7 +9,7 @@ use Tk\Form\Field;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Login extends \Uni\Controller\Login
+class Login extends \Bs\Controller\Login
 {
 
 
@@ -33,6 +33,8 @@ class Login extends \Uni\Controller\Login
 
         $f = $this->form->appendField(Field\InputGroup::create('password'))->setType('password')->setLabel(null)->setAttr('placeholder', 'Password');
         $f->prepend('<span class="input-group-text input-group-addon"><i class="fa fa-key mx-auto"></i></span>');
+
+
 
         $this->form->getField('login')->addCss('col-12');
         $f = $this->form->getField('forgotPassword');

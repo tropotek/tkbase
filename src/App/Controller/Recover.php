@@ -14,7 +14,7 @@ use Bs\Controller\Iface;
  * @link http://www.tropotek.com/
  * @license Copyright 2015 Michael Mifsud
  */
-class Recover extends \Uni\Controller\Recover
+class Recover extends \Bs\Controller\Recover
 {
 
     /**
@@ -26,20 +26,15 @@ class Recover extends \Uni\Controller\Recover
 
         if (!$this->getConfig()->isBootsrap4()) return;
 
-//        $this->form = $this->getConfig()->createForm('recover-account');
-//        $this->form->setRenderer($this->getConfig()->createFormRenderer($this->form));
         $this->form->getRenderer()->setFieldGroupRenderer(null);
         $this->form->removeCss('form-horizontal');
 
         $this->form->removeField('account');
 
-
         $f = $this->form->appendField(Field\InputGroup::create('account'))->setLabel(null)->setAttr('placeholder', 'Username');
         $f->prepend('<span class="input-group-text"><i class="fa fa-user mx-auto"></i></span>');
 
         $this->form->getField('recover')->addCss('col-12');
-//        $this->form->appendField(new Event\Submit('recover', array($this, 'doRecover')))->addCss('btn btn-primary btn-ss');
-//        $this->form->appendField(new Event\Link('login', \Tk\Uri::create('/login.html'), ''))->removeCss('btn btn-sm btn-default btn-once');
 
     }
 
@@ -66,9 +61,6 @@ class Recover extends \Uni\Controller\Recover
     Enter your username to recover your password.
   </p>
   <div var="form"></div>
-  <div class="not-member" choice="register">
-    <p>Not a member? <a href="/register.html">Register here</a></p>
-  </div>
 
 </div>
 HTML;

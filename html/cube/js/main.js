@@ -14,11 +14,13 @@ config.tkPanel = {
 
 jQuery(function ($) {
 
+
   // dropdown menu
   $('.tk-ui-menu.nav-dropdown').each(function () {
     $(this).addClass('dropdown-menu dropdown-menu-right');
     $(this).find('.divider').addClass('dropdown-divider');
   });
+
   // Side menu
   $('.tk-ui-menu.nav-side').each(function () {
     $(this).prepend('<li class="nav-header nav-header-first d-none d-lg-block">Navigation</li>');
@@ -26,7 +28,9 @@ jQuery(function ($) {
     $(this).find('li.submenu > a').addClass('dropdown-toggle dropdown-nocaret').append('<i class="fa fa-angle-right drop-icon"></i>');
     $(this).find('li.submenu').removeClass('submenu');
   });
+
   $('.tk-ui-menu').css('visibility', 'visible');
+
 
 
   // Activate the appropriate side nav for this url, expands any sub-nav items
@@ -42,7 +46,5 @@ jQuery(function ($) {
       } while (parent && parent.hasClass('submenu'));
     }
   });
-
-
 
 });

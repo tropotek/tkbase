@@ -27,8 +27,7 @@ class Contact extends \Bs\Controller\Iface
 
     /**
      * @param Request $request
-     * @throws Form\Exception
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
     public function doDefault(Request $request)
     {
@@ -58,8 +57,7 @@ class Contact extends \Bs\Controller\Iface
      * show()
      *
      * @return \Dom\Template
-     * @throws Form\Exception
-     * @throws \Dom\Exception
+     * @throws \Exception
      */
     public function show()
     {
@@ -73,10 +71,8 @@ class Contact extends \Bs\Controller\Iface
     }
 
     /**
-     * doSubmit()
-     *
      * @param Form $form
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
     public function doSubmit($form)
     {
@@ -115,11 +111,8 @@ class Contact extends \Bs\Controller\Iface
 
 
     /**
-     * sendEmail()
-     *
      * @param Form $form
      * @return bool
-     * @throws \Tk\Exception
      * @throws \Exception
      */
     private function sendEmail($form)
@@ -158,7 +151,7 @@ $attachCount
 </p>
 MSG;
 
-        $message = $this->getConfig()->createTemplateMessage();
+        $message = $this->getConfig()->createMessage();
         $message->addTo($email);
         $message->setSubject($this->getConfig()->get('site.title') . ':  Contact Form Submission - ' . $name);
         $message->set('content', $content);
@@ -169,8 +162,6 @@ MSG;
     }
 
     /**
-     * DomTemplate magic method
-     *
      * @return \Dom\Template
      */
     public function __makeTemplate()

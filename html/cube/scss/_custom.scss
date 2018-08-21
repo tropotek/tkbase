@@ -3,16 +3,23 @@
  */
 
 .tk-login-panel {
-  div.input-group-prepend .input-group-text, div.input-group-append .input-group-text {
+  div.input-group-prepend .input-group-text,
+  div.input-group-append .input-group-text {
     background: transparent;
     border-color: #e7ebee;
     border-width: 2px;
     border-right-width: 0;
   }
-  .tk-recover-url, .tk-login-url {
+  .tk-register-url,
+  .tk-recover-url,
+  .tk-login-url {
     text-align: right;
     display: block;
     margin: 15px 0px 0px 0px;
+    float:right;
+  }
+  .tk-register-url {
+    float:left;
   }
 }
 #login-logo {
@@ -182,12 +189,7 @@ form.tk-form .form-group label {
       }
     }
   }
-
-
 }
-
-
-
 
 // Buttons
 #content-wrapper {
@@ -217,3 +219,11 @@ form.tk-form .form-group label {
     margin-right: 10px;
   }
 }
+
+
+
+
+
+
+
+

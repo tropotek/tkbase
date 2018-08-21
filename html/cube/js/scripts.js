@@ -1,4 +1,5 @@
 $(function($) {
+
 	setTimeout(function() {
 		$('#content-wrapper > .row').css({
 			opacity: 1

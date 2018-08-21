@@ -19,11 +19,7 @@ class Send extends \Bs\Controller\Iface
 
 
     /**
-     * doDefault
-     *
      * @param Request $request
-     * @throws Form\Exception
-     * @throws \Tk\Exception
      * @throws \Exception
      */
     public function doDefault(Request $request)
@@ -99,11 +95,8 @@ class Send extends \Bs\Controller\Iface
     }
 
     /**
-     * show()
-     *
      * @return \Dom\Template
-     * @throws Form\Exception
-     * @throws \Dom\Exception
+     * @throws \Exception
      */
     public function show()
     {

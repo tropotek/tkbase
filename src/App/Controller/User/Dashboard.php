@@ -41,8 +41,6 @@ class Dashboard extends \Bs\Controller\AdminIface
 
 
     /**
-     * DomTemplate magic method
-     *
      * @return \Dom\Template
      */
     public function __makeTemplate()

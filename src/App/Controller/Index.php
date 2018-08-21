@@ -12,9 +12,12 @@ class Index extends \Bs\Controller\Index
 {
 
 
-
+    /**
+     * Index constructor.
+     */
     public function __construct()
     {
+        parent::__construct();
         $this->setPageTitle('Home');
     }
 
