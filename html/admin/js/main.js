@@ -4,6 +4,11 @@
 
 jQuery(function ($) {
 
+  // dropdown menu
+  $('.tk-ui-menu.nav-dropdown').each(function () {
+    $(this).addClass('dropdown-menu dropdown-user');
+  });
+
   // Side menu
   $('.tk-ui-menu.nav-side').each(function () {
     $(this).addClass('nav').find('ul').addClass('nav');
@@ -14,17 +19,7 @@ jQuery(function ($) {
     $(this).find('.fa').addClass('fa-fw');
     $(this).metisMenu();
   });
-
-  // dropdown menu
-  $('.tk-ui-menu.nav-dropdown').each(function () {
-    $(this).addClass('dropdown-menu dropdown-user');
-  });
-
-  //project_core.initDualListBox();
-  project_core.initTinymce();
-  project_core.initCodemirror();
-  project_core.initMasqueradeConfirm();
-  project_core.initTableDeleteConfirm();
+  $('.tk-ui-menu').css('visibility', 'visible');
 
 
 });
