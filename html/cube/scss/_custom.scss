@@ -181,14 +181,6 @@ form.tk-form .form-group label {
   .input-group-text {
     background: #e7ebee;
   }
-
-  @media (min-width: $break-sm-max) {
-    .form-group {
-      label {
-        text-align: right;
-      }
-    }
-  }
 }
 
 // Buttons
