@@ -148,6 +148,12 @@ form.tk-form .form-group label {
 
 
 // Table
+.table-striped tbody tr:nth-of-type(odd) {
+  background-color: rgba(235, 235, 235, 0.3);
+}
+.table-hover tbody tr:hover {
+  background-color: rgba(235, 235, 235, 0.25);
+}
 
 
 // Form
@@ -191,12 +197,7 @@ form.tk-form .form-group label {
 
   .btn-default:hover,
   .btn-default:focus,
-  .btn-default:active,
-  a.btn.show .dropdown-toggle.default,
-  a.btn:hover,
-  a.btn:focus,
-  a.btn:active,
-  a.btn.show .dropdown-toggle.btn-light {
+  .btn-default:active {
     color: $text-color !important;
     background-color: #e0e1e2;
   }
