@@ -42,7 +42,7 @@ class Register extends \Bs\Controller\Register
 
         $f = $this->form->appendField(Field\Checkbox::create('accept'))->setCheckboxLabel('I agree to the following <a href="/terms.html" target="_blank">terms and conditions</a>');
 
-        $this->form->appendField(new Event\Submit('register', array($this, 'doRegister')))->addCss('btn btn-lg btn-success btn-ss col-12');
+        $this->form->appendField(new Event\Submit('register', array($this, 'doRegister')))->removeCss('btn-default')->addCss('btn btn-lg btn-success btn-ss col-12');
 
     }
 

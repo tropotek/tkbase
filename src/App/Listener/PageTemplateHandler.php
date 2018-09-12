@@ -30,7 +30,7 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
             $user = $controller->getUser();
 
 
-            $uri = \Bs\Uri::create();
+            //$uri = \Bs\Uri::create();
             //if ($user && $uri->getRoleType(\Tk\ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
             if ($user) {
                 // About dialog
@@ -49,6 +49,8 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
                 }
 
             }
+
+            $template->insertText('login-title', $this->getConfig()->get('site.title'));
 
             // Add anything to the page template here ...
 
