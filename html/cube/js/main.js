@@ -30,9 +30,7 @@ jQuery(function ($) {
   });
 
   $('.tk-ui-menu').css('visibility', 'visible');
-
-
-
+  
 
   // Activate the appropriate side nav for this url, expands any sub-nav items
   function activateItem(a) {

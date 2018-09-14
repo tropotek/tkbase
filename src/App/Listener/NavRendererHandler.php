@@ -13,15 +13,6 @@ use Bs\Ui\Menu;
  */
 class NavRendererHandler implements Subscriber
 {
-    /**
-     * @var Menu
-     */
-    protected $dropdownMenu = null;
-
-    /**
-     * @var Menu
-     */
-    protected $sideMenu = null;
 
 
 
@@ -31,19 +22,15 @@ class NavRendererHandler implements Subscriber
     public function onRequest(\Tk\Event\GetResponseEvent $event)
     {
         $config = $this->getConfig();
-        $role = 'public';
-        if ($config->getUser())
-            $role = $config->getUser()->getRoleType();
-        if (is_array($role)) $role = current($role);
 
-        $this->dropdownMenu = $config->getMenuManager()->getMenu('nav-dropdown', $role);
-        $this->sideMenu = $config->getMenuManager()->getMenu('nav-side', $role);
+        $dropdownMenu = $config->getMenuManager()->getMenu('nav-dropdown');
+        $sideMenu = $config->getMenuManager()->getMenu('nav-side');
 
-        $this->dropdownMenu->setAttr('style', 'visibility:hidden;');
-        $this->sideMenu->setAttr('style', 'visibility:hidden;');
+        $dropdownMenu->setAttr('style', 'visibility:hidden;');
+        $sideMenu->setAttr('style', 'visibility:hidden;');
 
-        $this->initDropdownMenu($this->dropdownMenu);
-        $this->initSideMenu($this->sideMenu);
+        $this->initDropdownMenu($dropdownMenu);
+        $this->initSideMenu($sideMenu);
 
     }
 
@@ -53,7 +40,7 @@ class NavRendererHandler implements Subscriber
     protected function initDropdownMenu($menu)
     {
         $menu->append(Item::create('Profile', \Bs\Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
-        switch ($menu->getRoleType()) {
+        switch ($this->getRoleType()) {
             case \Bs\Db\Role::TYPE_ADMIN:
                 $menu->prepend(Item::create('Site Preview', \Bs\Uri::create('/index.html'), 'fa fa-home'))->getLink()
                     ->setAttr('target', '_blank');
@@ -79,7 +66,7 @@ class NavRendererHandler implements Subscriber
 
         $menu->append(Item::create('Dashboard', \Bs\Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
 
-        switch ($menu->getRoleType()) {
+        switch ($this->getRoleType()) {
             case \Bs\Db\Role::TYPE_ADMIN:
                 $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
                 if ($this->getConfig()->isDebug()) {
@@ -110,7 +97,7 @@ class NavRendererHandler implements Subscriber
             foreach ($this->getConfig()->getMenuManager()->getMenuList() as $menu) {
                 $renderer = \Tk\Ui\Menu\ListRenderer::create($menu);
                 $tpl = $renderer->show();
-                $template->replaceTemplate($menu->getTemplateVar(), $tpl);
+                $template->replaceTemplate($menu->getName(), $tpl);
             }
         }
     }
@@ -133,5 +120,16 @@ class NavRendererHandler implements Subscriber
     public function getConfig()
     {
         return \Bs\Config::getInstance();
+    }
+
+    /**
+     * @return string
+     */
+    public function getRoleType()
+    {
+        $t = 'public';
+        if ($this->getConfig()->getUser())
+            $t = $this->getConfig()->getUser()->getRoleType();
+        return $t;
     }
 }
