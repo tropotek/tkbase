@@ -52,12 +52,12 @@ class Dashboard extends \Bs\Controller\AdminIface
     {
         $xhtml = <<<HTML
 <div>
-<p var="menu-test"></p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
-<p>&nbsp;</p>
+  <div class="tk-panel" data-panel-title="Welcome" data-panel-icon="fa fa-empire" var="panel">
+
+    <p>Something spiffy.....</p>
+    <p><a href="/logout.html">Logout ;-)</a></p>
+  
+  </div>
 </div>
 HTML;
 
