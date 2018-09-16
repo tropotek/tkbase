@@ -33,8 +33,7 @@ class Dashboard extends \Bs\Controller\AdminIface
     public function show()
     {
         $template = parent::show();
-        
-        $template->insertText('name', $this->getUser()->name);
+
         
         return $template;
     }
@@ -48,16 +47,11 @@ class Dashboard extends \Bs\Controller\AdminIface
         $xhtml = <<<HTML
 <div class="">
 
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <i class="fa fa-users fa-fw"></i> Welcome <span var="name"></span>
-    </div>
-    <div class="panel-body ">
-      <p>Something spiffy.....</p>
-      <p><a href="/logout.html">Logout ;-)</a></p>
-    </div>
+  <div class="tk-panel" data-panel-icon="fa fa-rebel" var="panel">
+     <p>Something spiffy.....</p>
+     <p><a href="/logout.html">Logout ;-)</a></p>
   </div>
-    
+  
 </div>
 HTML;
 
