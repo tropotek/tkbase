@@ -9,7 +9,8 @@
 
 @at-root {
   // Import the fonts
-  @include font-face('Glyphicons Halflings', '../../fonts/glyphicons-halflings-regular');
+  @include font-face('Glyphicons Halflings', $glyphiconPath);
+  //@include font-face('Glyphicons Halflings', '../../fonts/glyphicons-halflings-regular');
 }
 
 // Catchall baseclass
