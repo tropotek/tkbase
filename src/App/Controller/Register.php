@@ -20,8 +20,6 @@ class Register extends \Bs\Controller\Register
     {
         parent::init();
 
-        if (!$this->getConfig()->isBootsrap4()) return;
-
         $this->form = $this->getConfig()->createForm('register-account');
         $this->form->setRenderer($this->getConfig()->createFormRenderer($this->form));
         $this->form->getRenderer()->setFieldGroupRenderer(null);

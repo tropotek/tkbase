@@ -24,8 +24,6 @@ class Recover extends \Bs\Controller\Recover
     {
         parent::init();
 
-        if (!$this->getConfig()->isBootsrap4()) return;
-
         $this->form->getRenderer()->setFieldGroupRenderer(null);
         $this->form->removeCss('form-horizontal');
 

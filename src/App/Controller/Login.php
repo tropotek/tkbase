@@ -19,7 +19,6 @@ class Login extends \Bs\Controller\Login
     protected function init()
     {
         parent::init();
-        if (!$this->getConfig()->isBootsrap4()) return;
 
         $this->form->getRenderer()->setFieldGroupRenderer(null);
         $this->form->removeCss('form-horizontal');
