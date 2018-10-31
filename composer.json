@@ -54,7 +54,8 @@
         "ttek-plg/events": "~1.0",
         "ttek-plg/subscribers": "~1.0",
         "ttek-plg/sample": "~1.0",
-        "ttek/theme-cube": "~1.0"
+        "ttek/theme-cube": "~1.0",
+        "lasserafn/php-initial-avatar-generator": "dev-master"
     },
     "require-dev":  {
     }
