@@ -2,7 +2,6 @@
 namespace App\Listener;
 
 use Tk\Event\Subscriber;
-use Tk\Kernel\KernelEvents;
 use Tk\Ui\Menu\Item;
 use Bs\Ui\Menu;
 
@@ -13,8 +12,6 @@ use Bs\Ui\Menu;
  */
 class NavRendererHandler implements Subscriber
 {
-
-
 
     /**
      * @param \Tk\Event\GetResponseEvent $event

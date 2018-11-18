@@ -40,7 +40,6 @@ class TestData extends \Bs\Console\TestData
         }
 
         $db = $this->getConfig()->getDb();
-
 //        $db->exec('DELETE FROM `user_role` WHERE `description` = \'***\' ');
 //        $db->exec('TRUNCATE `user_role_institution`');
 //        for($i = 0; $i < 20; $i++) {
@@ -71,8 +70,6 @@ class TestData extends \Bs\Console\TestData
 //            $obj->setNewPassword('password');
 //            $obj->save();
 //        }
-
-
 
     }
 

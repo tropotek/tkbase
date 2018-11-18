@@ -29,7 +29,6 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
             /** @var \Bs\Db\User $user */
             $user = $controller->getUser();
 
-
             //$uri = \Bs\Uri::create();
             //if ($user && $uri->getRoleType(\Tk\ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
             if ($user) {
@@ -48,12 +47,15 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
                     $controller->getTemplate()->setChoice($perm);
                 }
 
+                //show user icon 'user-image'
+                $img = $user->getImageUrl();
+                if ($img)
+                    $template->setAttr('user-image', 'src', $img);
             }
 
             $template->insertText('login-title', $this->getConfig()->get('site.title'));
 
             // Add anything to the page template here ...
-
 
         }
     }
