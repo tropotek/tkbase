@@ -21,7 +21,7 @@ class Dispatch extends \Bs\Dispatch
         $dispatcher = $this->getDispatcher();
 
         $dispatcher->addSubscriber(new \App\Listener\NavRendererHandler());
-        $dispatcher->addSubscriber(new \App\Listener\PageLoaderHandler());
+        $dispatcher->addSubscriber(new \Bs\Listener\PageLoaderHandler());
     }
 
 }
