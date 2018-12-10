@@ -32,7 +32,7 @@ $config['template.login']   = $config['system.theme.admin'] . '/login.html';
 
 /*
  * Set the error page template, this has minimum system requirements
- * for parsing and is usually a seperate file.
+ * for parsing and is usually a separate file.
  */
 $config['template.error']   = $config['system.template.path'] . '/theme-cube/error.html';
 
