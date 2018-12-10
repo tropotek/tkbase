@@ -28,10 +28,13 @@ $config['template.admin'] = $config['system.theme.admin'].'/admin.html';
 $config['template.user'] = $config['system.theme.admin'].'/admin.html';
 $config['template.public'] = $config['system.theme.public'].'/public.html';
 
-$config['template.error']   = $config['system.theme.admin'] . '/error.html';
 $config['template.login']   = $config['system.theme.admin'] . '/login.html';
 
-
+/*
+ * Set the error page template, this has minimum system requirements
+ * for parsing and is usually a seperate file.
+ */
+$config['template.error']   = $config['system.template.path'] . '/theme-cube/error.html';
 
 
 
