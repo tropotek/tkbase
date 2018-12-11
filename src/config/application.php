@@ -38,7 +38,7 @@ $config['template.error']           = $config['system.template.path']   . '/them
 /*
  * Set the maintenance page template
  */
-$config['template.maintenance']           = $config['system.template.path']   . '/theme-cube/maintenance.html';
+$config['template.maintenance']     = $config['system.template.path']   . '/theme-cube/maintenance.html';
 
 
 

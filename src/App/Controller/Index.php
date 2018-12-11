@@ -11,7 +11,6 @@ use Tk\Request;
 class Index extends \Bs\Controller\Index
 {
 
-
     /**
      * Index constructor.
      */
@@ -29,7 +28,6 @@ class Index extends \Bs\Controller\Index
         parent::doDefault($request);
     }
 
-
     /**
      * @return \Dom\Template
      */
@@ -46,11 +44,9 @@ class Index extends \Bs\Controller\Index
     public function __makeTemplate()
     {
         $xhtml = <<<HTML
-<div class="tk-login-panel tk-login">
-
-</div>
+<div class="tpl-index"></div>
 HTML;
-
         return \Dom\Loader::load($xhtml);
     }
+
 }
