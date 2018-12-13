@@ -29,11 +29,6 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
             /** @var \Bs\Db\User $user */
             $user = $controller->getUser();
 
-<<<<<<< HEAD
-=======
-            //$uri = \Bs\Uri::create();
-            //if ($user && $uri->getRoleType(\Tk\ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
->>>>>>> 2f62d7c792dad044c937b9cb59b1afea15cac99d
             if ($user) {
                 if (\Bs\Uri::create()->getRoleType(\Tk\ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
                     // About dialog\Uni\Uri::create()
@@ -54,14 +49,9 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
 
                 //show user icon 'user-image'
                 $img = $user->getImageUrl();
-<<<<<<< HEAD
                 if ($img) {
                     $template->setAttr('user-image', 'src', $img);
                 }
-=======
-                if ($img)
-                    $template->setAttr('user-image', 'src', $img);
->>>>>>> 2f62d7c792dad044c937b9cb59b1afea15cac99d
             }
 
             $template->insertText('login-title', $this->getConfig()->get('site.title'));
