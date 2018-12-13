@@ -12,8 +12,7 @@ class Dispatch extends \Bs\Dispatch
 
 
     /**
-     * @throws \Tk\Db\Exception
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
     public function init()
     {
@@ -21,7 +20,7 @@ class Dispatch extends \Bs\Dispatch
         $dispatcher = $this->getDispatcher();
 
         $dispatcher->addSubscriber(new \App\Listener\NavRendererHandler());
-        $dispatcher->addSubscriber(new \App\Listener\PageLoaderHandler());
+        $dispatcher->addSubscriber(new \Bs\Listener\PageLoaderHandler());
     }
 
 }

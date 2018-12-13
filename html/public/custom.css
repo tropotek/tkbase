@@ -26,4 +26,10 @@
 }
 
 
-
+.tk-ribbon.tk-ribbon-danger {
+  background: #cd0000;
+  color: #FFF;
+  font-weight: 600;
+  padding: 4px 10px;
+  text-align: center;
+}

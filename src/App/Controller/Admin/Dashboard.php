@@ -11,7 +11,11 @@ use Tk\Request;
 class Dashboard extends \Bs\Controller\AdminIface
 {
 
-    protected $menu = null;
+    /**
+     * @var \Bs\Table\User
+     */
+    protected $table = null;
+
 
     /**
      * @throws \Exception
@@ -27,9 +31,14 @@ class Dashboard extends \Bs\Controller\AdminIface
 
     /**
      * @param Request $request
+     * @throws \Exception
      */
     public function doDefault(Request $request)
     {
+        $editUrl = \Bs\Uri::createHomeUrl('/userEdit.html');
+
+        $this->table = \Bs\Table\User::create()->setEditUrl($editUrl)->init();
+        $this->table->setList($this->table->findList(array()));
 
     }
 
@@ -41,6 +50,7 @@ class Dashboard extends \Bs\Controller\AdminIface
     {
         $template = parent::show();
 
+        $template->appendTemplate('panel', $this->table->show());
 
         return $template;
     }
@@ -52,12 +62,7 @@ class Dashboard extends \Bs\Controller\AdminIface
     {
         $xhtml = <<<HTML
 <div>
-  <div class="tk-panel" data-panel-title="Welcome" data-panel-icon="fa fa-empire" var="panel">
-
-    <p>Something spiffy.....</p>
-    <p><a href="/logout.html">Logout ;-)</a></p>
-  
-  </div>
+  <div class="tk-panel" data-panel-title="System Users" data-panel-icon="fa fa-empire" var="panel"></div>
 </div>
 HTML;
 

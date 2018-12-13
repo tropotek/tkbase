@@ -33,8 +33,7 @@ class Cron extends \Bs\Console\Iface
      * @param InputInterface $input
      * @param OutputInterface $output
      * @return int|null|void
-     * @throws \Tk\Db\Exception
-     * @throws \Tk\Exception
+     * @throws \Exception
      */
     protected function execute(InputInterface $input, OutputInterface $output)
     {
