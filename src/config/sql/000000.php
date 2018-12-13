@@ -4,7 +4,8 @@ $config = \App\Config::getInstance();
 //try {
 //    $data = \Tk\Db\Data::create();
 //
-//    $data->set('site.title', 'New Project');
+//    $data->set('site.title', 'TK 2 Base Site');
+//    $data->set('site.short.title', 'tk2base');
 //    $data->set('site.email', 'admin@example.com');
 //    //$data->set('site.client.registration', 'site.client.registration');
 //    //$data->set('site.client.activation', 'site.client.activation');
