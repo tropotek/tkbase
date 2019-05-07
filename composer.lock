@@ -83,12 +83,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Intervention/image.git",
-                "reference": "e82d274f786e3d4b866a59b173f42e716f0783eb"
+                "reference": "a8fca2aeead8168c16cd36b2507ed520d3f4fc66"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Intervention/image/zipball/e82d274f786e3d4b866a59b173f42e716f0783eb",
-                "reference": "e82d274f786e3d4b866a59b173f42e716f0783eb",
+                "url": "https://api.github.com/repos/Intervention/image/zipball/a8fca2aeead8168c16cd36b2507ed520d3f4fc66",
+                "reference": "a8fca2aeead8168c16cd36b2507ed520d3f4fc66",
                 "shasum": ""
             },
             "require": {
@@ -145,7 +145,7 @@
                 "thumbnail",
                 "watermark"
             ],
-            "time": "2018-05-29T14:19:03+00:00"
+            "time": "2019-04-22T10:45:12+00:00"
         },
         {
             "name": "lasserafn/php-initial-avatar-generator",
@@ -153,12 +153,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/LasseRafn/php-initial-avatar-generator.git",
-                "reference": "50406a7622a9a67ac0c78acfc4bd60ce51162d49"
+                "reference": "43be871d657bedd4fce98f1f627072ea53fbc512"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/LasseRafn/php-initial-avatar-generator/zipball/50406a7622a9a67ac0c78acfc4bd60ce51162d49",
-                "reference": "50406a7622a9a67ac0c78acfc4bd60ce51162d49",
+                "url": "https://api.github.com/repos/LasseRafn/php-initial-avatar-generator/zipball/43be871d657bedd4fce98f1f627072ea53fbc512",
+                "reference": "43be871d657bedd4fce98f1f627072ea53fbc512",
                 "shasum": ""
             },
             "require": {
@@ -166,6 +166,7 @@
                 "intervention/image": "^2.3",
                 "lasserafn/php-initials": "^2.20",
                 "lasserafn/php-string-script-language": "^0.1.0",
+                "meyfa/php-svg": "^0.9.0",
                 "overtrue/pinyin": "^4.0",
                 "php": "^7.0|^7.1|^7.2|^7.3|^7.4"
             },
@@ -194,9 +195,10 @@
             "keywords": [
                 "Initials",
                 "avatar",
-                "image"
+                "image",
+                "svg"
             ],
-            "time": "2019-02-26T18:53:06+00:00"
+            "time": "2019-04-22T21:17:02+00:00"
         },
         {
             "name": "lasserafn/php-initials",
@@ -343,6 +345,51 @@
             "time": "2018-07-22T01:22:08+00:00"
         },
         {
+            "name": "meyfa/php-svg",
+            "version": "v0.9.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/meyfa/php-svg.git",
+                "reference": "1680eca33c0e107439969650904ab08ecfe83603"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/meyfa/php-svg/zipball/1680eca33c0e107439969650904ab08ecfe83603",
+                "reference": "1680eca33c0e107439969650904ab08ecfe83603",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "php": ">=5.3.3"
+            },
+            "require-dev": {
+                "meyfa/phpunit-assert-gd": "^1.1",
+                "phpunit/phpunit": "^4.8"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "SVG\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabian Meyer",
+                    "homepage": "http://meyfa.net"
+                }
+            ],
+            "description": "Read, edit, write, and render SVG files with PHP",
+            "homepage": "https://github.com/meyfa/php-svg",
+            "keywords": [
+                "svg"
+            ],
+            "time": "2018-07-25T10:30:00+00:00"
+        },
+        {
             "name": "monolog/monolog",
             "version": "1.x-dev",
             "source": {
@@ -422,29 +469,32 @@
         },
         {
             "name": "overtrue/pinyin",
-            "version": "4.0.1",
+            "version": "4.0.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/overtrue/pinyin.git",
-                "reference": "1350518c8211332de2f9c40d88b6e290b383bd31"
+                "reference": "b17c9c8be23e89fe3f074025b3c6bc034bfb2a90"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/1350518c8211332de2f9c40d88b6e290b383bd31",
-                "reference": "1350518c8211332de2f9c40d88b6e290b383bd31",
+                "url": "https://api.github.com/repos/overtrue/pinyin/zipball/b17c9c8be23e89fe3f074025b3c6bc034bfb2a90",
+                "reference": "b17c9c8be23e89fe3f074025b3c6bc034bfb2a90",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.5"
             },
             "require-dev": {
-                "phpunit/phpunit": "~4.8"
+                "phpunit/phpunit": "~7.5"
             },
             "type": "library",
             "autoload": {
                 "psr-4": {
                     "Overtrue\\Pinyin\\": "src/"
-                }
+                },
+                "files": [
+                    "src/const.php"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -463,7 +513,7 @@
                 "Pinyin",
                 "cn2pinyin"
             ],
-            "time": "2019-01-11T12:52:09+00:00"
+            "time": "2019-04-21T14:33:59+00:00"
         },
         {
             "name": "oyejorge/less.php",
@@ -817,27 +867,25 @@
         },
         {
             "name": "symfony/console",
-            "version": "dev-master",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "f6f44ce1c9513a37b8826ce7f3edd26d6ab7bf09"
+                "reference": "606e4d9c425d544337d681e30fa6483e534e26bc"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/f6f44ce1c9513a37b8826ce7f3edd26d6ab7bf09",
-                "reference": "f6f44ce1c9513a37b8826ce7f3edd26d6ab7bf09",
+                "url": "https://api.github.com/repos/symfony/console/zipball/606e4d9c425d544337d681e30fa6483e534e26bc",
+                "reference": "606e4d9c425d544337d681e30fa6483e534e26bc",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
-                "symfony/contracts": "^1.1",
-                "symfony/polyfill-mbstring": "~1.0",
-                "symfony/polyfill-php73": "^1.8"
+                "php": "^5.5.9|>=7.0.8",
+                "symfony/debug": "~2.8|~3.0|~4.0",
+                "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
                 "symfony/dependency-injection": "<3.4",
-                "symfony/event-dispatcher": "<4.3",
                 "symfony/process": "<3.3"
             },
             "provide": {
@@ -845,12 +893,11 @@
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~3.4|~4.0",
+                "symfony/config": "~3.3|~4.0",
                 "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/event-dispatcher": "^4.3",
+                "symfony/event-dispatcher": "~2.8|~3.0|~4.0",
                 "symfony/lock": "~3.4|~4.0",
-                "symfony/process": "~3.4|~4.0",
-                "symfony/var-dumper": "^4.3"
+                "symfony/process": "~3.3|~4.0"
             },
             "suggest": {
                 "psr/log": "For using the console logger",
@@ -861,7 +908,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -888,51 +935,44 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-30T07:40:00+00:00"
+            "time": "2019-05-06T09:25:16+00:00"
         },
         {
-            "name": "symfony/contracts",
+            "name": "symfony/debug",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/symfony/contracts.git",
-                "reference": "a4b5e697e24544ddeaf9f9255cdda6e4c2c32659"
+                "url": "https://github.com/symfony/debug.git",
+                "reference": "bcb342fd9caa77809c7768bdf77220c0745fb30e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/a4b5e697e24544ddeaf9f9255cdda6e4c2c32659",
-                "reference": "a4b5e697e24544ddeaf9f9255cdda6e4c2c32659",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/bcb342fd9caa77809c7768bdf77220c0745fb30e",
+                "reference": "bcb342fd9caa77809c7768bdf77220c0745fb30e",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3"
+                "php": "^7.1.3",
+                "psr/log": "~1.0"
+            },
+            "conflict": {
+                "symfony/http-kernel": "<3.4"
             },
             "require-dev": {
-                "psr/cache": "^1.0",
-                "psr/container": "^1.0",
-                "symfony/polyfill-intl-idn": "^1.10"
-            },
-            "suggest": {
-                "psr/cache": "When using the Cache contracts",
-                "psr/container": "When using the Service contracts",
-                "symfony/cache-contracts-implementation": "",
-                "symfony/event-dispatcher-implementation": "",
-                "symfony/http-client-contracts-implementation": "",
-                "symfony/service-contracts-implementation": "",
-                "symfony/translation-contracts-implementation": ""
+                "symfony/http-kernel": "~3.4|~4.0"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1-dev"
+                    "dev-master": "4.3-dev"
                 }
             },
             "autoload": {
                 "psr-4": {
-                    "Symfony\\Contracts\\": ""
+                    "Symfony\\Component\\Debug\\": ""
                 },
                 "exclude-from-classmap": [
-                    "**/Tests/"
+                    "/Tests/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -941,58 +981,44 @@
             ],
             "authors": [
                 {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
                 },
                 {
                     "name": "Symfony Community",
                     "homepage": "https://symfony.com/contributors"
                 }
             ],
-            "description": "A set of abstractions extracted out of the Symfony components",
+            "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "keywords": [
-                "abstractions",
-                "contracts",
-                "decoupling",
-                "interfaces",
-                "interoperability",
-                "standards"
-            ],
-            "time": "2019-04-03T09:22:57+00:00"
+            "time": "2019-04-11T12:10:52+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
-            "version": "dev-master",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/event-dispatcher.git",
-                "reference": "96212e1684326fa95be877f4560e2ff47f6dc748"
+                "reference": "a088aafcefb4eef2520a290ed82e4374092a6dff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/96212e1684326fa95be877f4560e2ff47f6dc748",
-                "reference": "96212e1684326fa95be877f4560e2ff47f6dc748",
+                "url": "https://api.github.com/repos/symfony/event-dispatcher/zipball/a088aafcefb4eef2520a290ed82e4374092a6dff",
+                "reference": "a088aafcefb4eef2520a290ed82e4374092a6dff",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
-                "symfony/contracts": "^1.1"
+                "php": "^5.5.9|>=7.0.8"
             },
             "conflict": {
-                "symfony/dependency-injection": "<3.4"
-            },
-            "provide": {
-                "psr/event-dispatcher-implementation": "1.0",
-                "symfony/event-dispatcher-implementation": "1.1"
+                "symfony/dependency-injection": "<3.3"
             },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~3.4|~4.0",
-                "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/expression-language": "~3.4|~4.0",
-                "symfony/http-foundation": "^3.4|^4.0",
-                "symfony/stopwatch": "~3.4|~4.0"
+                "symfony/config": "~2.8|~3.0|~4.0",
+                "symfony/dependency-injection": "~3.3|~4.0",
+                "symfony/expression-language": "~2.8|~3.0|~4.0",
+                "symfony/stopwatch": "~2.8|~3.0|~4.0"
             },
             "suggest": {
                 "symfony/dependency-injection": "",
@@ -1001,7 +1027,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -1028,7 +1054,7 @@
             ],
             "description": "Symfony EventDispatcher Component",
             "homepage": "https://symfony.com",
-            "time": "2019-04-02T10:04:04+00:00"
+            "time": "2019-04-02T08:51:52+00:00"
         },
         {
             "name": "symfony/polyfill-mbstring",
@@ -1090,97 +1116,36 @@
             "time": "2019-02-06T07:57:58+00:00"
         },
         {
-            "name": "symfony/polyfill-php73",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/polyfill-php73.git",
-                "reference": "d1fb4abcc0c47be136208ad9d68bf59f1ee17abd"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/polyfill-php73/zipball/d1fb4abcc0c47be136208ad9d68bf59f1ee17abd",
-                "reference": "d1fb4abcc0c47be136208ad9d68bf59f1ee17abd",
-                "shasum": ""
-            },
-            "require": {
-                "php": ">=5.3.3"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.11-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Polyfill\\Php73\\": ""
-                },
-                "files": [
-                    "bootstrap.php"
-                ],
-                "classmap": [
-                    "Resources/stubs"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Nicolas Grekas",
-                    "email": "p@tchwork.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony polyfill backporting some PHP 7.3+ features to lower PHP versions",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "compatibility",
-                "polyfill",
-                "portable",
-                "shim"
-            ],
-            "time": "2019-02-06T07:57:58+00:00"
-        },
-        {
             "name": "symfony/translation",
-            "version": "dev-master",
+            "version": "3.4.x-dev",
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/translation.git",
-                "reference": "ae0b960f05bb7057e787554d724605444b7d955c"
+                "reference": "301a5d627220a1c4ee522813b0028653af6c4f54"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/translation/zipball/ae0b960f05bb7057e787554d724605444b7d955c",
-                "reference": "ae0b960f05bb7057e787554d724605444b7d955c",
+                "url": "https://api.github.com/repos/symfony/translation/zipball/301a5d627220a1c4ee522813b0028653af6c4f54",
+                "reference": "301a5d627220a1c4ee522813b0028653af6c4f54",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.1.3",
-                "symfony/contracts": "^1.0.2",
+                "php": "^5.5.9|>=7.0.8",
                 "symfony/polyfill-mbstring": "~1.0"
             },
             "conflict": {
-                "symfony/config": "<3.4",
+                "symfony/config": "<2.8",
                 "symfony/dependency-injection": "<3.4",
                 "symfony/yaml": "<3.4"
             },
-            "provide": {
-                "symfony/translation-contracts-implementation": "1.0"
-            },
             "require-dev": {
                 "psr/log": "~1.0",
-                "symfony/config": "~3.4|~4.0",
-                "symfony/console": "~3.4|~4.0",
+                "symfony/config": "~2.8|~3.0|~4.0",
                 "symfony/dependency-injection": "~3.4|~4.0",
                 "symfony/finder": "~2.8|~3.0|~4.0",
-                "symfony/intl": "~3.4|~4.0",
+                "symfony/http-kernel": "~3.4|~4.0",
+                "symfony/intl": "^2.8.18|^3.2.5|~4.0",
+                "symfony/var-dumper": "~3.4|~4.0",
                 "symfony/yaml": "~3.4|~4.0"
             },
             "suggest": {
@@ -1191,7 +1156,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "4.3-dev"
+                    "dev-master": "3.4-dev"
                 }
             },
             "autoload": {
@@ -1218,7 +1183,7 @@
             ],
             "description": "Symfony Translation Component",
             "homepage": "https://symfony.com",
-            "time": "2019-03-30T07:32:15+00:00"
+            "time": "2019-05-01T11:10:09+00:00"
         },
         {
             "name": "ttek-plg/events",
@@ -1417,12 +1382,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/theme-cube.git",
-                "reference": "ef8f988803b78dedd2180ae90422855ccf060f1d"
+                "reference": "ce4cc6e1a9b99a9a5d7f1179ec8d9640a99c8319"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/theme-cube/zipball/ef8f988803b78dedd2180ae90422855ccf060f1d",
-                "reference": "ef8f988803b78dedd2180ae90422855ccf060f1d",
+                "url": "https://api.github.com/repos/tropotek/theme-cube/zipball/ce4cc6e1a9b99a9a5d7f1179ec8d9640a99c8319",
+                "reference": "ce4cc6e1a9b99a9a5d7f1179ec8d9640a99c8319",
                 "shasum": ""
             },
             "type": "tek-theme",
@@ -1447,7 +1412,7 @@
                 "Tk",
                 "tropotek"
             ],
-            "time": "2019-02-24T21:31:08+00:00"
+            "time": "2019-04-30T03:03:39+00:00"
         },
         {
             "name": "ttek/tk-auth",
@@ -1501,12 +1466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-base.git",
-                "reference": "2c39caf0d977a3785acca205454859121f26f855"
+                "reference": "70fb72e42774ea39e96757f49d26576b38262dcf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/2c39caf0d977a3785acca205454859121f26f855",
-                "reference": "2c39caf0d977a3785acca205454859121f26f855",
+                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/70fb72e42774ea39e96757f49d26576b38262dcf",
+                "reference": "70fb72e42774ea39e96757f49d26576b38262dcf",
                 "shasum": ""
             },
             "require": {
@@ -1540,7 +1505,7 @@
                 "base",
                 "tropotek"
             ],
-            "time": "2019-03-10T22:53:00+00:00"
+            "time": "2019-05-05T21:57:36+00:00"
         },
         {
             "name": "ttek/tk-database",
@@ -1644,12 +1609,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-form.git",
-                "reference": "5a80cf97e315dd9f3f216a7def82e8f7db3f61cd"
+                "reference": "b50e2fe1f2cfb2c89df874bf0533ba2734ab8826"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-form/zipball/5a80cf97e315dd9f3f216a7def82e8f7db3f61cd",
-                "reference": "5a80cf97e315dd9f3f216a7def82e8f7db3f61cd",
+                "url": "https://api.github.com/repos/tropotek/tk-form/zipball/b50e2fe1f2cfb2c89df874bf0533ba2734ab8826",
+                "reference": "b50e2fe1f2cfb2c89df874bf0533ba2734ab8826",
                 "shasum": ""
             },
             "require": {
@@ -1684,7 +1649,7 @@
                 "form",
                 "tropotek"
             ],
-            "time": "2019-03-13T01:09:43+00:00"
+            "time": "2019-04-18T00:34:22+00:00"
         },
         {
             "name": "ttek/tk-framework",
@@ -1692,12 +1657,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-framework.git",
-                "reference": "6f9cb56b4976d6bb0db81564eac50cdd4f67c63a"
+                "reference": "1a42c520a7973a972ca5b542554017d7a83f6386"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/6f9cb56b4976d6bb0db81564eac50cdd4f67c63a",
-                "reference": "6f9cb56b4976d6bb0db81564eac50cdd4f67c63a",
+                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/1a42c520a7973a972ca5b542554017d7a83f6386",
+                "reference": "1a42c520a7973a972ca5b542554017d7a83f6386",
                 "shasum": ""
             },
             "require": {
@@ -1738,7 +1703,7 @@
                 "framework",
                 "tropotek"
             ],
-            "time": "2019-03-06T02:04:29+00:00"
+            "time": "2019-04-18T00:33:44+00:00"
         },
         {
             "name": "ttek/tk-http",
@@ -1897,18 +1862,18 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-mvc.git",
-                "reference": "661d8ad12da3ced7d9d1985de035901cd4e3e16d"
+                "reference": "c92732adc3932f6aebc90daedae73067fba32fab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/661d8ad12da3ced7d9d1985de035901cd4e3e16d",
-                "reference": "661d8ad12da3ced7d9d1985de035901cd4e3e16d",
+                "url": "https://api.github.com/repos/tropotek/tk-mvc/zipball/c92732adc3932f6aebc90daedae73067fba32fab",
+                "reference": "c92732adc3932f6aebc90daedae73067fba32fab",
                 "shasum": ""
             },
             "require": {
-                "symfony/console": "^4.2",
-                "symfony/event-dispatcher": "^4.2",
-                "symfony/translation": "^4.2",
+                "symfony/console": "~3.4",
+                "symfony/event-dispatcher": "~3.4",
+                "symfony/translation": "~3.4",
                 "ttek/tk-framework": "~2.0"
             },
             "type": "library",
@@ -1939,7 +1904,7 @@
                 "mvc",
                 "tropotek"
             ],
-            "time": "2019-04-03T23:32:36+00:00"
+            "time": "2019-04-03T23:37:07+00:00"
         },
         {
             "name": "ttek/tk-plugin",
@@ -2042,12 +2007,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-table.git",
-                "reference": "3ef296203e43157098f057a3aa0dc6b5c21dc22a"
+                "reference": "a827f6f0dc0af0fabcd71a38c3fc52b4b40e7305"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-table/zipball/3ef296203e43157098f057a3aa0dc6b5c21dc22a",
-                "reference": "3ef296203e43157098f057a3aa0dc6b5c21dc22a",
+                "url": "https://api.github.com/repos/tropotek/tk-table/zipball/a827f6f0dc0af0fabcd71a38c3fc52b4b40e7305",
+                "reference": "a827f6f0dc0af0fabcd71a38c3fc52b4b40e7305",
                 "shasum": ""
             },
             "require": {
@@ -2083,7 +2048,7 @@
                 "table",
                 "tropotek"
             ],
-            "time": "2019-03-31T19:56:54+00:00"
+            "time": "2019-04-18T00:34:03+00:00"
         },
         {
             "name": "ttek/tk-ui",
