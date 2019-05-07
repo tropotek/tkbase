@@ -1116,6 +1116,82 @@
             "time": "2019-02-06T07:57:58+00:00"
         },
         {
+            "name": "symfony/routing",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/symfony/routing.git",
+                "reference": "82fac7d892e29a858f570eb4bc015c4b9521e821"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/symfony/routing/zipball/82fac7d892e29a858f570eb4bc015c4b9521e821",
+                "reference": "82fac7d892e29a858f570eb4bc015c4b9521e821",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1.3"
+            },
+            "conflict": {
+                "symfony/config": "<4.2",
+                "symfony/dependency-injection": "<3.4",
+                "symfony/yaml": "<3.4"
+            },
+            "require-dev": {
+                "doctrine/annotations": "~1.2",
+                "psr/log": "~1.0",
+                "symfony/config": "~4.2",
+                "symfony/dependency-injection": "~3.4|~4.0",
+                "symfony/expression-language": "~3.4|~4.0",
+                "symfony/http-foundation": "~3.4|~4.0",
+                "symfony/yaml": "~3.4|~4.0"
+            },
+            "suggest": {
+                "doctrine/annotations": "For using the annotation loader",
+                "symfony/config": "For using the all-in-one router or any loader",
+                "symfony/expression-language": "For using expression matching",
+                "symfony/http-foundation": "For using a Symfony Request object",
+                "symfony/yaml": "For using the YAML loader"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "4.3-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Symfony\\Component\\Routing\\": ""
+                },
+                "exclude-from-classmap": [
+                    "/Tests/"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fabien Potencier",
+                    "email": "fabien@symfony.com"
+                },
+                {
+                    "name": "Symfony Community",
+                    "homepage": "https://symfony.com/contributors"
+                }
+            ],
+            "description": "Symfony Routing Component",
+            "homepage": "https://symfony.com",
+            "keywords": [
+                "router",
+                "routing",
+                "uri",
+                "url"
+            ],
+            "time": "2019-04-27T14:39:34+00:00"
+        },
+        {
             "name": "symfony/translation",
             "version": "3.4.x-dev",
             "source": {
@@ -1711,12 +1787,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-http.git",
-                "reference": "bcd701e4544413e221000a700ffd4b324a04c49d"
+                "reference": "a27defd85d164a362e8b2979693854a48efeadaf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-http/zipball/bcd701e4544413e221000a700ffd4b324a04c49d",
-                "reference": "bcd701e4544413e221000a700ffd4b324a04c49d",
+                "url": "https://api.github.com/repos/tropotek/tk-http/zipball/a27defd85d164a362e8b2979693854a48efeadaf",
+                "reference": "a27defd85d164a362e8b2979693854a48efeadaf",
                 "shasum": ""
             },
             "require": {
@@ -1752,7 +1828,7 @@
                 "http",
                 "tropotek"
             ],
-            "time": "2019-01-13T21:46:26+00:00"
+            "time": "2019-05-07T21:18:08+00:00"
         },
         {
             "name": "ttek/tk-installers",
@@ -1958,15 +2034,16 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-routing.git",
-                "reference": "7d3c32d998cc059fdecb3bee5037ae04676f2624"
+                "reference": "06934514a81616e3c30146d119251484dd2c9423"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-routing/zipball/7d3c32d998cc059fdecb3bee5037ae04676f2624",
-                "reference": "7d3c32d998cc059fdecb3bee5037ae04676f2624",
+                "url": "https://api.github.com/repos/tropotek/tk-routing/zipball/06934514a81616e3c30146d119251484dd2c9423",
+                "reference": "06934514a81616e3c30146d119251484dd2c9423",
                 "shasum": ""
             },
             "require": {
+                "symfony/routing": "^4.2",
                 "ttek/tk-framework": "~2.0"
             },
             "type": "library",
@@ -1978,7 +2055,10 @@
             "autoload": {
                 "psr-0": {
                     "Tk\\": ""
-                }
+                },
+                "exclude-from-classmap": [
+                    "/tests/"
+                ]
             },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
@@ -1999,7 +2079,7 @@
                 "tropotek",
                 "url"
             ],
-            "time": "2018-08-20T01:52:08+00:00"
+            "time": "2019-05-07T21:18:15+00:00"
         },
         {
             "name": "ttek/tk-table",
