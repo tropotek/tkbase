@@ -31,7 +31,7 @@
     },
     "extra":  {
         "branch-alias":  {
-            "dev-master": "1.0.x-dev"
+            "dev-master": "3.0.x-dev"
         }
     },
     "require":  {
@@ -39,18 +39,17 @@
         "ttek/tk-auth": "dev-3beta as 3.0.x-dev",
         "ttek/tk-base": "dev-3beta as 3.0.x-dev",
         "ttek/tk-database": "dev-3beta as 3.0.x-dev",
-
-        "ttek/tk-installers": "~2.0",
-        "ttek/tk-framework": "~2.0",
-        "ttek/tk-mail": "~2.0",
-        "ttek/tk-http": "~2.0",
-        "ttek/tk-routing": "~2.0",
-        "ttek/tk-mvc": "~2.0",
-        "ttek/tk-domtemplate": "~2.0",
-        "ttek/tk-form": "~2.0",
-        "ttek/tk-table": "~2.0",
-        "ttek/tk-plugin": "~2.0",
-        "ttek/tk-ui": "~2.0",
+        "ttek/tk-domtemplate": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-form": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-framework": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-http": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-installers": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-mail": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-mvc": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-plugin": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-routing": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-table": "dev-3beta as 3.0.x-dev",
+        "ttek/tk-ui": "dev-3beta as 3.0.x-dev",
 
         "ttek/theme-cube": "~1.0",
 
