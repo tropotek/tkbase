@@ -38,7 +38,7 @@
         "php": ">=7.0",
         "ttek/tk-auth": "dev-3beta as 3.0.x-dev",
         "ttek/tk-base": "dev-3beta as 3.0.x-dev",
-        "ttek/tk-database": "~2.0",
+        "ttek/tk-database": "dev-3beta as 3.0.x-dev",
 
         "ttek/tk-installers": "~2.0",
         "ttek/tk-framework": "~2.0",
