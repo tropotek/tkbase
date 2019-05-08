@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "05859b092d9f0703e0abc97e1466466e",
+    "content-hash": "b22b900f240524942a8c7d2a921ad652",
     "packages": [
         {
             "name": "guzzlehttp/psr7",
@@ -871,12 +871,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "606e4d9c425d544337d681e30fa6483e534e26bc"
+                "reference": "ad26ac2ea24ab1710d2f15e0f5220e6fc4460ce9"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/606e4d9c425d544337d681e30fa6483e534e26bc",
-                "reference": "606e4d9c425d544337d681e30fa6483e534e26bc",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ad26ac2ea24ab1710d2f15e0f5220e6fc4460ce9",
+                "reference": "ad26ac2ea24ab1710d2f15e0f5220e6fc4460ce9",
                 "shasum": ""
             },
             "require": {
@@ -935,7 +935,7 @@
             ],
             "description": "Symfony Console Component",
             "homepage": "https://symfony.com",
-            "time": "2019-05-06T09:25:16+00:00"
+            "time": "2019-05-08T20:08:18+00:00"
         },
         {
             "name": "symfony/debug",
@@ -1116,82 +1116,6 @@
             "time": "2019-02-06T07:57:58+00:00"
         },
         {
-            "name": "symfony/routing",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/symfony/routing.git",
-                "reference": "82fac7d892e29a858f570eb4bc015c4b9521e821"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/symfony/routing/zipball/82fac7d892e29a858f570eb4bc015c4b9521e821",
-                "reference": "82fac7d892e29a858f570eb4bc015c4b9521e821",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1.3"
-            },
-            "conflict": {
-                "symfony/config": "<4.2",
-                "symfony/dependency-injection": "<3.4",
-                "symfony/yaml": "<3.4"
-            },
-            "require-dev": {
-                "doctrine/annotations": "~1.2",
-                "psr/log": "~1.0",
-                "symfony/config": "~4.2",
-                "symfony/dependency-injection": "~3.4|~4.0",
-                "symfony/expression-language": "~3.4|~4.0",
-                "symfony/http-foundation": "~3.4|~4.0",
-                "symfony/yaml": "~3.4|~4.0"
-            },
-            "suggest": {
-                "doctrine/annotations": "For using the annotation loader",
-                "symfony/config": "For using the all-in-one router or any loader",
-                "symfony/expression-language": "For using expression matching",
-                "symfony/http-foundation": "For using a Symfony Request object",
-                "symfony/yaml": "For using the YAML loader"
-            },
-            "type": "library",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "4.3-dev"
-                }
-            },
-            "autoload": {
-                "psr-4": {
-                    "Symfony\\Component\\Routing\\": ""
-                },
-                "exclude-from-classmap": [
-                    "/Tests/"
-                ]
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Fabien Potencier",
-                    "email": "fabien@symfony.com"
-                },
-                {
-                    "name": "Symfony Community",
-                    "homepage": "https://symfony.com/contributors"
-                }
-            ],
-            "description": "Symfony Routing Component",
-            "homepage": "https://symfony.com",
-            "keywords": [
-                "router",
-                "routing",
-                "uri",
-                "url"
-            ],
-            "time": "2019-04-27T14:39:34+00:00"
-        },
-        {
             "name": "symfony/translation",
             "version": "3.4.x-dev",
             "source": {
@@ -1262,197 +1186,6 @@
             "time": "2019-05-01T11:10:09+00:00"
         },
         {
-            "name": "ttek-plg/events",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tropotek/plg-events.git",
-                "reference": "9b4ab1fca5441a712b182a3ec609a0c2a7524c6f"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-events/zipball/9b4ab1fca5441a712b182a3ec609a0c2a7524c6f",
-                "reference": "9b4ab1fca5441a712b182a3ec609a0c2a7524c6f",
-                "shasum": ""
-            },
-            "require": {
-                "ttek/tk-installers": "~2.0"
-            },
-            "type": "ttek-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Tk\\Ev\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Mifsud",
-                    "homepage": "http://www.tropotek.com/"
-                }
-            ],
-            "description": "A plugin to manage events locations and dates",
-            "homepage": "http://www.tropotek.com/",
-            "keywords": [
-                "events",
-                "plugin",
-                "tk2",
-                "tropotek"
-            ],
-            "time": "2018-08-12T21:00:58+00:00"
-        },
-        {
-            "name": "ttek-plg/mailog",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tropotek/plg-mailog.git",
-                "reference": "490f62f06f0c342060f62e0fa31e2026c290cc37"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-mailog/zipball/490f62f06f0c342060f62e0fa31e2026c290cc37",
-                "reference": "490f62f06f0c342060f62e0fa31e2026c290cc37",
-                "shasum": ""
-            },
-            "require": {
-                "ttek/tk-installers": "~2.0"
-            },
-            "type": "ttek-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Tk\\Ml\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Mifsud",
-                    "homepage": "http://www.tropotek.com/"
-                }
-            ],
-            "description": "Log and track any mail sent through the PHP mailGateway",
-            "homepage": "http://www.tropotek.com/",
-            "keywords": [
-                "mailog",
-                "plugin",
-                "tk2",
-                "tropotek"
-            ],
-            "time": "2019-03-04T01:41:03+00:00"
-        },
-        {
-            "name": "ttek-plg/sample",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tropotek/plg-sample.git",
-                "reference": "12267c08f67d6be4902b79b4186fd30e535956b0"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-sample/zipball/12267c08f67d6be4902b79b4186fd30e535956b0",
-                "reference": "12267c08f67d6be4902b79b4186fd30e535956b0",
-                "shasum": ""
-            },
-            "require": {
-                "ttek/tk-installers": "~2.0"
-            },
-            "type": "ttek-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Tk\\Eg\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Mifsud",
-                    "homepage": "http://www.tropotek.com/"
-                }
-            ],
-            "description": "Example Tk2 Lib plugin",
-            "homepage": "http://www.tropotek.com/",
-            "keywords": [
-                "example",
-                "plugin",
-                "tropotek"
-            ],
-            "time": "2018-07-20T04:27:00+00:00"
-        },
-        {
-            "name": "ttek-plg/subscribers",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/tropotek/plg-subscribers.git",
-                "reference": "81146ea6dc7b2efc820250035d55d6da82bce1f8"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-subscribers/zipball/81146ea6dc7b2efc820250035d55d6da82bce1f8",
-                "reference": "81146ea6dc7b2efc820250035d55d6da82bce1f8",
-                "shasum": ""
-            },
-            "require": {
-                "ttek/tk-installers": "~2.0"
-            },
-            "type": "ttek-plugin",
-            "extra": {
-                "branch-alias": {
-                    "dev-master": "1.0.x-dev"
-                }
-            },
-            "autoload": {
-                "psr-0": {
-                    "Tk\\Sub\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "Michael Mifsud",
-                    "homepage": "http://www.tropotek.com/"
-                }
-            ],
-            "description": "A plugin to manage newsletter subscription emails",
-            "homepage": "http://www.tropotek.com/",
-            "keywords": [
-                "plugin",
-                "subscribers",
-                "tk2",
-                "tropotek"
-            ],
-            "time": "2018-08-12T21:00:52+00:00"
-        },
-        {
             "name": "ttek/theme-cube",
             "version": "dev-master",
             "source": {
@@ -1492,7 +1225,7 @@
         },
         {
             "name": "ttek/tk-auth",
-            "version": "dev-master",
+            "version": "dev-3beta",
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-auth.git",
@@ -1542,12 +1275,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-base.git",
-                "reference": "70fb72e42774ea39e96757f49d26576b38262dcf"
+                "reference": "0f6da6d243334c6ed460c8939744d078a0182e47"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/70fb72e42774ea39e96757f49d26576b38262dcf",
-                "reference": "70fb72e42774ea39e96757f49d26576b38262dcf",
+                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/0f6da6d243334c6ed460c8939744d078a0182e47",
+                "reference": "0f6da6d243334c6ed460c8939744d078a0182e47",
                 "shasum": ""
             },
             "require": {
@@ -1581,7 +1314,7 @@
                 "base",
                 "tropotek"
             ],
-            "time": "2019-05-05T21:57:36+00:00"
+            "time": "2019-05-07T22:29:36+00:00"
         },
         {
             "name": "ttek/tk-database",
@@ -1733,12 +1466,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-framework.git",
-                "reference": "1a42c520a7973a972ca5b542554017d7a83f6386"
+                "reference": "97cdb2bc82bee60968184fe10a4b706503d9421e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/1a42c520a7973a972ca5b542554017d7a83f6386",
-                "reference": "1a42c520a7973a972ca5b542554017d7a83f6386",
+                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/97cdb2bc82bee60968184fe10a4b706503d9421e",
+                "reference": "97cdb2bc82bee60968184fe10a4b706503d9421e",
                 "shasum": ""
             },
             "require": {
@@ -1759,6 +1492,9 @@
                 "files": [
                     "Tk/Exception.php",
                     "functions/varDump.php"
+                ],
+                "exclude-from-classmap": [
+                    "/tests/"
                 ]
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -1779,7 +1515,7 @@
                 "framework",
                 "tropotek"
             ],
-            "time": "2019-04-18T00:33:44+00:00"
+            "time": "2019-05-07T21:18:50+00:00"
         },
         {
             "name": "ttek/tk-http",
@@ -1836,12 +1572,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-installers.git",
-                "reference": "95969d76cea201d4e86cb6431b46f0332214cebe"
+                "reference": "602530a831345c8d4be4c678ec41d48aa94a4e04"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/95969d76cea201d4e86cb6431b46f0332214cebe",
-                "reference": "95969d76cea201d4e86cb6431b46f0332214cebe",
+                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/602530a831345c8d4be4c678ec41d48aa94a4e04",
+                "reference": "602530a831345c8d4be4c678ec41d48aa94a4e04",
                 "shasum": ""
             },
             "require": {
@@ -1881,7 +1617,7 @@
                 "tools",
                 "tropotek"
             ],
-            "time": "2018-08-30T22:41:29+00:00"
+            "time": "2019-05-08T21:58:15+00:00"
         },
         {
             "name": "ttek/tk-mail",
@@ -2034,16 +1770,15 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-routing.git",
-                "reference": "06934514a81616e3c30146d119251484dd2c9423"
+                "reference": "c40a912afcdb242f26b758c442f85cb1b7c4bcb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-routing/zipball/06934514a81616e3c30146d119251484dd2c9423",
-                "reference": "06934514a81616e3c30146d119251484dd2c9423",
+                "url": "https://api.github.com/repos/tropotek/tk-routing/zipball/c40a912afcdb242f26b758c442f85cb1b7c4bcb8",
+                "reference": "c40a912afcdb242f26b758c442f85cb1b7c4bcb8",
                 "shasum": ""
             },
             "require": {
-                "symfony/routing": "^4.2",
                 "ttek/tk-framework": "~2.0"
             },
             "type": "library",
@@ -2079,7 +1814,7 @@
                 "tropotek",
                 "url"
             ],
-            "time": "2019-05-07T21:18:15+00:00"
+            "time": "2019-05-07T22:30:14+00:00"
         },
         {
             "name": "ttek/tk-table",
@@ -2179,9 +1914,17 @@
         }
     ],
     "packages-dev": [],
-    "aliases": [],
+    "aliases": [
+        {
+            "alias": "3.0.x-dev",
+            "alias_normalized": "3.0.9999999.9999999-dev",
+            "version": "dev-3beta",
+            "package": "ttek/tk-auth"
+        }
+    ],
     "minimum-stability": "dev",
     "stability-flags": {
+        "ttek/tk-auth": 20,
         "lasserafn/php-initial-avatar-generator": 20
     },
     "prefer-stable": false,

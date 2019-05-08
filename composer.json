@@ -1,13 +1,13 @@
 {
     "name": "ttek/tk2base",
     "type": "project",
-    "description": "A Tk Ver 2 base MVC framework project",
+    "description": "A Tk3 base MVC framework project",
     "keywords":  [
         "tropotek"
     ],
-    "time": "2018-05-29",
+    "time": "2019-04-09",
     "license": "MIT",
-    "version": "1.0.24",
+    "version": "3.0.0",
     "minimum-stability": "dev",
     "authors":  [
          {
@@ -36,12 +36,13 @@
     },
     "require":  {
         "php": ">=7.0",
+        "ttek/tk-auth": "dev-3beta as 3.0.x-dev",
+
         "ttek/tk-installers": "~2.0",
         "ttek/tk-framework": "~2.0",
         "ttek/tk-mail": "~2.0",
         "ttek/tk-http": "~2.0",
         "ttek/tk-routing": "~2.0",
-        "ttek/tk-auth": "~2.0",
         "ttek/tk-database": "~2.0",
         "ttek/tk-mvc": "~2.0",
         "ttek/tk-domtemplate": "~2.0",
@@ -50,10 +51,6 @@
         "ttek/tk-plugin": "~2.0",
         "ttek/tk-ui": "~2.0",
         "ttek/tk-base": "~1.0",
-        "ttek-plg/mailog": "~1.0",
-        "ttek-plg/events": "~1.0",
-        "ttek-plg/subscribers": "~1.0",
-        "ttek-plg/sample": "~1.0",
         "ttek/theme-cube": "~1.0",
         "sensiolabs/ansi-to-html": "~1.0",
         "lasserafn/php-initial-avatar-generator": "dev-master"
