@@ -51,7 +51,9 @@
         "ttek/tk-plugin": "~2.0",
         "ttek/tk-ui": "~2.0",
         "ttek/tk-base": "~1.0",
+
         "ttek/theme-cube": "~1.0",
+
         "sensiolabs/ansi-to-html": "~1.0",
         "lasserafn/php-initial-avatar-generator": "dev-master"
     },
