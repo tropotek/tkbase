@@ -48,11 +48,11 @@
         "ttek/tk-plugin": "dev-3beta as 3.0.x-dev",
         "ttek/tk-table": "dev-3beta as 3.0.x-dev",
         "ttek/tk-ui": "dev-3beta as 3.0.x-dev",
-        
+
         "ttek-plg/mailog": "~1.0",
         "ttek-plg/events": "~1.0",
         "ttek-plg/subscribers": "~1.0",
-        "ttek-plg/sample": "~1.0",
+        "ttek-plg/sample": "~1.0"
     },
     "require-dev":  {
     }
