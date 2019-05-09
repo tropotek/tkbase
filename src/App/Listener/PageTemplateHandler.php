@@ -1,8 +1,8 @@
 <?php
 namespace App\Listener;
 
+use Symfony\Component\HttpKernel\KernelEvents;
 use Tk\Event\Subscriber;
-use Tk\Kernel\KernelEvents;
 
 /**
  * This object helps cleanup the structure of the controller code

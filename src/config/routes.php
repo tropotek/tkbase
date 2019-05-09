@@ -34,4 +34,3 @@ $routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'Ap
 // User Pages
 $routes->add('user-dashboard', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Dashboard::doDefault'));
 $routes->add('user-dashboard-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Dashboard::doDefault'));
-
