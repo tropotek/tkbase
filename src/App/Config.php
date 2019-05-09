@@ -12,7 +12,7 @@ class Config extends \Bs\Config
 
 
     /**
-     * @param \Tk\Event\Dispatcher $dispatcher
+     * @param \Symfony\Component\EventDispatcher\EventDispatcherInterface $dispatcher
      * @throws \Exception
      */
     public function setupDispatcher($dispatcher)
