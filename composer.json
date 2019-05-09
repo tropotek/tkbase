@@ -1,10 +1,8 @@
 {
-    "name": "ttek/tk2base",
+    "name": "ttek/tkbase",
     "type": "project",
-    "description": "A Tk3 base MVC framework project",
-    "keywords":  [
-        "tropotek"
-    ],
+    "description": "A Tk base MVC framework project",
+    "keywords":  ["tropotek"],
     "time": "2019-04-09",
     "license": "MIT",
     "version": "3.0.0",

@@ -1,13 +1,10 @@
-# tk2base :boom: 
+# tkbase :boom: 
 
-__Project:__ tk2base  
-__Published:__ 16 May 2016  
+__Project:__ tkbase    
 __Web:__ <http://www.tropotek.com/>  
 __Authors:__ Michael Mifsud <http://www.tropotek.com/>  
 
-A base site using the Tk2 framework MVC, use this as a starting point for your 
-own site.
-
+A base site using the Tk framework, use this as a starting point for your own site.
 
 ## Contents
 
@@ -20,15 +17,14 @@ own site.
   2. Make sure you have the latest version of composer [https://getcomposer.org/download/] installed.
   3. Use the following commands:  
 ~~~bash
-# git clone https://github.com/tropotek/safesoda.git
-# cd safesoda
+# git clone https://github.com/tropotek/tkbase.git
+# cd tkbase
 # composer install
 ~~~
   4. Edit the `/src/App/config/config.php` file to your required settings.
   5. You may have to change the permissions of the `/data/` folder so apache can read and write to it.
   6. To enable debug mode and logging edit the `/src/config/config.php` file to suit your server.
      tail the log for more info on any errors.
-
 
 
 ## Upgrading
@@ -48,7 +44,7 @@ site files before running these commands
 
 ### Editing The HTML
 
-In the folder `/html/xtpl` and `/html/xtpl-content` you will find all the content templates for the site.
+In the folder `/html` you will find all the content templates for the site.
 
 
 #### Template URL paths
