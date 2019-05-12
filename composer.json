@@ -2,13 +2,11 @@
     "name": "ttek/tkbase",
     "type": "project",
     "description": "A Tk base MVC framework project",
-    "keywords":  [
-        "tropotek"
-    ],
-    "time": "2019-05-13",
+    "keywords":  ["tropotek"],
+    "time": "2019-04-09",
     "license": "MIT",
-    "version": "1.0.30",
-    "minimum-stability": "stable",
+    "version": "master",
+    "minimum-stability": "dev",
     "authors":  [
          {
             "name": "Michael Mifsud",
@@ -38,6 +36,7 @@
         "php": "^7.1.3",
         "ttek/tk-base": "~3.0",
         "ttek/theme-cube": "~1.0",
+
         "ttek-plg/mailog": "~1.0",
         "ttek-plg/events": "~1.0",
         "ttek-plg/subscribers": "~1.0",
