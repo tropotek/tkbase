@@ -1,4 +1,4 @@
-# tkbase :boom: 
+# tkbase  
 
 __Project:__ tkbase    
 __Web:__ <http://www.tropotek.com/>  

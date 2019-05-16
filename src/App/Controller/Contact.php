@@ -156,7 +156,7 @@ MSG;
         $message->setSubject($this->getConfig()->get('site.title') . ':  Contact Form Submission - ' . $name);
         $message->set('content', $content);
         if ($field->hasFile()) {
-            $message->addAttachment($field->getUploadedFile()->getFile(), $field->getUploadedFile()->getFilename());
+            $message->addAttachment($field->getUploadedFile()->getPathname(), $field->getUploadedFile()->getClientOriginalName());
         }
         return $this->getConfig()->getEmailGateway()->send($message);
     }
