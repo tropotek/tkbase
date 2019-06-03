@@ -38,14 +38,13 @@ class NavRendererHandler implements Subscriber
     protected function initDropdownMenu($menu)
     {
         $user = $this->getConfig()->getUser();
+        if (!$user) return;
 
-        if ($user) {
-            $menu->append(Item::create('Profile', \Bs\Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
-            if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
-                $menu->prepend(Item::create('Site Preview', \Bs\Uri::create('/index.html'), 'fa fa-home'))->getLink()
-                    ->setAttr('target', '_blank');
-                $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
-            }
+        $menu->append(Item::create('Profile', \Bs\Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
+        if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
+            $menu->prepend(Item::create('Site Preview', \Bs\Uri::create('/index.html'), 'fa fa-home'))->getLink()
+                ->setAttr('target', '_blank');
+            $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
         }
 
         $menu->append(Item::create('About', '#', 'fa fa-info-circle')
@@ -62,16 +61,14 @@ class NavRendererHandler implements Subscriber
     protected function initSideMenu($menu)
     {
         $user = $this->getConfig()->getUser();
+        if (!$user) return;
 
-        if ($user) {
-            $menu->append(Item::create('Dashboard', \Bs\Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
-
-            if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
-                $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
-                if ($this->getConfig()->isDebug()) {
-                    $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));
-                    $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
-                }
+        $menu->append(Item::create('Dashboard', \Bs\Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
+        if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
+            $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
+            if ($this->getConfig()->isDebug()) {
+                $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));
+                $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
             }
         }
 
