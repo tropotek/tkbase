@@ -37,22 +37,22 @@ class NavRendererHandler implements Subscriber
      */
     protected function initDropdownMenu($menu)
     {
+        $user = $this->getConfig()->getUser();
+        if (!$user) return;
+
         $menu->append(Item::create('Profile', \Bs\Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
-        switch ($this->getRoleType()) {
-            case \Bs\Db\Role::TYPE_ADMIN:
-                $menu->prepend(Item::create('Site Preview', \Bs\Uri::create('/index.html'), 'fa fa-home'))->getLink()
-                    ->setAttr('target', '_blank');
-                $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
-                break;
-            case \Bs\Db\Role::TYPE_USER:
-                break;
+        if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
+            $menu->prepend(Item::create('Site Preview', \Bs\Uri::create('/index.html'), 'fa fa-home'))->getLink()
+                ->setAttr('target', '_blank');
+            $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
         }
+
         $menu->append(Item::create('About', '#', 'fa fa-info-circle')
             ->setAttr('data-toggle', 'modal')->setAttr('data-target', '#aboutModal'));
         $menu->append(Item::create()->addCss('divider'));
         $menu->append(Item::create('Logout', '#', 'fa fa-sign-out')
             ->setAttr('data-toggle', 'modal')->setAttr('data-target', '#logoutModal'));
-        //vd($menu->__toString());
+
     }
 
     /**
@@ -61,21 +61,17 @@ class NavRendererHandler implements Subscriber
     protected function initSideMenu($menu)
     {
         $user = $this->getConfig()->getUser();
+        if (!$user) return;
 
         $menu->append(Item::create('Dashboard', \Bs\Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
-
-        switch ($this->getRoleType()) {
-            case \Bs\Db\Role::TYPE_ADMIN:
-                $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
-                if ($this->getConfig()->isDebug()) {
-                    $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));
-                    $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
-                }
-                break;
-            case \Bs\Db\Role::TYPE_USER:
-                break;
+        if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
+            $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
+            if ($this->getConfig()->isDebug()) {
+                $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));
+                $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
+            }
         }
-        //vd($menu->__toString());
+
     }
 
 
@@ -86,7 +82,6 @@ class NavRendererHandler implements Subscriber
      */
     public function onShow(\Tk\Event\Event $event)
     {
-
         $controller = \Tk\Event\Event::findControllerObject($event);
         if ($controller instanceof \Bs\Controller\Iface) {
             /** @var \Bs\Page $page */
@@ -119,16 +114,5 @@ class NavRendererHandler implements Subscriber
     public function getConfig()
     {
         return \Bs\Config::getInstance();
-    }
-
-    /**
-     * @return string
-     */
-    public function getRoleType()
-    {
-        $t = 'public';
-        if ($this->getConfig()->getUser())
-            $t = $this->getConfig()->getUser()->getRoleType();
-        return $t;
     }
 }
