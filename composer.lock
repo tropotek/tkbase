@@ -895,12 +895,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/contracts.git",
-                "reference": "3781912aec0ffd209da6c89d8ecb9a6ddcac5076"
+                "reference": "3692662d26cd9d204a69748792ae021c35313610"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/contracts/zipball/3781912aec0ffd209da6c89d8ecb9a6ddcac5076",
-                "reference": "3781912aec0ffd209da6c89d8ecb9a6ddcac5076",
+                "url": "https://api.github.com/repos/symfony/contracts/zipball/3692662d26cd9d204a69748792ae021c35313610",
+                "reference": "3692662d26cd9d204a69748792ae021c35313610",
                 "shasum": ""
             },
             "require": {
@@ -964,7 +964,7 @@
                 "interoperability",
                 "standards"
             ],
-            "time": "2019-08-20T14:44:19+00:00"
+            "time": "2019-08-21T15:14:41+00:00"
         },
         {
             "name": "symfony/debug",
@@ -972,12 +972,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/debug.git",
-                "reference": "12bf045c9006b66d6a9b23229f093e41de5ad387"
+                "reference": "48ee3cc79ac213a555293472c220ae3334935d25"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/debug/zipball/12bf045c9006b66d6a9b23229f093e41de5ad387",
-                "reference": "12bf045c9006b66d6a9b23229f093e41de5ad387",
+                "url": "https://api.github.com/repos/symfony/debug/zipball/48ee3cc79ac213a555293472c220ae3334935d25",
+                "reference": "48ee3cc79ac213a555293472c220ae3334935d25",
                 "shasum": ""
             },
             "require": {
@@ -1020,7 +1020,7 @@
             ],
             "description": "Symfony Debug Component",
             "homepage": "https://symfony.com",
-            "time": "2019-08-20T14:44:19+00:00"
+            "time": "2019-08-21T15:14:41+00:00"
         },
         {
             "name": "symfony/event-dispatcher",
@@ -2267,12 +2267,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-ui.git",
-                "reference": "27e6b543680a5792431bdc51f8a68c2834eac728"
+                "reference": "fc111ed450a583d1a86fb0a9c534141f5da00082"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-ui/zipball/27e6b543680a5792431bdc51f8a68c2834eac728",
-                "reference": "27e6b543680a5792431bdc51f8a68c2834eac728",
+                "url": "https://api.github.com/repos/tropotek/tk-ui/zipball/fc111ed450a583d1a86fb0a9c534141f5da00082",
+                "reference": "fc111ed450a583d1a86fb0a9c534141f5da00082",
                 "shasum": ""
             },
             "require": {
@@ -2306,7 +2306,7 @@
                 "tropotek",
                 "ui"
             ],
-            "time": "2019-08-20T21:54:20+00:00"
+            "time": "2019-08-21T22:34:04+00:00"
         }
     ],
     "packages-dev": [],
