@@ -47,7 +47,7 @@ class Contact extends \Bs\Controller\Iface
             $this->form->addField(new Field\ReCapture('capture', $this->getConfig()->get('google.recaptcha.publicKey'),
                 $this->getConfig()->get('google.recaptcha.privateKey')));
         
-        $this->form->addField(new Event\Submit('send', array($this, 'doSubmit')));
+        $this->form->addField(new Event\Submit('send', array($this, 'doSubmit')))->addCss('btn-primary');
         
         $this->form->execute();
 

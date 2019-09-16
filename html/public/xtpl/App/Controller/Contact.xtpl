@@ -2,6 +2,7 @@
 
   <div class="section">
     <div class="container">
+
       <div class="row">
         <div class="col-sm-7">
           <!-- Map -->
@@ -89,7 +90,7 @@
 
               <div class="form-group">
                 <div class="col-sm-12">
-                  <button type="submit" class="btn pull-right" name="send">Send</button>
+                  <button type="submit" class="btn btn-primary pull-right" name="send">Send</button>
                 </div>
               </div>
 
