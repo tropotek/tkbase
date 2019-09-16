@@ -98,6 +98,17 @@ eval("/*!\n  * Bootstrap v4.3.1 (https://getbootstrap.com/)\n  * Copyright 2011-
 
 /***/ }),
 
+/***/ "./node_modules/font-awesome/css/font-awesome.css":
+/*!********************************************************!*\
+  !*** ./node_modules/font-awesome/css/font-awesome.css ***!
+  \********************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+eval("// extracted by mini-css-extract-plugin\n\n//# sourceURL=webpack://%5Bname%5D/./node_modules/font-awesome/css/font-awesome.css?");
+
+/***/ }),
+
 /***/ "./node_modules/jquery/dist/jquery.js":
 /*!********************************************!*\
   !*** ./node_modules/jquery/dist/jquery.js ***!
@@ -140,19 +151,31 @@ eval("var g;\n\n// This works in non-strict mode\ng = (function() {\n\treturn th
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../scss/app.scss */ \"./src/scss/app.scss\");\n/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _scrolltop__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./scrolltop */ \"./src/js/scrolltop.js\");\n/**\n * This file is the main file for the npm package manager\n * npm.js\n */\n\nglobal.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;\nglobal.$ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;\n\n\n/**\n * App Lib Imports\n */\n\n\nglobal.scrollToTop = _scrolltop__WEBPACK_IMPORTED_MODULE_3__[\"default\"];\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://%5Bname%5D/./src/js/app.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* WEBPACK VAR INJECTION */(function(global) {/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! bootstrap */ \"./node_modules/bootstrap/dist/js/bootstrap.js\");\n/* harmony import */ var bootstrap__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(bootstrap__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! font-awesome/css/font-awesome.css */ \"./node_modules/font-awesome/css/font-awesome.css\");\n/* harmony import */ var font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(font_awesome_css_font_awesome_css__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../scss/app.scss */ \"./src/scss/app.scss\");\n/* harmony import */ var _scss_app_scss__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_scss_app_scss__WEBPACK_IMPORTED_MODULE_3__);\n/* harmony import */ var _scrollToTop__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./scrollToTop */ \"./src/js/scrollToTop.js\");\n/* harmony import */ var _contactForm__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./contactForm */ \"./src/js/contactForm.js\");\n/**\n * This file is the main file for the npm package manager\n * npm.js\n */\n\nglobal.jQuery = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;\nglobal.$ = jquery__WEBPACK_IMPORTED_MODULE_0___default.a;\n\n\n\n/**\n * App Lib Imports\n */\n\n\n\n/* WEBPACK VAR INJECTION */}.call(this, __webpack_require__(/*! ./../../node_modules/webpack/buildin/global.js */ \"./node_modules/webpack/buildin/global.js\")))\n\n//# sourceURL=webpack://%5Bname%5D/./src/js/app.js?");
 
 /***/ }),
 
-/***/ "./src/js/scrolltop.js":
-/*!*****************************!*\
-  !*** ./src/js/scrolltop.js ***!
-  \*****************************/
-/*! exports provided: default */
+/***/ "./src/js/contactForm.js":
+/*!*******************************!*\
+  !*** ./src/js/contactForm.js ***!
+  \*******************************/
+/*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return scrollToTop; });\n/**\n * scrolltop.js\n * A simple function to allow a link to scroll to the top of the screen.\n *\n * Date: 2019-09-16\n */\nvar timeOut;\nfunction scrollToTop() {\n  if (document.body.scrollTop !== 0 || document.documentElement.scrollTop !== 0) {\n    window.scrollBy(0, -50);\n    timeOut = setTimeout(scrollToTop, 10);\n  } else {\n    clearTimeout(timeOut);\n  }\n}\n\n//# sourceURL=webpack://%5Bname%5D/./src/js/scrolltop.js?");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/**\n * contactForm.js\n * transform the contact page form to look nicer\n *\n * Date: 2019-09-16\n */\n\njquery__WEBPACK_IMPORTED_MODULE_0___default()(function ($) {\n  $('.pg-contact .field-error').addClass('col-sm-12');\n});\n\n//# sourceURL=webpack://%5Bname%5D/./src/js/contactForm.js?");
+
+/***/ }),
+
+/***/ "./src/js/scrollToTop.js":
+/*!*******************************!*\
+  !*** ./src/js/scrollToTop.js ***!
+  \*******************************/
+/*! no exports provided */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! jquery */ \"./node_modules/jquery/dist/jquery.js\");\n/* harmony import */ var jquery__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(jquery__WEBPACK_IMPORTED_MODULE_0__);\n/**\n * scrolltop.js\n * A simple function to allow a link to scroll to the top of the screen.\n *\n * Date: 2019-09-16\n */\n\njquery__WEBPACK_IMPORTED_MODULE_0___default()('.scroll-to-top').each(function () {\n  //var timeOut;\n  var btn = jquery__WEBPACK_IMPORTED_MODULE_0___default()(this);\n  var btnCss = {\n    position: 'fixed',\n    bottom: '15px',\n    right: '20px',\n    width: '50px',\n    height: '50px',\n    cursor: 'pointer',\n    display: 'none',\n    border: '1px solid #CCC'\n  };\n  var iconCss = {\n    textAlign: 'center',\n    display: 'block',\n    fontSize: '20px',\n    paddingTop: '15px'\n  };\n  btn.css(btnCss);\n  btn.find('i').css(iconCss);\n  jquery__WEBPACK_IMPORTED_MODULE_0___default()(window).scroll(function () {\n    if (jquery__WEBPACK_IMPORTED_MODULE_0___default()(this).scrollTop() > 300) {\n      btn.fadeIn('600');\n    } else {\n      btn.fadeOut('700');\n    }\n  });\n  jquery__WEBPACK_IMPORTED_MODULE_0___default()(document).ready(function () {\n    btn.on('click', function () {\n      jquery__WEBPACK_IMPORTED_MODULE_0___default()('html, body').animate({\n        scrollTop: 0\n      }, 'slow');\n    });\n  });\n}); // var timeOut;\n// function scrollToTop() {\n//   if (document.body.scrollTop !== 0 || document.documentElement.scrollTop !== 0) {\n//     window.scrollBy(0, -50);\n//     timeOut = setTimeout(scrollToTop, 10);\n//   } else {\n//     clearTimeout(timeOut);\n//   }\n// }\n//\n//\n// export default scrollToTop;\n\n//# sourceURL=webpack://%5Bname%5D/./src/js/scrollToTop.js?");
 
 /***/ }),
 

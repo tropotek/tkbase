@@ -2,7 +2,6 @@ const path = require('path');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 // File Loaders: https://dev.to/pixelgoo/how-to-configure-webpack-from-scratch-for-a-basic-website-46a5
-
 module.exports = {
   entry: {
     app: './src/js/app.js'
@@ -26,6 +25,9 @@ module.exports = {
           }
         }
       },
+      // Fonts
+      { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "url-loader?limit=10000&mimetype=application/font-woff" },
+      { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: "file-loader" },
       {
         // Apply rule for .sass, .scss or .css files
         test: /\.(sa|sc|c)ss$/,

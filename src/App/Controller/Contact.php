@@ -63,6 +63,10 @@ class Contact extends \Bs\Controller\Iface
     {
         $template = parent::show();
 
+        if ($this->getConfig()->get('google.map.apikey')) {
+            $template->setAttr('googleMap', 'src', \Tk\Uri::create('https://www.google.com/maps/embed/v1/search?q=Melbourne')->set('key', $this->getConfig()->get('google.map.apikey')));
+        }
+
         // Render the form
         $ren = new \Tk\Form\Renderer\DomStatic($this->form, $template);
         $ren->show();
