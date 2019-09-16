@@ -31,5 +31,5 @@
     "server": "webpack-dev-server --open"
   },
   "author": "",
-  "license": "ISC"
+  "license": "MIT"
 }
