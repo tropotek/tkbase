@@ -25,12 +25,12 @@
         <li class="nav-item"><a class="nav-link" href="/user/index.html" var="user-url">My Account</a></li>
       <li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Settings</a>
-        <div class="dropdown-menu" aria-labelledby="dropdown01">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
-        </div>
+        <ul class="dropdown-menu" aria-labelledby="dropdown01">
+          <li><a class="dropdown-item" href="#">Action</a></li>
+          <li><a class="dropdown-item" href="#">Another action</a></li>
+          <li class="dropdown-divider"></li>
+          <li><a class="dropdown-item" href="#">Something else here</a></li>
+        </ul>
       </li>
       </ul>
 <!--      <form class="form-inline mt-2 mt-md-0">-->
@@ -41,8 +41,34 @@
         <li class="nav-item" choice="login"><a class="nav-link" href="/login.html">Login</a></li>
         <li class="nav-item" choice="logout"><a class="nav-link" href="/logout.html">Logout</a></li>
       </ul>
-
     </div>
+
+
+    <div class="collapse2 navbar-collapse2" id="navbarCollapse2" style="display: none;">
+      <ul>
+        <li><a href="/">Home</a></li>
+        <li><a href="/contact.html">Contact</a></li>
+        <li><a href="/user/index.html" var="user-url">My Account</a></li>
+        <li><a href="#">Settings</a>
+          <ul>
+            <li><a href="#">Action</a></li>
+            <li><a href="#">Another action</a></li>
+            <li class="dropdown-divider"></li>
+            <li><a href="#">Something else here</a></li>
+          </ul>
+        </li>
+      </ul>
+      <!--      <form class="form-inline mt-2 mt-md-0">-->
+      <!--        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />-->
+      <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
+      <!--      </form>-->
+      <ul class="navbar-nav mt-2 mt-md-0">
+        <li class="nav-item" choice="login"><a class="nav-link" href="/login.html">Login</a></li>
+        <li class="nav-item" choice="logout"><a class="nav-link" href="/logout.html">Logout</a></li>
+      </ul>
+    </div>
+
+
   </nav>
 </header>
 
