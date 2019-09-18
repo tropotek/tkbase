@@ -43,6 +43,3 @@ $config['template.maintenance']     = $config['system.template.path']   . '/them
 
 
 
-
-
-
