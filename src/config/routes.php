@@ -23,6 +23,8 @@ $routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login
 $routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault'));
 $routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller\Register::doDefault'));
 
+$routes->add('privacy', new \Tk\Routing\Route('/privacy.html', 'App\Controller\Privacy::doDefault'));
+$routes->add('terms', new \Tk\Routing\Route('/terms.html', 'App\Controller\Terms::doDefault'));
 $routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault'));
 $routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::doDefault'));
 
