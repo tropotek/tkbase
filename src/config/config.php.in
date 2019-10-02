@@ -38,15 +38,14 @@ $config['db.pass'] = 'password';
 //$config['system.debug.email'] = 'dev@example.com';
 
 
-
-if ($config->isDebug()) {
-//Used for the Mirror command
-    $config['live.db'] = array(
-        'type' => 'mysql',
-        'host' => 'localhost',
-        'name' => 'dev_live',
-        'user' => 'dev',
-        'pass' => ''
-    );
-    $config['live.data.path'] = 'user@example.com:/home/user/public_html/data';
-}
+// Used for the Mirror command.
+//if ($config->isDebug()) {
+//    $config['live.db'] = array(
+//        'type' => 'mysql',
+//        'host' => 'localhost',
+//        'name' => 'dev_live',
+//        'user' => 'dev',
+//        'pass' => ''
+//    );
+//    $config['live.data.path'] = 'user@example.com:/home/user/public_html/data';
+//}
