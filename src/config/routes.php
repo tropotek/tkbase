@@ -10,29 +10,30 @@
  *     array('GET', 'POST', 'HEAD')     // methods
  * );
  */
+use Tk\Routing\Route;
 
 $config = \App\Config::getInstance();
 $routes = $config->getRouteCollection();
 if (!$routes) return;
 
 // Public Pages
-$routes->add('home', new \Tk\Routing\Route('/index.html', 'App\Controller\Index::doDefault'));
-$routes->add('home-base', new \Tk\Routing\Route('/', 'App\Controller\Index::doDefault'));
+$routes->add('home', Route::create('/index.html', 'App\Controller\Index::doDefault'));
+$routes->add('home-base', Route::create('/', 'App\Controller\Index::doDefault'));
 
-$routes->add('login', new \Tk\Routing\Route('/login.html', 'App\Controller\Login::doDefault'));
-$routes->add('recover', new \Tk\Routing\Route('/recover.html', 'App\Controller\Recover::doDefault'));
-$routes->add('register', new \Tk\Routing\Route('/register.html', 'App\Controller\Register::doDefault'));
+$routes->add('login', Route::create('/login.html', 'App\Controller\Login::doDefault'));
+$routes->add('recover', Route::create('/recover.html', 'App\Controller\Recover::doDefault'));
+$routes->add('register', Route::create('/register.html', 'App\Controller\Register::doDefault'));
 
-$routes->add('privacy', new \Tk\Routing\Route('/privacy.html', 'App\Controller\Privacy::doDefault'));
-$routes->add('terms', new \Tk\Routing\Route('/terms.html', 'App\Controller\Terms::doDefault'));
-$routes->add('contact', new \Tk\Routing\Route('/contact.html', 'App\Controller\Contact::doDefault'));
-$routes->add('send', new \Tk\Routing\Route('/send.html', 'App\Controller\Send::doDefault'));
+$routes->add('privacy', Route::create('/privacy.html', 'App\Controller\Privacy::doDefault'));
+$routes->add('terms', Route::create('/terms.html', 'App\Controller\Terms::doDefault'));
+$routes->add('contact', Route::create('/contact.html', 'App\Controller\Contact::doDefault'));
+$routes->add('send', Route::create('/send.html', 'App\Controller\Send::doDefault'));
 
 // Admin Pages
-$routes->add('admin-dashboard', new \Tk\Routing\Route('/admin/index.html', 'App\Controller\Admin\Dashboard::doDefault'));
-$routes->add('admin-dashboard-base', new \Tk\Routing\Route('/admin/', 'App\Controller\Admin\Dashboard::doDefault'));
-$routes->add('admin-settings', new \Tk\Routing\Route('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault'));
+$routes->add('admin-dashboard', Route::create('/admin/index.html', 'App\Controller\Admin\Dashboard::doDefault'));
+$routes->add('admin-dashboard-base', Route::create('/admin/', 'App\Controller\Admin\Dashboard::doDefault'));
+$routes->add('admin-settings', Route::create('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault'));
 
 // User Pages
-$routes->add('user-dashboard', new \Tk\Routing\Route('/user/index.html', 'App\Controller\User\Dashboard::doDefault'));
-$routes->add('user-dashboard-base', new \Tk\Routing\Route('/user/', 'App\Controller\User\Dashboard::doDefault'));
+$routes->add('user-dashboard', Route::create('/user/index.html', 'App\Controller\User\Dashboard::doDefault'));
+$routes->add('user-dashboard-base', Route::create('/user/', 'App\Controller\User\Dashboard::doDefault'));

@@ -13,13 +13,13 @@
 
 <body>
 <header>
-  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark" var="navbar">
     <a class="navbar-brand" href="/">Tk-Base</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse" id="navbarCollapse">
-      <ul class="navbar-nav mr-auto">
+    <div class="collapse navbar-collapse" id="navbarCollapse" var="navbar-collapse">
+      <ul class="navbar-nav mr-auto" var="navmenu-left">
         <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
         <li class="nav-item"><a class="nav-link" href="/contact.html">Contact</a></li>
         <li class="nav-item"><a class="nav-link" href="/user/index.html" var="user-url">My Account</a></li>
@@ -37,7 +37,7 @@
 <!--        <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search" />-->
 <!--        <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>-->
 <!--      </form>-->
-      <ul class="navbar-nav mt-2 mt-md-0">
+      <ul class="navbar-nav mt-2 mt-md-0" var="navmenu-right">
         <li class="nav-item" choice="login"><a class="nav-link" href="/login.html">Login</a></li>
         <li class="nav-item" choice="logout"><a class="nav-link" href="/logout.html">Logout</a></li>
       </ul>
