@@ -37,7 +37,7 @@ class NavRendererHandler implements Subscriber
      */
     protected function initDropdownMenu($menu)
     {
-        $user = $this->getConfig()->getUser();
+        $user = $this->getConfig()->getAuthUser();
         if (!$user) return;
 
         $menu->append(Item::create('Profile', \Bs\Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
@@ -60,7 +60,7 @@ class NavRendererHandler implements Subscriber
      */
     protected function initSideMenu($menu)
     {
-        $user = $this->getConfig()->getUser();
+        $user = $this->getConfig()->getAuthUser();
         if (!$user) return;
 
         $menu->append(Item::create('Dashboard', \Bs\Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
