@@ -34,6 +34,8 @@
     "require":  {
         "php": "^7.3.0",
         "ttek/tk-base": "~3.2",
+        "ttek/tk-mvc": "~3.2",
+
         "ttek/theme-cube": "~1.0",
         "ttek-plg/mailog": "~1.0",
         "ttek-plg/events": "~1.0",

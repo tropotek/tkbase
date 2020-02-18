@@ -1,10 +1,19 @@
 <?php
 namespace App\Listener;
 
+use Bs\Controller\Iface;
+use Bs\Db\User;
+use Bs\Page;
+use Bs\Uri;
+use Symfony\Component\HttpKernel\Event\GetResponseEvent;
 use Symfony\Component\HttpKernel\KernelEvents;
+use Tk\ConfigTrait;
+use Tk\Event\Event;
 use Tk\Event\Subscriber;
+use Tk\PageEvents;
 use Tk\Ui\Menu\Item;
 use Bs\Ui\Menu;
+use Tk\Ui\Menu\ListRenderer;
 
 /**
  * @author Michael Mifsud <info@tropotek.com>
@@ -13,9 +22,10 @@ use Bs\Ui\Menu;
  */
 class NavRendererHandler implements Subscriber
 {
+    use ConfigTrait;
 
     /**
-     * @param \Symfony\Component\HttpKernel\Event\RequestEvent $event
+     * @param GetResponseEvent $event
      */
     public function onRequest($event)
     {
@@ -40,11 +50,11 @@ class NavRendererHandler implements Subscriber
         $user = $this->getConfig()->getAuthUser();
         if (!$user) return;
 
-        $menu->append(Item::create('Profile', \Bs\Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
-        if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
-            $menu->prepend(Item::create('Site Preview', \Bs\Uri::create('/index.html'), 'fa fa-home'))->getLink()
+        $menu->append(Item::create('Profile', Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
+        if ($user->hasPermission(User::TYPE_ADMIN)) {
+            $menu->prepend(Item::create('Site Preview', Uri::create('/index.html'), 'fa fa-home'))->getLink()
                 ->setAttr('target', '_blank');
-            $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
+            $menu->append(Item::create('Settings', Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
         }
 
         $menu->append(Item::create('About', '#', 'fa fa-info-circle')
@@ -63,33 +73,31 @@ class NavRendererHandler implements Subscriber
         $user = $this->getConfig()->getAuthUser();
         if (!$user) return;
 
-        $menu->append(Item::create('Dashboard', \Bs\Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
-        if ($user->hasPermission(\Bs\Db\Permission::TYPE_ADMIN)) {
-            $menu->append(Item::create('Settings', \Bs\Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
+        $menu->append(Item::create('Dashboard', Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
+        if ($user->hasPermission(User::TYPE_ADMIN)) {
+            $menu->append(Item::create('Settings', Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
             if ($this->getConfig()->isDebug()) {
                 $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));
-                $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
+                $sub->append(Item::create('Events', Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
             }
         }
 
     }
 
 
-
-
     /**
-     * @param \Tk\Event\Event $event
+     * @param Event $event
      */
-    public function onShow(\Tk\Event\Event $event)
+    public function onShow(Event $event)
     {
-        $controller = \Tk\Event\Event::findControllerObject($event);
-        if ($controller instanceof \Bs\Controller\Iface) {
-            /** @var \Bs\Page $page */
+        $controller = Event::findControllerObject($event);
+        if ($controller instanceof Iface) {
+            /** @var Page $page */
             $page = $controller->getPage();
             $template = $page->getTemplate();
 
             foreach ($this->getConfig()->getMenuManager()->getMenuList() as $menu) {
-                $renderer = \Tk\Ui\Menu\ListRenderer::create($menu);
+                $renderer = ListRenderer::create($menu);
                 $tpl = $renderer->show();
                 $template->replaceTemplate($menu->getName(), $tpl);
             }
@@ -104,15 +112,8 @@ class NavRendererHandler implements Subscriber
     {
         return array(
             KernelEvents::REQUEST =>  array('onRequest', 0),
-            \Tk\PageEvents::PAGE_SHOW =>  array('onShow', 0)
+            PageEvents::PAGE_SHOW =>  array('onShow', 0)
         );
     }
 
-    /**
-     * @return \Tk\Config|\Bs\Config
-     */
-    public function getConfig()
-    {
-        return \Bs\Config::getInstance();
-    }
 }

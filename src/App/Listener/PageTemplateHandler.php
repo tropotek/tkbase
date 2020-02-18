@@ -1,8 +1,16 @@
 <?php
 namespace App\Listener;
 
-use Symfony\Component\HttpKernel\KernelEvents;
-use Tk\Event\Subscriber;
+
+use Bs\Controller\Iface;
+use Bs\Db\User;
+use Bs\Ui\AboutDialog;
+use Bs\Ui\LogoutDialog;
+use Bs\Uri;
+use Exception;
+use Tk\ConfigTrait;
+use Tk\Event\Event;
+use Tk\ObjectUtil;
 
 /**
  * This object helps cleanup the structure of the controller code
@@ -13,39 +21,40 @@ use Tk\Event\Subscriber;
  */
 class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
 {
+    use ConfigTrait;
 
     /**
-     * @param \Tk\Event\Event $event
-     * @throws \Exception
+     * @param Event $event
+     * @throws Exception
      */
-    public function showPage(\Tk\Event\Event $event)
+    public function showPage(Event $event)
     {
         parent::showPage($event);
 
-        $controller = \Tk\Event\Event::findControllerObject($event);
-        if ($controller instanceof \Bs\Controller\Iface) {
+        $controller = Event::findControllerObject($event);
+        if ($controller instanceof Iface) {
             $page = $controller->getPage();
             if (!$page) return;
             $template = $page->getTemplate();
-            /** @var \Bs\Db\User $user */
+            /** @var User $user */
             $user = $controller->getAuthUser();
 
             if ($user) {
-                if (\Bs\Uri::create()->getRoleType(\Tk\ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
+                if (Uri::create()->getRoleType(ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
                     // About dialog\Uni\Uri::create()
-                    $dialog = new \Bs\Ui\AboutDialog();
+                    $dialog = new AboutDialog();
                     $template->appendTemplate($template->getBodyElement(), $dialog->show());
 
                     // Logout dialog
-                    $dialog = new \Bs\Ui\LogoutDialog();
+                    $dialog = new LogoutDialog();
                     $template->appendTemplate($template->getBodyElement(), $dialog->show());
                 }
 
                 // Set permission choices
                 $perms = $user->getRole()->getPermissions();
                 foreach ($perms as $perm) {
-                    $template->show($perm);
-                    $controller->getTemplate()->show($perm);
+                    $template->setVisible($perm);
+                    $controller->getTemplate()->setVisible($perm);
                 }
 
                 //show user icon 'user-image'
@@ -62,13 +71,5 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
         }
     }
 
-
-    /**
-     * @return \App\Config|\Tk\Config
-     */
-    public function getConfig()
-    {
-        return \App\Config::getInstance();
-    }
 
 }
