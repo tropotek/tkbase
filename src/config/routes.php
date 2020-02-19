@@ -35,5 +35,5 @@ $routes->add('admin-dashboard-base', Route::create('/admin/', 'App\Controller\Ad
 $routes->add('admin-settings', Route::create('/admin/settings.html', 'App\Controller\Admin\Settings::doDefault'));
 
 // User Pages
-$routes->add('user-dashboard', Route::create('/user/index.html', 'App\Controller\User\Dashboard::doDefault'));
-$routes->add('user-dashboard-base', Route::create('/user/', 'App\Controller\User\Dashboard::doDefault'));
+$routes->add('member-dashboard', Route::create('/member/index.html', 'App\Controller\Member\Dashboard::doDefault'));
+$routes->add('member-dashboard-base', Route::create('/member/', 'App\Controller\Member\Dashboard::doDefault'));

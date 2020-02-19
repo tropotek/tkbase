@@ -40,7 +40,7 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
             $user = $controller->getAuthUser();
 
             if ($user) {
-                if (Uri::create()->getRoleType(ObjectUtil::getClassConstants($this->getConfig()->createRole(), 'TYPE')) != '') {
+                if (Uri::create()->getRoleType(User::getUserTypeList(true))) {
                     // About dialog\Uni\Uri::create()
                     $dialog = new AboutDialog();
                     $template->appendTemplate($template->getBodyElement(), $dialog->show());
@@ -51,8 +51,7 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
                 }
 
                 // Set permission choices
-                $perms = $user->getRole()->getPermissions();
-                foreach ($perms as $perm) {
+                foreach (User::getUserTypeList() as $perm) {
                     $template->setVisible($perm);
                     $controller->getTemplate()->setVisible($perm);
                 }

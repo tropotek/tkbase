@@ -51,7 +51,7 @@ class NavRendererHandler implements Subscriber
         if (!$user) return;
 
         $menu->append(Item::create('Profile', Uri::createHomeUrl('/profile.html'), 'fa fa-user'));
-        if ($user->hasPermission(User::TYPE_ADMIN)) {
+        if ($user->hasType(User::TYPE_ADMIN)) {
             $menu->prepend(Item::create('Site Preview', Uri::create('/index.html'), 'fa fa-home'))->getLink()
                 ->setAttr('target', '_blank');
             $menu->append(Item::create('Settings', Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
@@ -74,7 +74,7 @@ class NavRendererHandler implements Subscriber
         if (!$user) return;
 
         $menu->append(Item::create('Dashboard', Uri::createHomeUrl('/index.html'), 'fa fa-dashboard'));
-        if ($user->hasPermission(User::TYPE_ADMIN)) {
+        if ($user->hasType(User::TYPE_ADMIN)) {
             $menu->append(Item::create('Settings', Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
             if ($this->getConfig()->isDebug()) {
                 $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));

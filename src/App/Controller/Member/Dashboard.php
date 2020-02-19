@@ -1,5 +1,5 @@
 <?php
-namespace App\Controller\User;
+namespace App\Controller\Member;
 
 use Tk\Request;
 
@@ -16,7 +16,6 @@ class Dashboard extends \Bs\Controller\AdminIface
      */
     public function __construct()
     {
-        parent::__construct();
         $this->setPageTitle('My Account');
         $this->getActionPanel()->setEnabled(false);
         $this->getCrumbs()->reset();
