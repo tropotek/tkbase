@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "6315c5449d47cd00ecf715555a2831ba",
+    "content-hash": "28251ff69beceac0d6f7d22ddfe90090",
     "packages": [
         {
             "name": "guzzlehttp/psr7",
@@ -1823,12 +1823,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-base.git",
-                "reference": "ee0269e92404a5bfc20954c86fca19ebef223498"
+                "reference": "8c263b5893f0340c3ee6da22a61e0a13e864c543"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/ee0269e92404a5bfc20954c86fca19ebef223498",
-                "reference": "ee0269e92404a5bfc20954c86fca19ebef223498",
+                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/8c263b5893f0340c3ee6da22a61e0a13e864c543",
+                "reference": "8c263b5893f0340c3ee6da22a61e0a13e864c543",
                 "shasum": ""
             },
             "require": {
@@ -1873,7 +1873,7 @@
                 "tkbase",
                 "tropotek"
             ],
-            "time": "2020-02-19T20:41:08+00:00"
+            "time": "2020-02-19T20:59:39+00:00"
         },
         {
             "name": "ttek/tk-database",
@@ -2026,12 +2026,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-framework.git",
-                "reference": "2a18d7cfb6e84c39b76bdb3483b3b5d66fc12b8e"
+                "reference": "f5f24c3e33dd6cd17f9cf58cae475fa2c09e2fb8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/2a18d7cfb6e84c39b76bdb3483b3b5d66fc12b8e",
-                "reference": "2a18d7cfb6e84c39b76bdb3483b3b5d66fc12b8e",
+                "url": "https://api.github.com/repos/tropotek/tk-framework/zipball/f5f24c3e33dd6cd17f9cf58cae475fa2c09e2fb8",
+                "reference": "f5f24c3e33dd6cd17f9cf58cae475fa2c09e2fb8",
                 "shasum": ""
             },
             "require": {
@@ -2076,7 +2076,7 @@
                 "framework",
                 "tropotek"
             ],
-            "time": "2020-02-19T03:00:26+00:00"
+            "time": "2020-02-19T20:58:58+00:00"
         },
         {
             "name": "ttek/tk-installers",
@@ -2084,12 +2084,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-installers.git",
-                "reference": "a8ae579bead45e7a22ba513e20ea237b443886e9"
+                "reference": "37b03302c8ee5a270c07765ef82f95877bb24d48"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/a8ae579bead45e7a22ba513e20ea237b443886e9",
-                "reference": "a8ae579bead45e7a22ba513e20ea237b443886e9",
+                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/37b03302c8ee5a270c07765ef82f95877bb24d48",
+                "reference": "37b03302c8ee5a270c07765ef82f95877bb24d48",
                 "shasum": ""
             },
             "require": {
@@ -2128,7 +2128,7 @@
                 "tools",
                 "tropotek"
             ],
-            "time": "2020-02-18T23:14:56+00:00"
+            "time": "2020-02-19T20:52:26+00:00"
         },
         {
             "name": "ttek/tk-mail",
