@@ -1823,27 +1823,27 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-base.git",
-                "reference": "8c263b5893f0340c3ee6da22a61e0a13e864c543"
+                "reference": "4bf21fca201efa64b8a6d9dfa5b3caa334056811"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/8c263b5893f0340c3ee6da22a61e0a13e864c543",
-                "reference": "8c263b5893f0340c3ee6da22a61e0a13e864c543",
+                "url": "https://api.github.com/repos/tropotek/tk-base/zipball/4bf21fca201efa64b8a6d9dfa5b3caa334056811",
+                "reference": "4bf21fca201efa64b8a6d9dfa5b3caa334056811",
                 "shasum": ""
             },
             "require": {
                 "lasserafn/php-initial-avatar-generator": "~2.0",
                 "sensiolabs/ansi-to-html": "~1.0",
-                "ttek/tk-auth": "~3.0",
-                "ttek/tk-database": "~3.0",
-                "ttek/tk-domtemplate": "~3.0",
-                "ttek/tk-form": "~3.0",
-                "ttek/tk-framework": "~3.0",
-                "ttek/tk-mail": "~3.0",
-                "ttek/tk-mvc": "~3.0",
-                "ttek/tk-plugin": "~3.0",
-                "ttek/tk-table": "~3.0",
-                "ttek/tk-ui": "~3.0"
+                "ttek/tk-auth": "~3.0.0",
+                "ttek/tk-database": "~3.0.0",
+                "ttek/tk-domtemplate": "~3.0.0",
+                "ttek/tk-form": "~3.0.0",
+                "ttek/tk-framework": "~3.0.0",
+                "ttek/tk-mail": "~3.0.0",
+                "ttek/tk-mvc": "~3.2.0",
+                "ttek/tk-plugin": "~3.0.0",
+                "ttek/tk-table": "~3.0.0",
+                "ttek/tk-ui": "~3.0.0"
             },
             "type": "library",
             "extra": {
@@ -1873,7 +1873,7 @@
                 "tkbase",
                 "tropotek"
             ],
-            "time": "2020-02-19T20:59:39+00:00"
+            "time": "2020-02-20T00:30:10+00:00"
         },
         {
             "name": "ttek/tk-database",
