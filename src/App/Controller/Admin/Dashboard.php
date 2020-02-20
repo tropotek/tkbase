@@ -1,6 +1,7 @@
 <?php
 namespace App\Controller\Admin;
 
+use Bs\Db\User;
 use Tk\Request;
 
 /**
@@ -37,7 +38,7 @@ class Dashboard extends \Bs\Controller\AdminIface
         $editUrl = \Bs\Uri::createHomeUrl('/userEdit.html');
 
         $this->table = \Bs\Table\User::create()->setEditUrl($editUrl)->init();
-        $this->table->setList($this->table->findList(array()));
+        $this->table->setList($this->table->findList(array('type' => User::TYPE_MEMBER)));
 
     }
 
@@ -61,7 +62,7 @@ class Dashboard extends \Bs\Controller\AdminIface
     {
         $xhtml = <<<HTML
 <div>
-  <div class="tk-panel" data-panel-title="System Users" data-panel-icon="fa fa-empire" var="panel"></div>
+  <div class="tk-panel" data-panel-title="Site Members" data-panel-icon="fa fa-empire" var="panel"></div>
 </div>
 HTML;
 
