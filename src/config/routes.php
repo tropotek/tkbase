@@ -24,6 +24,8 @@ $routes->add('login', Route::create('/login.html', 'App\Controller\Login::doDefa
 $routes->add('recover', Route::create('/recover.html', 'App\Controller\Recover::doDefault'));
 $routes->add('register', Route::create('/register.html', 'App\Controller\Register::doDefault'));
 
+$routes->add('install', Route::create('/install.html', 'App\Controller\Install::doDefault'));
+
 $routes->add('privacy', Route::create('/privacy.html', 'App\Controller\Privacy::doDefault'));
 $routes->add('terms', Route::create('/terms.html', 'App\Controller\Terms::doDefault'));
 $routes->add('contact', Route::create('/contact.html', 'App\Controller\Contact::doDefault'));
