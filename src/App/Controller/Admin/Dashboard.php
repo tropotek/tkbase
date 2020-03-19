@@ -35,9 +35,11 @@ class Dashboard extends \Bs\Controller\AdminIface
      */
     public function doDefault(Request $request)
     {
-        $editUrl = \Bs\Uri::createHomeUrl('/userEdit.html');
+        $editUrl = \Bs\Uri::createHomeUrl('/memberEdit.html');
 
-        $this->table = \Bs\Table\User::create()->setEditUrl($editUrl)->init();
+        $this->table = \Bs\Table\User::create()->setEditUrl($editUrl);
+        $this->table->setTargetType(User::TYPE_MEMBER);
+        $this->table->init();
         $this->table->setList($this->table->findList(array('type' => User::TYPE_MEMBER)));
 
     }

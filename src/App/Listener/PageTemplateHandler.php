@@ -10,7 +10,6 @@ use Bs\Uri;
 use Exception;
 use Tk\ConfigTrait;
 use Tk\Event\Event;
-use Tk\ObjectUtil;
 
 /**
  * This object helps cleanup the structure of the controller code
@@ -40,21 +39,22 @@ class PageTemplateHandler extends \Bs\Listener\PageTemplateHandler
             $user = $controller->getAuthUser();
 
             if ($user) {
-                if (Uri::create()->getRoleType(User::getUserTypeList(true))) {
-                    // About dialog\Uni\Uri::create()
-                    $dialog = new AboutDialog();
-                    $template->appendTemplate($template->getBodyElement(), $dialog->show());
+                // About dialog\Uni\Uri::create()
+                $dialog = new AboutDialog();
+                $template->appendTemplate($template->getBodyElement(), $dialog->show());
 
-                    // Logout dialog
-                    $dialog = new LogoutDialog();
-                    $template->appendTemplate($template->getBodyElement(), $dialog->show());
-                }
+                // Logout dialog
+                $dialog = new LogoutDialog();
+                $template->appendTemplate($template->getBodyElement(), $dialog->show());
 
                 // Set permission choices
-                foreach (User::getUserTypeList() as $perm) {
+                $perms = $user->getPermissions();
+                foreach ($perms as $perm) {
                     $template->setVisible($perm);
                     $controller->getTemplate()->setVisible($perm);
                 }
+                $template->setVisible($user->getType());
+                $controller->getTemplate()->setVisible($user->getType());
 
                 //show user icon 'user-image'
                 $img = $user->getImageUrl();
