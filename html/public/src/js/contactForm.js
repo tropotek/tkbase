@@ -7,6 +7,11 @@
 import $ from 'jquery';
 
 $(function ($) {
-  $('.pg-contact .field-error').addClass('col-sm-12');
+  $('#contactForm').each(function () {
+
+    $('.pg-contact .field-error').addClass('col-sm-12');
+
+
+  });
 });
 

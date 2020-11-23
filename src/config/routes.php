@@ -39,3 +39,11 @@ $routes->add('admin-settings', Route::create('/admin/settings.html', 'App\Contro
 // User Pages
 $routes->add('member-dashboard', Route::create('/member/index.html', 'App\Controller\Member\Dashboard::doDefault'));
 $routes->add('member-dashboard-base', Route::create('/member/', 'App\Controller\Member\Dashboard::doDefault'));
+
+
+
+
+
+// Dev
+$routes->add('admin-dev-forms', new Route('/admin/dev/forms.html', 'App\Controller\Admin\Dev\Forms::doDefault'));
+

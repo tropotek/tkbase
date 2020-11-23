@@ -78,7 +78,10 @@ class NavRendererHandler implements Subscriber
             $menu->append(Item::create('Settings', Uri::createHomeUrl('/settings.html'), 'fa fa-cogs'));
             if ($this->getConfig()->isDebug()) {
                 $sub = $menu->append(Item::create('Development', '#', 'fa fa-bug'));
-                $sub->append(Item::create('Events', Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
+                //$sub->append(Item::create('Events', Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
+                $sub->append(Item::create('Tail Log', \Bs\Uri::createHomeUrl('/dev/tailLog.html'), 'fa fa-road'));
+                $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
+                $sub->append(Item::create('Forms', \Bs\Uri::createHomeUrl('/dev/forms.html'), 'fa fa-rebel'));
             }
         }
 
