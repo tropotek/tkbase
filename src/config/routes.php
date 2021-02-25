@@ -42,8 +42,6 @@ $routes->add('member-dashboard-base', Route::create('/member/', 'App\Controller\
 
 
 
-
-
 // Dev
 //$routes->add('admin-dev-forms', new Route('/admin/dev/forms.html', 'App\Controller\Admin\Dev\Forms::doDefault'));
-
+$routes->add('admin-form-file', Route::create('/admin/dev/formFile.html', 'App\Controller\Admin\Dev\FormFile::doDefault'));

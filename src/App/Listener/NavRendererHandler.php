@@ -82,6 +82,7 @@ class NavRendererHandler implements Subscriber
                 $sub->append(Item::create('Tail Log', \Bs\Uri::createHomeUrl('/dev/tailLog.html'), 'fa fa-road'));
                 $sub->append(Item::create('Events', \Bs\Uri::createHomeUrl('/dev/dispatcherEvents.html'), 'fa fa-empire'));
                 $sub->append(Item::create('Forms', \Bs\Uri::createHomeUrl('/dev/forms.html'), 'fa fa-rebel'));
+                $sub->append(Item::create('Forms', \Bs\Uri::createHomeUrl('/dev/formFile.html'), 'fa fa-save'));
             }
         }
 
