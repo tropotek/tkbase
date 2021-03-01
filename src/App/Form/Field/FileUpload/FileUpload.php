@@ -1,7 +1,12 @@
 <?php
 namespace App\Form\Field\FileUpload;
 
-
+use Bs\Db\FileMap;
+use Bs\Db\Traits\ForeignModelTrait;
+use Tk\Db\Map\Model;
+use Tk\Db\ModelInterface;
+use Tk\Db\Tool;
+use Tk\Request;
 use Tk\Uri;
 
 /**
@@ -12,14 +17,54 @@ use Tk\Uri;
  */
 class FileUpload extends \Tk\Form\Field\Iface
 {
+    use ForeignModelTrait;
+
+    /**
+     * This is the relative data path to the site root path
+     * This will allow us to create file paths and url paths
+     * @var string
+     */
+    protected $dataPath = '';
+
+    /**
+     * @var \Bs\Db\File[]|\Tk\Db\Map\ArrayObject|null
+     */
+    protected $fileList = null;
+
+    /**
+     * @var int
+     */
+    protected $maxFiles = 0;
+
+    /**
+     * @var string
+     */
+    private $orderBy = 'label';
+
+
+
     /**
      * @param string $name
+     * @param Model|ModelInterface $model
+     * @param string $fileDbClass
+     * @param string $orderBy
+     * @throws \Exception
      */
-    public function __construct($name)
+    public function __construct($name, $model, $fileDbClass = '/Bs/Db/File')
     {
+        $this->setModel($model);
+        parent::__construct($name);
         $this->setArrayField(true);
         $this->setAttr('multiple');
-        parent::__construct($name);
+
+        // Find the upload relative data path
+        $this->dataPath = '/uploads';
+        if (method_exists($model, 'getDataPath'))
+            $this->dataPath = $model->getDataPath();
+        if (!is_dir($this->getDataPath())) {
+            mkdir($this->getDataPath(), 0777, true);
+        }
+
     }
 
     /**
@@ -34,6 +79,73 @@ class FileUpload extends \Tk\Form\Field\Iface
         return parent::getValue();
     }
 
+    /**
+     * @param array|\ArrayObject $values
+     * @return FileUpload
+     */
+    public function load($values)
+    {
+        $r = parent::load($values);
+
+        $list = $this->getFileList();
+        vd($values, $list->count());
+
+//        // When the value does not exist it is ignored (may not be the desired result for unselected checkbox or empty select box)
+//        if (array_key_exists($this->getName(), $values)) {
+//            $this->setValue($values[$this->getName()]);
+//        }
+        return $r;
+    }
+
+    /**
+     * This is called only once the form has been submitted
+     *   and new data loaded into the fields
+     *
+     */
+    public function execute()
+    {
+        if ($this->getForm()->isSubmitted()) {
+        }
+
+        $v = $this->handleUpload($this->getName(), [
+            //"allowed_exts" => array("jpg", "png"),
+            //"filename" => __DIR__ . "/images/" . $id . ".{ext}",
+            "result_callback" => [$this, "onResult"],
+            "filename_callback" => [$this, "onFilename"]
+        ]);
+        if ($v) {
+            vd($v);
+        }
+
+    }
+
+
+
+    function onFilename($name, $ext, $fileinfo)
+    {
+        vd(
+            $_REQUEST,
+            $this->getAttrList(),
+            $name,
+            $ext,
+            $fileinfo
+        );
+        $path = $this->getDataPath() . '/' . $name . '.' . $ext;
+        vd($path);
+        return $path;
+    }
+
+	function onResult(&$result, $filename, $name, $ext, $fileinfo)
+	{
+	    vd(
+            $_REQUEST,
+	        $result,
+            $filename,
+            $name,
+            $ext,
+            $fileinfo
+        );
+	}
 
     /**
      * Get the element HTML
@@ -42,49 +154,82 @@ class FileUpload extends \Tk\Form\Field\Iface
      */
     public function show()
     {
-        $v = $this->handleUpload($this->getName(), []);
 
         $template = $this->getTemplate();
         if (!$template->keyExists('var', 'element')) {
             return $template;
         }
         $baseurl = $this->getConfig()->getSiteUrl().'/src/App/Form/Field/FileUpload/fancy-file-uploader';
-
         // Include CSS
         $template->appendCssUrl(Uri::create($baseurl . '/fancy_fileupload.css'));
-
         // Include Js
         $template->appendJsUrl(Uri::create($baseurl . '/jquery.fileupload.js'));
         $template->appendJsUrl(Uri::create($baseurl . '/jquery.iframe-transport.js'));
         $template->appendJsUrl(Uri::create($baseurl . '/jquery.fancy-fileupload.js'));
-
-        //$template->setAttr('element', 'data-url', Uri::create($baseurl . '/server-side-helpers/fancy_file_uploader_helper.php'));
         $template->setAttr('element', 'data-action', $this->makeInstanceKey($this->getName()));
 
         // The main application script
         $js = <<<JS
 jQuery(function ($) {
   'use strict';
-  
   function init() {
     var form = $(this);
     form.find('.tk-file-upload-control input').each(function (){
       var file = $(this);
       file.FancyFileUpload({
+        //url: document.href, 
+        edit: true,
 	    params : {
-		  action : file.data('action')
+		  action : file.data('action'),
+		  getFilesFromResponse: function (data) {
+		    console.log(arguments);
+		  }
 	    },
-	    maxfilesize : 1000000
+	    maxfilesize : 1000000,
+	    
+	    // postinit: function () {
+      //     console.log(arguments);
+      //     console.log(this);
+      //     var b = fetch(config.siteUrl+'/html/app/img/favicon.png')
+      //     .then(function(response) {
+      //       return response.blob();
+      //     });
+      //    
+      //     $(this).fileupload('add', { files: [ b ] });
+      //    
+	    // },
+	    
+		added : function(e, data) { // Auto upload
+			// It is okay to simulate clicking the start upload button.
+			this.find('.ff_fileupload_actions button.ff_fileupload_start_upload').click();
+		}
 	  });
     });
     
+//     form.find('input[type=file]').each(function() {
+//       var fileinput = $(this);
+//    
+//       // Do something with the file input.
+//       //fileinput.attr('accept', '.png; image/png');
+//       var b = fetch(config.siteUrl+'/html/app/img/favicon.png')
+//       .then(function(response) {
+//         return response.blob();
+//       });
+//      
+//       fileinput.fileupload('add', { files: [ b ] });
+// //    
+// //      fileupload.data('fancy-fileupload').settings.accept = ['png'];
+// //    
+// //      // Can even alter the underlying jQuery File Uploader (e.g. inject a canvas PNG blob).
+// //      fileinput.fileupload('add', { files: [ new Blob(...) ] });
+//     });
+    
+    
    }
    $('form').on('init', document, init).each(init);
-  
 });
 JS;
         $template->appendJs($js);
-
 
         // Set the input type attribute
 
@@ -97,7 +242,6 @@ JS;
         }
 
         $this->decorateElement($template);
-//vd($template->toString(false));
         return $template;
     }
 
@@ -108,7 +252,6 @@ JS;
      */
     public function __makeTemplate()
     {
-
         $xhtml = <<<HTML
 <div class="tk-file-upload-control">
   <input type="file" class="form-control form-control-lg" var="element"/>
@@ -116,10 +259,59 @@ JS;
 HTML;
         return \Dom\Loader::load($xhtml);
     }
-    
-    
-     /***************************** Fancy File Upload Methods *******************************/
 
+
+    /**
+     * @return \Bs\Db\File[]|\Tk\Db\Map\ArrayObject|null
+     */
+    public function getFileList()
+    {
+        if (!$this->fileList) {
+            $this->fileList = FileMap::create()->findFiltered([
+                'model' => $this->getModel()
+            ], Tool::create($this->orderBy, $this->maxFiles));
+        }
+        return $this->fileList;
+    }
+
+    /**
+     * @return string
+     */
+    public function getOrderBy(): string
+    {
+        return $this->orderBy;
+    }
+
+    /**
+     * @param string $orderBy
+     * @return FileUpload
+     */
+    public function setOrderBy(string $orderBy): FileUpload
+    {
+        $this->orderBy = $orderBy;
+        return $this;
+    }
+
+    /**
+     * @return int
+     */
+    public function getMaxFiles(): int
+    {
+        return $this->maxFiles;
+    }
+
+    /**
+     * @param int $maxFiles
+     * @return FileUpload
+     */
+    public function setMaxFiles(int $maxFiles): FileUpload
+    {
+        $this->maxFiles = $maxFiles;
+        return $this;
+    }
+    
+    /***************************** Fancy File Upload Methods *******************************/
+    /** https://github.com/cubiclesoft/jquery-fancyfileuploader */
 
     /**
      * @param $filekey
@@ -129,17 +321,12 @@ HTML;
     public function handleUpload($filekey, $options = array())
     {
         //vd($_REQUEST, $_FILES, $filekey, $this->makeInstanceKey($filekey));
-
         //if (!isset($_REQUEST["fileuploader"]) && !isset($_POST["fileuploader"])) return false;
-        if (!isset($_REQUEST['action']) && !isset($_POST['action']) && $_REQUEST['action'] != $this->makeInstanceKey($filekey)) return false;
-
+        if ((!isset($_REQUEST['action']) && !isset($_POST['action'])) || $_REQUEST['action'] != $this->makeInstanceKey($filekey)) return false;
         //header("Content-Type: application/json");
-
         if (isset($options["allowed_exts"])) {
             $allowedexts = array();
-
             if (is_string($options["allowed_exts"])) $options["allowed_exts"] = explode(",", $options["allowed_exts"]);
-
             foreach ($options["allowed_exts"] as $ext) {
                 $ext = strtolower(trim(trim($ext), "."));
                 if ($ext !== "") $allowedexts[$ext] = true;
@@ -147,7 +334,7 @@ HTML;
         }
 
         $files = $this->normalizeFiles($filekey);
-        vd($files);
+//vd($files);
         if (!isset($files[0])) $result = array("success" => false, "error" => $this->ffTranslate("File data was submitted but is missing."), "errorcode" => "bad_input");
         else if (!$files[0]["success"]) $result = $files[0];
         else if (isset($options["allowed_exts"]) && !isset($allowedexts[strtolower($files[0]["ext"])])) {
@@ -177,7 +364,6 @@ HTML;
                     }
 
                     $fp2 = @fopen($files[0]["file"], "rb");
-
                     if ($fp === false) $result = array("success" => false, "error" => $this->ffTranslate("Unable to open a required file for writing."), "errorcode" => "open_failed", "info" => $filename);
                     else if ($fp2 === false) $result = array("success" => false, "error" => $this->ffTranslate("Unable to open a required file for reading."), "errorcode" => "open_failed", "info" => $files[0]["file"]);
                     else {
@@ -202,8 +388,8 @@ HTML;
 vd($name);
                 if (isset($options["filename_callback"]) && is_callable($options["filename_callback"])) $filename = call_user_func_array($options["filename_callback"], array($name, strtolower($files[0]["ext"]), $files[0]));
                 else if (isset($options["filename"])) $filename = str_replace(array("{name}", "{ext}"), array($name, strtolower($files[0]["ext"])), $options["filename"]);
-                else $filename = $files[0]["name"];
-                    //$filename = false;
+                else $filename = false;
+                //else $filename = $files[0]["name"];
 vd($filename);
                 if (!is_string($filename)) $result = array("success" => false, "error" => $this->ffTranslate("The server did not set a valid filename."), "errorcode" => "invalid_filename");
                 else if (isset($options["limit"]) && $options["limit"] > -1 && filesize($files[0]["file"]) > $options["limit"]) $result = array("success" => false, "error" => $this->ffTranslate("The server file size limit was exceeded."), "errorcode" => "file_too_large");
@@ -219,7 +405,7 @@ vd($filename);
         if ($result["success"] && isset($options["result_callback"]) && is_callable($options["result_callback"])) call_user_func_array($options["result_callback"], array(&$result, $filename, $name, strtolower($files[0]["ext"]), $files[0], (isset($options["result_callback_opts"]) ? $options["result_callback_opts"] : false)));
 
         if (isset($options["return_result"]) && $options["return_result"]) return $result;
-        vd(json_encode($result, JSON_UNESCAPED_SLASHES));
+//vd(json_encode($result, JSON_UNESCAPED_SLASHES));
         \Tk\ResponseJson::createJson(json_encode($result, JSON_UNESCAPED_SLASHES))->send();
         //echo json_encode($result, JSON_UNESCAPED_SLASHES);
         exit();
@@ -248,7 +434,6 @@ vd($filename);
         $result = array();
         if (isset($_FILES) && is_array($_FILES) && isset($_FILES[$key]) && is_array($_FILES[$key])) {
             $currfiles = $_FILES[$key];
-
             if (isset($currfiles["name"]) && isset($currfiles["type"]) && isset($currfiles["tmp_name"]) && isset($currfiles["error"]) && isset($currfiles["size"])) {
                 if (is_string($currfiles["name"])) {
                     $currfiles["name"] = array($currfiles["name"]);
@@ -257,7 +442,6 @@ vd($filename);
                     $currfiles["error"] = array($currfiles["error"]);
                     $currfiles["size"] = array($currfiles["size"]);
                 }
-
                 $y = count($currfiles["name"]);
                 for ($x = 0; $x < $y; $x++) {
                     if ($currfiles["error"][$x] != 0) {
@@ -295,7 +479,6 @@ vd($filename);
                                 $code = "upload_err_unknown";
                                 break;
                         }
-
                         $entry = array(
                             "success" => false,
                             "error" => $this->ffTranslate($msg),
@@ -311,7 +494,6 @@ vd($filename);
                         $currfiles["name"][$x] = $this->filenameSafe($currfiles["name"][$x]);
                         $pos = strrpos($currfiles["name"][$x], ".");
                         $fileext = ($pos !== false ? (string)substr($currfiles["name"][$x], $pos + 1) : "");
-
                         $entry = array(
                             "success" => true,
                             "file" => $currfiles["tmp_name"][$x],
@@ -321,12 +503,10 @@ vd($filename);
                             "size" => $currfiles["size"][$x]
                         );
                     }
-
                     $result[] = $entry;
                 }
             }
         }
-
         return $result;
     }
 
@@ -337,10 +517,8 @@ vd($filename);
     {
         $maxpostsize = floor($this->convertUserStrToBytes(ini_get("post_max_size")) * 3 / 4);
         if ($maxpostsize > 4096) $maxpostsize -= 4096;
-
         $maxuploadsize = $this->convertUserStrToBytes(ini_get("upload_max_filesize"));
         if ($maxuploadsize < 1) $maxuploadsize = ($maxpostsize < 1 ? -1 : $maxpostsize);
-
         return ($maxpostsize < 1 ? $maxuploadsize : min($maxpostsize, $maxuploadsize));
     }
 
@@ -362,7 +540,6 @@ vd($filename);
             case "K":
                 $num *= 1024;
         }
-
         return $num;
     }
 
@@ -371,17 +548,14 @@ vd($filename);
      */
     public function getChunkFilename()
     {
-        //vd($_SERVER);
         if (isset($_SERVER["HTTP_CONTENT_DISPOSITION"])) {
             // Content-Disposition: attachment; filename="urlencodedstr"
             $str = $_SERVER["HTTP_CONTENT_DISPOSITION"];
             if (strtolower(substr($str, 0, 11)) === "attachment;") {
                 $pos = strpos($str, "\"", 11);
                 $pos2 = strrpos($str, "\"");
-
                 if ($pos !== false && $pos2 !== false && $pos < $pos2) {
                     $str = $this->filenameSafe(rawurldecode(substr($str, $pos + 1, $pos2 - $pos - 1)));
-
                     if ($str !== "") return $str;
                 }
             }
@@ -402,12 +576,10 @@ vd($filename);
                 $vals = explode("/", trim($vals[1]));
                 if (count($vals) === 2) {
                     $vals = explode("-", trim($vals[0]));
-
                     if (count($vals) === 2) return (double)$vals[0];
                 }
             }
         }
-
         return 0;
     }
 
@@ -418,9 +590,28 @@ vd($filename);
     {
         $args = func_get_args();
         if (!count($args)) return "";
-
         return call_user_func_array((defined("CS_TRANSLATE_FUNC") && function_exists(CS_TRANSLATE_FUNC) ? CS_TRANSLATE_FUNC : "sprintf"), $args);
     }
 
+
+    /**
+     * Return the full directory data path
+     *
+     * @return string
+     */
+    public function getDataPath()
+    {
+        return $this->getConfig()->getDataPath() . $this->dataPath;
+    }
+
+    /**
+     * Return the full directory data URL
+     *
+     * @return string
+     */
+    public function getDataUrl()
+    {
+        return $this->getConfig()->getDataUrl() . $this->dataPath;
+    }
 
 }
