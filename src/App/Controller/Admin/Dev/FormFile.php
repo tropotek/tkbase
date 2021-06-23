@@ -99,7 +99,10 @@ class FormFile extends \Bs\Controller\AdminIface
 
         $this->form2 = $this->createForm('form2');
 
-        $this->form2->appendField(new FileUpload('fileupload', $this->getAuthUser()));
+        $this->form2->appendField(new FileUpload('fileupload', $this->getAuthUser()))
+            //->addCss('tk-multiinput')
+            //->setAttr('accept', '.png,.jpg,.jpeg,.gif')
+            ->setNotes('Upload any related files. Multiple files can be selected.');
 
         $this->form2->appendField(new Event\Submit('update', array($this, 'doSubmit2')));
         $this->form2->appendField(new Event\Submit('save', array($this, 'doSubmit2')));
