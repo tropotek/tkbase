@@ -163,13 +163,14 @@ class FileUpload extends \Tk\Form\Field\Iface
         if (!$template->keyExists('var', 'element')) {
             return $template;
         }
-        $baseurl = $this->getConfig()->getSiteUrl().'/src/App/Form/Field/FileUpload/fancy-file-uploader';
-        // Include CSS
-        $template->appendCssUrl(Uri::create($baseurl . '/fancy_fileupload.css'));
-        // Include Js
-        $template->appendJsUrl(Uri::create($baseurl . '/jquery.fileupload.js'));
-        $template->appendJsUrl(Uri::create($baseurl . '/jquery.iframe-transport.js'));
-        $template->appendJsUrl(Uri::create($baseurl . '/jquery.fancy-fileupload.js'));
+//        $baseurl = $this->getConfig()->getSiteUrl().'/src/App/Form/Field/FileUpload/fancy-file-uploader';
+//        // Include CSS
+//        $template->appendCssUrl(Uri::create($baseurl . '/fancy_fileupload.css'));
+//        // Include Js
+//        $template->appendJsUrl(Uri::create($baseurl . '/jquery.fileupload.js'));
+//        $template->appendJsUrl(Uri::create($baseurl . '/jquery.iframe-transport.js'));
+//        $template->appendJsUrl(Uri::create($baseurl . '/jquery.fancy-fileupload.js'));
+
         $template->setAttr('element', 'data-action', $this->makeInstanceKey($this->getName()));
 
         // The main application script
