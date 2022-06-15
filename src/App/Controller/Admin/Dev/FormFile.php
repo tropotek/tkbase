@@ -73,7 +73,14 @@ class FormFile extends \Bs\Controller\AdminIface
         $this->form1 = $this->createForm('form1');
 
         /** @var Field\File $fileField */
-        $fileField = $this->form1->appendField(Field\File::create('files[]', $this->getAuthUser()->getDataPath()))
+        $fileField = $this->form1->appendField(Field\File::create('files1[]', $this->getAuthUser()->getDataPath()))
+            ->addCss('tk-fileinput')
+            //->setAttr('multiple', 'multiple')
+            //->setAttr('accept', '.png,.jpg,.jpeg,.gif')
+            ->setNotes('Upload any related files. Multiple files can be selected.');
+
+        /** @var Field\File $fileField */
+        $fileField = $this->form1->appendField(Field\File::create('files2[]', $this->getAuthUser()->getDataPath()))
             ->addCss('tk-multiinput')
             ->setAttr('multiple', 'multiple')
             //->setAttr('accept', '.png,.jpg,.jpeg,.gif')
@@ -127,7 +134,35 @@ class FormFile extends \Bs\Controller\AdminIface
         }
 
         /** @var \Tk\Form\Field\File $fileField */
-        $fileField = $form->getField('files');
+        $fileField = $form->getField('files1');
+        if ($fileField->hasFile()) {
+            /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
+            foreach ($fileField->getUploadedFiles() as $i => $file) {
+                if (!\App\Config::getInstance()->validateFile($file->getClientOriginalName())) {
+                    \Tk\Alert::addWarning('Illegal file type: ' . $file->getClientOriginalName());
+                    continue;
+                }
+                try {
+                    $filePath = $this->getConfig()->getDataPath() . $this->getAuthUser()->getDataPath() . '/' . $file->getClientOriginalName();
+                    if (!is_dir(dirname($filePath))) {
+                        mkdir(dirname($filePath), $this->getConfig()->getDirMask(), true);
+                    }
+                    $file->move(dirname($filePath), basename($filePath));
+                    $oFile = \Bs\Db\FileMap::create()->findFiltered(array('model' => $this->getAuthUser(), 'path' => $this->getAuthUser()->getDataPath() . '/' . $file->getClientOriginalName()))->current();
+                    if (!$oFile) {
+                        $oFile = \Bs\Db\File::create($this->getAuthUser(), $this->getAuthUser()->getDataPath() . '/' . $file->getClientOriginalName(), $this->getConfig()->getDataPath() );
+                    }
+                    //$oFile->path = $this->report->getDataPath() . '/' . $file->getClientOriginalName();
+                    $oFile->save();
+                } catch (\Exception $e) {
+                    \Tk\Log::error($e->__toString());
+                    \Tk\Alert::addWarning('Error Uploading file: ' . $file->getClientOriginalName());
+                }
+            }
+        }
+
+        /** @var \Tk\Form\Field\File $fileField */
+        $fileField = $form->getField('files2');
         if ($fileField->hasFile()) {
             /** @var \Symfony\Component\HttpFoundation\File\UploadedFile $file */
             foreach ($fileField->getUploadedFiles() as $i => $file) {
