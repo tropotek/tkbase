@@ -42,8 +42,7 @@
     "ext-pdo": "*",
     "ext-json": "*"
   },
-  "require-dev": {
-  },
+  "require-dev": {},
   "config": {
     "allow-plugins": {
       "ttek/tk-installers": true
