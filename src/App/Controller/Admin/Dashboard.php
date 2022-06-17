@@ -18,6 +18,7 @@ class Dashboard extends \Bs\Controller\AdminIface
     protected $table = null;
 
 
+
     /**
      * @throws \Exception
      */
@@ -70,5 +71,5 @@ HTML;
 
         return \Dom\Loader::load($xhtml);
     }
-    
+
 }
