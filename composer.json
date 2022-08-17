@@ -46,7 +46,6 @@
     "ttek-plg/subscribers": "~1.0.0"
   },
   "require-dev": {
-    "composer/composer": "^2.0"
   },
   "config": {
     "allow-plugins": {
