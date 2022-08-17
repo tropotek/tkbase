@@ -2475,12 +2475,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-installers.git",
-                "reference": "2cd717382ec7d499a8a8a2e6f822f6df7cecbdf1"
+                "reference": "37bc9614fc78a56613f8fa1b48f5b4f8919de683"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/2cd717382ec7d499a8a8a2e6f822f6df7cecbdf1",
-                "reference": "2cd717382ec7d499a8a8a2e6f822f6df7cecbdf1",
+                "url": "https://api.github.com/repos/tropotek/tk-installers/zipball/37bc9614fc78a56613f8fa1b48f5b4f8919de683",
+                "reference": "37bc9614fc78a56613f8fa1b48f5b4f8919de683",
                 "shasum": ""
             },
             "require": {
@@ -2496,6 +2496,7 @@
                     "Tk\\Installer\\ThemePlugin",
                     "Tk\\Installer\\PluginPlugin"
                 ],
+                "plugin-modifies-install-path": true,
                 "branch-alias": {
                     "dev-master": "3.2.x-dev"
                 }
