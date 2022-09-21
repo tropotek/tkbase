@@ -37,6 +37,7 @@
     "php": "^7.3||^8.0",
     "ext-pdo": "*",
     "ext-json": "*",
+    "ext-curl": "*",
 
     "ttek/tk-base": "~3.4.0",
     "ttek/theme-cube": "~1.4.0",
