@@ -1956,12 +1956,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/plg-events.git",
-                "reference": "8688e826297f30483513cc9c97abfc670d25450b"
+                "reference": "dfd0f3f4dd46face5fbac75cf092ff022f6ad111"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/plg-events/zipball/8688e826297f30483513cc9c97abfc670d25450b",
-                "reference": "8688e826297f30483513cc9c97abfc670d25450b",
+                "url": "https://api.github.com/repos/tropotek/plg-events/zipball/dfd0f3f4dd46face5fbac75cf092ff022f6ad111",
+                "reference": "dfd0f3f4dd46face5fbac75cf092ff022f6ad111",
                 "shasum": ""
             },
             "default-branch": true,
@@ -1973,7 +1973,7 @@
             },
             "autoload": {
                 "psr-0": {
-                    "Tk\\Ev\\": ""
+                    "Tk\\": ""
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -2254,12 +2254,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/tropotek/tk-database.git",
-                "reference": "bd181d6850a654b16ac5b083b23da26eec9cf5f1"
+                "reference": "3db326ac9d3c2967dbe3e37032662e38f0fcfb61"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/bd181d6850a654b16ac5b083b23da26eec9cf5f1",
-                "reference": "bd181d6850a654b16ac5b083b23da26eec9cf5f1",
+                "url": "https://api.github.com/repos/tropotek/tk-database/zipball/3db326ac9d3c2967dbe3e37032662e38f0fcfb61",
+                "reference": "3db326ac9d3c2967dbe3e37032662e38f0fcfb61",
                 "shasum": ""
             },
             "require": {
