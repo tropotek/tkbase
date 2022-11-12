@@ -1,7 +1,6 @@
 <?php
 namespace App\Controller;
 
-use Composer\Autoload\ClassLoader;
 use Tk\Request;
 
 /**
@@ -27,10 +26,6 @@ class Index extends \Bs\Controller\Index
     public function doDefault(Request $request)
     {
         parent::doDefault($request);
-
-        /** @var ClassLoader $c */
-        $c = $this->getConfig()->get('composer');
-        vd($c->getPrefixes());
     }
 
     /**
