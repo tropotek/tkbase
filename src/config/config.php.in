@@ -14,7 +14,7 @@ $config['db.user'] = 'username';
 $config['db.pass'] = 'password';
 
 /*
- * DB secret API key
+ * DB secret API key used for the mirror command
  * Use this  key for the mirror command in a dev environment.
  * Keep this key secret. Access to the sites DB can be gained with it.
  */
@@ -43,7 +43,6 @@ $config['db.pass'] = 'password';
 //$config['log.level'] = \Psr\Log\LogLevel::DEBUG;
 //$config['log.path'] = '/home/user/log/error.log';
 //$config['system.debug.email'] = 'dev@example.com';
-
 
 // Used for the Mirror command.
 //if ($config->isDebug()) {
