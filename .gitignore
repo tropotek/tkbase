@@ -20,4 +20,5 @@ node_modules
 /src/config/config.php
 /.htaccess
 /*.bak
-
+/*.tgz
+/*.gz
