@@ -20,7 +20,8 @@ $config['db.pass'] = 'password';
  */
 //$config['db.skey'] = '{Add secret key here}';
 
-// Microsoft SSI settings
+// Microsoft SSO settings
+// Azure: https://portal.azure.com/
 $config['auth.microsoft.enabled'] = false;
 $config['auth.microsoft.tenantid'] = '';
 $config['auth.microsoft.clientid'] = '';
