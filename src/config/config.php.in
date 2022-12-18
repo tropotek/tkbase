@@ -23,7 +23,8 @@ $config['db.pass'] = 'password';
 // Microsoft SSO settings
 // Azure: https://portal.azure.com/
 $config['auth.microsoft.enabled'] = false;
-$config['auth.microsoft.tenantid'] = '';
+// tenant ID or `common` for multi-tenant
+$config['auth.microsoft.tenantid'] = 'common';
 $config['auth.microsoft.clientid'] = '';
 $config['auth.microsoft.logout'] = 'https://login.microsoftonline.com/common/wsfederation?wa=wsignout1.0';
 $config['auth.microsoft.scope'] = 'openid%20offline_access%20profile%20user.read';
